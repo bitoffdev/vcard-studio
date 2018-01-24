@@ -1,0 +1,29 @@
+object FormContacts: TFormContacts
+  Left = 536
+  Height = 605
+  Top = 418
+  Width = 807
+  Caption = 'Contacts'
+  ClientHeight = 605
+  ClientWidth = 807
+  OnShow = FormShow
+  LCLVersion = '1.8.0.4'
+  object ListView1: TListView
+    Left = 0
+    Height = 605
+    Top = 0
+    Width = 807
+    Align = alClient
+    Columns = <    
+      item
+        Caption = 'Name'
+        Width = 787
+      end>
+    OwnerData = True
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 0
+    ViewStyle = vsReport
+    OnData = ListView1Data
+  end
+end
