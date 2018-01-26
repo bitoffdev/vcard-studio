@@ -43,12 +43,57 @@ msgctxt "tcore.asettings.caption"
 msgid "Settings"
 msgstr ""
 
+#: tformcontact.buttoncancel.caption
+msgctxt "tformcontact.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformcontact.buttonok.caption
+msgid "OK"
+msgstr ""
+
+#: tformcontact.caption
+msgid "Contact"
+msgstr ""
+
+#: tformcontact.label1.caption
+msgid "Name:"
+msgstr ""
+
+#: tformcontact.tabsheetall.caption
+msgid "All fields"
+msgstr ""
+
+#: tformcontact.tabsheetdetails.caption
+msgid "Details"
+msgstr ""
+
+#: tformcontact.tabsheetgeneral.caption
+msgid "General"
+msgstr ""
+
+#: tformcontacts.aadd.caption
+msgid "Add"
+msgstr ""
+
+#: tformcontacts.amodify.caption
+msgid "Modify"
+msgstr ""
+
+#: tformcontacts.aremove.caption
+msgid "Remove"
+msgstr ""
+
 #: tformcontacts.caption
 msgid "Contacts"
 msgstr ""
 
 #: tformcontacts.listview1.columns[0].caption
 msgid "Name"
+msgstr ""
+
+#: tformcontacts.toolbar1.caption
+msgid "ToolBar1"
 msgstr ""
 
 #: tformmain.caption
@@ -82,6 +127,7 @@ msgid "View"
 msgstr ""
 
 #: tformsettings.buttoncancel.caption
+msgctxt "tformsettings.buttoncancel.caption"
 msgid "Cancel"
 msgstr ""
 
