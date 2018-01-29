@@ -56,7 +56,7 @@ type
     FOnError: TStringEvent;
     function GetNext(var Text: string; Separator: string): string;
   public
-    Records: TContacts;
+    Contacts: TContacts;
     function GetFileName: string; override;
     function GetFileExt: string; override;
     function GetFileFilter: string; override;
@@ -72,6 +72,7 @@ implementation
 
 resourcestring
   SVCardFile = 'vCard file';
+  SUnknownCommand = 'Unknown command: %s';
 
 { TContactsFile }
 
@@ -109,8 +110,8 @@ begin
   inherited;
   try
     Output := TStringList.Create;
-    for I := 0 to Records.Count - 1 do
-    with TContact(Records[I]), Output do begin
+    for I := 0 to Contacts.Count - 1 do
+    with TContact(Contacts[I]), Output do begin
       Add('BEGIN:VCARD');
       if Version <> '' then Add('VERSION:' + Version);
       if (LastName <> '') or (FirstName <> '') or (MiddleName <> '') or (TitleBefore <> '') or (TitleAfter <> '') then
@@ -159,12 +160,15 @@ var
   CommandPart: string;
   Charset: string;
   Encoding: string;
+  CommandItems: TStringList;
 begin
   inherited;
-  Records.Clear;
+  Contacts.Clear;
   Lines := TStringList.Create;
   Lines.LoadFromFile(FileName);
   try
+    CommandItems := TStringList.Create;
+    CommandItems.Delimiter := ';';
     I := 0;
     while I < Lines.Count do begin
       Line := Lines[I];
@@ -172,23 +176,22 @@ begin
         NewRecord := TContact.Create;
       end else
       if Line = 'END:VCARD' then begin
-        Records.Add(NewRecord);
+        Contacts.Add(NewRecord);
         NewRecord := nil;
       end else
       if Pos(':', Line) > 0 then begin
         CommandPart := GetNext(Line, ':');
-        Command := GetNext(CommandPart, ';');
-        while CommandPart <> '' do begin
-          CommandParam := GetNext(CommandPart, ';');
-          if CommandParam = 'CHARSET' then begin
-            GetNext(CommandParam, '=');
-            Charset := CommandParam;
-          end else
-          if CommandParam = 'ENCODING' then begin
-            GetNext(CommandParam, '=');
-            Encoding := CommandParam;
-          end else if Assigned(FOnError) then FOnError('Unknown command param: ' + CommandParam);
+        CommandItems.DelimitedText := CommandPart;
+        if CommandItems.IndexOfName('CHARSET') >= 0 then begin
+          Charset := CommandItems.Values['CHARSET'];
+          CommandItems.Delete(CommandItems.IndexOfName('CHARSET'));
+        end
+        else if CommandItems.IndexOfName('ENCODING') >= 0 then begin
+          Encoding := CommandItems.Values['ENCODING'];
+          CommandItems.Delete(CommandItems.IndexOfName('ENCODING'));
         end;
+        Command := CommandItems.DelimitedText;
+
         if Command = 'FN' then NewRecord.FullName := Line
         else if Command = 'N' then begin
           NewRecord.LastName := GetNext(Line, ';');
@@ -211,7 +214,7 @@ begin
         else if Command = 'ADR;HOME' then NewRecord.AdrHome := Line
         else if Command = 'X-NICKNAME' then NewRecord.NickName := Line
         else if Command = 'EMAIL;HOME' then NewRecord.EmailHome := Line
-        else if Command = 'EMAIL;INTERNET' then NewRecord.EmailInternet := Line
+        else if Command = 'EMAIL:INTERNET' then NewRecord.EmailInternet := Line
         else if Command = 'NOTE' then NewRecord.Note := Line
         else if Command = 'ORG' then NewRecord.Organization := Line
         else if Command = 'X-JABBER' then NewRecord.XJabber := Line
@@ -230,6 +233,7 @@ begin
       end;
       Inc(I);
     end;
+    CommandItems.Free;
   finally
     Lines.Free;
   end;
@@ -238,12 +242,12 @@ end;
 constructor TContactsFile.Create;
 begin
   inherited;
-  Records := TContacts.Create;
+  Contacts := TContacts.Create;
 end;
 
 destructor TContactsFile.Destroy;
 begin
-  Records.Free;
+  Contacts.Free;
   inherited;
 end;
 

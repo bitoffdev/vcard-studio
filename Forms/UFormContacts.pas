@@ -30,15 +30,18 @@ type
     procedure AModifyExecute(Sender: TObject);
     procedure ARemoveExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ListView1Data(Sender: TObject; Item: TListItem);
     procedure ListView1DblClick(Sender: TObject);
     procedure ListView1SelectItem(Sender: TObject; Item: TListItem;
       Selected: Boolean);
   private
+    FContacts: TContacts;
+    procedure SetContacts(AValue: TContacts);
 
   public
-    Contacts: TContacts;
+    property Contacts: TContacts read FContacts write SetContacts;
     procedure ReloadList;
     procedure UpdateInterface;
   end;
@@ -54,13 +57,19 @@ implementation
 uses
   UFormContact, UCore;
 
+resourcestring
+  SRemoveContacts = 'Remove contacts';
+  SRemoveContactsQuery = 'Do you want to remove selected contacts?';
+
 { TFormContacts }
 
 procedure TFormContacts.ListView1Data(Sender: TObject; Item: TListItem);
 begin
   if Assigned(Contacts) and (Item.Index < Contacts.Count) then
   with TContact(Contacts[Item.Index]) do begin
-    Item.Caption := FullName;
+    Item.Caption := FirstName;
+    Item.SubItems.Add(MiddleName);
+    Item.SubItems.Add(LastName);
     Item.Data := Contacts[Item.Index];
   end;
 end;
@@ -76,6 +85,14 @@ begin
   UpdateInterface;
 end;
 
+procedure TFormContacts.SetContacts(AValue: TContacts);
+begin
+  if FContacts = AValue then Exit;
+  FContacts := AValue;
+  ReloadList;
+  UpdateInterface;
+end;
+
 procedure TFormContacts.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
@@ -86,14 +103,21 @@ end;
 procedure TFormContacts.AAddExecute(Sender: TObject);
 var
   FormContact: TFormContact;
+  Contact: TContact;
 begin
   FormContact := TFormContact.Create(nil);
+  try
   if FormContact.ShowModal = mrOK then begin
-    FormContact.SaveData(TContact(ListView1.Selected.Data));
+    Contact := TContact.Create;
+    FormContact.SaveData(Contact);
+    Contacts.Add(Contact);
+    Core.DataFile.Modified := True;
     ReloadList;
     UpdateInterface;
   end;
-  FormContact.Free;
+  finally
+    FormContact.Free;
+  end;
 end;
 
 procedure TFormContacts.AModifyExecute(Sender: TObject);
@@ -101,30 +125,45 @@ var
   FormContact: TFormContact;
 begin
   FormContact := TFormContact.Create(nil);
-  FormContact.LoadData(TContact(ListView1.Selected.Data));
-  if FormContact.ShowModal = mrOK then begin
-    FormContact.SaveData(TContact(ListView1.Selected.Data));
-    ReloadList;
-    UpdateInterface;
+  try
+    FormContact.LoadData(TContact(ListView1.Selected.Data));
+    if FormContact.ShowModal = mrOK then begin
+      FormContact.SaveData(TContact(ListView1.Selected.Data));
+      Core.DataFile.Modified := True;
+      ReloadList;
+      UpdateInterface;
+    end;
+  finally
+    FormContact.Free;
   end;
-  FormContact.Free;
 end;
 
 procedure TFormContacts.ARemoveExecute(Sender: TObject);
 var
   I: Integer;
 begin
-  for I := ListView1.Items.Count - 1 downto 0 do
-    if ListView1.Items[I].Selected then begin
-      Contacts.Delete(I);
-    end;
-  UpdateInterface;
+  if Assigned(ListView1.Selected) then
+  if MessageDlg(SRemoveContacts, SRemoveContactsQuery,
+    TMsgDlgType.mtConfirmation, [mbCancel, mbOk], 0) = mrOk then begin
+    for I := ListView1.Items.Count - 1 downto 0 do
+      if ListView1.Items[I].Selected then begin
+        Contacts.Delete(I);
+      end;
+    Core.DataFile.Modified := True;
+    ReloadList;
+    UpdateInterface;
+  end;
 end;
 
 procedure TFormContacts.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
   Core.PersistentForm1.Save(Self);
+end;
+
+procedure TFormContacts.FormCreate(Sender: TObject);
+begin
+  FContacts := nil;
 end;
 
 procedure TFormContacts.ReloadList;
@@ -137,8 +176,9 @@ end;
 
 procedure TFormContacts.UpdateInterface;
 begin
-  AModify.Enabled := Assigned(ListView1.Selected);
-  ARemove.Enabled := Assigned(ListView1.Selected);
+  AAdd.Enabled := Assigned(Contacts);
+  AModify.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  ARemove.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
 end;
 
 end.
