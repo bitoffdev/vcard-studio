@@ -250,9 +250,8 @@ begin
   UpdateInterface;
   FormMain.UpdateInterface;
   if Assigned(DataFile) then
-    FormContacts.Contacts := TContactsFile(DataFile).Records
+    FormContacts.Contacts := TContactsFile(DataFile).Contacts
     else FormContacts.Contacts := nil;
-  FormContacts.ReloadList;
 end;
 
 procedure TCore.LoadConfig;
@@ -294,7 +293,7 @@ end;
 
 procedure TCore.UpdateInterface;
 begin
-  AFileSave.Enabled := Assigned(DataFile);
+  AFileSave.Enabled := Assigned(DataFile) and DataFile.Modified;
   AFileSaveAs.Enabled := Assigned(DataFile);
   AFileClose.Enabled := Assigned(DataFile);
 end;

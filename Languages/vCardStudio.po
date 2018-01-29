@@ -60,6 +60,34 @@ msgstr ""
 msgid "Name:"
 msgstr ""
 
+#: tformcontact.label2.caption
+msgid "Cell phone:"
+msgstr ""
+
+#: tformcontact.label3.caption
+msgid "Phone:"
+msgstr ""
+
+#: tformcontact.label4.caption
+msgid "E-mail:"
+msgstr ""
+
+#: tformcontact.label5.caption
+msgid "Surname:"
+msgstr ""
+
+#: tformcontact.label6.caption
+msgid "Notes:"
+msgstr ""
+
+#: tformcontact.listview1.columns[0].caption
+msgid "Item"
+msgstr ""
+
+#: tformcontact.listview1.columns[1].caption
+msgid "Value"
+msgstr ""
+
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
 msgstr ""
@@ -89,7 +117,15 @@ msgid "Contacts"
 msgstr ""
 
 #: tformcontacts.listview1.columns[0].caption
-msgid "Name"
+msgid "First name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[1].caption
+msgid "Middle name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[2].caption
+msgid "Last Name"
 msgstr ""
 
 #: tformcontacts.toolbar1.caption
@@ -156,6 +192,10 @@ msgstr ""
 msgid "DPI:"
 msgstr ""
 
+#: ucontact.sunknowncommand
+msgid "Unknown command: %s"
+msgstr ""
+
 #: ucontact.svcardfile
 msgctxt "ucontact.svcardfile"
 msgid "vCard file"
@@ -188,6 +228,14 @@ msgstr ""
 
 #: uformabout.sversion
 msgid "Version"
+msgstr ""
+
+#: uformcontacts.sremovecontacts
+msgid "Remove contacts"
+msgstr ""
+
+#: uformcontacts.sremovecontactsquery
+msgid "Do you want to remove selected contacts?"
 msgstr ""
 
 #: uformmain.smodified

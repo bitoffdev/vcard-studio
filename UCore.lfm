@@ -2,13 +2,14 @@ object Core: TCore
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 606
-  HorizontalOffset = 484
-  VerticalOffset = 342
-  Width = 816
+  Height = 758
+  HorizontalOffset = 605
+  VerticalOffset = 428
+  Width = 1020
+  PPI = 120
   object ImageList1: TImageList
-    left = 160
-    top = 231
+    left = 200
+    top = 289
     Bitmap = {
       4C690B0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -367,8 +368,8 @@ object Core: TCore
   end
   object ActionList1: TActionList
     Images = ImageList1
-    left = 340
-    top = 233
+    left = 425
+    top = 291
     object AExit: TAction
       Caption = 'Exit'
       ImageIndex = 2
@@ -431,16 +432,16 @@ object Core: TCore
   object LastOpenedList1: TLastOpenedList
     MaxCount = 10
     OnChange = LastOpenedList1Change
-    left = 509
-    top = 231
+    left = 636
+    top = 289
   end
   object OpenDialog1: TOpenDialog
-    left = 520
-    top = 322
+    left = 650
+    top = 403
   end
   object SaveDialog1: TSaveDialog
-    left = 375
-    top = 329
+    left = 469
+    top = 411
   end
   object ApplicationInfo1: TApplicationInfo
     Identification = 1
@@ -457,23 +458,23 @@ object Core: TCore
     RegistryKey = '\Software\Chronosoft\vCard Studio'
     RegistryRoot = rrKeyCurrentUser
     License = 'CC0'
-    left = 191
-    top = 329
+    left = 239
+    top = 411
   end
   object PersistentForm1: TPersistentForm
     MinVisiblePart = 50
     EntireVisible = False
-    left = 520
-    top = 72
+    left = 650
+    top = 90
   end
   object CoolTranslator1: TCoolTranslator
     POFilesFolder = 'Languages'
-    left = 239
-    top = 72
+    left = 299
+    top = 90
   end
   object ScaleDPI1: TScaleDPI
     AutoDetect = False
-    left = 376
-    top = 72
+    left = 470
+    top = 90
   end
 end

@@ -17,6 +17,7 @@ type
     FOnModify: TNotifyEvent;
     procedure SetFileName(AValue: string);
     procedure SetModified(AValue: Boolean);
+    procedure DoOnModify;
   public
     function GetFileExt: string; virtual;
     function GetFileName: string; virtual;
@@ -47,6 +48,12 @@ procedure TDataFile.SetModified(AValue: Boolean);
 begin
   if FModified = AValue then Exit;
   FModified := AValue;
+  DoOnModify;
+end;
+
+procedure TDataFile.DoOnModify;
+begin
+  if Assigned(FOnModify) then FOnModify(Self);
 end;
 
 function TDataFile.GetFileExt: string;
