@@ -27,6 +27,8 @@ AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
 OutputBaseFilename=Install-{#MyAppNameShort}-{#MyAppVersion}
 #endif
+UninstallDisplayName={#MyAppName}
+UninstallDisplayIcon="{app}\{#MyAppExeName}"
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
 AppPublisher={#MyAppPublisher}
