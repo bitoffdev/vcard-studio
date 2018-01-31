@@ -10,7 +10,7 @@ override_dh_auto_clean:
 	$(RM) lib *.res vCardStudio
 
 override_dh_auto_build:
-	lazbuild --build-mode=Release --cpu=$DEB_TARGET_ARCH_CPU --operating-system=$DEB_TARGET_ARCH_OS vCardStudio.lpi
+	lazbuild --build-mode=Release vCardStudio.lpi
 
 override_dh_auto_install:
 	install -d -m 755 $(ROOT)/usr/bin
