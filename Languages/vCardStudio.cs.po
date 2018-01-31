@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: tcore.aabout.caption
 msgid "About..."
@@ -73,6 +73,91 @@ msgstr "O aplikaci"
 msgid "   "
 msgstr "  "
 
+#: tformcontact.buttoncancel.caption
+msgctxt "tformcontact.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformcontact.buttonok.caption
+msgid "OK"
+msgstr "OK"
+
+#: tformcontact.caption
+msgid "Contact"
+msgstr "Kontakt"
+
+#: tformcontact.label1.caption
+msgid "Name:"
+msgstr "Jméno:"
+
+#: tformcontact.label2.caption
+msgid "Cell phone:"
+msgstr "Mobilní číslo:"
+
+#: tformcontact.label3.caption
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: tformcontact.label4.caption
+msgid "E-mail:"
+msgstr "E-mail:"
+
+#: tformcontact.label5.caption
+msgid "Surname:"
+msgstr "Příjmení:"
+
+#: tformcontact.label6.caption
+msgid "Notes:"
+msgstr "Poznámky:"
+
+#: tformcontact.listview1.columns[0].caption
+msgid "Item"
+msgstr "Položka"
+
+#: tformcontact.listview1.columns[1].caption
+msgid "Value"
+msgstr "Hodnota"
+
+#: tformcontact.tabsheetall.caption
+msgid "All fields"
+msgstr "Všechny pole"
+
+#: tformcontact.tabsheetdetails.caption
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: tformcontact.tabsheetgeneral.caption
+msgid "General"
+msgstr "Obecné"
+
+#: tformcontacts.aadd.caption
+msgid "Add"
+msgstr "Přidat"
+
+#: tformcontacts.amodify.caption
+msgid "Modify"
+msgstr "Upravit"
+
+#: tformcontacts.aremove.caption
+msgid "Remove"
+msgstr "Odstranit"
+
+#: tformcontacts.caption
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: tformcontacts.listview1.columns[0].caption
+msgid "First name"
+msgstr "Křestní jméno"
+
+#: tformcontacts.listview1.columns[1].caption
+msgid "Middle name"
+msgstr "Prostřední jméno"
+
+#: tformcontacts.listview1.columns[2].caption
+msgid "Last Name"
+msgstr "Příjimení"
+
 #: tformmain.caption
 msgid "FormMain"
 msgstr "FormMain"
@@ -106,6 +191,7 @@ msgid "View"
 msgstr "Zobrazení"
 
 #: tformsettings.buttoncancel.caption
+msgctxt "tformsettings.buttoncancel.caption"
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -134,6 +220,15 @@ msgstr "Jazyk:"
 msgid "DPI:"
 msgstr "DPI:"
 
+#: ucontact.sunknowncommand
+msgid "Unknown command: %s"
+msgstr "Neznámý příkaz: %s"
+
+#: ucontact.svcardfile
+msgctxt "ucontact.svcardfile"
+msgid "vCard file"
+msgstr "Soubor vCard"
+
 #: ucore.sappexit
 msgid "Application exit"
 msgstr "Ukončení aplikace"
@@ -141,6 +236,10 @@ msgstr "Ukončení aplikace"
 #: ucore.sappexitquery
 msgid "File was modified. Do you want to save it before exit?"
 msgstr "Soubor byl upraven. Chcete jej uložit před ukončením?"
+
+#: udatafile.sallfiles
+msgid "All files"
+msgstr "Všechny soubory"
 
 #: udatafile.sdatafilename
 msgctxt "udatafile.sdatafilename"
@@ -159,7 +258,20 @@ msgstr "Datum uvolnění"
 msgid "Version"
 msgstr "Verze"
 
+#: uformcontacts.sremovecontacts
+msgid "Remove contacts"
+msgstr "Odstranit kontakty"
+
+#: uformcontacts.sremovecontactsquery
+msgid "Do you want to remove selected contacts?"
+msgstr "Opravdu chcete odstranit vybrané kontakty?"
+
 #: uformmain.smodified
 msgid "Modified"
 msgstr "Upraveno"
+
+#: uvcf.svcardfile
+msgctxt "uvcf.svcardfile"
+msgid "vCard file"
+msgstr "Soubor vCard"
 

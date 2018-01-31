@@ -34,9 +34,9 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 24
-      Height = 28
+      Height = 22
       Top = 5
-      Width = 132
+      Width = 105
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 22
@@ -54,19 +54,19 @@ object FormMain: TFormMain
         Action = Core.AFileNew
       end
       object ToolButton2: TToolButton
-        Left = 30
+        Left = 24
         Top = 0
         Action = Core.AFileOpen
         DropdownMenu = PopupMenuOpenRecent
         Style = tbsDropDown
       end
       object ToolButton3: TToolButton
-        Left = 74
+        Left = 59
         Top = 0
         Action = Core.AFileSave
       end
       object ToolButton4: TToolButton
-        Left = 103
+        Left = 82
         Top = 0
         Action = Core.AFileClose
       end
@@ -75,9 +75,9 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 188
-      Height = 28
+      Height = 22
       Top = 5
-      Width = 30
+      Width = 24
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 186
