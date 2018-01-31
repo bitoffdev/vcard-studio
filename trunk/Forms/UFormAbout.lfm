@@ -6,11 +6,10 @@ object FormAbout: TFormAbout
   Caption = 'About'
   ClientHeight = 387
   ClientWidth = 524
-  DesignTimePPI = 120
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.8.0.4'
   object LabelDescription: TLabel
     Left = 25
     Height = 40
@@ -34,7 +33,7 @@ object FormAbout: TFormAbout
   end
   object LabelContent: TLabel
     Left = 25
-    Height = 20
+    Height = 26
     Top = 202
     Width = 474
     Align = alTop

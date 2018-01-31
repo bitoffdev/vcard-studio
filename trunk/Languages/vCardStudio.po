@@ -10,6 +10,7 @@ msgid "Exit"
 msgstr ""
 
 #: tcore.afileclose.caption
+msgctxt "tcore.afileclose.caption"
 msgid "Close"
 msgstr ""
 
@@ -35,12 +36,31 @@ msgid "Save as..."
 msgstr ""
 
 #: tcore.ahomepage.caption
+msgctxt "tcore.ahomepage.caption"
 msgid "Home page"
 msgstr ""
 
 #: tcore.asettings.caption
 msgctxt "tcore.asettings.caption"
 msgid "Settings"
+msgstr ""
+
+#: tformabout.buttonclose.caption
+msgctxt "tformabout.buttonclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tformabout.buttonhomepage.caption
+msgctxt "tformabout.buttonhomepage.caption"
+msgid "Home page"
+msgstr ""
+
+#: tformabout.caption
+msgid "About"
+msgstr ""
+
+#: tformabout.labelcontent.caption
+msgid "   "
 msgstr ""
 
 #: tformcontact.buttoncancel.caption
@@ -126,10 +146,6 @@ msgstr ""
 
 #: tformcontacts.listview1.columns[2].caption
 msgid "Last Name"
-msgstr ""
-
-#: tformcontacts.toolbar1.caption
-msgid "ToolBar1"
 msgstr ""
 
 #: tformmain.caption

@@ -32,6 +32,9 @@ type
     TabSheetGeneral: TTabSheet;
     TabSheetDetails: TTabSheet;
     TabSheetAll: TTabSheet;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
 
   public
@@ -46,7 +49,26 @@ implementation
 
 {$R *.lfm}
 
+uses
+  UCore;
+
 { TFormContact }
+
+procedure TFormContact.FormShow(Sender: TObject);
+begin
+  Core.PersistentForm1.Load(Self);
+end;
+
+procedure TFormContact.FormClose(Sender: TObject; var CloseAction: TCloseAction
+  );
+begin
+  Core.PersistentForm1.Save(Self);
+end;
+
+procedure TFormContact.FormCreate(Sender: TObject);
+begin
+  Core.CoolTranslator1.TranslateComponentRecursive(Self);
+end;
 
 procedure TFormContact.LoadData(Contact: TContact);
 begin
