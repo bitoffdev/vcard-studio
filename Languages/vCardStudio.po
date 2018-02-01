@@ -80,8 +80,64 @@ msgstr ""
 msgid "Name:"
 msgstr ""
 
+#: tformcontact.label10.caption
+msgctxt "tformcontact.label10.caption"
+msgid "Cell phone (Work):"
+msgstr ""
+
+#: tformcontact.label11.caption
+msgid "Fax:"
+msgstr ""
+
+#: tformcontact.label12.caption
+msgid "Fax (Home):"
+msgstr ""
+
+#: tformcontact.label13.caption
+msgid "Fax (Work):"
+msgstr ""
+
+#: tformcontact.label14.caption
+msgid "Pager:"
+msgstr ""
+
+#: tformcontact.label15.caption
+msgctxt "tformcontact.label15.caption"
+msgid "Web page:"
+msgstr ""
+
+#: tformcontact.label16.caption
+msgctxt "tformcontact.label16.caption"
+msgid "Web page (Home):"
+msgstr ""
+
+#: tformcontact.label17.caption
+msgctxt "tformcontact.label17.caption"
+msgid "Web page (Work):"
+msgstr ""
+
+#: tformcontact.label18.caption
+msgid "Title:"
+msgstr ""
+
+#: tformcontact.label19.caption
+msgid "Address:"
+msgstr ""
+
 #: tformcontact.label2.caption
 msgid "Cell phone:"
+msgstr ""
+
+#: tformcontact.label20.caption
+msgid "E-mail (Home):"
+msgstr ""
+
+#: tformcontact.label21.caption
+msgid "E-mail (Work):"
+msgstr ""
+
+#: tformcontact.label22.caption
+msgid "Birthday:"
 msgstr ""
 
 #: tformcontact.label3.caption
@@ -98,6 +154,22 @@ msgstr ""
 
 #: tformcontact.label6.caption
 msgid "Notes:"
+msgstr ""
+
+#: tformcontact.label7.caption
+msgid "Phone (Home):"
+msgstr ""
+
+#: tformcontact.label8.caption
+msgid "Phone (Work):"
+msgstr ""
+
+#: tformcontact.label9.caption
+msgid "Cell phone (Home):"
+msgstr ""
+
+#: tformcontact.labelorganization.caption
+msgid "Organization:"
 msgstr ""
 
 #: tformcontact.listview1.columns[0].caption
