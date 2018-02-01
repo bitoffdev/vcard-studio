@@ -109,6 +109,7 @@ begin
   try
   if FormContact.ShowModal = mrOK then begin
     Contact := TContact.Create;
+    Contact.Parent := Contacts.ContactsFile;
     FormContact.SaveData(Contact);
     Contacts.Add(Contact);
     Core.DataFile.Modified := True;
@@ -170,7 +171,7 @@ procedure TFormContacts.ReloadList;
 begin
   if Assigned(Contacts) then
     ListView1.Items.Count := Contacts.Count
-    else ListView1.Clear;
+    else ListView1.Items.Count := 0;
   ListView1.Refresh;
 end;
 

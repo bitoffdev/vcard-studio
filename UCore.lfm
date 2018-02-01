@@ -6,6 +6,7 @@ object Core: TCore
   HorizontalOffset = 605
   VerticalOffset = 428
   Width = 1020
+  PPI = 120
   object ImageList1: TImageList
     left = 200
     top = 289

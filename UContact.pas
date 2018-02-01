@@ -8,9 +8,35 @@ uses
   Classes, SysUtils, Contnrs, Dialogs, UDataFile;
 
 type
+  TContactsFile = class;
+
   TStringEvent = procedure (Text: string) of object;
 
+  TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage);
+
+  TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName);
+
+  TContactField = class
+    Name: string;
+    Index: TContactFieldIndex;
+    DataType: TDataType;
+  end;
+
+  { TContactFields }
+
+  TContactFields = class(TObjectList)
+    function AddNew(Name: string; Index: TContactFieldIndex; DataType:
+      TDataType): TContactField;
+  end;
+
+  { TContact }
+
   TContact = class
+  private
+    function GetField(Index: TContactFieldIndex): string;
+    procedure SetField(Index: TContactFieldIndex; AValue: string);
+  public
+    Parent: TContactsFile;
     Version: string;
     FirstName: string;
     MiddleName: string;
@@ -43,10 +69,11 @@ type
     XLastTimeContacted: string;
     Photo: string;
     XJabber: string;
+    property Fields[Index: TContactFieldIndex]: string read GetField write SetField;
   end;
 
   TContacts = class(TObjectList)
-
+    ContactsFile: TContactsFile;
   end;
 
   { TContactsFile }
@@ -55,7 +82,9 @@ type
   private
     FOnError: TStringEvent;
     function GetNext(var Text: string; Separator: string): string;
+    procedure InitFields;
   public
+    Fields: TContactFields;
     Contacts: TContacts;
     function GetFileName: string; override;
     function GetFileExt: string; override;
@@ -74,6 +103,38 @@ resourcestring
   SVCardFile = 'vCard file';
   SUnknownCommand = 'Unknown command: %s';
 
+{ TContactFields }
+
+function TContactFields.AddNew(Name: string; Index: TContactFieldIndex;
+  DataType: TDataType): TContactField;
+begin
+  Result := TContactField.Create;
+  Result.Name := Name;
+  Result.Index := Index;
+  Result.DataType := DataType;
+  Add(Result);
+end;
+
+{ TContact }
+
+function TContact.GetField(Index: TContactFieldIndex): string;
+begin
+  case Index of
+    cfFirstName: Result := FirstName;
+    cfMiddleName: Result := MiddleName;
+    cfLastName: Result := LastName;
+  end;
+end;
+
+procedure TContact.SetField(Index: TContactFieldIndex; AValue: string);
+begin
+  case Index of
+    cfFirstName: FirstName := AValue;
+    cfMiddleName: MiddleName := AValue;
+    cfLastName: LastName := AValue;
+  end;
+end;
+
 { TContactsFile }
 
 function TContactsFile.GetNext(var Text: string; Separator: string): string;
@@ -84,6 +145,15 @@ begin
   end else begin
     Result := Text;
     Text := '';
+  end;
+end;
+
+procedure TContactsFile.InitFields;
+begin
+  with Fields do begin
+    AddNew('First Name', cfFirstName, dtString);
+    AddNew('Middle Name', cfMiddleName, dtString);
+    AddNew('Last Name', cfLastName, dtString);
   end;
 end;
 
@@ -117,7 +187,7 @@ begin
       if (LastName <> '') or (FirstName <> '') or (MiddleName <> '') or (TitleBefore <> '') or (TitleAfter <> '') then
         Add('N:' + LastName + ';' + FirstName + ';' + MiddleName + ';' + TitleBefore + ';' + TitleAfter);
       if FullName <> '' then Add('FN:' + FullName);
-      if TelCell <> '' then Add('TEL;PREF;CELL:' + TelPrefCell);
+      if TelPrefCell <> '' then Add('TEL;PREF;CELL:' + TelPrefCell);
       if TelCell <> '' then Add('TEL;CELL:' + TelCell);
       if TelHome <> '' then Add('TEL;HOME:' + TelHome);
       if TelHome2 <> '' then Add('TEL;HOME2:' + TelHome2);
@@ -156,7 +226,6 @@ var
   I: Integer;
   NewRecord: TContact;
   Command: string;
-  CommandParam: string;
   CommandPart: string;
   Charset: string;
   Encoding: string;
@@ -174,6 +243,7 @@ begin
       Line := Lines[I];
       if Line = 'BEGIN:VCARD' then begin
         NewRecord := TContact.Create;
+        NewRecord.Parent := Self;
       end else
       if Line = 'END:VCARD' then begin
         Contacts.Add(NewRecord);
@@ -243,11 +313,15 @@ constructor TContactsFile.Create;
 begin
   inherited;
   Contacts := TContacts.Create;
+  Contacts.ContactsFile := Self;
+  Fields := TContactFields.Create;
+  InitFields;
 end;
 
 destructor TContactsFile.Destroy;
 begin
-  Contacts.Free;
+  FreeAndNil(Fields);
+  FreeAndNil(Contacts);
   inherited;
 end;
 

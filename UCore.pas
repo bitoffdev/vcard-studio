@@ -81,6 +81,7 @@ uses
 resourcestring
   SAppExit = 'Application exit';
   SAppExitQuery = 'File was modified. Do you want to save it before exit?';
+  SFileNotFound = 'File ''%s'' not found.';
 
 { TCore }
 
@@ -187,6 +188,7 @@ end;
 
 procedure TCore.DataModuleDestroy(Sender: TObject);
 begin
+  FileClose;
   SaveConfig;
 end;
 
@@ -203,12 +205,14 @@ end;
 
 procedure TCore.FileOpen(FileName: string);
 begin
-  FileClose;
-  if FileClosed then begin
-    FileNew;
-    DataFile.LoadFromFile(FileName);
-    LastOpenedList1.AddItem(FileName);
-  end;
+  if FileExists(FileName) then begin
+    FileClose;
+    if FileClosed then begin
+      FileNew;
+      DataFile.LoadFromFile(FileName);
+      LastOpenedList1.AddItem(FileName);
+    end;
+  end else ShowMessage(Format(SFileNotFound, [FileName]));
 end;
 
 procedure TCore.FileClose;
@@ -231,7 +235,7 @@ begin
     end else DoClose := True;
   end else DoClose := True;
   if DoClose then begin
-    FreeAndNil(DataFile);
+    if Assigned(DataFile) then FreeAndNil(DataFile);
     FileClosed := True;
   end;
 end;

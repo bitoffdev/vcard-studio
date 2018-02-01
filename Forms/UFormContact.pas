@@ -35,9 +35,11 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure ListView1Data(Sender: TObject; Item: TListItem);
   private
-
+    Contact: TContact;
   public
+    procedure ReloadFields;
     procedure LoadData(Contact: TContact);
     procedure SaveData(Contact: TContact);
   end;
@@ -57,6 +59,25 @@ uses
 procedure TFormContact.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
+  PageControlContact.TabIndex := 0;
+  ReloadFields;
+end;
+
+procedure TFormContact.ListView1Data(Sender: TObject; Item: TListItem);
+begin
+  if Item.Index < Contact.Parent.Fields.Count then
+  with TContactField(Contact.Parent.Fields[Item.Index]) do begin
+    Item.Caption := Name;
+    Item.SubItems.Add(Contact.Fields[Index]);
+  end;
+end;
+
+procedure TFormContact.ReloadFields;
+begin
+  if Assigned(Contact) then begin
+    ListView1.Items.Count := Contact.Parent.Fields.Count;
+  end else ListView1.Items.Count := 0;
+  ListView1.Refresh;
 end;
 
 procedure TFormContact.FormClose(Sender: TObject; var CloseAction: TCloseAction
@@ -68,10 +89,13 @@ end;
 procedure TFormContact.FormCreate(Sender: TObject);
 begin
   Core.CoolTranslator1.TranslateComponentRecursive(Self);
+  Contact := nil;
 end;
 
 procedure TFormContact.LoadData(Contact: TContact);
 begin
+  Self.Contact := Contact;
+  ReloadFields;
   EditName.Text := Contact.FirstName;
   EditSurname.Text := Contact.LastName;
   EditCellPhone.Text := Contact.TelCell;

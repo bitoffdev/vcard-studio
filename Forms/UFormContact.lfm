@@ -6,111 +6,112 @@ object FormContact: TFormContact
   Caption = 'Contact'
   ClientHeight = 490
   ClientWidth = 762
+  DesignTimePPI = 120
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '1.8.0.4'
+  LCLVersion = '1.8.0.6'
   object PageControlContact: TPageControl
     Left = 8
     Height = 424
     Top = 8
     Width = 744
-    ActivePage = TabSheetGeneral
+    ActivePage = TabSheetAll
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
-      ClientHeight = 380
-      ClientWidth = 738
+      ClientHeight = 391
+      ClientWidth = 736
       object Label1: TLabel
         Left = 13
-        Height = 26
+        Height = 20
         Top = 13
-        Width = 56
+        Width = 43
         Caption = 'Name:'
         ParentColor = False
       end
       object EditName: TEdit
         Left = 100
-        Height = 36
+        Height = 28
         Top = 15
         Width = 212
         TabOrder = 0
       end
       object Label2: TLabel
         Left = 13
-        Height = 26
+        Height = 20
         Top = 47
-        Width = 95
+        Width = 74
         Caption = 'Cell phone:'
         ParentColor = False
       end
       object EditCellPhone: TEdit
         Left = 100
-        Height = 36
+        Height = 28
         Top = 49
         Width = 212
         TabOrder = 1
       end
       object EditPhone: TEdit
         Left = 100
-        Height = 36
+        Height = 28
         Top = 83
         Width = 212
         TabOrder = 2
       end
       object Label3: TLabel
         Left = 13
-        Height = 26
+        Height = 20
         Top = 81
-        Width = 59
+        Width = 44
         Caption = 'Phone:'
         ParentColor = False
       end
       object EditEmail: TEdit
         Left = 479
-        Height = 36
+        Height = 28
         Top = 49
         Width = 212
         TabOrder = 3
       end
       object Label4: TLabel
         Left = 392
-        Height = 26
+        Height = 20
         Top = 47
-        Width = 58
+        Width = 46
         Caption = 'E-mail:'
         ParentColor = False
       end
       object EditSurname: TEdit
         Left = 479
-        Height = 36
+        Height = 28
         Top = 15
         Width = 212
         TabOrder = 4
       end
       object Label5: TLabel
         Left = 392
-        Height = 26
+        Height = 20
         Top = 13
-        Width = 81
+        Width = 61
         Caption = 'Surname:'
         ParentColor = False
       end
       object MemoNotes: TMemo
         Left = 13
-        Height = 214
+        Height = 225
         Top = 152
-        Width = 710
+        Width = 708
         Anchors = [akTop, akLeft, akRight, akBottom]
         TabOrder = 5
       end
       object Label6: TLabel
         Left = 12
-        Height = 26
+        Height = 20
         Top = 126
-        Width = 56
+        Width = 42
         Caption = 'Notes:'
         ParentColor = False
       end
@@ -120,11 +121,11 @@ object FormContact: TFormContact
     end
     object TabSheetAll: TTabSheet
       Caption = 'All fields'
-      ClientHeight = 380
-      ClientWidth = 738
+      ClientHeight = 391
+      ClientWidth = 736
       object ListView1: TListView
         Left = 8
-        Height = 344
+        Height = 368
         Top = 16
         Width = 721
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -135,12 +136,13 @@ object FormContact: TFormContact
           end        
           item
             Caption = 'Value'
-            Width = 501
+            Width = 200
           end>
         ReadOnly = True
         RowSelect = True
         TabOrder = 0
         ViewStyle = vsReport
+        OnData = ListView1Data
       end
     end
   end

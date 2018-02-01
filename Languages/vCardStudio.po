@@ -225,6 +225,10 @@ msgstr ""
 msgid "File was modified. Do you want to save it before exit?"
 msgstr ""
 
+#: ucore.sfilenotfound
+msgid "File '%s' not found."
+msgstr ""
+
 #: udatafile.sallfiles
 msgid "All files"
 msgstr ""
