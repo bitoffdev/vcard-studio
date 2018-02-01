@@ -4,17 +4,18 @@ object FormMain: TFormMain
   Top = 401
   Width = 785
   Caption = 'FormMain'
-  ClientHeight = 497
+  ClientHeight = 506
   ClientWidth = 785
+  DesignTimePPI = 120
   Menu = MainMenu1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '1.8.0.4'
+  LCLVersion = '1.8.0.6'
   object CoolBar1: TCoolBar
     Left = 0
-    Height = 38
+    Height = 32
     Top = 0
     Width = 785
     AutoSize = True
