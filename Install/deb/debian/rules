@@ -21,7 +21,7 @@ override_dh_auto_install:
 	install -d -m 755 $(ROOT)/usr/share/applications
 	install -m 755 Install/deb/vCardStudio.desktop $(ROOT)/usr/share/applications
 	install -d -m 755 $(ROOT)/usr/share/pixmaps
-	install -m 755 Images/vCardStudio.png $(ROOT)/usr/share/pixmaps
+	install -m 755 Install/deb/vCardStudio.png $(ROOT)/usr/share/pixmaps
 
 %:
 	dh $@
