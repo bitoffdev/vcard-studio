@@ -14,7 +14,9 @@ type
 
   TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage);
 
-  TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName);
+  TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTelPrefCell,
+    cfTelCell, cfTelHome, cfTelHome2, cfTelWork, cfTitle, cfOrganization,
+    cfAddress, cfNote);
 
   TContactField = class
     Name: string;
@@ -59,6 +61,7 @@ type
     NickName: string;
     Note: string;
     Role: string;
+    Title: string;
     Categories: string;
     Organization: string;
     AdrHome: string;
@@ -123,6 +126,15 @@ begin
     cfFirstName: Result := FirstName;
     cfMiddleName: Result := MiddleName;
     cfLastName: Result := LastName;
+    cfTelPrefCell: Result := TelPrefCell;
+    cfTelCell: Result := TelCell;
+    cfTelHome: Result := TelHome;
+    cfTelHome2: Result := TelHome2;
+    cfTelWork: Result := TelWork;
+    cfTitle: Result := Title;
+    cfOrganization: Result := Organization;
+    cfAddress: Result := AdrHome;
+    cfNote: Result := Note;
   end;
 end;
 
@@ -132,6 +144,15 @@ begin
     cfFirstName: FirstName := AValue;
     cfMiddleName: MiddleName := AValue;
     cfLastName: LastName := AValue;
+    cfTelPrefCell: TelPrefCell := AValue;
+    cfTelCell: TelCell := AValue;
+    cfTelHome: TelHome := AValue;
+    cfTelHome2: TelHome2 := AValue;
+    cfTelWork: TelWork := AValue;
+    cfTitle: Title := AValue;
+    cfOrganization: Organization := AValue;
+    cfAddress: AdrHome := AValue;
+    cfNote: Note := AValue;
   end;
 end;
 
@@ -154,6 +175,15 @@ begin
     AddNew('First Name', cfFirstName, dtString);
     AddNew('Middle Name', cfMiddleName, dtString);
     AddNew('Last Name', cfLastName, dtString);
+    AddNew('Preferred cell phone', cfTelPrefCell, dtString);
+    AddNew('Cell phone', cfTelCell, dtString);
+    AddNew('Home phone', cfTelHome, dtString);
+    AddNew('Home phone 2', cfTelHome2, dtString);
+    AddNew('Home work', cfTelWork, dtString);
+    AddNew('Title', cfTitle, dtString);
+    AddNew('Organization', cfOrganization, dtString);
+    AddNew('Address', cfAddress, dtString);
+    AddNew('Note', cfNote, dtString);
   end;
 end;
 
