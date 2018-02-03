@@ -3,7 +3,7 @@
 # Set temporary HOME for lazarus primary config directory
 export HOME=$(CURDIR)/tmphome
 
-ROOT = $(CURDIR)/debian/vCardStudio
+ROOT = $(CURDIR)/debian/vcard-studio
 
 override_dh_auto_clean:
 	$(RM) -r lib
