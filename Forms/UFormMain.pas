@@ -32,6 +32,7 @@ type
     MenuItemHelp: TMenuItem;
     MenuItemFile: TMenuItem;
     PopupMenuOpenRecent: TPopupMenu;
+    StatusBar1: TStatusBar;
     ToolBarOther: TToolBar;
     ToolBarFile: TToolBar;
     ToolButton1: TToolButton;
@@ -59,9 +60,10 @@ implementation
 {$R *.lfm}
 
 uses
-  UCore, UFormContacts;
+  UCore, UFormContacts, UContact;
 
 resourcestring
+  SCount = 'Count:';
   SModified = 'Modified';
 
 { TFormMain }
@@ -119,6 +121,9 @@ procedure TFormMain.UpdateInterface;
 begin
   UpdateFormTitle;
   CoolBar1.Visible := MenuItemToolbar.Checked;
+  if Assigned(Core.DataFile) then
+    StatusBar1.Panels[0].Text := SCount + ' ' + IntToStr(TcontactsFile(Core.DataFile).Contacts.Count)
+    else StatusBar1.Panels[0].Text := '';
 end;
 
 end.
