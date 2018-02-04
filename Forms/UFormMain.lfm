@@ -1,9 +1,9 @@
 object FormMain: TFormMain
-  Left = 613
+  Left = 601
   Height = 531
-  Top = 401
+  Top = 447
   Width = 785
-  Caption = 'FormMain'
+  Caption = 'vCard Studio'
   ClientHeight = 497
   ClientWidth = 785
   Menu = MainMenu1
@@ -130,6 +130,12 @@ object FormMain: TFormMain
       end
       object MenuItemFileClose: TMenuItem
         Action = Core.AFileClose
+      end
+      object MenuItem1: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem3: TMenuItem
+        Action = Core.AFileMerge
       end
       object MenuItem2: TMenuItem
         Caption = '-'

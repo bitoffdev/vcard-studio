@@ -15,6 +15,8 @@ type
   TFormMain = class(TForm)
     CoolBar1: TCoolBar;
     MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem3: TMenuItem;
     MenuItemToolbar: TMenuItem;
     MenuItemView: TMenuItem;
     MenuItemExit: TMenuItem;
