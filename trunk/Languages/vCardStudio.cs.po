@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: tcore.aabout.caption
 msgid "About..."
@@ -93,46 +93,46 @@ msgstr "Jméno:"
 #: tformcontact.label10.caption
 msgctxt "tformcontact.label10.caption"
 msgid "Cell phone (Work):"
-msgstr ""
+msgstr "Mobil (Práce):"
 
 #: tformcontact.label11.caption
 msgid "Fax:"
-msgstr ""
+msgstr "Fax:"
 
 #: tformcontact.label12.caption
 msgid "Fax (Home):"
-msgstr ""
+msgstr "Fax (Domov):"
 
 #: tformcontact.label13.caption
 msgid "Fax (Work):"
-msgstr ""
+msgstr "Fax (Práce):"
 
 #: tformcontact.label14.caption
 msgid "Pager:"
-msgstr ""
+msgstr "Pager:"
 
 #: tformcontact.label15.caption
 msgctxt "tformcontact.label15.caption"
 msgid "Web page:"
-msgstr ""
+msgstr "Webové stránky:"
 
 #: tformcontact.label16.caption
 msgctxt "tformcontact.label16.caption"
 msgid "Web page (Home):"
-msgstr ""
+msgstr "Webové stránky (Domov):"
 
 #: tformcontact.label17.caption
 msgctxt "tformcontact.label17.caption"
 msgid "Web page (Work):"
-msgstr ""
+msgstr "Webové stránky (Práce):"
 
 #: tformcontact.label18.caption
 msgid "Title:"
-msgstr ""
+msgstr "Titul:"
 
 #: tformcontact.label19.caption
 msgid "Address:"
-msgstr ""
+msgstr "Adresa:"
 
 #: tformcontact.label2.caption
 msgid "Cell phone:"
@@ -140,15 +140,15 @@ msgstr "Mobilní číslo:"
 
 #: tformcontact.label20.caption
 msgid "E-mail (Home):"
-msgstr ""
+msgstr "E-mail (Domov):"
 
 #: tformcontact.label21.caption
 msgid "E-mail (Work):"
-msgstr ""
+msgstr "E-mail (Práce):"
 
 #: tformcontact.label22.caption
 msgid "Birthday:"
-msgstr ""
+msgstr "Narozeniny:"
 
 #: tformcontact.label3.caption
 msgid "Phone:"
@@ -168,19 +168,19 @@ msgstr "Poznámky:"
 
 #: tformcontact.label7.caption
 msgid "Phone (Home):"
-msgstr ""
+msgstr "Telefon (Domov):"
 
 #: tformcontact.label8.caption
 msgid "Phone (Work):"
-msgstr ""
+msgstr "Telefon (Práce):"
 
 #: tformcontact.label9.caption
 msgid "Cell phone (Home):"
-msgstr ""
+msgstr "Mobil (Domov):"
 
 #: tformcontact.labelorganization.caption
 msgid "Organization:"
-msgstr ""
+msgstr "Společnost:"
 
 #: tformcontact.listview1.columns[0].caption
 msgid "Item"
@@ -219,14 +219,20 @@ msgid "Contacts"
 msgstr "Kontakty"
 
 #: tformcontacts.listview1.columns[0].caption
-msgid "First name"
+msgid "Full Name"
 msgstr "Křestní jméno"
 
 #: tformcontacts.listview1.columns[1].caption
-msgid "Middle name"
+msgid "First name"
 msgstr "Prostřední jméno"
 
 #: tformcontacts.listview1.columns[2].caption
+msgctxt "tformcontacts.listview1.columns[2].caption"
+msgid "Middle name"
+msgstr "Prostřední jméno"
+
+#: tformcontacts.listview1.columns[3].caption
+msgctxt "tformcontacts.listview1.columns[3].caption"
 msgid "Last Name"
 msgstr "Příjimení"
 
@@ -342,6 +348,10 @@ msgstr "Odstranit kontakty"
 msgid "Do you want to remove selected contacts?"
 msgstr "Opravdu chcete odstranit vybrané kontakty?"
 
+#: uformmain.scount
+msgid "Count:"
+msgstr "Počet:"
+
 #: uformmain.smodified
 msgid "Modified"
 msgstr "Upraveno"
@@ -350,4 +360,3 @@ msgstr "Upraveno"
 msgctxt "uvcf.svcardfile"
 msgid "vCard file"
 msgstr "Soubor vCard"
-
