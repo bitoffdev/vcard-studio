@@ -6,11 +6,10 @@ object FormContacts: TFormContacts
   Caption = 'Contacts'
   ClientHeight = 605
   ClientWidth = 807
-  DesignTimePPI = 120
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.8.0.4'
   object ListView1: TListView
     Left = 0
     Height = 579
@@ -18,6 +17,10 @@ object FormContacts: TFormContacts
     Width = 807
     Align = alClient
     Columns = <    
+      item
+        Caption = 'Full Name'
+        Width = 200
+      end    
       item
         Caption = 'First name'
         Width = 100
@@ -28,7 +31,7 @@ object FormContacts: TFormContacts
       end    
       item
         Caption = 'Last Name'
-        Width = 100
+        Width = 387
       end>
     OwnerData = True
     PopupMenu = PopupMenuContact
