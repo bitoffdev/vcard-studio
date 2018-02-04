@@ -5,7 +5,7 @@ unit UContact;
 interface
 
 uses
-  Classes, SysUtils, Contnrs, Dialogs, UDataFile;
+  Classes, SysUtils, Contnrs, Dialogs, UDataFile, LazUTF8, base64;
 
 type
   TContactsFile = class;
@@ -206,6 +206,30 @@ procedure TContactsFile.SaveToFile(FileName: string);
 var
   Output: TStringList;
   I: Integer;
+  PhotoBase64: string;
+  Line: string;
+
+function IsAsciiString(Text: string): Boolean;
+var
+  I: Integer;
+begin
+  Result := True;
+  for I := 1 to Length(Text) do
+    if Ord(Text[I]) > 128 then begin
+      Result := False;
+      Break;
+    end;
+end;
+
+function NewItem(Key, Value: string): string;
+var
+  Charset: string;
+begin
+  if not IsAsciiString(Value) then Charset := ';CHARSET=UTF-8'
+    else Charset := '';
+  Result := Key + Charset + ':' + Value;
+end;
+
 begin
   inherited;
   try
@@ -214,11 +238,13 @@ begin
     with TContact(Contacts[I]), Output do begin
       Add('BEGIN:VCARD');
       if Version <> '' then Add('VERSION:' + Version);
+      if XTimesContacted <> '' then Add('X-TIMES_CONTACTED:' + XTimesContacted);
+      if XLastTimeContacted <> '' then Add('X-LAST_TIME_CONTACTED:' + XLastTimeContacted);
       if (LastName <> '') or (FirstName <> '') or (MiddleName <> '') or (TitleBefore <> '') or (TitleAfter <> '') then
-        Add('N:' + LastName + ';' + FirstName + ';' + MiddleName + ';' + TitleBefore + ';' + TitleAfter);
-      if FullName <> '' then Add('FN:' + FullName);
-      if TelPrefCell <> '' then Add('TEL;PREF;CELL:' + TelPrefCell);
+        Add(NewItem('N', LastName + ';' + FirstName + ';' + MiddleName + ';' + TitleBefore + ';' + TitleAfter));
+      if FullName <> '' then Add(NewItem('FN', FullName));
       if TelCell <> '' then Add('TEL;CELL:' + TelCell);
+      if TelPrefCell <> '' then Add('TEL;PREF;CELL:' + TelPrefCell);
       if TelHome <> '' then Add('TEL;HOME:' + TelHome);
       if TelHome2 <> '' then Add('TEL;HOME2:' + TelHome2);
       if TelWork <> '' then Add('TEL;WORK:' + TelWork);
@@ -227,20 +253,30 @@ begin
       if TelPrefHomeVoice <> '' then Add('TEL;PREF;HOME;VOICE:' + TelPrefHomeVoice);
       if TelHomeVoice <> '' then Add('TEL;HOME;VOICE:' + TelHomeVoice);
       if TelWorkVoice <> '' then Add('TEL;WORK;VOICE:' + TelWorkVoice);
-      if NickName <> '' then Add('X-NICKNAME:' + NickName);
-      if XJabber <> '' then Add('X-JABBER:' + XJabber);
       if Note <> '' then Add('NOTE:' + Note);
       if AdrHome <> '' then Add('ADR;HOME:' + AdrHome);
       if EmailHome <> '' then Add('EMAIL;HOME:' + EmailHome);
+      if NickName <> '' then Add('X-NICKNAME:' + NickName);
       if EmailInternet <> '' then Add('EMAIL;INTERNET:' + EmailInternet);
+      if XJabber <> '' then Add('X-JABBER:' + XJabber);
       if Role <> '' then Add('TITLE:' + Role);
       if Categories <> '' then Add('CATEGORIES:' + Categories);
       if Organization <> '' then Add('ORG:' + Organization);
-      if XTimesContacted <> '' then Add('X-TIMES_CONTACTED:' + XTimesContacted);
-      if XLastTimeContacted <> '' then Add('X-LAST_TIME_CONTACTED:' + XLastTimeContacted);
       if (HomeAddressCity <> '') or (HomeAddressStreet <> '') or
         (HomeAddressCountry <> '') then Add('ADR;HOME:;;' + HomeAddressStreet + ';' + HomeAddressCity + ';;;' + HomeAddressCountry);
-      if Photo <> '' then Add('PHOTO;ENCODING=BASE64;JPEG:' + Photo);
+      if Photo <> '' then begin
+        PhotoBase64 := EncodeStringBase64(Photo);
+
+        Line := Copy(PhotoBase64, 1, 73 - Length('PHOTO;ENCODING=BASE64;JPEG:'));
+        System.Delete(PhotoBase64, 1, Length(Line));
+        Add('PHOTO;ENCODING=BASE64;JPEG:' + Line);
+        while PhotoBase64 <> '' do begin
+          Line := Copy(PhotoBase64, 1, 73);
+          System.Delete(PhotoBase64, 1, Length(Line));
+          Add(' ' + Line);
+        end;
+        Add('');
+      end;
       Add('END:VCARD');
     end;
     Output.SaveToFile(FileName);
@@ -314,20 +350,21 @@ begin
         else if Command = 'ADR;HOME' then NewRecord.AdrHome := Line
         else if Command = 'X-NICKNAME' then NewRecord.NickName := Line
         else if Command = 'EMAIL;HOME' then NewRecord.EmailHome := Line
-        else if Command = 'EMAIL:INTERNET' then NewRecord.EmailInternet := Line
+        else if Command = 'EMAIL;INTERNET' then NewRecord.EmailInternet := Line
         else if Command = 'NOTE' then NewRecord.Note := Line
         else if Command = 'ORG' then NewRecord.Organization := Line
         else if Command = 'X-JABBER' then NewRecord.XJabber := Line
         else if Command = 'TITLE' then NewRecord.Role := Line
         else if Command = 'X-TIMES_CONTACTED' then NewRecord.XTimesContacted := Line
         else if Command = 'X-LAST_TIME_CONTACTED' then NewRecord.XLastTimeContacted := Line
-        else if Command = 'PHOTO' then begin
-          NewRecord.Photo := Line;
+        else if Command = 'PHOTO;JPEG' then begin
+          NewRecord.Photo := Trim(Line);
           repeat
             Inc(I);
-            Line := Lines[I];
-            if Copy(Line, 1, 1) = ' ' then NewRecord.Photo := NewRecord.Photo + Line;
-          until Copy(Line, 1, 1) = '';
+            Line := Trim(Lines[I]);
+            if Line <> '' then NewRecord.Photo := NewRecord.Photo + Line;
+          until Line = '';
+          NewRecord.Photo := DecodeStringBase64(NewRecord.Photo);
         end
         else if Assigned(FOnError) then FOnError('Unknown command: ' + Command);
       end;
