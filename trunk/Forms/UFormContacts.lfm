@@ -33,6 +33,7 @@ object FormContacts: TFormContacts
         Caption = 'Last Name'
         Width = 387
       end>
+    MultiSelect = True
     OwnerData = True
     PopupMenu = PopupMenuContact
     ReadOnly = True
@@ -74,11 +75,14 @@ object FormContacts: TFormContacts
     object MenuItem1: TMenuItem
       Action = AAdd
     end
+    object MenuItem3: TMenuItem
+      Action = ARemove
+    end
     object MenuItem2: TMenuItem
       Action = AModify
     end
-    object MenuItem3: TMenuItem
-      Action = ARemove
+    object MenuItem4: TMenuItem
+      Action = ASelectAll
     end
   end
   object ActionList1: TActionList
@@ -102,6 +106,11 @@ object FormContacts: TFormContacts
       ImageIndex = 10
       OnExecute = ARemoveExecute
       ShortCut = 46
+    end
+    object ASelectAll: TAction
+      Caption = 'Select all'
+      OnExecute = ASelectAllExecute
+      ShortCut = 16449
     end
   end
 end

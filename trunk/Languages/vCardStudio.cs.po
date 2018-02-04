@@ -24,6 +24,10 @@ msgctxt "tcore.afileclose.caption"
 msgid "Close"
 msgstr "Zavřít"
 
+#: tcore.afilemerge.caption
+msgid "Merge..."
+msgstr "Sloučení..."
+
 #: tcore.afilenew.caption
 msgid "New"
 msgstr "Nový"
@@ -214,6 +218,10 @@ msgstr "Upravit"
 msgid "Remove"
 msgstr "Odstranit"
 
+#: tformcontacts.aselectall.caption
+msgid "Select all"
+msgstr "Vybrat vše"
+
 #: tformcontacts.caption
 msgid "Contacts"
 msgstr "Kontakty"
@@ -237,8 +245,8 @@ msgid "Last Name"
 msgstr "Příjimení"
 
 #: tformmain.caption
-msgid "FormMain"
-msgstr "FormMain"
+msgid "vCard Studio"
+msgstr "vCard Studio"
 
 #: tformmain.menuitemfile.caption
 msgctxt "tformmain.menuitemfile.caption"
@@ -302,6 +310,10 @@ msgstr "DPI:"
 msgid "Unknown command: %s"
 msgstr "Neznámý příkaz: %s"
 
+#: ucontact.sunsupportedcontactfieldsindex
+msgid "Unsupported contact field index"
+msgstr "Nepodporovaný index pole kontaktu"
+
 #: ucontact.svcardfile
 msgctxt "ucontact.svcardfile"
 msgid "vCard file"
@@ -318,6 +330,10 @@ msgstr "Soubor byl upraven. Chcete jej uložit před ukončením?"
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
 msgstr "Soubor '%s' nenalezen."
+
+#: ucore.smergedcontacts
+msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
+msgstr "Kontakty sloučeny. Načteno: %d, Nových: %d, Aktualizovaných: %d"
 
 #: udatafile.sallfiles
 msgid "All files"
