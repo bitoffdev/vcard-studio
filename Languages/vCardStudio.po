@@ -14,6 +14,10 @@ msgctxt "tcore.afileclose.caption"
 msgid "Close"
 msgstr ""
 
+#: tcore.afilemerge.caption
+msgid "Merge..."
+msgstr ""
+
 #: tcore.afilenew.caption
 msgid "New"
 msgstr ""
@@ -204,6 +208,10 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+#: tformcontacts.aselectall.caption
+msgid "Select all"
+msgstr ""
+
 #: tformcontacts.caption
 msgid "Contacts"
 msgstr ""
@@ -227,7 +235,7 @@ msgid "Last Name"
 msgstr ""
 
 #: tformmain.caption
-msgid "FormMain"
+msgid "vCard Studio"
 msgstr ""
 
 #: tformmain.menuitemfile.caption
@@ -290,6 +298,10 @@ msgstr ""
 msgid "Unknown command: %s"
 msgstr ""
 
+#: ucontact.sunsupportedcontactfieldsindex
+msgid "Unsupported contact field index"
+msgstr ""
+
 #: ucontact.svcardfile
 msgctxt "ucontact.svcardfile"
 msgid "vCard file"
@@ -305,6 +317,10 @@ msgstr ""
 
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
+msgstr ""
+
+#: ucore.smergedcontacts
+msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
 msgstr ""
 
 #: udatafile.sallfiles

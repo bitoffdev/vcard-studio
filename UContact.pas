@@ -14,9 +14,14 @@ type
 
   TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage);
 
-  TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTelPrefCell,
-    cfTelCell, cfTelHome, cfTelHome2, cfTelWork, cfTitle, cfOrganization,
-    cfAddress, cfNote);
+  TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
+    cfTitleAfter, cfFullName, cfTelPrefCell,
+    cfTelCell, cfTelHome, cfTelHome2, cfTelWork, cfTelVoip,
+    cfTelPrefWorkVoice, cfTelPrefHomeVoice, cfTelHomeVoice, cfTelWorkVoice,
+    cfEmailHome, cfEmailInternet, cfNickName, cfNote, cfRole, cfTitle,
+    cfCategories, cfOrganization, cfAdrHome, cfHomeAddressStreet,
+    cfHomeAddressCity, cfHomeAddressCountry, cfXTimesContacted,
+    cfXLastTimeContacted, cfPhoto, cfXJabber);
 
   TContactField = class
     Name: string;
@@ -72,11 +77,16 @@ type
     XLastTimeContacted: string;
     Photo: string;
     XJabber: string;
+    procedure Assign(Source: TContact);
+    function UpdateFrom(Source: TContact): Boolean;
     property Fields[Index: TContactFieldIndex]: string read GetField write SetField;
   end;
 
+  { TContacts }
+
   TContacts = class(TObjectList)
     ContactsFile: TContactsFile;
+    function Search(FullName: string): TContact;
   end;
 
   { TContactsFile }
@@ -105,6 +115,21 @@ implementation
 resourcestring
   SVCardFile = 'vCard file';
   SUnknownCommand = 'Unknown command: %s';
+  SUnsupportedContactFieldsIndex = 'Unsupported contact field index';
+
+{ TContacts }
+
+function TContacts.Search(FullName: string): TContact;
+var
+  Contact: TContact;
+begin
+  Result := nil;
+  for Contact in Self do
+    if Contact.FullName = FullName then begin
+      Result := Contact;
+      Break;
+    end;
+end;
 
 { TContactFields }
 
@@ -126,15 +151,36 @@ begin
     cfFirstName: Result := FirstName;
     cfMiddleName: Result := MiddleName;
     cfLastName: Result := LastName;
+    cfTitleBefore: Result := TitleBefore;
+    cfTitleAfter: Result := TitleAfter;
+    cfFullName: Result := FullName;
     cfTelPrefCell: Result := TelPrefCell;
     cfTelCell: Result := TelCell;
     cfTelHome: Result := TelHome;
     cfTelHome2: Result := TelHome2;
     cfTelWork: Result := TelWork;
-    cfTitle: Result := Title;
-    cfOrganization: Result := Organization;
-    cfAddress: Result := AdrHome;
+    cfTelVoip: Result := TelVoip;
+    cfTelPrefWorkVoice: Result := TelPrefWorkVoice;
+    cfTelPrefHomeVoice: Result := TelPrefHomeVoice;
+    cfTelHomeVoice: Result := TelHomeVoice;
+    cfTelWorkVoice: Result := TelWorkVoice;
+    cfEmailHome: Result := EmailHome;
+    cfEmailInternet: Result := EmailInternet;
+    cfNickName: Result := NickName;
     cfNote: Result := Note;
+    cfRole: Result := Role;
+    cfTitle: Result := Title;
+    cfCategories: Result := Categories;
+    cfOrganization: Result := Organization;
+    cfAdrHome: Result := AdrHome;
+    cfHomeAddressStreet: Result := HomeAddressStreet;
+    cfHomeAddressCity: Result := HomeAddressCity;
+    cfHomeAddressCountry: Result := HomeAddressCountry;
+    cfXTimesContacted: Result := XTimesContacted;
+    cfXLastTimeContacted: Result := XLastTimeContacted;
+    cfPhoto: Result := Photo;
+    cfXJabber: Result := XJabber;
+    else raise Exception.Create(SUnsupportedContactFieldsIndex);
   end;
 end;
 
@@ -144,15 +190,88 @@ begin
     cfFirstName: FirstName := AValue;
     cfMiddleName: MiddleName := AValue;
     cfLastName: LastName := AValue;
+    cfTitleBefore: TitleBefore := AValue;
+    cfTitleAfter: TitleAfter := AValue;
+    cfFullName: FullName := AValue;
     cfTelPrefCell: TelPrefCell := AValue;
     cfTelCell: TelCell := AValue;
     cfTelHome: TelHome := AValue;
     cfTelHome2: TelHome2 := AValue;
     cfTelWork: TelWork := AValue;
-    cfTitle: Title := AValue;
-    cfOrganization: Organization := AValue;
-    cfAddress: AdrHome := AValue;
+    cfTelVoip: TelVoip := AValue;
+    cfTelPrefWorkVoice: TelPrefWorkVoice := AValue;
+    cfTelPrefHomeVoice: TelPrefHomeVoice := AValue;
+    cfTelHomeVoice: TelHomeVoice := AValue;
+    cfTelWorkVoice: TelWorkVoice := AValue;
+    cfEmailHome: EmailHome := AValue;
+    cfEmailInternet: EmailInternet := AValue;
+    cfNickName: NickName := AValue;
     cfNote: Note := AValue;
+    cfRole: Role := AValue;
+    cfTitle: Title := AValue;
+    cfCategories: Categories := AValue;
+    cfOrganization: Organization := AValue;
+    cfAdrHome: AdrHome := AValue;
+    cfHomeAddressStreet: HomeAddressStreet := AValue;
+    cfHomeAddressCity: HomeAddressCity := AValue;
+    cfHomeAddressCountry: HomeAddressCountry := AValue;
+    cfXTimesContacted: XTimesContacted := AValue;
+    cfXLastTimeContacted: XLastTimeContacted := AValue;
+    cfPhoto: Photo := AValue;
+    cfXJabber: XJabber := AValue;
+    else raise Exception.Create(SUnsupportedContactFieldsIndex);
+  end;
+end;
+
+procedure TContact.Assign(Source: TContact);
+begin
+  Version := Source.Version;
+  FirstName := Source.FirstName;
+  MiddleName := Source.MiddleName;
+  LastName := Source.LastName;
+  TitleBefore := Source.TitleBefore;
+  TitleAfter := Source.TitleAfter;
+  FullName := Source.FullName;
+  TelPrefCell := Source.TelPrefCell;
+  TelCell := Source.TelCell;
+  TelHome := Source.TelHome;
+  TelHome2 := Source.TelHome2;
+  TelWork := Source.TelWork;
+  TelVoip := Source.TelVoip;
+  TelPrefWorkVoice := Source.TelPrefWorkVoice;
+  TelPrefHomeVoice := Source.TelPrefHomeVoice;
+  TelHomeVoice := Source.TelHomeVoice;
+  TelWorkVoice := Source.TelWorkVoice;
+  EmailHome := Source.EmailHome;
+  EmailInternet := Source.EmailInternet;
+  NickName := Source.NickName;
+  Note := Source.Note;
+  Role := Source.Role;
+  Title := Source.Title;
+  Categories := Source.Categories;
+  Organization := Source.Organization;
+  AdrHome := Source.AdrHome;
+  HomeAddressStreet := Source.HomeAddressStreet;
+  HomeAddressCity := Source.HomeAddressCity;
+  HomeAddressCountry := Source.HomeAddressCountry;
+  XTimesContacted := Source.XTimesContacted;
+  XLastTimeContacted := Source.XLastTimeContacted;
+  Photo := Source.Photo;
+  XJabber := Source.XJabber;
+end;
+
+function TContact.UpdateFrom(Source: TContact): Boolean;
+var
+  I: Integer;
+begin
+  Result := False;
+  for I := 0 to Parent.Fields.Count - 1 do begin
+    if (Source.Fields[TContactField(Parent.Fields[I]).Index] <> '') and
+      (Source.Fields[TContactField(Parent.Fields[I]).Index] <>
+      Fields[TContactField(Parent.Fields[I]).Index]) then begin
+        Result := True;
+        Fields[TContactField(Parent.Fields[I]).Index] := Source.Fields[TContactField(Parent.Fields[I]).Index];
+      end;
   end;
 end;
 
@@ -175,15 +294,35 @@ begin
     AddNew('First Name', cfFirstName, dtString);
     AddNew('Middle Name', cfMiddleName, dtString);
     AddNew('Last Name', cfLastName, dtString);
+    AddNew('Title Before', cfTitleBefore, dtString);
+    AddNew('Title After', cfTitleAfter, dtString);
+    AddNew('Full Name', cfFullName, dtString);
     AddNew('Preferred cell phone', cfTelPrefCell, dtString);
     AddNew('Cell phone', cfTelCell, dtString);
     AddNew('Home phone', cfTelHome, dtString);
     AddNew('Home phone 2', cfTelHome2, dtString);
     AddNew('Home work', cfTelWork, dtString);
-    AddNew('Title', cfTitle, dtString);
-    AddNew('Organization', cfOrganization, dtString);
-    AddNew('Address', cfAddress, dtString);
+    AddNew('Tel Voip', cfTelVoip, dtString);
+    AddNew('Tel Pref Work Voice', cfTelPrefWorkVoice, dtString);
+    AddNew('Tel Pref Home Voice', cfTelPrefHomeVoice, dtString);
+    AddNew('Tel Home Voice', cfTelHomeVoice, dtString);
+    AddNew('Tel Work Voice', cfTelWorkVoice, dtString);
+    AddNew('Email Home', cfEmailHome, dtString);
+    AddNew('Email Internet', cfEmailInternet, dtString);
+    AddNew('Nick Name', cfNickName, dtString);
     AddNew('Note', cfNote, dtString);
+    AddNew('Role', cfRole, dtString);
+    AddNew('Title', cfTitle, dtString);
+    AddNew('Categories', cfCategories, dtString);
+    AddNew('Organization', cfOrganization, dtString);
+    AddNew('Home Address', cfAdrHome, dtString);
+    AddNew('Home Address Street', cfHomeAddressStreet, dtString);
+    AddNew('Home Address City', cfHomeAddressCity, dtString);
+    AddNew('Home Address Country', cfHomeAddressCountry, dtString);
+    AddNew('Times Contacted', cfXTimesContacted, dtString);
+    AddNew('Last Time Contacted', cfXLastTimeContacted, dtString);
+    AddNew('Photo', cfPhoto, dtString);
+    AddNew('Jabber', cfXJabber, dtString);
   end;
 end;
 

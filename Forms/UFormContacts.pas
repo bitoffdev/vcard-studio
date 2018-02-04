@@ -14,6 +14,7 @@ type
 
   TFormContacts = class(TForm)
     AAdd: TAction;
+    ASelectAll: TAction;
     ARemove: TAction;
     AModify: TAction;
     ActionList1: TActionList;
@@ -21,6 +22,7 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
     PopupMenuContact: TPopupMenu;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
@@ -29,6 +31,7 @@ type
     procedure AAddExecute(Sender: TObject);
     procedure AModifyExecute(Sender: TObject);
     procedure ARemoveExecute(Sender: TObject);
+    procedure ASelectAllExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -155,6 +158,11 @@ begin
     ReloadList;
     UpdateInterface;
   end;
+end;
+
+procedure TFormContacts.ASelectAllExecute(Sender: TObject);
+begin
+  ListView1.SelectAll;
 end;
 
 procedure TFormContacts.FormClose(Sender: TObject; var CloseAction: TCloseAction
