@@ -2,13 +2,14 @@ object Core: TCore
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 758
-  HorizontalOffset = 605
-  VerticalOffset = 428
-  Width = 1020
+  Height = 703
+  HorizontalOffset = 270
+  VerticalOffset = 174
+  Width = 1078
+  PPI = 120
   object ImageList1: TImageList
-    left = 200
-    top = 289
+    left = 250
+    top = 361
     Bitmap = {
       4C690B0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -367,8 +368,8 @@ object Core: TCore
   end
   object ActionList1: TActionList
     Images = ImageList1
-    left = 425
-    top = 291
+    left = 531
+    top = 364
     object AExit: TAction
       Caption = 'Exit'
       ImageIndex = 2
@@ -436,16 +437,16 @@ object Core: TCore
   object LastOpenedList1: TLastOpenedList
     MaxCount = 10
     OnChange = LastOpenedList1Change
-    left = 636
-    top = 289
+    left = 795
+    top = 361
   end
   object OpenDialog1: TOpenDialog
-    left = 650
-    top = 403
+    left = 813
+    top = 504
   end
   object SaveDialog1: TSaveDialog
-    left = 469
-    top = 411
+    left = 586
+    top = 514
   end
   object ApplicationInfo1: TApplicationInfo
     Identification = 1
@@ -458,27 +459,31 @@ object Core: TCore
     EmailContact = 'robie@centrum.cz'
     AppName = 'vCard Studio'
     Description = 'vCard files management tool'
-    ReleaseDate = 0
+    ReleaseDate = 43158
     RegistryKey = '\Software\Chronosoft\vCard Studio'
     RegistryRoot = rrKeyCurrentUser
     License = 'CC0'
-    left = 239
-    top = 411
+    left = 299
+    top = 514
   end
   object PersistentForm1: TPersistentForm
     MinVisiblePart = 50
     EntireVisible = False
-    left = 650
-    top = 90
+    left = 813
+    top = 113
   end
   object CoolTranslator1: TCoolTranslator
     POFilesFolder = 'Languages'
-    left = 299
-    top = 90
+    left = 374
+    top = 113
   end
   object ScaleDPI1: TScaleDPI
     AutoDetect = False
-    left = 470
-    top = 90
+    left = 588
+    top = 113
+  end
+  object ThemeManager1: TThemeManager
+    left = 167
+    top = 250
   end
 end

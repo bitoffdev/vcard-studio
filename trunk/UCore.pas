@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Controls, ActnList, Forms, Dialogs,
   ULastOpenedList, UApplicationInfo, UPersistentForm, UScaleDPI, UCommon,
-  UCoolTranslator, UDataFile, Menus, URegistry, Registry;
+  UCoolTranslator, UDataFile, Menus, URegistry, UTheme, Registry;
 
 type
 
@@ -44,6 +44,7 @@ type
     PersistentForm1: TPersistentForm;
     SaveDialog1: TSaveDialog;
     ScaleDPI1: TScaleDPI;
+    ThemeManager1: TThemeManager;
     procedure AAboutExecute(Sender: TObject);
     procedure AExitExecute(Sender: TObject);
     procedure AFileMergeExecute(Sender: TObject);
@@ -178,8 +179,11 @@ begin
   FormSettings := TFormSettings.Create(nil);
   try
     FormSettings.LoadData;
-    if FormSettings.ShowModal = mrOK then
+    if FormSettings.ShowModal = mrOK then begin
       FormSettings.SaveData;
+      ThemeManager1.UseTheme(FormMain);
+      ThemeManager1.UseTheme(FormContacts);
+    end;
   finally
     FormSettings.Free;
   end;
@@ -307,8 +311,6 @@ var
   TempFile: TContactsFile;
   NewContact: TContact;
   I: Integer;
-  CountNew: Integer;
-  CountUpdated: Integer;
 begin
   Result.Clear;
   if FileExists(FileName) then begin
@@ -367,6 +369,9 @@ begin
     if ValueExists('LanguageCode') then
       CoolTranslator1.Language := CoolTranslator1.Languages.SearchByCode(ReadStringWithDefault('LanguageCode', ''))
       else CoolTranslator1.Language := CoolTranslator1.Languages.SearchByCode('');
+    if ValueExists('Theme') then
+      ThemeManager1.Theme := ThemeManager1.Themes.FindByName(ReadStringWithDefault('Theme', 'System'))
+      else ThemeManager1.Theme := ThemeManager1.Themes.FindByName('System');
     FormMain.MenuItemToolbar.Checked := ReadBoolWithDefault('ToolBarVisible', True);
     ReopenLastFileOnStart := ReadBoolWithDefault('ReopenLastFileOnStart', True);
   finally
@@ -385,6 +390,9 @@ begin
     if Assigned(CoolTranslator1.Language) and (CoolTranslator1.Language.Code <> '') then
       WriteString('LanguageCode', CoolTranslator1.Language.Code)
       else DeleteValue('LanguageCode');
+    if Assigned(ThemeManager1.Theme) and (ThemeManager1.Theme.Name <> '') then
+      WriteString('Theme', ThemeManager1.Theme.Name)
+      else DeleteValue('Theme');
     WriteBool('ToolBarVisible', FormMain.MenuItemToolbar.Checked);
     WriteBool('ReopenLastFileOnStart', ReopenLastFileOnStart);
   finally

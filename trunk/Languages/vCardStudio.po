@@ -67,6 +67,10 @@ msgstr ""
 msgid "   "
 msgstr ""
 
+#: tformcontact.aeditfield.caption
+msgid "Edit"
+msgstr ""
+
 #: tformcontact.buttoncancel.caption
 msgctxt "tformcontact.buttoncancel.caption"
 msgid "Cancel"
@@ -290,6 +294,10 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
+#: tformsettings.label2.caption
+msgid "Theme:"
+msgstr ""
+
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
 msgstr ""
@@ -342,6 +350,14 @@ msgstr ""
 
 #: uformabout.sversion
 msgid "Version"
+msgstr ""
+
+#: uformcontact.seditfieldvalue
+msgid "Edit field value"
+msgstr ""
+
+#: uformcontact.sfieldedit
+msgid "Field edit"
 msgstr ""
 
 #: uformcontacts.sremovecontacts
