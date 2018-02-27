@@ -6,13 +6,15 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, UContact;
+  ComCtrls, ActnList, Menus, UContact;
 
 type
 
   { TFormContact }
 
   TFormContact = class(TForm)
+    AEditField: TAction;
+    ActionList1: TActionList;
     ButtonCancel: TButton;
     ButtonOk: TButton;
     EditWebPage: TEdit;
@@ -62,10 +64,13 @@ type
     Label9: TLabel;
     ListView1: TListView;
     MemoNotes: TMemo;
+    MenuItem1: TMenuItem;
     PageControlContact: TPageControl;
+    PopupMenu1: TPopupMenu;
     TabSheetGeneral: TTabSheet;
     TabSheetDetails: TTabSheet;
     TabSheetAll: TTabSheet;
+    procedure AEditFieldExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -88,6 +93,10 @@ implementation
 
 uses
   UCore;
+
+resourcestring
+  SFieldEdit = 'Field edit';
+  SEditFieldValue = 'Edit field value';
 
 { TFormContact }
 
@@ -125,9 +134,18 @@ begin
   Core.PersistentForm1.Save(Self);
 end;
 
+procedure TFormContact.AEditFieldExecute(Sender: TObject);
+begin
+  if Assigned(ListView1.Selected) then begin
+    Contact.Fields[TContactFieldIndex(ListView1.Selected.Index)] :=
+      InputBox(SFieldEdit, SEditFieldValue, Contact.Fields[TContactFieldIndex(ListView1.Selected.Index)]);
+  end;
+end;
+
 procedure TFormContact.FormCreate(Sender: TObject);
 begin
   Core.CoolTranslator1.TranslateComponentRecursive(Self);
+  Core.ThemeManager1.UseTheme(Self);
   Contact := nil;
 end;
 

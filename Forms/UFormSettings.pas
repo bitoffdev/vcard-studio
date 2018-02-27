@@ -19,7 +19,9 @@ type
     CheckBoxReopenLastFileOnStart: TCheckBox;
     CheckBoxAutomaticDPI: TCheckBox;
     ComboBoxLanguage: TComboBox;
+    ComboBoxTheme: TComboBox;
     Label1: TLabel;
+    Label2: TLabel;
     LabelDPI: TLabel;
     SpinEditDPI: TSpinEdit;
     procedure ButtonOkClick(Sender: TObject);
@@ -38,12 +40,13 @@ type
 var
   FormSettings: TFormSettings;
 
+
 implementation
 
 {$R *.lfm}
 
 uses
-  UCore;
+  UCore, UTheme;
 
 { TFormSettings }
 
@@ -52,12 +55,18 @@ begin
   Core.CoolTranslator1.LanguageListToStrings(ComboBoxLanguage.Items);
   ComboBoxLanguage.ItemIndex := ComboBoxLanguage.Items.IndexOfObject(Core.CoolTranslator1.Language);
   if ComboBoxLanguage.ItemIndex = -1 then ComboBoxLanguage.ItemIndex := 0;
+
+  Core.ThemeManager1.Themes.LoadToStrings(ComboBoxTheme.Items);
+  ComboBoxTheme.ItemIndex := ComboBoxTheme.Items.IndexOfObject(Core.ThemeManager1.Theme);
+  if ComboBoxTheme.ItemIndex = -1 then ComboBoxTheme.ItemIndex := 0;
 end;
 
 procedure TFormSettings.ButtonOkClick(Sender: TObject);
 begin
   if ComboBoxLanguage.ItemIndex <> -1 then
-    Core.CoolTranslator1.Language := TLanguage(ComboBoxLanguage.Items.Objects[ComboBoxLanguage.ItemIndex]);
+    Core.CoolTranslator1.Language := TLanguage(ComboBoxLanguage.Items.Objects[ComboBoxTheme.ItemIndex]);
+  if ComboBoxTheme.ItemIndex <> -1 then
+    Core.ThemeManager1.Theme := TTheme(ComboBoxTheme.Items.Objects[ComboBoxTheme.ItemIndex]);
 end;
 
 procedure TFormSettings.CheckBoxAutomaticDPIChange(Sender: TObject);
@@ -73,6 +82,7 @@ end;
 procedure TFormSettings.FormCreate(Sender: TObject);
 begin
   Core.CoolTranslator1.TranslateComponentRecursive(Self);
+  Core.ThemeManager1.UseTheme(Self);
 end;
 
 procedure TFormSettings.LoadData;

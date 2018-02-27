@@ -92,6 +92,7 @@ end;
 procedure TFormMain.FormShow(Sender: TObject);
 begin
   Core.Initialize;
+  Core.ThemeManager1.UseTheme(Self);
   Core.PersistentForm1.Load(Self);
   FormContacts.ManualDock(Self, nil, alClient);
   FormContacts.Align := alClient;

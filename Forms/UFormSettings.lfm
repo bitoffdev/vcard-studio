@@ -62,7 +62,7 @@ object FormSettings: TFormSettings
     Visible = False
   end
   object SpinEditDPI: TSpinEdit
-    Left = 152
+    Left = 160
     Height = 28
     Top = 144
     Width = 121
@@ -95,5 +95,22 @@ object FormSettings: TFormSettings
     Top = 240
     Width = 456
     Anchors = [akLeft, akRight, akBottom]
+  end
+  object Label2: TLabel
+    Left = 20
+    Height = 20
+    Top = 184
+    Width = 48
+    Caption = 'Theme:'
+    ParentColor = False
+  end
+  object ComboBoxTheme: TComboBox
+    Left = 160
+    Height = 28
+    Top = 184
+    Width = 260
+    ItemHeight = 20
+    Style = csDropDownList
+    TabOrder = 6
   end
 end
