@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: tcore.aabout.caption
 msgid "About..."
@@ -76,6 +76,10 @@ msgstr "O aplikaci"
 #: tformabout.labelcontent.caption
 msgid "   "
 msgstr "  "
+
+#: tformcontact.aeditfield.caption
+msgid "Edit"
+msgstr "Upravit"
 
 #: tformcontact.buttoncancel.caption
 msgctxt "tformcontact.buttoncancel.caption"
@@ -302,6 +306,10 @@ msgstr "Znovuotevřít poslední soubor při startu"
 msgid "Language:"
 msgstr "Jazyk:"
 
+#: tformsettings.label2.caption
+msgid "Theme:"
+msgstr "Téma:"
+
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
 msgstr "DPI:"
@@ -355,6 +363,14 @@ msgstr "Datum uvolnění"
 #: uformabout.sversion
 msgid "Version"
 msgstr "Verze"
+
+#: uformcontact.seditfieldvalue
+msgid "Edit field value"
+msgstr "Upravit hodnotu položky"
+
+#: uformcontact.sfieldedit
+msgid "Field edit"
+msgstr "Upravit pole"
 
 #: uformcontacts.sremovecontacts
 msgid "Remove contacts"

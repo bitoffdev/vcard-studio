@@ -16,9 +16,9 @@ object FormContact: TFormContact
     Height = 424
     Top = 8
     Width = 744
-    ActivePage = TabSheetGeneral
+    ActivePage = TabSheetAll
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -397,11 +397,13 @@ object FormContact: TFormContact
             Width = 200
           end>
         OwnerData = True
+        PopupMenu = PopupMenu1
         ReadOnly = True
         RowSelect = True
         TabOrder = 0
         ViewStyle = vsReport
         OnData = ListView1Data
+        OnDblClick = AEditFieldExecute
       end
     end
   end
@@ -424,5 +426,22 @@ object FormContact: TFormContact
     Caption = 'OK'
     ModalResult = 1
     TabOrder = 2
+  end
+  object ActionList1: TActionList
+    Images = Core.ImageList1
+    left = 317
+    top = 157
+    object AEditField: TAction
+      Caption = 'Edit'
+      OnExecute = AEditFieldExecute
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Images = Core.ImageList1
+    left = 172
+    top = 159
+    object MenuItem1: TMenuItem
+      Action = AEditField
+    end
   end
 end

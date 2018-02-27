@@ -434,6 +434,7 @@ var
   CommandPart: string;
   Charset: string;
   Encoding: string;
+  Language: string;
   CommandItems: TStringList;
 begin
   inherited;
@@ -464,6 +465,10 @@ begin
         else if CommandItems.IndexOfName('ENCODING') >= 0 then begin
           Encoding := CommandItems.Values['ENCODING'];
           CommandItems.Delete(CommandItems.IndexOfName('ENCODING'));
+        end
+        else if CommandItems.IndexOfName('LANGUAGE') >= 0 then begin
+          Language := CommandItems.Values['LANGUAGE'];
+          CommandItems.Delete(CommandItems.IndexOfName('LANGUAGE'));
         end;
         Command := CommandItems.DelimitedText;
 
