@@ -49,6 +49,11 @@ msgstr "Uložit"
 msgid "Save as..."
 msgstr "Uložit jako..."
 
+#: tcore.afindduplicate.caption
+msgctxt "tcore.afindduplicate.caption"
+msgid "Find duplicities"
+msgstr "Najít duplikáty"
+
 #: tcore.ahomepage.caption
 msgctxt "tcore.ahomepage.caption"
 msgid "Home page"
@@ -227,6 +232,7 @@ msgid "Select all"
 msgstr "Vybrat vše"
 
 #: tformcontacts.caption
+msgctxt "tformcontacts.caption"
 msgid "Contacts"
 msgstr "Kontakty"
 
@@ -247,6 +253,28 @@ msgstr "Prostřední jméno"
 msgctxt "tformcontacts.listview1.columns[3].caption"
 msgid "Last Name"
 msgstr "Příjimení"
+
+#: tformfindduplicity.caption
+msgctxt "tformfindduplicity.caption"
+msgid "Find duplicities"
+msgstr "Najít duplikáty"
+
+#: tformfindduplicity.label1.caption
+msgid "Contact field:"
+msgstr "Pole kontaktu:"
+
+#: tformfindduplicity.listview1.columns[0].caption
+msgid "Field"
+msgstr "Pole"
+
+#: tformfindduplicity.listview1.columns[1].caption
+msgctxt "tformfindduplicity.listview1.columns[1].caption"
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: tformfindduplicity.listview1.columns[2].caption
+msgid "Count"
+msgstr "Počet"
 
 #: tformmain.caption
 msgid "vCard Studio"

@@ -27,6 +27,7 @@ type
     procedure ButtonOkClick(Sender: TObject);
     procedure CheckBoxAutomaticDPIChange(Sender: TObject);
     procedure CheckBoxStartOnLogonChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -52,6 +53,8 @@ uses
 
 procedure TFormSettings.FormShow(Sender: TObject);
 begin
+  Core.PersistentForm1.Load(Self);
+
   Core.CoolTranslator1.LanguageListToStrings(ComboBoxLanguage.Items);
   ComboBoxLanguage.ItemIndex := ComboBoxLanguage.Items.IndexOfObject(Core.CoolTranslator1.Language);
   if ComboBoxLanguage.ItemIndex = -1 then ComboBoxLanguage.ItemIndex := 0;
@@ -77,6 +80,12 @@ end;
 procedure TFormSettings.CheckBoxStartOnLogonChange(Sender: TObject);
 begin
   UpdateInterface;
+end;
+
+procedure TFormSettings.FormClose(Sender: TObject; var CloseAction: TCloseAction
+  );
+begin
+  Core.PersistentForm1.Save(Self);
 end;
 
 procedure TFormSettings.FormCreate(Sender: TObject);
