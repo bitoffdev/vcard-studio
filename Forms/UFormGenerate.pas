@@ -48,7 +48,7 @@ begin
     Contact := Contacts.AddNew;
     Contact.FirstName := 'First ' + IntToStr(Random(10000));
     Contact.LastName := 'Last ' + IntToStr(Random(10000));
-    Contact.FullName := Contact.FirstName + ' ' + Contact.LastName;
+    Contact.FullName := 'FullName ' + IntToStr(Random(100));
     Contact.TelCell := IntToStr(Random(1000000000));
     Contact.TelHome := IntToStr(Random(1000000000));
   end;
