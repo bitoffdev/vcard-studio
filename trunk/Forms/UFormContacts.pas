@@ -74,6 +74,8 @@ begin
     Item.SubItems.Add(FirstName);
     Item.SubItems.Add(MiddleName);
     Item.SubItems.Add(LastName);
+    Item.SubItems.Add(TelCell);
+    Item.SubItems.Add(TelHome);
     Item.Data := Contacts[Item.Index];
   end;
 end;

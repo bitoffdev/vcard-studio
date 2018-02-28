@@ -18,6 +18,7 @@ type
     MenuItem1: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
     MenuItemToolbar: TMenuItem;
     MenuItemView: TMenuItem;
     MenuItemExit: TMenuItem;
@@ -110,7 +111,7 @@ var
   J: Integer;
   Control: TControl;
 begin
- for J := 0 to CoolBar1.ControlCount - 1 do begin
+  for J := 0 to CoolBar1.ControlCount - 1 do begin
     Control := CoolBar1.Controls[J];
     if Control is TToolBar then begin
       for I := 0 to TToolBar(Control).ButtonCount - 1 do begin
