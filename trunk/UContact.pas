@@ -34,6 +34,7 @@ type
   TContactFields = class(TObjectList)
     function AddNew(Name: string; Index: TContactFieldIndex; DataType:
       TDataType): TContactField;
+    procedure LoadToStrings(AItems: TStrings);
   end;
 
   { TContact }
@@ -87,6 +88,7 @@ type
   TContacts = class(TObjectList)
     ContactsFile: TContactsFile;
     function Search(FullName: string): TContact;
+    function ToString: ansistring; override;
   end;
 
   { TContactsFile }
@@ -131,6 +133,17 @@ begin
     end;
 end;
 
+function TContacts.ToString: ansistring;
+var
+  I: Integer;
+begin
+  Result := '';
+  for I := 0 to Count - 1 do begin
+    if I > 0 then Result := Result + ', ';
+    Result := Result + TContact(Items[I]).FullName;
+  end;
+end;
+
 { TContactFields }
 
 function TContactFields.AddNew(Name: string; Index: TContactFieldIndex;
@@ -141,6 +154,16 @@ begin
   Result.Index := Index;
   Result.DataType := DataType;
   Add(Result);
+end;
+
+procedure TContactFields.LoadToStrings(AItems: TStrings);
+var
+  I: Integer;
+begin
+  while AItems.Count < Count do AItems.Add('');
+  while AItems.Count > Count do AItems.Delete(AItems.Count - 1);
+  for I := 0 to Count - 1 do
+    AItems[I] := TContactField(Items[I]).Name;
 end;
 
 { TContact }

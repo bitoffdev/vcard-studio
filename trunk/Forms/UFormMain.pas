@@ -17,6 +17,7 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
     MenuItemToolbar: TMenuItem;
     MenuItemView: TMenuItem;
     MenuItemExit: TMenuItem;
@@ -42,12 +43,14 @@ type
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItemToolbarClick(Sender: TObject);
   private
+    procedure SetToolbarHints;
     procedure UpdateFormTitle;
   public
     procedure UpdateInterface;
@@ -82,15 +85,12 @@ begin
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
-var
-  I: Integer;
 begin
-  for I := 0 to ToolBarFile.ButtonCount - 1 do
-    ToolBarFile.Buttons[I].Hint := ToolBarFile.Buttons[I].Caption;
 end;
 
 procedure TFormMain.FormShow(Sender: TObject);
 begin
+  SetToolbarHints;
   Core.Initialize;
   Core.ThemeManager1.UseTheme(Self);
   Core.PersistentForm1.Load(Self);
@@ -102,6 +102,23 @@ end;
 procedure TFormMain.MenuItemToolbarClick(Sender: TObject);
 begin
   UpdateInterface;
+end;
+
+procedure TFormMain.SetToolbarHints;
+var
+  I: Integer;
+  J: Integer;
+  Control: TControl;
+begin
+ for J := 0 to CoolBar1.ControlCount - 1 do begin
+    Control := CoolBar1.Controls[J];
+    if Control is TToolBar then begin
+      for I := 0 to TToolBar(Control).ButtonCount - 1 do begin
+        TToolBar(Control).Buttons[I].ShowHint := True;
+        TToolBar(Control).Buttons[I].Hint := TToolBar(Control).Buttons[I].Caption;
+      end;
+    end;
+  end;
 end;
 
 procedure TFormMain.UpdateFormTitle;

@@ -39,6 +39,11 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
+#: tcore.afindduplicate.caption
+msgctxt "tcore.afindduplicate.caption"
+msgid "Find duplicities"
+msgstr ""
+
 #: tcore.ahomepage.caption
 msgctxt "tcore.ahomepage.caption"
 msgid "Home page"
@@ -217,6 +222,7 @@ msgid "Select all"
 msgstr ""
 
 #: tformcontacts.caption
+msgctxt "tformcontacts.caption"
 msgid "Contacts"
 msgstr ""
 
@@ -236,6 +242,28 @@ msgstr ""
 #: tformcontacts.listview1.columns[3].caption
 msgctxt "tformcontacts.listview1.columns[3].caption"
 msgid "Last Name"
+msgstr ""
+
+#: tformfindduplicity.caption
+msgctxt "tformfindduplicity.caption"
+msgid "Find duplicities"
+msgstr ""
+
+#: tformfindduplicity.label1.caption
+msgid "Contact field:"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[0].caption
+msgid "Field"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[1].caption
+msgctxt "tformfindduplicity.listview1.columns[1].caption"
+msgid "Contacts"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[2].caption
+msgid "Count"
 msgstr ""
 
 #: tformmain.caption
