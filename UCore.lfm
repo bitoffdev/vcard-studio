@@ -470,6 +470,10 @@ object Core: TCore
       ImageIndex = 11
       OnExecute = AFindDuplicateExecute
     end
+    object AGenerate: TAction
+      Caption = 'Generate contacts'
+      OnExecute = AGenerateExecute
+    end
   end
   object LastOpenedList1: TLastOpenedList
     MaxCount = 10

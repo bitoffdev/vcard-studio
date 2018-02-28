@@ -6,10 +6,11 @@ object FormContacts: TFormContacts
   Caption = 'Contacts'
   ClientHeight = 605
   ClientWidth = 807
+  DesignTimePPI = 120
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '1.8.0.4'
+  LCLVersion = '1.8.0.6'
   object ListView1: TListView
     Left = 0
     Height = 579
@@ -31,7 +32,15 @@ object FormContacts: TFormContacts
       end    
       item
         Caption = 'Last Name'
-        Width = 387
+        Width = 100
+      end    
+      item
+        Caption = 'Cell phone'
+        Width = 100
+      end    
+      item
+        Caption = 'Home phone'
+        Width = 100
       end>
     MultiSelect = True
     OwnerData = True
@@ -58,12 +67,12 @@ object FormContacts: TFormContacts
       Action = AAdd
     end
     object ToolButton2: TToolButton
-      Left = 30
+      Left = 24
       Top = 2
       Action = AModify
     end
     object ToolButton3: TToolButton
-      Left = 59
+      Left = 47
       Top = 2
       Action = ARemove
     end

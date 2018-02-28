@@ -100,7 +100,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="11">
       <Unit0>
         <Filename Value="vCardStudio.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -162,6 +162,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="Forms\UFormGenerate.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormGenerate"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
