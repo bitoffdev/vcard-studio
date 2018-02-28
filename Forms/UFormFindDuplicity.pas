@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, StdCtrls, Contnrs, UContact;
+  ExtCtrls, StdCtrls, ActnList, Menus, Contnrs, UContact;
 
 type
 
@@ -28,10 +28,15 @@ type
   { TFormFindDuplicity }
 
   TFormFindDuplicity = class(TForm)
+    AShowContacts: TAction;
+    ActionList1: TActionList;
     ComboBoxField: TComboBox;
     Label1: TLabel;
     ListView1: TListView;
+    MenuItem1: TMenuItem;
     Panel1: TPanel;
+    PopupMenu1: TPopupMenu;
+    procedure AShowContactsExecute(Sender: TObject);
     procedure ComboBoxFieldChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -58,7 +63,7 @@ implementation
 {$R *.lfm}
 
 uses
-  UCore;
+  UCore, UFormContacts;
 
 { TFoundItems }
 
@@ -94,6 +99,7 @@ begin
   if Item.Index < FoundItems.Count then
   with TFoundItem(FoundItems[Item.Index]) do begin
     Item.Caption := Field;
+    Item.Data := FoundItems[Item.Index];
     Item.SubItems.Add(Contacts.ToString);
     Item.SubItems.Add(IntToStr(Contacts.Count));
   end;
@@ -153,6 +159,42 @@ procedure TFormFindDuplicity.ComboBoxFieldChange(Sender: TObject);
 begin
   ContactField := TContactFieldIndex(ComboBoxField.ItemIndex);
   Find;
+end;
+
+procedure TFormFindDuplicity.AShowContactsExecute(Sender: TObject);
+var
+  Form: TFormContacts;
+  I: Integer;
+begin
+  if Assigned(ListView1.Selected) then begin
+    Form := TFormContacts.Create(nil);
+    Form.Contacts := TContacts.Create(False);
+    Form.Contacts.ContactsFile := Contacts.ContactsFile;
+    with TFoundItem(ListView1.Selected.Data) do
+      for I := 0 to Contacts.Count - 1 do
+        Form.Contacts.Add(Contacts[I]);
+    Form.ShowModal;
+    with TFoundItem(ListView1.Selected.Data) do begin
+      // Remove all deleted
+      for I := 0 to Contacts.Count - 1 do
+        if Form.Contacts.IndexOf(Contacts[I]) = -1 then begin
+          Form.Contacts.Remove(Contacts[I]);
+          Self.Contacts.Remove(Contacts[I]);
+          Self.Contacts.ContactsFile.Modified := True;
+        end;
+
+      // Add newly added
+      for I := 0 to Form.Contacts.Count - 1 do
+        if Contacts.IndexOf(Form.Contacts[I]) = -1 then begin
+          Form.Contacts.Add(Form.Contacts[I]);
+          Self.Contacts.Add(Form.Contacts[I]);
+          Self.Contacts.ContactsFile.Modified := True;
+        end;
+    end;
+    Form.Contacts.Free;
+    Form.Free;
+    Find;
+  end;
 end;
 
 procedure TFormFindDuplicity.FormClose(Sender: TObject;

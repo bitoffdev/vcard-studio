@@ -257,6 +257,10 @@ msgstr ""
 msgid "Home phone"
 msgstr ""
 
+#: tformfindduplicity.ashowcontacts.caption
+msgid "Show contacts"
+msgstr ""
+
 #: tformfindduplicity.caption
 msgctxt "tformfindduplicity.caption"
 msgid "Find duplicities"
