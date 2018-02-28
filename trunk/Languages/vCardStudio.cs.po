@@ -57,7 +57,7 @@ msgstr "Najít duplikáty"
 #: tcore.agenerate.caption
 msgctxt "tcore.agenerate.caption"
 msgid "Generate contacts"
-msgstr ""
+msgstr "Generovat kontakty"
 
 #: tcore.ahomepage.caption
 msgctxt "tcore.ahomepage.caption"
@@ -261,11 +261,15 @@ msgstr "Příjimení"
 
 #: tformcontacts.listview1.columns[4].caption
 msgid "Cell phone"
-msgstr ""
+msgstr "Mobilní telefon"
 
 #: tformcontacts.listview1.columns[5].caption
 msgid "Home phone"
-msgstr ""
+msgstr "Domácí telefon"
+
+#: tformfindduplicity.ashowcontacts.caption
+msgid "Show contacts"
+msgstr "Ukázat kontakty"
 
 #: tformfindduplicity.caption
 msgctxt "tformfindduplicity.caption"
@@ -291,15 +295,14 @@ msgstr "Počet"
 
 #: tformgenerate.buttongenerate.caption
 msgid "Generate"
-msgstr ""
+msgstr "Generovat"
 
 #: tformgenerate.caption
 msgctxt "tformgenerate.caption"
 msgid "Generate contacts"
-msgstr ""
+msgstr "Generovat kontakty"
 
 #: tformgenerate.label1.caption
-#, fuzzy
 msgctxt "tformgenerate.label1.caption"
 msgid "Count:"
 msgstr "Počet:"
@@ -449,4 +452,3 @@ msgstr "Upraveno"
 msgctxt "uvcf.svcardfile"
 msgid "vCard file"
 msgstr "Soubor vCard"
-

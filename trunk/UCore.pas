@@ -180,6 +180,8 @@ begin
   with FormFindDuplicity do begin
     Contacts := TContactsFile(DataFile).Contacts;
     ShowModal;
+    FormContacts.ReloadList;
+    FormMain.UpdateInterface;
     Free;
   end;
 end;
