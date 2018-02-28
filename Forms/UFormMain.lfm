@@ -166,6 +166,9 @@ object FormMain: TFormMain
       object MenuItem4: TMenuItem
         Action = Core.AFindDuplicate
       end
+      object MenuItem5: TMenuItem
+        Action = Core.AGenerate
+      end
     end
     object MenuItemHelp: TMenuItem
       Caption = 'Help'

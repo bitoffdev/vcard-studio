@@ -87,6 +87,7 @@ type
 
   TContacts = class(TObjectList)
     ContactsFile: TContactsFile;
+    function AddNew: TContact;
     function Search(FullName: string): TContact;
     function ToString: ansistring; override;
   end;
@@ -120,6 +121,13 @@ resourcestring
   SUnsupportedContactFieldsIndex = 'Unsupported contact field index';
 
 { TContacts }
+
+function TContacts.AddNew: TContact;
+begin
+  Result := TContact.Create;
+  Result.Parent := ContactsFile;
+  Add(Result);
+end;
 
 function TContacts.Search(FullName: string): TContact;
 var

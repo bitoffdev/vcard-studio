@@ -25,6 +25,7 @@ type
 
   TCore = class(TDataModule)
     AAbout: TAction;
+    AGenerate: TAction;
     AFindDuplicate: TAction;
     AFileMerge: TAction;
     ASettings: TAction;
@@ -56,6 +57,7 @@ type
     procedure AFileSaveAsExecute(Sender: TObject);
     procedure AFileCloseExecute(Sender: TObject);
     procedure AFindDuplicateExecute(Sender: TObject);
+    procedure AGenerateExecute(Sender: TObject);
     procedure AHomePageExecute(Sender: TObject);
     procedure ASettingsExecute(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
@@ -92,7 +94,8 @@ implementation
 {$R *.lfm}
 
 uses
-  UFormMain, UFormAbout, UFormSettings, UContact, UFormContacts, UFormFindDuplicity;
+  UFormMain, UFormAbout, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
+  UFormGenerate;
 
 resourcestring
   SAppExit = 'Application exit';
@@ -177,6 +180,20 @@ begin
   with FormFindDuplicity do begin
     Contacts := TContactsFile(DataFile).Contacts;
     ShowModal;
+    Free;
+  end;
+end;
+
+procedure TCore.AGenerateExecute(Sender: TObject);
+begin
+  FormGenerate := TFormGenerate.Create(nil);
+  with FormGenerate do begin
+    Contacts := TContactsFile(DataFile).Contacts;
+    ShowModal;
+    FormContacts.ReloadList;
+    FormContacts.UpdateInterface;
+    DataFile.Modified := True;
+    FormMain.UpdateInterface;
     Free;
   end;
 end;
