@@ -35,9 +35,9 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 24
-      Height = 22
+      Height = 28
       Top = 5
-      Width = 105
+      Width = 132
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 22
@@ -55,19 +55,19 @@ object FormMain: TFormMain
         Action = Core.AFileNew
       end
       object ToolButton2: TToolButton
-        Left = 24
+        Left = 30
         Top = 0
         Action = Core.AFileOpen
         DropdownMenu = PopupMenuOpenRecent
         Style = tbsDropDown
       end
       object ToolButton3: TToolButton
-        Left = 59
+        Left = 74
         Top = 0
         Action = Core.AFileSave
       end
       object ToolButton4: TToolButton
-        Left = 82
+        Left = 103
         Top = 0
         Action = Core.AFileClose
       end
@@ -76,9 +76,9 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 188
-      Height = 22
+      Height = 28
       Top = 5
-      Width = 24
+      Width = 59
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 186
@@ -91,9 +91,14 @@ object FormMain: TFormMain
       TabOrder = 1
       Transparent = True
       object ToolButton5: TToolButton
-        Left = 1
+        Left = 30
         Top = 0
         Action = Core.ASettings
+      end
+      object ToolButton6: TToolButton
+        Left = 1
+        Top = 0
+        Action = Core.AFindDuplicate
       end
     end
   end
@@ -157,6 +162,9 @@ object FormMain: TFormMain
       Caption = 'Tools'
       object MenuItemSettings: TMenuItem
         Action = Core.ASettings
+      end
+      object MenuItem4: TMenuItem
+        Action = Core.AFindDuplicate
       end
     end
     object MenuItemHelp: TMenuItem
