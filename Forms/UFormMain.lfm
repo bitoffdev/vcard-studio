@@ -4,15 +4,15 @@ object FormMain: TFormMain
   Top = 447
   Width = 785
   Caption = 'vCard Studio'
-  ClientHeight = 506
+  ClientHeight = 497
   ClientWidth = 785
-  DesignTimePPI = 120
   Menu = MainMenu1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.8.0.4'
   object CoolBar1: TCoolBar
     Left = 0
     Height = 38
@@ -104,8 +104,8 @@ object FormMain: TFormMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 28
-    Top = 478
+    Height = 30
+    Top = 467
     Width = 785
     Panels = <    
       item

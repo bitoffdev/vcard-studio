@@ -48,6 +48,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItemToolbarClick(Sender: TObject);
   private
@@ -76,6 +77,7 @@ resourcestring
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  FormContacts.Close;
   Core.PersistentForm1.Save(Self);
 end;
 
@@ -89,12 +91,20 @@ procedure TFormMain.FormCreate(Sender: TObject);
 begin
 end;
 
+procedure TFormMain.FormDestroy(Sender: TObject);
+begin
+  FormContacts.Free;
+end;
+
 procedure TFormMain.FormShow(Sender: TObject);
 begin
   SetToolbarHints;
   Core.Initialize;
   Core.ThemeManager1.UseTheme(Self);
   Core.PersistentForm1.Load(Self);
+
+  FormContacts := TFormContacts.Create(nil);
+  FormContacts.Contacts := TContactsFile(Core.DataFile).Contacts;
   FormContacts.ManualDock(Self, nil, alClient);
   FormContacts.Align := alClient;
   FormContacts.Show;

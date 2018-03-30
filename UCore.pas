@@ -382,10 +382,12 @@ procedure TCore.UpdateFile;
 begin
   UpdateInterface;
   FormMain.UpdateInterface;
-  if Assigned(DataFile) then
-    FormContacts.Contacts := TContactsFile(DataFile).Contacts
-    else FormContacts.Contacts := nil;
-  FormContacts.ReloadList;
+  if Assigned(FormContacts) then begin
+    if Assigned(DataFile) then
+      FormContacts.Contacts := TContactsFile(DataFile).Contacts
+      else FormContacts.Contacts := nil;
+    FormContacts.ReloadList;
+  end;
 end;
 
 procedure TCore.LoadConfig;
