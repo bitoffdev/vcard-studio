@@ -103,6 +103,7 @@ procedure TFormContacts.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
   Core.ThemeManager1.UseTheme(Self);
+  Core.CoolTranslator1.TranslateComponentRecursive(Self);
   ReloadList;
   UpdateInterface;
 end;

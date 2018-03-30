@@ -29,7 +29,6 @@ begin
   Application.Initialize;
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TCore, Core);
-  Application.CreateForm(TFormContacts, FormContacts);
   Application.Run;
 end.
 
