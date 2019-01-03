@@ -43,4 +43,4 @@ You can handle OnTranslate event and do translation of custom structures.
 
 You can download source code using subversion:
 
-svn checkout http://svn.zdechov.net/PascalClassLibrary/CoolTranslator
+svn checkout https://svn.zdechov.net/PascalClassLibrary/CoolTranslator
