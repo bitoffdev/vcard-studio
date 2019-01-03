@@ -495,7 +495,7 @@ object Core: TCore
     VersionMinor = 0
     VersionBugFix = 0
     VersionSuffix = 'alfa'
-    HomePage = 'https://svn.zdechov.net/trac/vcard-studio'
+    HomePage = 'https://app.zdechov.net/vcard-studio'
     AuthorsName = 'Chronos'
     EmailContact = 'robie@centrum.cz'
     AppName = 'vCard Studio'

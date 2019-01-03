@@ -7,7 +7,7 @@
 #define MyAppVersionSuffix "alfa"
 #define MyAppPublisher "Chronosoft"
 #define MyAppPublisherShort "Chronosoft"
-#define MyAppURL "https://svn.zdechov.net/svn/vcard-studio"
+#define MyAppURL "https://app.zdechov.net/vcard-studio"
 #define MyAppExeName "vCardStudio.exe"
 #define MyAppDebugName "vCardStudio.dbg"
 #define MyAppSubDir "../.."
