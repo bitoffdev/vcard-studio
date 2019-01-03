@@ -9,4 +9,4 @@ Package: vcard-studio
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
 Description: A contact management application with support for vCard file format.
-HomePage: http://svn.zdechov.net/trac/vcard-studio
+HomePage: https://app.zdechov.net/vcard-studio

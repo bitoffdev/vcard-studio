@@ -1,3 +1,4 @@
+@echo off
 if not defined LAZDIR (
   set LAZDIR=C:\lazarus
 )
