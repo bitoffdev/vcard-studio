@@ -1,0 +1,5 @@
+{"version":1,"strings":[
+{"hash":245221587,"name":"tformgenerate.caption","sourcebytes":[71,101,110,101,114,97,116,101,32,99,111,110,116,97,99,116,115],"value":"Generate contacts"},
+{"hash":78038394,"name":"tformgenerate.label1.caption","sourcebytes":[67,111,117,110,116,58],"value":"Count:"},
+{"hash":206343285,"name":"tformgenerate.buttongenerate.caption","sourcebytes":[71,101,110,101,114,97,116,101],"value":"Generate"}
+]}

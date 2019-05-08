@@ -7,7 +7,8 @@ unit UPersistentForm;
 interface
 
 uses
-  Classes, SysUtils, Forms, URegistry, LCLIntf, Registry, Controls, ComCtrls;
+  Classes, SysUtils, Forms, URegistry, LCLIntf, Registry, Controls, ComCtrls,
+  ExtCtrls;
 
 type
 
@@ -55,7 +56,6 @@ procedure TPersistentForm.LoadControl(Control: TControl);
 var
   I: Integer;
   WinControl: TWinControl;
-  Count: Integer;
 begin
   if Control is TListView then begin
     with Form, TRegistryEx.Create do
@@ -65,6 +65,24 @@ begin
       for I := 0 to TListView(Control).Columns.Count - 1 do begin
         if ValueExists('ColWidth' + IntToStr(I)) then
           TListView(Control).Columns[I].Width := ReadInteger('ColWidth' + IntToStr(I));
+      end;
+    finally
+      Free;
+    end;
+  end;
+
+  if (Control is TPanel) then begin
+    with Form, TRegistryEx.Create do
+    try
+      RootKey := RegistryContext.RootKey;
+      OpenKey(RegistryContext.Key + '\Forms\' + Form.Name + '\' + Control.Name, True);
+      if (TPanel(Control).Align = alRight) or (TPanel(Control).Align = alLeft) then begin
+        if ValueExists('Width') then
+          TPanel(Control).Width := ReadInteger('Width');
+      end;
+      if (TPanel(Control).Align = alTop) or (TPanel(Control).Align = alBottom) then begin
+        if ValueExists('Height') then
+          TPanel(Control).Height := ReadInteger('Height');
       end;
     finally
       Free;
@@ -95,6 +113,22 @@ begin
       OpenKey(RegistryContext.Key + '\Forms\' + Form.Name + '\' + Control.Name, True);
       for I := 0 to TListView(Control).Columns.Count - 1 do begin
         WriteInteger('ColWidth' + IntToStr(I), TListView(Control).Columns[I].Width);
+      end;
+    finally
+      Free;
+    end;
+  end;
+
+  if (Control is TPanel) then begin
+    with Form, TRegistryEx.Create do
+    try
+      RootKey := RegistryContext.RootKey;
+      OpenKey(RegistryContext.Key + '\Forms\' + Form.Name + '\' + Control.Name, True);
+      if (TPanel(Control).Align = alRight) or (TPanel(Control).Align = alLeft) then begin
+        WriteInteger('Width', TPanel(Control).Width);
+      end;
+      if (TPanel(Control).Align = alTop) or (TPanel(Control).Align = alBottom) then begin
+        WriteInteger('Height', TPanel(Control).Height);
       end;
     finally
       Free;
@@ -216,8 +250,6 @@ begin
 end;
 
 procedure TPersistentForm.Load(Form: TForm; DefaultMaximized: Boolean = False);
-var
-  LoadDefaults: Boolean;
 begin
   Self.Form := Form;
   // Set default
@@ -229,7 +261,7 @@ begin
   LoadFromRegistry(RegistryContext);
 
   if not EqualRect(FormNormalSize, FormRestoredSize) or
-    (LoadDefaults and DefaultMaximized) then begin
+    DefaultMaximized then begin
     // Restore to maximized state
     Form.WindowState := wsNormal;
     if not EqualRect(FormRestoredSize, Form.BoundsRect) then

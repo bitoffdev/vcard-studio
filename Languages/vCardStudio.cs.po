@@ -373,10 +373,6 @@ msgstr "Téma:"
 msgid "DPI:"
 msgstr "DPI:"
 
-#: ucontact.sunknowncommand
-msgid "Unknown command: %s"
-msgstr "Neznámý příkaz: %s"
-
 #: ucontact.sunsupportedcontactfieldsindex
 msgid "Unsupported contact field index"
 msgstr "Nepodporovaný index pole kontaktu"
@@ -448,7 +444,3 @@ msgstr "Počet:"
 msgid "Modified"
 msgstr "Upraveno"
 
-#: uvcf.svcardfile
-msgctxt "uvcf.svcardfile"
-msgid "vCard file"
-msgstr "Soubor vCard"

@@ -99,7 +99,6 @@ msgid "Name:"
 msgstr ""
 
 #: tformcontact.label10.caption
-msgctxt "tformcontact.label10.caption"
 msgid "Cell phone (Work):"
 msgstr ""
 
@@ -120,17 +119,14 @@ msgid "Pager:"
 msgstr ""
 
 #: tformcontact.label15.caption
-msgctxt "tformcontact.label15.caption"
 msgid "Web page:"
 msgstr ""
 
 #: tformcontact.label16.caption
-msgctxt "tformcontact.label16.caption"
 msgid "Web page (Home):"
 msgstr ""
 
 #: tformcontact.label17.caption
-msgctxt "tformcontact.label17.caption"
 msgid "Web page (Work):"
 msgstr ""
 
@@ -361,10 +357,6 @@ msgstr ""
 msgid "DPI:"
 msgstr ""
 
-#: ucontact.sunknowncommand
-msgid "Unknown command: %s"
-msgstr ""
-
 #: ucontact.sunsupportedcontactfieldsindex
 msgid "Unsupported contact field index"
 msgstr ""
@@ -434,10 +426,5 @@ msgstr ""
 
 #: uformmain.smodified
 msgid "Modified"
-msgstr ""
-
-#: uvcf.svcardfile
-msgctxt "uvcf.svcardfile"
-msgid "vCard file"
 msgstr ""
 

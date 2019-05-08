@@ -5,7 +5,7 @@ unit UFormMain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
+  Classes, SysUtils, LazFileUtils, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls;
 
 type

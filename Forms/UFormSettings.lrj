@@ -1,0 +1,10 @@
+{"version":1,"strings":[
+{"hash":213582195,"name":"tformsettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
+{"hash":82521866,"name":"tformsettings.label1.caption","sourcebytes":[76,97,110,103,117,97,103,101,58],"value":"Language:"},
+{"hash":1371,"name":"tformsettings.buttonok.caption","sourcebytes":[79,107],"value":"Ok"},
+{"hash":77089212,"name":"tformsettings.buttoncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":37628553,"name":"tformsettings.checkboxautomaticdpi.caption","sourcebytes":[65,117,116,111,109,97,116,105,99,32,68,80,73],"value":"Automatic DPI"},
+{"hash":300234,"name":"tformsettings.labeldpi.caption","sourcebytes":[68,80,73,58],"value":"DPI:"},
+{"hash":55973348,"name":"tformsettings.checkboxreopenlastfileonstart.caption","sourcebytes":[82,101,111,112,101,110,32,108,97,115,116,32,102,105,108,101,32,111,110,32,115,116,97,114,116],"value":"Reopen last file on start"},
+{"hash":95339402,"name":"tformsettings.label2.caption","sourcebytes":[84,104,101,109,101,58],"value":"Theme:"}
+]}

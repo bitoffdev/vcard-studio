@@ -117,7 +117,6 @@ implementation
 
 resourcestring
   SVCardFile = 'vCard file';
-  SUnknownCommand = 'Unknown command: %s';
   SUnsupportedContactFieldsIndex = 'Unsupported contact field index';
 
 { TContacts }
