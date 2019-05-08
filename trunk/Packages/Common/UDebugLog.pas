@@ -5,7 +5,7 @@ unit UDebugLog;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SpecializedList, SyncObjs;
+  Classes, SysUtils, FileUtil, fgl, SyncObjs;
 
 type
   TDebugLogAddEvent = procedure (Group: string; Text: string) of object;
@@ -28,7 +28,7 @@ type
     FWriteToFileEnable: Boolean;
     procedure SetMaxCount(const AValue: Integer);
   public
-    Items: TListObject;
+    Items: TFPGObjectList<TDebugLogItem>;
     Lock: TCriticalSection;
     procedure Add(Text: string; Group: string = '');
     procedure WriteToFile(Text: string);
@@ -103,8 +103,8 @@ begin
   try
     if ExtractFileDir(FileName) <> '' then
       ForceDirectories(ExtractFileDir(FileName));
-    if FileExists(FileName) then LogFile := TFileStream.Create(UTF8Decode(FileName), fmOpenWrite)
-      else LogFile := TFileStream.Create(UTF8Decode(FileName), fmCreate);
+    if FileExists(FileName) then LogFile := TFileStream.Create(FileName, fmOpenWrite)
+      else LogFile := TFileStream.Create(FileName, fmCreate);
     LogFile.Seek(0, soFromEnd);
     Text := FormatDateTime('hh:nn:ss.zzz', Now) + ': ' + Text + LineEnding;
     LogFile.WriteBuffer(Text[1], Length(Text));
@@ -116,7 +116,7 @@ end;
 constructor TDebugLog.Create(AOwner: TComponent);
 begin
   inherited;
-  Items := TListObject.Create;
+  Items := TFPGObjectList<TDebugLogItem>.Create;
   Lock := TCriticalSection.Create;
   MaxCount := 100;
   FileName := 'DebugLog.txt';

@@ -39,7 +39,7 @@
     <Description Value="Various libraries"/>
     <License Value="GNU/GPL"/>
     <Version Minor="7"/>
-    <Files Count="21">
+    <Files Count="22">
       <Item1>
         <Filename Value="StopWatch.pas"/>
         <UnitName Value="StopWatch"/>
@@ -59,6 +59,7 @@
       </Item4>
       <Item5>
         <Filename Value="UPrefixMultiplier.pas"/>
+        <HasRegisterProc Value="True"/>
         <UnitName Value="UPrefixMultiplier"/>
       </Item5>
       <Item6>
@@ -133,23 +134,24 @@
         <HasRegisterProc Value="True"/>
         <UnitName Value="UTheme"/>
       </Item21>
+      <Item22>
+        <Filename Value="UStringTable.pas"/>
+        <UnitName Value="UStringTable"/>
+      </Item22>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="Languages"/>
       <EnableI18NForLFM Value="True"/>
     </i18n>
-    <RequiredPkgs Count="3">
+    <RequiredPkgs Count="2">
       <Item1>
         <PackageName Value="LCL"/>
       </Item1>
       <Item2>
-        <PackageName Value="TemplateGenerics"/>
-      </Item2>
-      <Item3>
         <PackageName Value="FCL"/>
         <MinVersion Major="1" Valid="True"/>
-      </Item3>
+      </Item2>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>

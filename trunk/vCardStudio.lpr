@@ -7,21 +7,21 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, UFormMain, UCore, Common, CoolTranslator, UDataFile, TemplateGenerics,
+  Forms, UFormMain, UCore, Common, CoolTranslator, UDataFile,
   SysUtils, UFormContacts, UFormContact, UFormFindDuplicity, UFormGenerate
   { you can add units after this };
 
 {$R *.res}
 
-{$IFDEF DEBUG}
+{$if declared(UseHeapTrace)}
 const
   HeapTraceLog = 'heaptrclog.trc';
 {$ENDIF}
 
 begin
-  Application.Title := 'vCard Studio';
-  {$IFDEF DEBUG}
-  // Heap trace
+  Application.Scaled:=True;
+  Application.Title:='vCard Studio';
+  {$if declared(UseHeapTrace)}
   DeleteFile(ExtractFilePath(ParamStr(0)) + HeapTraceLog);
   SetHeapTraceOutput(ExtractFilePath(ParamStr(0)) + HeapTraceLog);
   {$ENDIF}

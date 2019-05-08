@@ -1,23 +1,24 @@
 object FormMain: TFormMain
   Left = 601
-  Height = 531
+  Height = 796
   Top = 447
-  Width = 785
+  Width = 1178
   Caption = 'vCard Studio'
-  ClientHeight = 497
-  ClientWidth = 785
+  ClientHeight = 762
+  ClientWidth = 1178
+  DesignTimePPI = 144
   Menu = MainMenu1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  LCLVersion = '1.8.0.4'
+  LCLVersion = '2.0.0.4'
   object CoolBar1: TCoolBar
     Left = 0
-    Height = 38
+    Height = 43
     Top = 0
-    Width = 785
+    Width = 1178
     AutoSize = True
     Bands = <    
       item
@@ -31,13 +32,14 @@ object FormMain: TFormMain
         MinWidth = 64
         Width = 64
       end>
+    ParentFont = False
     object ToolBarFile: TToolBar
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 24
-      Height = 28
+      Height = 33
       Top = 5
-      Width = 132
+      Width = 159
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 22
@@ -45,6 +47,7 @@ object FormMain: TFormMain
       EdgeInner = esNone
       EdgeOuter = esNone
       Images = Core.ImageList1
+      ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
@@ -55,19 +58,19 @@ object FormMain: TFormMain
         Action = Core.AFileNew
       end
       object ToolButton2: TToolButton
-        Left = 30
+        Left = 36
         Top = 0
         Action = Core.AFileOpen
         DropdownMenu = PopupMenuOpenRecent
         Style = tbsDropDown
       end
       object ToolButton3: TToolButton
-        Left = 74
+        Left = 89
         Top = 0
         Action = Core.AFileSave
       end
       object ToolButton4: TToolButton
-        Left = 103
+        Left = 124
         Top = 0
         Action = Core.AFileClose
       end
@@ -76,9 +79,9 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 188
-      Height = 28
+      Height = 33
       Top = 5
-      Width = 59
+      Width = 71
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 186
@@ -86,12 +89,13 @@ object FormMain: TFormMain
       EdgeInner = esNone
       EdgeOuter = esNone
       Images = Core.ImageList1
+      ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
       Transparent = True
       object ToolButton5: TToolButton
-        Left = 30
+        Left = 36
         Top = 0
         Action = Core.ASettings
       end
@@ -104,19 +108,20 @@ object FormMain: TFormMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 30
-    Top = 467
-    Width = 785
+    Height = 28
+    Top = 734
+    Width = 1178
     Panels = <    
       item
-        Width = 200
+        Width = 300
       end>
+    ParentFont = False
     SimplePanel = False
   end
   object MainMenu1: TMainMenu
     Images = Core.ImageList1
-    left = 128
-    top = 80
+    left = 192
+    top = 120
     object MenuItemFile: TMenuItem
       Caption = 'File'
       object MenuItemFileNew: TMenuItem
@@ -181,7 +186,7 @@ object FormMain: TFormMain
     end
   end
   object PopupMenuOpenRecent: TPopupMenu
-    left = 280
-    top = 80
+    left = 420
+    top = 120
   end
 end

@@ -4,19 +4,22 @@
 
 unit Common;
 
+{$warn 5023 off : no warning about unused units}
 interface
 
 uses
-  StopWatch, UCommon, UDebugLog, UDelay, UPrefixMultiplier, UURI, UThreading,
-  UMemory, UResetableThread, UPool, ULastOpenedList, URegistry,
-  UJobProgressView, UXMLUtils, UApplicationInfo, USyncCounter, UListViewSort,
-  UPersistentForm, UFindFile, UScaleDPI, UTheme, LazarusPackageIntf;
+  StopWatch, UCommon, UDebugLog, UDelay, UPrefixMultiplier, UURI, UThreading, 
+  UMemory, UResetableThread, UPool, ULastOpenedList, URegistry, 
+  UJobProgressView, UXMLUtils, UApplicationInfo, USyncCounter, UListViewSort, 
+  UPersistentForm, UFindFile, UScaleDPI, UTheme, UStringTable, 
+  LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
   RegisterUnit('UDebugLog', @UDebugLog.Register);
+  RegisterUnit('UPrefixMultiplier', @UPrefixMultiplier.Register);
   RegisterUnit('ULastOpenedList', @ULastOpenedList.Register);
   RegisterUnit('UJobProgressView', @UJobProgressView.Register);
   RegisterUnit('UApplicationInfo', @UApplicationInfo.Register);
