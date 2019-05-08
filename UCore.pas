@@ -459,7 +459,7 @@ begin
       // Open last opened file
       AFileNew.Execute;
       DataFile.LoadFromFile(LastOpenedList1.Items[0])
-    end;
+    end else AFileNew.Execute;
 
     UpdateFile;
     InitializeFinished := True;

@@ -8,7 +8,7 @@ interface
 
 uses
   {$IFDEF Windows}Windows, CommCtrl, {$ENDIF}Classes, Graphics, ComCtrls, SysUtils,
-  Controls, DateUtils, Dialogs, SpecializedList, Forms, Grids, StdCtrls, ExtCtrls,
+  Controls, DateUtils, Dialogs, fgl, Forms, Grids, StdCtrls, ExtCtrls,
   LclIntf, LMessages, LclType, LResources;
 
 type
@@ -51,8 +51,8 @@ type
     procedure NewListViewWindowProc(var AMsg: TMessage);
     {$ENDIF}
   public
-    List: TListObject;
-    Source: TListObject;
+    List: TFPGObjectList<TObject>;
+    Source: TFPGObjectList<TObject>;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     function CompareTime(Time1, Time2: TDateTime): Integer;
@@ -97,6 +97,24 @@ type
     property BorderSpacing;
   end;
 
+  { TListViewEx }
+
+  TListViewEx = class(TWinControl)
+  private
+    FFilter: TListViewFilter;
+    FListView: TListView;
+    FListViewSort: TListViewSort;
+    procedure ResizeHanlder;
+  public
+    constructor Create(TheOwner: TComponent); override;
+    destructor Destroy; override;
+  published
+    property ListView: TListView read FListView write FListView;
+    property ListViewSort: TListViewSort read FListViewSort write FListViewSort;
+    property Filter: TListViewFilter read FFilter write FFilter;
+    property Visible;
+  end;
+
 procedure Register;
 
 
@@ -104,7 +122,31 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('Common', [TListViewSort, TListViewFilter]);
+  RegisterComponents('Common', [TListViewSort, TListViewFilter, TListViewEx]);
+end;
+
+{ TListViewEx }
+
+procedure TListViewEx.ResizeHanlder;
+begin
+end;
+
+constructor TListViewEx.Create(TheOwner: TComponent);
+begin
+  inherited Create(TheOwner);
+  Filter := TListViewFilter.Create(Self);
+  Filter.Parent := Self;
+  Filter.Align := alBottom;
+  ListView := TListView.Create(Self);
+  ListView.Parent := Self;
+  ListView.Align := alClient;
+  ListViewSort := TListViewSort.Create(Self);
+  ListViewSort.ListView := ListView;
+end;
+
+destructor TListViewEx.Destroy;
+begin
+  inherited Destroy;
 end;
 
 { TListViewFilter }
@@ -141,16 +183,19 @@ end;
 procedure TListViewFilter.UpdateFromListView(ListView: TListView);
 var
   I: Integer;
+  R: TRect;
 begin
   with FStringGrid1 do begin
-    Options := Options - [goEditing, goAlwaysShowEditor];
-    //Columns.Clear;
     while Columns.Count > ListView.Columns.Count do Columns.Delete(Columns.Count - 1);
     while Columns.Count < ListView.Columns.Count do Columns.Add;
     for I := 0 to ListView.Columns.Count - 1 do begin
       Columns[I].Width := ListView.Columns[I].Width;
+      if Selection.Left = I then begin
+        R := CellRect(I, 0);
+        Editor.Left := R.Left + 2;
+        Editor.Width := R.Width - 4;
+      end;
     end;
-    Options := Options + [goEditing, goAlwaysShowEditor];
   end;
 end;
 
@@ -273,10 +318,21 @@ begin
   {$ENDIF}
 end;
 
+var
+  ListViewSortCompare: TCompareEvent;
+
+function ListViewCompare(const Item1, Item2: TObject): Integer;
+begin
+  Result := ListViewSortCompare(Item1, Item2);
+end;
+
 procedure TListViewSort.Sort(Compare: TCompareEvent);
 begin
+  // TODO: Because TFLGObjectList compare handler is not class method,
+  // it is necessary to use simple function compare handler with local variable
+  ListViewSortCompare := Compare;
   if (List.Count > 0) then
-    List.Sort(Compare);
+    List.Sort(ListViewCompare);
 end;
 
 procedure TListViewSort.Refresh;
@@ -339,8 +395,8 @@ end;
 constructor TListViewSort.Create(AOwner: TComponent);
 begin
   inherited;
-  List := TListObject.Create;
-  List.OwnsObjects := False;
+  List := TFPGObjectList<TObject>.Create;
+  List.FreeObjects := False;
 end;
 
 destructor TListViewSort.Destroy;
@@ -380,7 +436,7 @@ begin
     ListView.Canvas.Brush.Color := clWhite;
   ItemLeft := Item.Left;
   ItemLeft := 23; // Windows 7 workaround
-  
+
   Rect1.Left := ItemLeft - CheckWidth - BiasLeft + 1 + XBias;
   //ShowMessage(IntToStr(Tp1.Y) + ', ' + IntToStr(BiasTop) + ', ' + IntToStr(XBias));
   Rect1.Top := Tp1.Y + BiasTop + 1 + YBias;
@@ -479,7 +535,9 @@ begin
   if Assigned(FListView) then begin
     FHeaderHandle := ListView_GetHeader(FListView.Handle);
     for I := 0 to FListView.Columns.Count - 1 do begin
+      {$push}{$warn 5057 off}
       FillChar(Item, SizeOf(THDItem), 0);
+      {$pop}
       Item.Mask := HDI_FORMAT;
       Header_GetItem(FHeaderHandle, I, Item);
       Item.fmt := Item.fmt and not (HDF_SORTDOWN or HDF_SORTUP);
