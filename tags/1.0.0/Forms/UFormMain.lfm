@@ -1,0 +1,192 @@
+object FormMain: TFormMain
+  Left = 601
+  Height = 796
+  Top = 447
+  Width = 1178
+  Caption = 'vCard Studio'
+  ClientHeight = 762
+  ClientWidth = 1178
+  DesignTimePPI = 144
+  Menu = MainMenu1
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '2.0.0.4'
+  object CoolBar1: TCoolBar
+    Left = 0
+    Height = 43
+    Top = 0
+    Width = 1178
+    AutoSize = True
+    Bands = <    
+      item
+        Break = False
+        Control = ToolBarFile
+        Width = 164
+      end    
+      item
+        Break = False
+        Control = ToolBarOther
+        MinWidth = 64
+        Width = 64
+      end>
+    ParentFont = False
+    object ToolBarFile: TToolBar
+      AnchorSideLeft.Control = CoolBar1
+      AnchorSideTop.Control = CoolBar1
+      Left = 24
+      Height = 33
+      Top = 5
+      Width = 159
+      Align = alNone
+      AutoSize = True
+      BorderSpacing.Left = 22
+      BorderSpacing.Top = 3
+      EdgeInner = esNone
+      EdgeOuter = esNone
+      Images = Core.ImageList1
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      Transparent = True
+      object ToolButton1: TToolButton
+        Left = 1
+        Top = 0
+        Action = Core.AFileNew
+      end
+      object ToolButton2: TToolButton
+        Left = 36
+        Top = 0
+        Action = Core.AFileOpen
+        DropdownMenu = PopupMenuOpenRecent
+        Style = tbsDropDown
+      end
+      object ToolButton3: TToolButton
+        Left = 89
+        Top = 0
+        Action = Core.AFileSave
+      end
+      object ToolButton4: TToolButton
+        Left = 124
+        Top = 0
+        Action = Core.AFileClose
+      end
+    end
+    object ToolBarOther: TToolBar
+      AnchorSideLeft.Control = CoolBar1
+      AnchorSideTop.Control = CoolBar1
+      Left = 188
+      Height = 33
+      Top = 5
+      Width = 71
+      Align = alNone
+      AutoSize = True
+      BorderSpacing.Left = 186
+      BorderSpacing.Top = 3
+      EdgeInner = esNone
+      EdgeOuter = esNone
+      Images = Core.ImageList1
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+      Transparent = True
+      object ToolButton5: TToolButton
+        Left = 36
+        Top = 0
+        Action = Core.ASettings
+      end
+      object ToolButton6: TToolButton
+        Left = 1
+        Top = 0
+        Action = Core.AFindDuplicate
+      end
+    end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 28
+    Top = 734
+    Width = 1178
+    Panels = <    
+      item
+        Width = 300
+      end>
+    ParentFont = False
+    SimplePanel = False
+  end
+  object MainMenu1: TMainMenu
+    Images = Core.ImageList1
+    left = 192
+    top = 120
+    object MenuItemFile: TMenuItem
+      Caption = 'File'
+      object MenuItemFileNew: TMenuItem
+        Action = Core.AFileNew
+      end
+      object MenuItemFileOpen: TMenuItem
+        Action = Core.AFileOpen
+      end
+      object MenuItemFileOpenRecent: TMenuItem
+        Caption = 'Open recent'
+      end
+      object MenuItemFileSave: TMenuItem
+        Action = Core.AFileSave
+      end
+      object MenuItemFileSaveAs: TMenuItem
+        Action = Core.AFileSaveAs
+      end
+      object MenuItemFileClose: TMenuItem
+        Action = Core.AFileClose
+      end
+      object MenuItem1: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem3: TMenuItem
+        Action = Core.AFileMerge
+      end
+      object MenuItem2: TMenuItem
+        Caption = '-'
+      end
+      object MenuItemExit: TMenuItem
+        Action = Core.AExit
+      end
+    end
+    object MenuItemView: TMenuItem
+      Caption = 'View'
+      object MenuItemToolbar: TMenuItem
+        AutoCheck = True
+        Caption = 'Main toolbar'
+        OnClick = MenuItemToolbarClick
+      end
+    end
+    object MenuItemTools: TMenuItem
+      Caption = 'Tools'
+      object MenuItemSettings: TMenuItem
+        Action = Core.ASettings
+      end
+      object MenuItem4: TMenuItem
+        Action = Core.AFindDuplicate
+      end
+      object MenuItem5: TMenuItem
+        Action = Core.AGenerate
+      end
+    end
+    object MenuItemHelp: TMenuItem
+      Caption = 'Help'
+      object MenuItemHomePage: TMenuItem
+        Action = Core.AHomePage
+      end
+      object MenuItemAbout: TMenuItem
+        Action = Core.AAbout
+      end
+    end
+  end
+  object PopupMenuOpenRecent: TPopupMenu
+    left = 420
+    top = 120
+  end
+end

@@ -1,0 +1,420 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Chronos <robie@centrum.cz>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#: tcore.aabout.caption
+msgid "About..."
+msgstr "O aplikaci..."
+
+#: tcore.aexit.caption
+msgid "Exit"
+msgstr "Ukončit"
+
+#: tcore.afileclose.caption
+msgctxt "tcore.afileclose.caption"
+msgid "Close"
+msgstr "Zavřít"
+
+#: tcore.afilemerge.caption
+msgid "Merge..."
+msgstr "Sloučení..."
+
+#: tcore.afilenew.caption
+msgid "New"
+msgstr "Nový"
+
+#: tcore.afileopen.caption
+msgid "Open..."
+msgstr "Otevřít..."
+
+#: tcore.afileopenrecent.caption
+msgctxt "tcore.afileopenrecent.caption"
+msgid "Open recent"
+msgstr "Otevřít nedávné"
+
+#: tcore.afilesave.caption
+msgid "Save"
+msgstr "Uložit"
+
+#: tcore.afilesaveas.caption
+msgid "Save as..."
+msgstr "Uložit jako..."
+
+#: tcore.afindduplicate.caption
+msgctxt "tcore.afindduplicate.caption"
+msgid "Find duplicities"
+msgstr "Najít duplikáty"
+
+#: tcore.agenerate.caption
+msgctxt "tcore.agenerate.caption"
+msgid "Generate contacts"
+msgstr "Generovat kontakty"
+
+#: tcore.ahomepage.caption
+msgctxt "tcore.ahomepage.caption"
+msgid "Home page"
+msgstr "Domovská stránka"
+
+#: tcore.applicationinfo1.description
+msgid "vCard files management tool"
+msgstr ""
+
+#: tcore.asettings.caption
+msgctxt "tcore.asettings.caption"
+msgid "Settings"
+msgstr "Nastavení"
+
+#: tformcontact.aeditfield.caption
+msgid "Edit"
+msgstr "Upravit"
+
+#: tformcontact.buttoncancel.caption
+msgctxt "tformcontact.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformcontact.buttonok.caption
+msgid "OK"
+msgstr "OK"
+
+#: tformcontact.caption
+msgid "Contact"
+msgstr "Kontakt"
+
+#: tformcontact.label1.caption
+msgid "Name:"
+msgstr "Jméno:"
+
+#: tformcontact.label10.caption
+msgctxt "tformcontact.label10.caption"
+msgid "Cell phone (Work):"
+msgstr "Mobil (Práce):"
+
+#: tformcontact.label11.caption
+msgid "Fax:"
+msgstr "Fax:"
+
+#: tformcontact.label12.caption
+msgid "Fax (Home):"
+msgstr "Fax (Domov):"
+
+#: tformcontact.label13.caption
+msgid "Fax (Work):"
+msgstr "Fax (Práce):"
+
+#: tformcontact.label14.caption
+msgid "Pager:"
+msgstr "Pager:"
+
+#: tformcontact.label15.caption
+msgctxt "tformcontact.label15.caption"
+msgid "Web page:"
+msgstr "Webové stránky:"
+
+#: tformcontact.label16.caption
+msgctxt "tformcontact.label16.caption"
+msgid "Web page (Home):"
+msgstr "Webové stránky (Domov):"
+
+#: tformcontact.label17.caption
+msgctxt "tformcontact.label17.caption"
+msgid "Web page (Work):"
+msgstr "Webové stránky (Práce):"
+
+#: tformcontact.label18.caption
+msgid "Title:"
+msgstr "Titul:"
+
+#: tformcontact.label19.caption
+msgid "Address:"
+msgstr "Adresa:"
+
+#: tformcontact.label2.caption
+msgid "Cell phone:"
+msgstr "Mobilní číslo:"
+
+#: tformcontact.label20.caption
+msgid "E-mail (Home):"
+msgstr "E-mail (Domov):"
+
+#: tformcontact.label21.caption
+msgid "E-mail (Work):"
+msgstr "E-mail (Práce):"
+
+#: tformcontact.label22.caption
+msgid "Birthday:"
+msgstr "Narozeniny:"
+
+#: tformcontact.label3.caption
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: tformcontact.label4.caption
+msgid "E-mail:"
+msgstr "E-mail:"
+
+#: tformcontact.label5.caption
+msgid "Surname:"
+msgstr "Příjmení:"
+
+#: tformcontact.label6.caption
+msgid "Notes:"
+msgstr "Poznámky:"
+
+#: tformcontact.label7.caption
+msgid "Phone (Home):"
+msgstr "Telefon (Domov):"
+
+#: tformcontact.label8.caption
+msgid "Phone (Work):"
+msgstr "Telefon (Práce):"
+
+#: tformcontact.label9.caption
+msgid "Cell phone (Home):"
+msgstr "Mobil (Domov):"
+
+#: tformcontact.labelorganization.caption
+msgid "Organization:"
+msgstr "Společnost:"
+
+#: tformcontact.listview1.columns[0].caption
+msgid "Item"
+msgstr "Položka"
+
+#: tformcontact.listview1.columns[1].caption
+msgid "Value"
+msgstr "Hodnota"
+
+#: tformcontact.tabsheetall.caption
+msgid "All fields"
+msgstr "Všechny pole"
+
+#: tformcontact.tabsheetdetails.caption
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: tformcontact.tabsheetgeneral.caption
+msgid "General"
+msgstr "Obecné"
+
+#: tformcontacts.aadd.caption
+msgid "Add"
+msgstr "Přidat"
+
+#: tformcontacts.amodify.caption
+msgid "Modify"
+msgstr "Upravit"
+
+#: tformcontacts.aremove.caption
+msgid "Remove"
+msgstr "Odstranit"
+
+#: tformcontacts.aselectall.caption
+msgid "Select all"
+msgstr "Vybrat vše"
+
+#: tformcontacts.caption
+msgctxt "tformcontacts.caption"
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: tformcontacts.listview1.columns[0].caption
+msgid "Full Name"
+msgstr "Křestní jméno"
+
+#: tformcontacts.listview1.columns[1].caption
+msgid "First name"
+msgstr "Prostřední jméno"
+
+#: tformcontacts.listview1.columns[2].caption
+msgctxt "tformcontacts.listview1.columns[2].caption"
+msgid "Middle name"
+msgstr "Prostřední jméno"
+
+#: tformcontacts.listview1.columns[3].caption
+msgctxt "tformcontacts.listview1.columns[3].caption"
+msgid "Last Name"
+msgstr "Příjimení"
+
+#: tformcontacts.listview1.columns[4].caption
+msgid "Cell phone"
+msgstr "Mobilní telefon"
+
+#: tformcontacts.listview1.columns[5].caption
+msgid "Home phone"
+msgstr "Domácí telefon"
+
+#: tformfindduplicity.ashowcontacts.caption
+msgid "Show contacts"
+msgstr "Ukázat kontakty"
+
+#: tformfindduplicity.caption
+msgctxt "tformfindduplicity.caption"
+msgid "Find duplicities"
+msgstr "Najít duplikáty"
+
+#: tformfindduplicity.label1.caption
+msgid "Contact field:"
+msgstr "Pole kontaktu:"
+
+#: tformfindduplicity.listview1.columns[0].caption
+msgid "Field"
+msgstr "Pole"
+
+#: tformfindduplicity.listview1.columns[1].caption
+msgctxt "tformfindduplicity.listview1.columns[1].caption"
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: tformfindduplicity.listview1.columns[2].caption
+msgid "Count"
+msgstr "Počet"
+
+#: tformgenerate.buttongenerate.caption
+msgid "Generate"
+msgstr "Generovat"
+
+#: tformgenerate.caption
+msgctxt "tformgenerate.caption"
+msgid "Generate contacts"
+msgstr "Generovat kontakty"
+
+#: tformgenerate.label1.caption
+msgctxt "tformgenerate.label1.caption"
+msgid "Count:"
+msgstr "Počet:"
+
+#: tformmain.caption
+msgid "vCard Studio"
+msgstr "vCard Studio"
+
+#: tformmain.menuitemfile.caption
+msgctxt "tformmain.menuitemfile.caption"
+msgid "File"
+msgstr "Soubor"
+
+#: tformmain.menuitemfileopenrecent.caption
+msgctxt "tformmain.menuitemfileopenrecent.caption"
+msgid "Open recent"
+msgstr "Otevřít nedávné"
+
+#: tformmain.menuitemhelp.caption
+msgctxt "tformmain.menuitemhelp.caption"
+msgid "Help"
+msgstr "Nápověda"
+
+#: tformmain.menuitemtoolbar.caption
+msgctxt "tformmain.menuitemtoolbar.caption"
+msgid "Main toolbar"
+msgstr "Hlavní nástrojový panel"
+
+#: tformmain.menuitemtools.caption
+msgid "Tools"
+msgstr "Nástroje"
+
+#: tformmain.menuitemview.caption
+msgid "View"
+msgstr "Zobrazení"
+
+#: tformsettings.buttoncancel.caption
+msgctxt "tformsettings.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformsettings.buttonok.caption
+msgid "Ok"
+msgstr "Ok"
+
+#: tformsettings.caption
+msgctxt "tformsettings.caption"
+msgid "Settings"
+msgstr "Nastavení"
+
+#: tformsettings.checkboxautomaticdpi.caption
+msgid "Automatic DPI"
+msgstr "Automatické DPI"
+
+#: tformsettings.checkboxreopenlastfileonstart.caption
+msgid "Reopen last file on start"
+msgstr "Znovuotevřít poslední soubor při startu"
+
+#: tformsettings.label1.caption
+msgid "Language:"
+msgstr "Jazyk:"
+
+#: tformsettings.label2.caption
+msgid "Theme:"
+msgstr "Téma:"
+
+#: tformsettings.labeldpi.caption
+msgid "DPI:"
+msgstr "DPI:"
+
+#: ucontact.sunsupportedcontactfieldsindex
+msgid "Unsupported contact field index"
+msgstr "Nepodporovaný index pole kontaktu"
+
+#: ucontact.svcardfile
+msgctxt "ucontact.svcardfile"
+msgid "vCard file"
+msgstr "Soubor vCard"
+
+#: ucore.sappexit
+msgid "Application exit"
+msgstr "Ukončení aplikace"
+
+#: ucore.sappexitquery
+msgid "File was modified. Do you want to save it before exit?"
+msgstr "Soubor byl upraven. Chcete jej uložit před ukončením?"
+
+#: ucore.sfilenotfound
+msgid "File '%s' not found."
+msgstr "Soubor '%s' nenalezen."
+
+#: ucore.smergedcontacts
+msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
+msgstr "Kontakty sloučeny. Načteno: %d, Nových: %d, Aktualizovaných: %d"
+
+#: udatafile.sallfiles
+msgid "All files"
+msgstr "Všechny soubory"
+
+#: udatafile.sdatafilename
+msgctxt "udatafile.sdatafilename"
+msgid "File"
+msgstr "Soubor"
+
+#: uformcontact.seditfieldvalue
+msgid "Edit field value"
+msgstr "Upravit hodnotu položky"
+
+#: uformcontact.sfieldedit
+msgid "Field edit"
+msgstr "Upravit pole"
+
+#: uformcontacts.sremovecontacts
+msgid "Remove contacts"
+msgstr "Odstranit kontakty"
+
+#: uformcontacts.sremovecontactsquery
+msgid "Do you want to remove selected contacts?"
+msgstr "Opravdu chcete odstranit vybrané kontakty?"
+
+#: uformmain.scount
+msgctxt "uformmain.scount"
+msgid "Count:"
+msgstr "Počet:"
+
+#: uformmain.smodified
+msgid "Modified"
+msgstr "Upraveno"
+

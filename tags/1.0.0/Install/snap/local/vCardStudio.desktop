@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=vCard Studio
+Comment=A contact management application with support for vCard file format.
+Exec=vCardStudio
+Icon=vCardStudio
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Utility;
+StartupNotify=true

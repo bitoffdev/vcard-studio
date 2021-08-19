@@ -1,0 +1,404 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tcore.aabout.caption
+msgid "About..."
+msgstr ""
+
+#: tcore.aexit.caption
+msgid "Exit"
+msgstr ""
+
+#: tcore.afileclose.caption
+msgctxt "tcore.afileclose.caption"
+msgid "Close"
+msgstr ""
+
+#: tcore.afilemerge.caption
+msgid "Merge..."
+msgstr ""
+
+#: tcore.afilenew.caption
+msgid "New"
+msgstr ""
+
+#: tcore.afileopen.caption
+msgid "Open..."
+msgstr ""
+
+#: tcore.afileopenrecent.caption
+msgctxt "tcore.afileopenrecent.caption"
+msgid "Open recent"
+msgstr ""
+
+#: tcore.afilesave.caption
+msgid "Save"
+msgstr ""
+
+#: tcore.afilesaveas.caption
+msgid "Save as..."
+msgstr ""
+
+#: tcore.afindduplicate.caption
+msgctxt "tcore.afindduplicate.caption"
+msgid "Find duplicities"
+msgstr ""
+
+#: tcore.agenerate.caption
+msgctxt "tcore.agenerate.caption"
+msgid "Generate contacts"
+msgstr ""
+
+#: tcore.ahomepage.caption
+msgctxt "tcore.ahomepage.caption"
+msgid "Home page"
+msgstr ""
+
+#: tcore.applicationinfo1.description
+msgid "vCard files management tool"
+msgstr ""
+
+#: tcore.asettings.caption
+msgctxt "tcore.asettings.caption"
+msgid "Settings"
+msgstr ""
+
+#: tformcontact.aeditfield.caption
+msgid "Edit"
+msgstr ""
+
+#: tformcontact.buttoncancel.caption
+msgctxt "tformcontact.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformcontact.buttonok.caption
+msgid "OK"
+msgstr ""
+
+#: tformcontact.caption
+msgid "Contact"
+msgstr ""
+
+#: tformcontact.label1.caption
+msgid "Name:"
+msgstr ""
+
+#: tformcontact.label10.caption
+msgid "Cell phone (Work):"
+msgstr ""
+
+#: tformcontact.label11.caption
+msgid "Fax:"
+msgstr ""
+
+#: tformcontact.label12.caption
+msgid "Fax (Home):"
+msgstr ""
+
+#: tformcontact.label13.caption
+msgid "Fax (Work):"
+msgstr ""
+
+#: tformcontact.label14.caption
+msgid "Pager:"
+msgstr ""
+
+#: tformcontact.label15.caption
+msgid "Web page:"
+msgstr ""
+
+#: tformcontact.label16.caption
+msgid "Web page (Home):"
+msgstr ""
+
+#: tformcontact.label17.caption
+msgid "Web page (Work):"
+msgstr ""
+
+#: tformcontact.label18.caption
+msgid "Title:"
+msgstr ""
+
+#: tformcontact.label19.caption
+msgid "Address:"
+msgstr ""
+
+#: tformcontact.label2.caption
+msgid "Cell phone:"
+msgstr ""
+
+#: tformcontact.label20.caption
+msgid "E-mail (Home):"
+msgstr ""
+
+#: tformcontact.label21.caption
+msgid "E-mail (Work):"
+msgstr ""
+
+#: tformcontact.label22.caption
+msgid "Birthday:"
+msgstr ""
+
+#: tformcontact.label3.caption
+msgid "Phone:"
+msgstr ""
+
+#: tformcontact.label4.caption
+msgid "E-mail:"
+msgstr ""
+
+#: tformcontact.label5.caption
+msgid "Surname:"
+msgstr ""
+
+#: tformcontact.label6.caption
+msgid "Notes:"
+msgstr ""
+
+#: tformcontact.label7.caption
+msgid "Phone (Home):"
+msgstr ""
+
+#: tformcontact.label8.caption
+msgid "Phone (Work):"
+msgstr ""
+
+#: tformcontact.label9.caption
+msgid "Cell phone (Home):"
+msgstr ""
+
+#: tformcontact.labelorganization.caption
+msgid "Organization:"
+msgstr ""
+
+#: tformcontact.listview1.columns[0].caption
+msgid "Item"
+msgstr ""
+
+#: tformcontact.listview1.columns[1].caption
+msgid "Value"
+msgstr ""
+
+#: tformcontact.tabsheetall.caption
+msgid "All fields"
+msgstr ""
+
+#: tformcontact.tabsheetdetails.caption
+msgid "Details"
+msgstr ""
+
+#: tformcontact.tabsheetgeneral.caption
+msgid "General"
+msgstr ""
+
+#: tformcontacts.aadd.caption
+msgid "Add"
+msgstr ""
+
+#: tformcontacts.amodify.caption
+msgid "Modify"
+msgstr ""
+
+#: tformcontacts.aremove.caption
+msgid "Remove"
+msgstr ""
+
+#: tformcontacts.aselectall.caption
+msgid "Select all"
+msgstr ""
+
+#: tformcontacts.caption
+msgctxt "tformcontacts.caption"
+msgid "Contacts"
+msgstr ""
+
+#: tformcontacts.listview1.columns[0].caption
+msgid "Full Name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[1].caption
+msgid "First name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[2].caption
+msgctxt "tformcontacts.listview1.columns[2].caption"
+msgid "Middle name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[3].caption
+msgctxt "tformcontacts.listview1.columns[3].caption"
+msgid "Last Name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[4].caption
+msgid "Cell phone"
+msgstr ""
+
+#: tformcontacts.listview1.columns[5].caption
+msgid "Home phone"
+msgstr ""
+
+#: tformfindduplicity.ashowcontacts.caption
+msgid "Show contacts"
+msgstr ""
+
+#: tformfindduplicity.caption
+msgctxt "tformfindduplicity.caption"
+msgid "Find duplicities"
+msgstr ""
+
+#: tformfindduplicity.label1.caption
+msgid "Contact field:"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[0].caption
+msgid "Field"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[1].caption
+msgctxt "tformfindduplicity.listview1.columns[1].caption"
+msgid "Contacts"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[2].caption
+msgid "Count"
+msgstr ""
+
+#: tformgenerate.buttongenerate.caption
+msgid "Generate"
+msgstr ""
+
+#: tformgenerate.caption
+msgctxt "tformgenerate.caption"
+msgid "Generate contacts"
+msgstr ""
+
+#: tformgenerate.label1.caption
+msgctxt "tformgenerate.label1.caption"
+msgid "Count:"
+msgstr ""
+
+#: tformmain.caption
+msgid "vCard Studio"
+msgstr ""
+
+#: tformmain.menuitemfile.caption
+msgctxt "tformmain.menuitemfile.caption"
+msgid "File"
+msgstr ""
+
+#: tformmain.menuitemfileopenrecent.caption
+msgctxt "tformmain.menuitemfileopenrecent.caption"
+msgid "Open recent"
+msgstr ""
+
+#: tformmain.menuitemhelp.caption
+msgid "Help"
+msgstr ""
+
+#: tformmain.menuitemtoolbar.caption
+msgid "Main toolbar"
+msgstr ""
+
+#: tformmain.menuitemtools.caption
+msgid "Tools"
+msgstr ""
+
+#: tformmain.menuitemview.caption
+msgid "View"
+msgstr ""
+
+#: tformsettings.buttoncancel.caption
+msgctxt "tformsettings.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformsettings.buttonok.caption
+msgid "Ok"
+msgstr ""
+
+#: tformsettings.caption
+msgctxt "tformsettings.caption"
+msgid "Settings"
+msgstr ""
+
+#: tformsettings.checkboxautomaticdpi.caption
+msgid "Automatic DPI"
+msgstr ""
+
+#: tformsettings.checkboxreopenlastfileonstart.caption
+msgid "Reopen last file on start"
+msgstr ""
+
+#: tformsettings.label1.caption
+msgid "Language:"
+msgstr ""
+
+#: tformsettings.label2.caption
+msgid "Theme:"
+msgstr ""
+
+#: tformsettings.labeldpi.caption
+msgid "DPI:"
+msgstr ""
+
+#: ucontact.sunsupportedcontactfieldsindex
+msgid "Unsupported contact field index"
+msgstr ""
+
+#: ucontact.svcardfile
+msgctxt "ucontact.svcardfile"
+msgid "vCard file"
+msgstr ""
+
+#: ucore.sappexit
+msgid "Application exit"
+msgstr ""
+
+#: ucore.sappexitquery
+msgid "File was modified. Do you want to save it before exit?"
+msgstr ""
+
+#: ucore.sfilenotfound
+msgid "File '%s' not found."
+msgstr ""
+
+#: ucore.smergedcontacts
+msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
+msgstr ""
+
+#: udatafile.sallfiles
+msgid "All files"
+msgstr ""
+
+#: udatafile.sdatafilename
+msgctxt "udatafile.sdatafilename"
+msgid "File"
+msgstr ""
+
+#: uformcontact.seditfieldvalue
+msgid "Edit field value"
+msgstr ""
+
+#: uformcontact.sfieldedit
+msgid "Field edit"
+msgstr ""
+
+#: uformcontacts.sremovecontacts
+msgid "Remove contacts"
+msgstr ""
+
+#: uformcontacts.sremovecontactsquery
+msgid "Do you want to remove selected contacts?"
+msgstr ""
+
+#: uformmain.scount
+msgctxt "uformmain.scount"
+msgid "Count:"
+msgstr ""
+
+#: uformmain.smodified
+msgid "Modified"
+msgstr ""
+
