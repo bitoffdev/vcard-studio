@@ -492,7 +492,7 @@ object Core: TCore
   object ApplicationInfo1: TApplicationInfo
     Identification = 1
     VersionMajor = 1
-    VersionMinor = 0
+    VersionMinor = 1
     VersionBugFix = 0
     VersionSuffix = 'alfa'
     HomePage = 'https://app.zdechov.net/vcard-studio'
