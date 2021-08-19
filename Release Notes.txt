@@ -1,0 +1,12 @@
+Version 1.0.0 (19-08-2021)
+==========================
+
+* Added: From Find duplicities form it is possible to open the list of duplicit contacts for further modification/addition/removal.
+* Added: New Generate contacts Tools menu action to generate multiple random contacts.
+* Added: New Tools action Find duplicates.
+* Added: Partial support for color theming.
+* Added: Allow to edit contact properties in the list of all.
+* Added: New File menu action Merge. It can merge multiple vcard files and update values for items with same full name.
+* Added: Status bar with number of contacts.
+* Added: Show all fields tab in contact form.
+* Added: Contact edit form.
