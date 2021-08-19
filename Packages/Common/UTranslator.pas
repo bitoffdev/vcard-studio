@@ -1,4 +1,4 @@
-unit UCoolTranslator;
+unit UTranslator;
 
 {$mode Delphi}{$H+}
 
@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, ExtCtrls, Controls, Contnrs, LazFileUtils, LazUTF8,
-  Translations, TypInfo, Dialogs, FileUtil, LCLProc, ULanguages, LCLType;
+  Translations, TypInfo, Dialogs, FileUtil, LCLProc, ULanguages, LCLType,
+  LCLVersion;
 
 type
   THandleStringEvent = function (AValue: string): string of object;
@@ -27,9 +28,9 @@ type
     procedure DumpToStrings(Strings: TStrings);
   end;
 
-  { TCoolTranslator }
+  { TTranslator }
 
-  TCoolTranslator = class(TComponent)
+  TTranslator = class(TComponent)
   private
     FLanguage: TLanguage;
     FOnAutomaticLanguage: THandleStringEvent;
@@ -74,7 +75,7 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('Samples', [TCoolTranslator]);
+  RegisterComponents('Common', [TTranslator]);
 end;
 
 { TComponentExcludesList }
@@ -120,9 +121,9 @@ begin
 end;
 
 
-{ TCoolTranslator }
+{ TTranslator }
 
-procedure TCoolTranslator.Translate;
+procedure TTranslator.Translate;
 var
   I, J: Integer;
   Po: TPoFile;
@@ -137,9 +138,14 @@ begin
     with TPoFile(FPoFiles[I]) do
       for J := 0 to Items.Count - 1 do
       with TPoFileItem(Items[J]) do begin
+        {$if (lcl_major<2)}
+        Po.Add(IdentifierLow, Original, Translation, Comments, Context,
+          Flags, PreviousID);
+        {$else}
         Item := nil;
         Po.FillItem(Item, IdentifierLow, Original, Translation, Comments, Context,
           Flags, PreviousID);
+        {$endif}
       end;
     Translations.TranslateResourceStrings(Po);
   finally
@@ -147,7 +153,7 @@ begin
   end;
 end;
 
-procedure TCoolTranslator.ReloadFiles;
+procedure TTranslator.ReloadFiles;
 var
   FileName: string;
   FileList: TStringList;
@@ -177,7 +183,7 @@ begin
   end;
 end;
 
-procedure TCoolTranslator.SetPOFilesFolder(const AValue: string);
+procedure TTranslator.SetPOFilesFolder(const AValue: string);
 begin
   if FPoFilesFolder = AValue then Exit;
   FPoFilesFolder := AValue;
@@ -185,7 +191,7 @@ begin
   CheckLanguageFiles;
 end;
 
-procedure TCoolTranslator.SetLanguage(const AValue: TLanguage);
+procedure TTranslator.SetLanguage(const AValue: TLanguage);
 begin
   if FLanguage = AValue then Exit;
   FLanguage := AValue;
@@ -194,7 +200,7 @@ begin
   if Assigned(FOnTranslate) then FOnTranslate(Self);
 end;
 
-procedure TCoolTranslator.TranslateComponent(Component: TPersistent);
+procedure TTranslator.TranslateComponent(Component: TPersistent);
 var
   I, Count: Integer;
   PropInfo: PPropInfo;
@@ -218,7 +224,7 @@ begin
   end;
 end;
 
-procedure TCoolTranslator.TranslateComponentRecursive(Component: TComponent);
+procedure TTranslator.TranslateComponentRecursive(Component: TComponent);
 var
   I: Integer;
 begin
@@ -227,7 +233,7 @@ begin
     TranslateComponentRecursive(Component.Components[I]);
 end;
 
-procedure TCoolTranslator.TranslateProperty(Component: TPersistent;
+procedure TTranslator.TranslateProperty(Component: TPersistent;
   PropInfo: PPropInfo);
 var
   PropType: PTypeInfo;
@@ -270,7 +276,7 @@ begin
   end;
 end;
 
-function TCoolTranslator.IsExcluded(Component: TPersistent; PropertyName: string
+function TTranslator.IsExcluded(Component: TPersistent; PropertyName: string
   ): Boolean;
 var
   Item: TClass;
@@ -292,7 +298,7 @@ begin
   end;
 end;
 
-function TCoolTranslator.GetLangFileDir: string;
+function TTranslator.GetLangFileDir: string;
 begin
   Result := FPOFilesFolder;
   if Copy(Result, 1, 1) <> DirectorySeparator then
@@ -300,7 +306,7 @@ begin
       DirectorySeparator + Result;
 end;
 
-procedure TCoolTranslator.LanguageListToStrings(Strings: TStrings);
+procedure TTranslator.LanguageListToStrings(Strings: TStrings);
 var
   I: Integer;
   ItemName: string;
@@ -317,18 +323,18 @@ begin
   end;
 end;
 
-procedure TCoolTranslator.TranslateResourceStrings(PoFileName: string);
+procedure TTranslator.TranslateResourceStrings(PoFileName: string);
 begin
   Translations.TranslateResourceStrings(PoFileName);
 end;
 
-procedure TCoolTranslator.TranslateUnitResourceStrings(UnitName: string;
+procedure TTranslator.TranslateUnitResourceStrings(UnitName: string;
   PoFileName: string);
 begin
   Translations.TranslateUnitResourceStrings(UnitName, PoFileName);
 end;
 
-function TCoolTranslator.TranslateText(Identifier, Text: string): string;
+function TTranslator.TranslateText(Identifier, Text: string): string;
 var
   I: Integer;
 begin
@@ -342,7 +348,7 @@ begin
   end else Result := '';
 end;
 
-procedure TCoolTranslator.AddExcludes(AClassType: TClass; PropertyName: string
+procedure TTranslator.AddExcludes(AClassType: TClass; PropertyName: string
   );
 var
   NewItem: TComponentExcludes;
@@ -356,7 +362,7 @@ begin
   NewItem.PropertyExcludes.Add(PropertyName);
 end;
 
-procedure TCoolTranslator.CheckLanguageFiles;
+procedure TTranslator.CheckLanguageFiles;
 var
   I: Integer;
   LangDir: string;
@@ -371,7 +377,7 @@ begin
   end;
 end;
 
-constructor TCoolTranslator.Create(AOwner: TComponent);
+constructor TTranslator.Create(AOwner: TComponent);
 begin
   inherited;
   FPOFiles := TObjectList.Create;
@@ -386,7 +392,7 @@ begin
   AddExcludes(TControl, 'HelpKeyword');
 end;
 
-destructor TCoolTranslator.Destroy;
+destructor TTranslator.Destroy;
 begin
   FPOFiles.Free;
   Languages.Free;
@@ -394,7 +400,7 @@ begin
   inherited Destroy;
 end;
 
-function TCoolTranslator.GetLocale: string;
+function TTranslator.GetLocale: string;
 var
   Lang: string;
   I: Integer;
@@ -425,12 +431,12 @@ begin
   Result := Lang;
 end;
 
-function TCoolTranslator.GetLocaleShort: string;
+function TTranslator.GetLocaleShort: string;
 begin
   Result := Copy(GetLocale, 1, 2);
 end;
 
-function TCoolTranslator.FindLocaleFileName(LCExt: string): string;
+function TTranslator.FindLocaleFileName(LCExt: string): string;
 var
   Lang: string;
 begin
@@ -448,7 +454,7 @@ begin
   Result := '';
 end;
 
-function TCoolTranslator.GetLocaleFileName(const LangID, LCExt: string): string;
+function TTranslator.GetLocaleFileName(const LangID, LCExt: string): string;
 var
   LangShortID: string;
   FormatLang: string;

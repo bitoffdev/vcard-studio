@@ -1,6 +1,0 @@
-{"version":1,"strings":[
-{"hash":4691652,"name":"tformabout.caption","sourcebytes":[65,98,111,117,116],"value":"About"},
-{"hash":4863637,"name":"tformabout.buttonclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
-{"hash":8736,"name":"tformabout.labelcontent.caption","sourcebytes":[32,32,32],"value":"   "},
-{"hash":58140853,"name":"tformabout.buttonhomepage.caption","sourcebytes":[72,111,109,101,32,112,97,103,101],"value":"Home page"}
-]}

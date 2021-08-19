@@ -36,10 +36,12 @@
         </CompilerMessages>
       </Other>
     </CompilerOptions>
-    <Description Value="Various libraries"/>
-    <License Value="GNU/GPL"/>
-    <Version Minor="7"/>
-    <Files Count="22">
+    <Description Value="Common package with various useful units.
+
+Source: https://svn.zdechov.net/PascalClassLibrary/Common/"/>
+    <License Value="Copy left."/>
+    <Version Minor="8"/>
+    <Files Count="29">
       <Item1>
         <Filename Value="StopWatch.pas"/>
         <UnitName Value="StopWatch"/>
@@ -138,6 +140,36 @@
         <Filename Value="UStringTable.pas"/>
         <UnitName Value="UStringTable"/>
       </Item22>
+      <Item23>
+        <Filename Value="UMetaCanvas.pas"/>
+        <UnitName Value="UMetaCanvas"/>
+      </Item23>
+      <Item24>
+        <Filename Value="UGeometric.pas"/>
+        <UnitName Value="UGeometric"/>
+      </Item24>
+      <Item25>
+        <Filename Value="UTranslator.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="UTranslator"/>
+      </Item25>
+      <Item26>
+        <Filename Value="ULanguages.pas"/>
+        <UnitName Value="ULanguages"/>
+      </Item26>
+      <Item27>
+        <Filename Value="UFormAbout.pas"/>
+        <UnitName Value="UFormAbout"/>
+      </Item27>
+      <Item28>
+        <Filename Value="UAboutDialog.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="UAboutDialog"/>
+      </Item28>
+      <Item29>
+        <Filename Value="UPixelPointer.pas"/>
+        <UnitName Value="UPixelPointer"/>
+      </Item29>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
