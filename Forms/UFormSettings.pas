@@ -55,8 +55,8 @@ procedure TFormSettings.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
 
-  Core.CoolTranslator1.LanguageListToStrings(ComboBoxLanguage.Items);
-  ComboBoxLanguage.ItemIndex := ComboBoxLanguage.Items.IndexOfObject(Core.CoolTranslator1.Language);
+  Core.Translator.LanguageListToStrings(ComboBoxLanguage.Items);
+  ComboBoxLanguage.ItemIndex := ComboBoxLanguage.Items.IndexOfObject(Core.Translator.Language);
   if ComboBoxLanguage.ItemIndex = -1 then ComboBoxLanguage.ItemIndex := 0;
 
   Core.ThemeManager1.Themes.LoadToStrings(ComboBoxTheme.Items);
@@ -67,7 +67,7 @@ end;
 procedure TFormSettings.ButtonOkClick(Sender: TObject);
 begin
   if ComboBoxLanguage.ItemIndex <> -1 then
-    Core.CoolTranslator1.Language := TLanguage(ComboBoxLanguage.Items.Objects[ComboBoxTheme.ItemIndex]);
+    Core.Translator.Language := TLanguage(ComboBoxLanguage.Items.Objects[ComboBoxLanguage.ItemIndex]);
   if ComboBoxTheme.ItemIndex <> -1 then
     Core.ThemeManager1.Theme := TTheme(ComboBoxTheme.Items.Objects[ComboBoxTheme.ItemIndex]);
 end;
@@ -90,7 +90,7 @@ end;
 
 procedure TFormSettings.FormCreate(Sender: TObject);
 begin
-  Core.CoolTranslator1.TranslateComponentRecursive(Self);
+  Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
 end;
 

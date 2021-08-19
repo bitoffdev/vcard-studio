@@ -150,7 +150,7 @@ end;
 procedure TFormFindDuplicity.FormCreate(Sender: TObject);
 begin
   FoundItems := TFoundItems.Create;
-  Core.CoolTranslator1.TranslateComponentRecursive(Self);
+  Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
   ContactField := cfTelCell;
 end;

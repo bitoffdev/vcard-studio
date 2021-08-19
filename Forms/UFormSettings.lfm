@@ -13,10 +13,10 @@ object FormSettings: TFormSettings
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.12.0'
   object ComboBoxLanguage: TComboBox
     Left = 192
-    Height = 42
+    Height = 41
     Top = 36
     Width = 312
     ItemHeight = 0
@@ -26,7 +26,7 @@ object FormSettings: TFormSettings
   end
   object Label1: TLabel
     Left = 24
-    Height = 26
+    Height = 24
     Top = 36
     Width = 88
     Caption = 'Language:'
@@ -60,7 +60,7 @@ object FormSettings: TFormSettings
     Left = 19
     Height = 30
     Top = 125
-    Width = 150
+    Width = 148
     Caption = 'Automatic DPI'
     OnChange = CheckBoxAutomaticDPIChange
     ParentFont = False
@@ -69,7 +69,7 @@ object FormSettings: TFormSettings
   end
   object SpinEditDPI: TSpinEdit
     Left = 192
-    Height = 43
+    Height = 42
     Top = 173
     Width = 145
     MaxValue = 300
@@ -81,7 +81,7 @@ object FormSettings: TFormSettings
   end
   object LabelDPI: TLabel
     Left = 96
-    Height = 26
+    Height = 24
     Top = 182
     Width = 35
     Caption = 'DPI:'
@@ -93,7 +93,7 @@ object FormSettings: TFormSettings
     Left = 19
     Height = 30
     Top = 86
-    Width = 229
+    Width = 226
     Caption = 'Reopen last file on start'
     ParentFont = False
     TabOrder = 5
@@ -107,7 +107,7 @@ object FormSettings: TFormSettings
   end
   object Label2: TLabel
     Left = 24
-    Height = 26
+    Height = 24
     Top = 221
     Width = 63
     Caption = 'Theme:'
@@ -116,7 +116,7 @@ object FormSettings: TFormSettings
   end
   object ComboBoxTheme: TComboBox
     Left = 192
-    Height = 42
+    Height = 41
     Top = 221
     Width = 312
     ItemHeight = 0

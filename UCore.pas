@@ -40,7 +40,7 @@ type
     AExit: TAction;
     ActionList1: TActionList;
     ApplicationInfo1: TApplicationInfo;
-    CoolTranslator1: TTranslator;
+    Translator: TTranslator;
     ImageList1: TImageList;
     LastOpenedList1: TLastOpenedList;
     OpenDialog1: TOpenDialog;
@@ -272,7 +272,15 @@ begin
 end;
 
 procedure TCore.DataModuleCreate(Sender: TObject);
+const
+  LinuxLanguagesDir = '/usr/share/vCardStudio/Languages';
 begin
+  {$IFDEF Linux}
+  // If installed in Linux system then use installation directory for po files
+  if not DirectoryExists(Translator.POFilesFolder) and DirectoryExists(LinuxLanguagesDir) then
+    Translator.POFilesFolder := LinuxLanguagesDir;
+  {$ENDIF}
+
   DataFile := nil;
   DefaultDataFileClass := TContactsFile;
   FileClosed := True;
@@ -395,8 +403,8 @@ begin
   try
     CurrentContext := ApplicationInfo1.GetRegistryContext;
     if ValueExists('LanguageCode') then
-      CoolTranslator1.Language := CoolTranslator1.Languages.SearchByCode(ReadStringWithDefault('LanguageCode', ''))
-      else CoolTranslator1.Language := CoolTranslator1.Languages.SearchByCode('');
+      Translator.Language := Translator.Languages.SearchByCode(ReadStringWithDefault('LanguageCode', ''))
+      else Translator.Language := Translator.Languages.SearchByCode('');
     if ValueExists('Theme') then
       ThemeManager1.Theme := ThemeManager1.Themes.FindByName(ReadStringWithDefault('Theme', 'System'))
       else ThemeManager1.Theme := ThemeManager1.Themes.FindByName('System');
@@ -415,8 +423,8 @@ begin
   with TRegistryEx.Create do
   try
     CurrentContext := ApplicationInfo1.GetRegistryContext;
-    if Assigned(CoolTranslator1.Language) and (CoolTranslator1.Language.Code <> '') then
-      WriteString('LanguageCode', CoolTranslator1.Language.Code)
+    if Assigned(Translator.Language) and (Translator.Language.Code <> '') then
+      WriteString('LanguageCode', Translator.Language.Code)
       else DeleteValue('LanguageCode');
     if Assigned(ThemeManager1.Theme) and (ThemeManager1.Theme.Name <> '') then
       WriteString('Theme', ThemeManager1.Theme.Name)
