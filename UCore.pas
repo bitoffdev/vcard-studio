@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Controls, ActnList, Forms, Dialogs,
   ULastOpenedList, UApplicationInfo, UPersistentForm, UScaleDPI, UCommon,
-  UCoolTranslator, UDataFile, Menus, URegistry, UTheme, Registry;
+  UTranslator, UDataFile, Menus, URegistry, UTheme, UAboutDialog, Registry;
 
 type
 
@@ -25,6 +25,7 @@ type
 
   TCore = class(TDataModule)
     AAbout: TAction;
+    AboutDialog1: TAboutDialog;
     AGenerate: TAction;
     AFindDuplicate: TAction;
     AFileMerge: TAction;
@@ -39,7 +40,7 @@ type
     AExit: TAction;
     ActionList1: TActionList;
     ApplicationInfo1: TApplicationInfo;
-    CoolTranslator1: TCoolTranslator;
+    CoolTranslator1: TTranslator;
     ImageList1: TImageList;
     LastOpenedList1: TLastOpenedList;
     OpenDialog1: TOpenDialog;
@@ -159,13 +160,7 @@ end;
 
 procedure TCore.AAboutExecute(Sender: TObject);
 begin
-  FormAbout := TFormAbout.Create(nil);
-  try
-    FormAbout.ApplicationInfo := ApplicationInfo1;
-    FormAbout.ShowModal;
-  finally
-    FormAbout.Free;
-  end;
+  AboutDialog1.Show;
 end;
 
 procedure TCore.AFileCloseExecute(Sender: TObject);
