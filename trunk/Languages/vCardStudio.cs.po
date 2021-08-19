@@ -64,28 +64,14 @@ msgctxt "tcore.ahomepage.caption"
 msgid "Home page"
 msgstr "Domovská stránka"
 
+#: tcore.applicationinfo1.description
+msgid "vCard files management tool"
+msgstr ""
+
 #: tcore.asettings.caption
 msgctxt "tcore.asettings.caption"
 msgid "Settings"
 msgstr "Nastavení"
-
-#: tformabout.buttonclose.caption
-msgctxt "tformabout.buttonclose.caption"
-msgid "Close"
-msgstr "Zavřít"
-
-#: tformabout.buttonhomepage.caption
-msgctxt "tformabout.buttonhomepage.caption"
-msgid "Home page"
-msgstr "Domovská stránka"
-
-#: tformabout.caption
-msgid "About"
-msgstr "O aplikaci"
-
-#: tformabout.labelcontent.caption
-msgid "   "
-msgstr "  "
 
 #: tformcontact.aeditfield.caption
 msgid "Edit"
@@ -406,18 +392,6 @@ msgstr "Všechny soubory"
 msgctxt "udatafile.sdatafilename"
 msgid "File"
 msgstr "Soubor"
-
-#: uformabout.slicense
-msgid "License"
-msgstr "Licence"
-
-#: uformabout.sreleasedate
-msgid "Release date"
-msgstr "Datum uvolnění"
-
-#: uformabout.sversion
-msgid "Version"
-msgstr "Verze"
 
 #: uformcontact.seditfieldvalue
 msgid "Edit field value"

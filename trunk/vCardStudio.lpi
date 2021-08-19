@@ -91,20 +91,16 @@
         </Mode0>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="CoolTranslator"/>
-        <DefaultFilename Value="Packages\CoolTranslator\CoolTranslator.lpk" Prefer="True"/>
-      </Item1>
-      <Item2>
         <PackageName Value="Common"/>
         <DefaultFilename Value="Packages\Common\Common.lpk" Prefer="True"/>
-      </Item2>
-      <Item3>
+      </Item1>
+      <Item2>
         <PackageName Value="LCL"/>
-      </Item3>
+      </Item2>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="10">
       <Unit0>
         <Filename Value="vCardStudio.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -128,51 +124,44 @@
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="Forms\UFormAbout.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormAbout"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit4>
-      <Unit5>
         <Filename Value="Forms\UFormSettings.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit5>
-      <Unit6>
+      </Unit4>
+      <Unit5>
         <Filename Value="UContact.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit6>
-      <Unit7>
+      </Unit5>
+      <Unit6>
         <Filename Value="Forms\UFormContacts.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormContacts"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit7>
-      <Unit8>
+      </Unit6>
+      <Unit7>
         <Filename Value="Forms\UFormContact.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormContact"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit8>
-      <Unit9>
+      </Unit7>
+      <Unit8>
         <Filename Value="Forms\UFormFindDuplicity.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormFindDuplicity"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit9>
-      <Unit10>
+      </Unit8>
+      <Unit9>
         <Filename Value="Forms\UFormGenerate.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormGenerate"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit10>
+      </Unit9>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

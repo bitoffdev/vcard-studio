@@ -54,27 +54,13 @@ msgctxt "tcore.ahomepage.caption"
 msgid "Home page"
 msgstr ""
 
+#: tcore.applicationinfo1.description
+msgid "vCard files management tool"
+msgstr ""
+
 #: tcore.asettings.caption
 msgctxt "tcore.asettings.caption"
 msgid "Settings"
-msgstr ""
-
-#: tformabout.buttonclose.caption
-msgctxt "tformabout.buttonclose.caption"
-msgid "Close"
-msgstr ""
-
-#: tformabout.buttonhomepage.caption
-msgctxt "tformabout.buttonhomepage.caption"
-msgid "Home page"
-msgstr ""
-
-#: tformabout.caption
-msgid "About"
-msgstr ""
-
-#: tformabout.labelcontent.caption
-msgid "   "
 msgstr ""
 
 #: tformcontact.aeditfield.caption
@@ -389,18 +375,6 @@ msgstr ""
 #: udatafile.sdatafilename
 msgctxt "udatafile.sdatafilename"
 msgid "File"
-msgstr ""
-
-#: uformabout.slicense
-msgid "License"
-msgstr ""
-
-#: uformabout.sreleasedate
-msgid "Release date"
-msgstr ""
-
-#: uformabout.sversion
-msgid "Version"
 msgstr ""
 
 #: uformcontact.seditfieldvalue
