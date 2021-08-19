@@ -63,7 +63,7 @@ end;
 
 procedure TFormGenerate.FormCreate(Sender: TObject);
 begin
-  Core.CoolTranslator1.TranslateComponentRecursive(Self);
+  Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
 end;
 
