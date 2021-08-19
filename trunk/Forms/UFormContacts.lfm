@@ -10,7 +10,7 @@ object FormContacts: TFormContacts
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.12.0'
   object ListView1: TListView
     Left = 0
     Height = 869
@@ -81,8 +81,8 @@ object FormContacts: TFormContacts
   end
   object PopupMenuContact: TPopupMenu
     Images = Core.ImageList1
-    left = 435
-    top = 263
+    Left = 435
+    Top = 263
     object MenuItem1: TMenuItem
       Action = AAdd
     end
@@ -98,8 +98,8 @@ object FormContacts: TFormContacts
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
-    left = 732
-    top = 257
+    Left = 732
+    Top = 257
     object AAdd: TAction
       Caption = 'Add'
       ImageIndex = 9

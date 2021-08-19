@@ -11,7 +11,7 @@ object FormFindDuplicity: TFormFindDuplicity
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.12.0'
   object ListView1: TListView
     Left = 5
     Height = 413
@@ -55,7 +55,7 @@ object FormFindDuplicity: TFormFindDuplicity
     TabOrder = 1
     object ComboBoxField: TComboBox
       Left = 173
-      Height = 42
+      Height = 41
       Top = 14
       Width = 326
       ItemHeight = 0
@@ -66,25 +66,25 @@ object FormFindDuplicity: TFormFindDuplicity
     end
     object Label1: TLabel
       Left = 13
-      Height = 26
+      Height = 24
       Top = 19
-      Width = 113
+      Width = 111
       Caption = 'Contact field:'
       ParentColor = False
       ParentFont = False
     end
   end
   object ActionList1: TActionList
-    left = 262
-    top = 154
+    Left = 262
+    Top = 154
     object AShowContacts: TAction
       Caption = 'Show contacts'
       OnExecute = AShowContactsExecute
     end
   end
   object PopupMenu1: TPopupMenu
-    left = 90
-    top = 149
+    Left = 90
+    Top = 149
     object MenuItem1: TMenuItem
       Action = AShowContacts
     end

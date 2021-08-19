@@ -8709,7 +8709,7 @@ object Core: TCore
     Left = 384
     Top = 125
   end
-  object CoolTranslator1: TTranslator
+  object Translator: TTranslator
     POFilesFolder = 'Languages'
     Left = 115
     Top = 48
@@ -8724,7 +8724,7 @@ object Core: TCore
     Top = 125
   end
   object AboutDialog1: TAboutDialog
-    CoolTranslator = CoolTranslator1
+    CoolTranslator = Translator
     ThemeManager = ThemeManager1
     ApplicationInfo = ApplicationInfo1
     Left = 576

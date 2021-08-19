@@ -10,7 +10,7 @@ object FormContact: TFormContact
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.12.0'
   object PageControlContact: TPageControl
     Left = 10
     Height = 508
@@ -482,8 +482,8 @@ object FormContact: TFormContact
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
-    left = 380
-    top = 188
+    Left = 380
+    Top = 188
     object AEditField: TAction
       Caption = 'Edit'
       OnExecute = AEditFieldExecute
@@ -491,8 +491,8 @@ object FormContact: TFormContact
   end
   object PopupMenu1: TPopupMenu
     Images = Core.ImageList1
-    left = 206
-    top = 191
+    Left = 206
+    Top = 191
     object MenuItem1: TMenuItem
       Action = AEditField
     end
