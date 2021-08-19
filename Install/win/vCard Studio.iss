@@ -4,7 +4,7 @@
 #define MyAppName "vCard Studio"
 #define MyAppNameShort "vCardStudio"
 #define MyAppVersion "1.0.0"
-#define MyAppVersionSuffix "alfa"
+;#define MyAppVersionSuffix "alfa"
 #define MyAppPublisher "Chronosoft"
 #define MyAppPublisherShort "Chronosoft"
 #define MyAppURL "https://app.zdechov.net/vcard-studio"
@@ -35,7 +35,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppPublisherShort}\{#MyAppName}
+DefaultDirName={commonpf}\{#MyAppPublisherShort}\{#MyAppName}
 DefaultGroupName={#MyAppPublisherShort}\{#MyAppName}
 AllowNoIcons=yes
 OutputDir=.
@@ -50,6 +50,7 @@ ArchitecturesInstallIn64BitMode=x64
 ; Note: We don't set ProcessorsAllowed because we want this
 ; installation to run on all architectures (including Itanium,
 ; since it's capable of running 32-bit code too).
+WizardStyle=modern
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -60,7 +61,7 @@ Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags:
 
 [Registry]
-Root: HKCU; Subkey: "Software\Author\Application"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Author\Application"; Flags: uninsdeletekey
 
 #define FileTypeName "vCard file"
 Root: HKCR; Subkey: ".vcf"; ValueType: string; ValueName: ""; ValueData: "{#FileTypeName}"; Flags: uninsdeletevalue
