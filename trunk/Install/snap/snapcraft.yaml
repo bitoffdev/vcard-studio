@@ -87,6 +87,7 @@ apps:
     plugs:
       - desktop
       - x11
+      - home
 
 layout:
   /usr/share/vCardStudio:

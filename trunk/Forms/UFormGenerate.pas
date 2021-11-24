@@ -20,8 +20,6 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-  private
-
   public
     Contacts: TContacts;
     procedure UpdateInterface;
@@ -29,6 +27,7 @@ type
 
 var
   FormGenerate: TFormGenerate;
+
 
 implementation
 

@@ -5,7 +5,7 @@ unit UDataFile;
 interface
 
 uses
-  Classes, SysUtils, Contnrs;
+  Classes, SysUtils, fgl;
 
 type
   { TDataFile }
@@ -32,7 +32,7 @@ type
 
   TDataFileClass = class of TDataFile;
 
-  TDataFiles = class(TObjectList)
+  TDataFiles = class(TFPGObjectList<TDataFile>)
   end;
 
 

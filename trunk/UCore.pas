@@ -95,7 +95,7 @@ implementation
 {$R *.lfm}
 
 uses
-  UFormMain, UFormAbout, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
+  UFormMain, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
   UFormGenerate;
 
 resourcestring

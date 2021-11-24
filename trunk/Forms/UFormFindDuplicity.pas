@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ExtCtrls, StdCtrls, ActnList, Menus, Contnrs, UContact;
+  ExtCtrls, StdCtrls, ActnList, Menus, fgl, UContact;
 
 type
 
@@ -21,7 +21,7 @@ type
 
   { TFoundItems }
 
-  TFoundItems = class(TObjectList)
+  TFoundItems = class(TFPGObjectList<TFoundItem>)
     function SearchByField(Field: string): TFoundItem;
   end;
 
@@ -46,7 +46,6 @@ type
   private
     FContacts: TContacts;
     procedure SetContacts(AValue: TContacts);
-
   public
     FoundItems: TFoundItems;
     ContactField: TContactFieldIndex;
@@ -57,6 +56,7 @@ type
 
 var
   FormFindDuplicity: TFormFindDuplicity;
+
 
 implementation
 
@@ -88,8 +88,8 @@ end;
 
 destructor TFoundItem.Destroy;
 begin
-  Contacts.Free;
-  inherited Destroy;
+  FreeAndNil(Contacts);
+  inherited;
 end;
 
 { TFormFindDuplicity }
@@ -117,10 +117,10 @@ begin
   end else ComboBoxField.Clear;
 end;
 
-function FoundItemsSort(Item1, Item2: Pointer): Integer;
+function FoundItemsSort(const Item1, Item2: TFoundItem): Integer;
 begin
-  if TFoundItem(Item1).Contacts.Count < TFoundItem(Item2).Contacts.Count then Result := 1
-  else if TFoundItem(Item1).Contacts.Count > TFoundItem(Item2).Contacts.Count then Result := -1
+  if Item1.Contacts.Count < Item2.Contacts.Count then Result := 1
+  else if Item1.Contacts.Count > Item2.Contacts.Count then Result := -1
   else Result := 0;
 end;
 
@@ -205,7 +205,7 @@ end;
 
 procedure TFormFindDuplicity.FormDestroy(Sender: TObject);
 begin
-  FoundItems.Free;
+  FreeAndNil(FoundItems);
 end;
 
 procedure TFormFindDuplicity.FormShow(Sender: TObject);

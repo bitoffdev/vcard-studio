@@ -20,7 +20,7 @@ const
 
 begin
   Application.Scaled:=True;
-  Application.Title:='vCard Studio';
+  Application.Title := 'vCard Studio';
   {$if declared(UseHeapTrace)}
   DeleteFile(ExtractFilePath(ParamStr(0)) + HeapTraceLog);
   SetHeapTraceOutput(ExtractFilePath(ParamStr(0)) + HeapTraceLog);
