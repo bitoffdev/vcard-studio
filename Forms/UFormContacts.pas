@@ -42,7 +42,6 @@ type
   private
     FContacts: TContacts;
     procedure SetContacts(AValue: TContacts);
-
   public
     property Contacts: TContacts read FContacts write SetContacts;
     procedure ReloadList;
