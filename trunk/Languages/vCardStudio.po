@@ -239,6 +239,10 @@ msgstr ""
 msgid "Home phone"
 msgstr ""
 
+#: tformerror.caption
+msgid "Load errors"
+msgstr ""
+
 #: tformfindduplicity.ashowcontacts.caption
 msgid "Show contacts"
 msgstr ""
@@ -343,6 +347,18 @@ msgstr ""
 msgid "DPI:"
 msgstr ""
 
+#: ucontact.sfoundblockendwithoutblockstart
+msgid "Found block end without block start"
+msgstr ""
+
+#: ucontact.sfoundpropertiesbeforeblockstart
+msgid "Found properties before the start of block"
+msgstr ""
+
+#: ucontact.sunknowncommand
+msgid "Unknown command: %s"
+msgstr ""
+
 #: ucontact.sunsupportedcontactfieldsindex
 msgid "Unsupported contact field index"
 msgstr ""
@@ -362,6 +378,10 @@ msgstr ""
 
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
+msgstr ""
+
+#: ucore.sline
+msgid "Line %d: %s"
 msgstr ""
 
 #: ucore.smergedcontacts

@@ -67,11 +67,13 @@ type
   private
     InitializeStarted: Boolean;
     InitializeFinished: Boolean;
+    LoadErrors: string;
     procedure FileModified(Sender: TObject);
     function FindFirstNonOption: string;
     procedure UpdateFile;
     procedure LoadConfig;
     procedure SaveConfig;
+    procedure DoError(Text: string; Line: Integer);
   public
     DefaultDataFileClass: TDataFileClass;
     DataFile: TDataFile;
@@ -96,13 +98,14 @@ implementation
 
 uses
   UFormMain, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
-  UFormGenerate;
+  UFormGenerate, UFormError;
 
 resourcestring
   SAppExit = 'Application exit';
   SAppExitQuery = 'File was modified. Do you want to save it before exit?';
   SFileNotFound = 'File ''%s'' not found.';
   SMergedContacts = 'Contacts merged. Loaded: %d, New: %d, Updated: %d';
+  SLine = 'Line %d: %s';
 
 { TMergeResult }
 
@@ -309,8 +312,15 @@ begin
     FileClose;
     if FileClosed then begin
       FileNew;
+      LoadErrors := '';
       DataFile.LoadFromFile(FileName);
       LastOpenedList1.AddItem(FileName);
+      if LoadErrors <> '' then begin
+        FormError := TFormError.Create(nil);
+        FormError.MemoErrors.Text := LoadErrors;
+        FormError.ShowModal;
+        FreeAndNil(FormError);
+      end;
     end;
   end else ShowMessage(Format(SFileNotFound, [FileName]));
 end;
@@ -378,6 +388,7 @@ begin
   if FileClosed then begin
     DataFile := DefaultDataFileClass.Create;
     DataFile.OnModify := FileModified;
+    TContactsFile(DataFile).OnError := DoError;
   end;
 end;
 
@@ -434,6 +445,11 @@ begin
   finally
     Free;
   end;
+end;
+
+procedure TCore.DoError(Text: string; Line: Integer);
+begin
+  LoadErrors := LoadErrors + Format(SLine, [Line, Text]) + LineEnding;
 end;
 
 procedure TCore.UpdateInterface;

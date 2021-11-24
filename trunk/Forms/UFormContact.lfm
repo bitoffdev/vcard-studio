@@ -1,7 +1,7 @@
 object FormContact: TFormContact
-  Left = 423
+  Left = 604
   Height = 588
-  Top = 271
+  Top = 429
   Width = 914
   Caption = 'Contact'
   ClientHeight = 588
@@ -28,85 +28,85 @@ object FormContact: TFormContact
       ParentFont = False
       object Label1: TLabel
         Left = 16
-        Height = 20
-        Top = 16
-        Width = 43
+        Height = 24
+        Top = 24
+        Width = 56
         Caption = 'Name:'
         ParentColor = False
         ParentFont = False
       end
       object EditName: TEdit
         Left = 144
-        Height = 28
-        Top = 19
+        Height = 42
+        Top = 16
         Width = 254
         ParentFont = False
         TabOrder = 0
       end
       object Label2: TLabel
         Left = 16
-        Height = 20
-        Top = 56
-        Width = 74
+        Height = 24
+        Top = 72
+        Width = 95
         Caption = 'Cell phone:'
         ParentColor = False
         ParentFont = False
       end
       object EditCellPhone: TEdit
         Left = 144
-        Height = 28
-        Top = 56
+        Height = 42
+        Top = 62
         Width = 254
         ParentFont = False
         TabOrder = 1
       end
       object EditPhone: TEdit
         Left = 144
-        Height = 28
-        Top = 100
+        Height = 42
+        Top = 108
         Width = 254
         ParentFont = False
         TabOrder = 2
       end
       object Label3: TLabel
         Left = 16
-        Height = 20
-        Top = 97
-        Width = 44
+        Height = 24
+        Top = 112
+        Width = 59
         Caption = 'Phone:'
         ParentColor = False
         ParentFont = False
       end
       object EditEmail: TEdit
         Left = 575
-        Height = 28
-        Top = 59
+        Height = 42
+        Top = 62
         Width = 254
         ParentFont = False
         TabOrder = 3
       end
       object Label4: TLabel
         Left = 432
-        Height = 20
-        Top = 56
-        Width = 46
+        Height = 24
+        Top = 72
+        Width = 58
         Caption = 'E-mail:'
         ParentColor = False
         ParentFont = False
       end
       object EditSurname: TEdit
         Left = 575
-        Height = 28
-        Top = 18
+        Height = 42
+        Top = 16
         Width = 254
         ParentFont = False
         TabOrder = 4
       end
       object Label5: TLabel
         Left = 432
-        Height = 20
-        Top = 16
-        Width = 61
+        Height = 24
+        Top = 24
+        Width = 81
         Caption = 'Surname:'
         ParentColor = False
         ParentFont = False
@@ -115,67 +115,67 @@ object FormContact: TFormContact
         Left = 16
         Height = 146
         Top = 230
-        Width = 702
+        Width = 846
         Anchors = [akTop, akLeft, akRight, akBottom]
         ParentFont = False
         TabOrder = 5
       end
       object Label6: TLabel
         Left = 19
-        Height = 20
+        Height = 24
         Top = 202
-        Width = 42
+        Width = 55
         Caption = 'Notes:'
         ParentColor = False
         ParentFont = False
       end
       object EditEmailHome: TEdit
         Left = 575
-        Height = 28
-        Top = 100
+        Height = 42
+        Top = 108
         Width = 254
         ParentFont = False
         TabOrder = 6
       end
       object Label20: TLabel
         Left = 432
-        Height = 20
-        Top = 96
-        Width = 101
+        Height = 24
+        Top = 112
+        Width = 124
         Caption = 'E-mail (Home):'
         ParentColor = False
         ParentFont = False
       end
       object EditEmailWork: TEdit
         Left = 575
-        Height = 28
-        Top = 146
+        Height = 42
+        Top = 152
         Width = 254
         ParentFont = False
         TabOrder = 7
       end
       object Label21: TLabel
         Left = 432
-        Height = 20
-        Top = 144
-        Width = 95
+        Height = 24
+        Top = 160
+        Width = 117
         Caption = 'E-mail (Work):'
         ParentColor = False
         ParentFont = False
       end
       object EditBirthday: TEdit
         Left = 144
-        Height = 28
-        Top = 144
+        Height = 42
+        Top = 152
         Width = 254
         ParentFont = False
         TabOrder = 8
       end
       object Label22: TLabel
         Left = 16
-        Height = 20
-        Top = 144
-        Width = 58
+        Height = 24
+        Top = 160
+        Width = 76
         Caption = 'Birthday:'
         ParentColor = False
         ParentFont = False
@@ -188,50 +188,50 @@ object FormContact: TFormContact
       ParentFont = False
       object Label7: TLabel
         Left = 10
-        Height = 20
+        Height = 24
         Top = 18
-        Width = 99
+        Width = 125
         Caption = 'Phone (Home):'
         ParentColor = False
         ParentFont = False
       end
       object EditPhoneHome: TEdit
         Left = 173
-        Height = 28
-        Top = 18
+        Height = 42
+        Top = 16
         Width = 254
         ParentFont = False
         TabOrder = 0
       end
       object Label8: TLabel
         Left = 10
-        Height = 20
-        Top = 61
-        Width = 93
+        Height = 24
+        Top = 64
+        Width = 118
         Caption = 'Phone (Work):'
         ParentColor = False
         ParentFont = False
       end
       object EditPhoneWork: TEdit
         Left = 173
-        Height = 28
-        Top = 61
+        Height = 42
+        Top = 62
         Width = 254
         ParentFont = False
         TabOrder = 1
       end
       object Label9: TLabel
         Left = 10
-        Height = 20
-        Top = 106
-        Width = 129
+        Height = 24
+        Top = 112
+        Width = 161
         Caption = 'Cell phone (Home):'
         ParentColor = False
         ParentFont = False
       end
       object EditCellPhoneHome: TEdit
         Left = 173
-        Height = 28
+        Height = 42
         Top = 108
         Width = 254
         ParentFont = False
@@ -239,33 +239,33 @@ object FormContact: TFormContact
       end
       object Label10: TLabel
         Left = 10
-        Height = 20
-        Top = 146
-        Width = 123
+        Height = 24
+        Top = 160
+        Width = 154
         Caption = 'Cell phone (Work):'
         ParentColor = False
         ParentFont = False
       end
       object EditCellPhoneWork: TEdit
         Left = 173
-        Height = 28
-        Top = 146
+        Height = 42
+        Top = 152
         Width = 254
         ParentFont = False
         TabOrder = 3
       end
       object Label11: TLabel
         Left = 451
-        Height = 20
+        Height = 24
         Top = 16
-        Width = 25
+        Width = 34
         Caption = 'Fax:'
         ParentColor = False
         ParentFont = False
       end
       object EditFax: TEdit
         Left = 584
-        Height = 28
+        Height = 42
         Top = 18
         Width = 254
         ParentFont = False
@@ -273,33 +273,33 @@ object FormContact: TFormContact
       end
       object Label12: TLabel
         Left = 451
-        Height = 20
+        Height = 24
         Top = 58
-        Width = 80
+        Width = 100
         Caption = 'Fax (Home):'
         ParentColor = False
         ParentFont = False
       end
       object EditFaxHome: TEdit
         Left = 584
-        Height = 28
-        Top = 61
+        Height = 42
+        Top = 62
         Width = 254
         ParentFont = False
         TabOrder = 5
       end
       object Label13: TLabel
         Left = 451
-        Height = 20
+        Height = 24
         Top = 106
-        Width = 74
+        Width = 93
         Caption = 'Fax (Work):'
         ParentColor = False
         ParentFont = False
       end
       object EditFaxWork: TEdit
         Left = 584
-        Height = 28
+        Height = 42
         Top = 108
         Width = 254
         ParentFont = False
@@ -307,119 +307,119 @@ object FormContact: TFormContact
       end
       object Label14: TLabel
         Left = 451
-        Height = 20
+        Height = 24
         Top = 144
-        Width = 41
+        Width = 54
         Caption = 'Pager:'
         ParentColor = False
         ParentFont = False
       end
       object EditPager: TEdit
         Left = 584
-        Height = 28
-        Top = 146
+        Height = 42
+        Top = 152
         Width = 254
         ParentFont = False
         TabOrder = 7
       end
       object Label15: TLabel
         Left = 10
-        Height = 20
-        Top = 221
-        Width = 72
+        Height = 24
+        Top = 224
+        Width = 89
         Caption = 'Web page:'
         ParentColor = False
         ParentFont = False
       end
       object EditWebPage: TEdit
         Left = 173
-        Height = 28
-        Top = 221
+        Height = 42
+        Top = 220
         Width = 254
         ParentFont = False
         TabOrder = 8
       end
       object Label16: TLabel
         Left = 10
-        Height = 20
-        Top = 259
-        Width = 127
+        Height = 24
+        Top = 272
+        Width = 155
         Caption = 'Web page (Home):'
         ParentColor = False
         ParentFont = False
       end
       object EditWebPageHome: TEdit
         Left = 173
-        Height = 28
-        Top = 259
+        Height = 42
+        Top = 262
         Width = 254
         ParentFont = False
         TabOrder = 9
       end
       object Label17: TLabel
         Left = 10
-        Height = 20
-        Top = 298
-        Width = 121
+        Height = 24
+        Top = 312
+        Width = 148
         Caption = 'Web page (Work):'
         ParentColor = False
         ParentFont = False
       end
       object EditWebPageWork: TEdit
         Left = 173
-        Height = 28
-        Top = 298
+        Height = 42
+        Top = 306
         Width = 254
         ParentFont = False
         TabOrder = 10
       end
       object Label18: TLabel
         Left = 450
-        Height = 20
-        Top = 221
-        Width = 32
+        Height = 24
+        Top = 224
+        Width = 41
         Caption = 'Title:'
         ParentColor = False
         ParentFont = False
       end
       object EditTitle: TEdit
         Left = 584
-        Height = 28
-        Top = 221
+        Height = 42
+        Top = 220
         Width = 254
         ParentFont = False
         TabOrder = 11
       end
       object Label19: TLabel
         Left = 450
-        Height = 20
-        Top = 259
-        Width = 56
+        Height = 24
+        Top = 272
+        Width = 74
         Caption = 'Address:'
         ParentColor = False
         ParentFont = False
       end
       object EditAddress: TEdit
-        Left = 586
-        Height = 28
-        Top = 259
+        Left = 584
+        Height = 42
+        Top = 262
         Width = 254
         ParentFont = False
         TabOrder = 12
       end
       object LabelOrganization: TLabel
-        Left = 451
-        Height = 20
-        Top = 298
-        Width = 89
+        Left = 448
+        Height = 24
+        Top = 312
+        Width = 114
         Caption = 'Organization:'
         ParentColor = False
         ParentFont = False
       end
       object EditOrganization: TEdit
         Left = 584
-        Height = 28
-        Top = 298
+        Height = 42
+        Top = 306
         Width = 254
         ParentFont = False
         TabOrder = 13
@@ -482,8 +482,8 @@ object FormContact: TFormContact
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
-    Left = 380
-    Top = 188
+    Left = 320
+    Top = 416
     object AEditField: TAction
       Caption = 'Edit'
       OnExecute = AEditFieldExecute
@@ -491,8 +491,8 @@ object FormContact: TFormContact
   end
   object PopupMenu1: TPopupMenu
     Images = Core.ImageList1
-    Left = 206
-    Top = 191
+    Left = 184
+    Top = 416
     object MenuItem1: TMenuItem
       Action = AEditField
     end

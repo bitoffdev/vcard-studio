@@ -10,7 +10,7 @@ uses
 type
   TContactsFile = class;
 
-  TStringEvent = procedure (Text: string) of object;
+  TErrorEvent = procedure (Text: string; Line: Integer) of object;
 
   TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage);
 
@@ -18,6 +18,7 @@ type
     cfTitleAfter, cfFullName, cfTelPrefCell,
     cfTelCell, cfTelHome, cfTelHome2, cfTelWork, cfTelVoip,
     cfTelPrefWorkVoice, cfTelPrefHomeVoice, cfTelHomeVoice, cfTelWorkVoice,
+    cfTelVoice, cfTelMain,
     cfEmailHome, cfEmailInternet, cfNickName, cfNote, cfRole, cfTitle,
     cfCategories, cfOrganization, cfAdrHome, cfHomeAddressStreet,
     cfHomeAddressCity, cfHomeAddressCountry, cfXTimesContacted,
@@ -62,6 +63,8 @@ type
     TelPrefHomeVoice: string;
     TelHomeVoice: string;
     TelWorkVoice: string;
+    TelVoice: string;
+    TelMain: string;
     EmailHome: string;
     EmailInternet: string;
     NickName: string;
@@ -96,9 +99,10 @@ type
 
   TContactsFile = class(TDataFile)
   private
-    FOnError: TStringEvent;
+    FOnError: TErrorEvent;
     function GetNext(var Text: string; Separator: string): string;
     procedure InitFields;
+    procedure Error(Text: string; Line: Integer);
   public
     Fields: TContactFields;
     Contacts: TContacts;
@@ -109,7 +113,7 @@ type
     procedure LoadFromFile(FileName: string); override;
     constructor Create; override;
     destructor Destroy; override;
-    property OnError: TStringEvent read FOnError write FOnError;
+    property OnError: TErrorEvent read FOnError write FOnError;
   end;
 
 
@@ -118,6 +122,9 @@ implementation
 resourcestring
   SVCardFile = 'vCard file';
   SUnsupportedContactFieldsIndex = 'Unsupported contact field index';
+  SUnknownCommand = 'Unknown command: %s';
+  SFoundPropertiesBeforeBlockStart = 'Found properties before the start of block';
+  SFoundBlockEndWithoutBlockStart = 'Found block end without block start';
 
 { TContacts }
 
@@ -194,6 +201,8 @@ begin
     cfTelPrefHomeVoice: Result := TelPrefHomeVoice;
     cfTelHomeVoice: Result := TelHomeVoice;
     cfTelWorkVoice: Result := TelWorkVoice;
+    cfTelVoice: Result := TelVoice;
+    cfTelMain: Result := TelMain;
     cfEmailHome: Result := EmailHome;
     cfEmailInternet: Result := EmailInternet;
     cfNickName: Result := NickName;
@@ -233,6 +242,8 @@ begin
     cfTelPrefHomeVoice: TelPrefHomeVoice := AValue;
     cfTelHomeVoice: TelHomeVoice := AValue;
     cfTelWorkVoice: TelWorkVoice := AValue;
+    cfTelVoice: TelVoice := AValue;
+    cfTelMain: TelMain := AValue;
     cfEmailHome: EmailHome := AValue;
     cfEmailInternet: EmailInternet := AValue;
     cfNickName: NickName := AValue;
@@ -337,6 +348,8 @@ begin
     AddNew('Tel Pref Home Voice', cfTelPrefHomeVoice, dtString);
     AddNew('Tel Home Voice', cfTelHomeVoice, dtString);
     AddNew('Tel Work Voice', cfTelWorkVoice, dtString);
+    AddNew('Tel Voice', cfTelVoice, dtString);
+    AddNew('Tel Main', cfTelMain, dtString);
     AddNew('Email Home', cfEmailHome, dtString);
     AddNew('Email Internet', cfEmailInternet, dtString);
     AddNew('Nick Name', cfNickName, dtString);
@@ -354,6 +367,11 @@ begin
     AddNew('Photo', cfPhoto, dtString);
     AddNew('Jabber', cfXJabber, dtString);
   end;
+end;
+
+procedure TContactsFile.Error(Text: string; Line: Integer);
+begin
+  if Assigned(FOnError) then FOnError(Text, Line);
 end;
 
 function TContactsFile.GetFileName: string;
@@ -422,6 +440,8 @@ begin
       if TelPrefHomeVoice <> '' then Add('TEL;PREF;HOME;VOICE:' + TelPrefHomeVoice);
       if TelHomeVoice <> '' then Add('TEL;HOME;VOICE:' + TelHomeVoice);
       if TelWorkVoice <> '' then Add('TEL;WORK;VOICE:' + TelWorkVoice);
+      if TelVoice <> '' then Add('TEL;VOICE:' + TelVoice);
+      if TelMain <> '' then Add('TEL;MAIN:' + TelMain);
       if Note <> '' then Add('NOTE:' + Note);
       if AdrHome <> '' then Add('ADR;HOME:' + AdrHome);
       if EmailHome <> '' then Add('EMAIL;HOME:' + EmailHome);
@@ -468,6 +488,7 @@ var
   CommandItems: TStringList;
 begin
   inherited;
+  NewRecord := nil;
   Contacts.Clear;
   Lines := TStringList.Create;
   Lines.LoadFromFile(FileName);
@@ -482,8 +503,10 @@ begin
         NewRecord.Parent := Self;
       end else
       if Line = 'END:VCARD' then begin
-        Contacts.Add(NewRecord);
-        NewRecord := nil;
+        if Assigned(NewRecord) then begin
+          Contacts.Add(NewRecord);
+          NewRecord := nil;
+        end else Error(SFoundBlockEndWithoutBlockStart, I + 1);
       end else
       if Pos(':', Line) > 0 then begin
         CommandPart := GetNext(Line, ':');
@@ -502,45 +525,49 @@ begin
         end;
         Command := CommandItems.DelimitedText;
 
-        if Command = 'FN' then NewRecord.FullName := Line
-        else if Command = 'N' then begin
-          NewRecord.LastName := GetNext(Line, ';');
-          NewRecord.FirstName := GetNext(Line, ';');
-          NewRecord.MiddleName := GetNext(Line, ';');
-          NewRecord.TitleBefore := GetNext(Line, ';');
-          NewRecord.TitleAfter := GetNext(Line, ';');
-        end
-        else if Command = 'VERSION' then NewRecord.Version := Line
-        else if Command = 'TEL;PREF;CELL' then NewRecord.TelPrefCell := Line
-        else if Command = 'TEL;CELL' then NewRecord.TelCell := Line
-        else if Command = 'TEL;HOME' then NewRecord.TelHome := Line
-        else if Command = 'TEL;HOME2' then NewRecord.TelHome2 := Line
-        else if Command = 'TEL;WORK' then NewRecord.TelWork := Line
-        else if Command = 'TEL;VOIP' then NewRecord.TelVoip := Line
-        else if Command = 'TEL;PREF;WORK;VOICE' then NewRecord.TelPrefWorkVoice := Line
-        else if Command = 'TEL;PREF;HOME;VOICE' then NewRecord.TelPrefHOMEVoice := Line
-        else if Command = 'TEL;HOME;VOICE' then NewRecord.TelHomeVoice := Line
-        else if Command = 'TEL;WORK;VOICE' then NewRecord.TelWorkVoice := Line
-        else if Command = 'ADR;HOME' then NewRecord.AdrHome := Line
-        else if Command = 'X-NICKNAME' then NewRecord.NickName := Line
-        else if Command = 'EMAIL;HOME' then NewRecord.EmailHome := Line
-        else if Command = 'EMAIL;INTERNET' then NewRecord.EmailInternet := Line
-        else if Command = 'NOTE' then NewRecord.Note := Line
-        else if Command = 'ORG' then NewRecord.Organization := Line
-        else if Command = 'X-JABBER' then NewRecord.XJabber := Line
-        else if Command = 'TITLE' then NewRecord.Role := Line
-        else if Command = 'X-TIMES_CONTACTED' then NewRecord.XTimesContacted := Line
-        else if Command = 'X-LAST_TIME_CONTACTED' then NewRecord.XLastTimeContacted := Line
-        else if Command = 'PHOTO;JPEG' then begin
-          NewRecord.Photo := Trim(Line);
-          repeat
-            Inc(I);
-            Line := Trim(Lines[I]);
-            if Line <> '' then NewRecord.Photo := NewRecord.Photo + Line;
-          until Line = '';
-          NewRecord.Photo := DecodeStringBase64(NewRecord.Photo);
-        end
-        else if Assigned(FOnError) then FOnError('Unknown command: ' + Command);
+        if Assigned(NewRecord) then begin
+          if Command = 'FN' then NewRecord.FullName := Line
+          else if Command = 'N' then begin
+            NewRecord.LastName := GetNext(Line, ';');
+            NewRecord.FirstName := GetNext(Line, ';');
+            NewRecord.MiddleName := GetNext(Line, ';');
+            NewRecord.TitleBefore := GetNext(Line, ';');
+            NewRecord.TitleAfter := GetNext(Line, ';');
+          end
+          else if Command = 'VERSION' then NewRecord.Version := Line
+          else if Command = 'TEL;PREF;CELL' then NewRecord.TelPrefCell := Line
+          else if Command = 'TEL;CELL' then NewRecord.TelCell := Line
+          else if Command = 'TEL;HOME' then NewRecord.TelHome := Line
+          else if Command = 'TEL;HOME2' then NewRecord.TelHome2 := Line
+          else if Command = 'TEL;WORK' then NewRecord.TelWork := Line
+          else if Command = 'TEL;VOIP' then NewRecord.TelVoip := Line
+          else if Command = 'TEL;PREF;WORK;VOICE' then NewRecord.TelPrefWorkVoice := Line
+          else if Command = 'TEL;PREF;HOME;VOICE' then NewRecord.TelPrefHOMEVoice := Line
+          else if Command = 'TEL;HOME;VOICE' then NewRecord.TelHomeVoice := Line
+          else if Command = 'TEL;WORK;VOICE' then NewRecord.TelWorkVoice := Line
+          else if Command = 'TEL;VOICE' then NewRecord.TelVoice := Line
+          else if Command = 'TEL;MAIN' then NewRecord.TelMain := Line
+          else if Command = 'ADR;HOME' then NewRecord.AdrHome := Line
+          else if Command = 'X-NICKNAME' then NewRecord.NickName := Line
+          else if Command = 'EMAIL;HOME' then NewRecord.EmailHome := Line
+          else if Command = 'EMAIL;INTERNET' then NewRecord.EmailInternet := Line
+          else if Command = 'NOTE' then NewRecord.Note := Line
+          else if Command = 'ORG' then NewRecord.Organization := Line
+          else if Command = 'X-JABBER' then NewRecord.XJabber := Line
+          else if Command = 'TITLE' then NewRecord.Role := Line
+          else if Command = 'X-TIMES_CONTACTED' then NewRecord.XTimesContacted := Line
+          else if Command = 'X-LAST_TIME_CONTACTED' then NewRecord.XLastTimeContacted := Line
+          else if Command = 'PHOTO;JPEG' then begin
+            NewRecord.Photo := Trim(Line);
+            repeat
+              Inc(I);
+              Line := Trim(Lines[I]);
+              if Line <> '' then NewRecord.Photo := NewRecord.Photo + Line;
+            until Line = '';
+            NewRecord.Photo := DecodeStringBase64(NewRecord.Photo);
+          end
+          else Error(Format(SUnknownCommand, [Command]), I + 1);
+        end else Error(SFoundPropertiesBeforeBlockStart, I + 1);
       end;
       Inc(I);
     end;
