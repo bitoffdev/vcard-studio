@@ -5,7 +5,7 @@ unit UContact;
 interface
 
 uses
-  Classes, SysUtils, Contnrs, Dialogs, UDataFile, LazUTF8, base64;
+  Classes, SysUtils, fgl, Dialogs, UDataFile, LazUTF8, base64;
 
 type
   TContactsFile = class;
@@ -31,7 +31,7 @@ type
 
   { TContactFields }
 
-  TContactFields = class(TObjectList)
+  TContactFields = class(TFPGObjectList<TContactField>)
     function AddNew(Name: string; Index: TContactFieldIndex; DataType:
       TDataType): TContactField;
     procedure LoadToStrings(AItems: TStrings);
@@ -85,7 +85,7 @@ type
 
   { TContacts }
 
-  TContacts = class(TObjectList)
+  TContacts = class(TFPGObjectList<TContact>)
     ContactsFile: TContactsFile;
     function AddNew: TContact;
     function Search(FullName: string): TContact;
