@@ -1,4 +1,4 @@
-Version 1.0.0 (19-08-2021)
+Version 1.0.0 (2021-08-19)
 ==========================
 
 * Added: From Find duplicities form it is possible to open the list of duplicit contacts for further modification/addition/removal.

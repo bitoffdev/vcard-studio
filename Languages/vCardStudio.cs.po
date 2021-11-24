@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 3.0\n"
 
 #: tcore.aabout.caption
 msgid "About..."
@@ -66,7 +66,7 @@ msgstr "Domovská stránka"
 
 #: tcore.applicationinfo1.description
 msgid "vCard files management tool"
-msgstr ""
+msgstr "Nástroj pro správu souborů vCard"
 
 #: tcore.asettings.caption
 msgctxt "tcore.asettings.caption"
@@ -253,6 +253,10 @@ msgstr "Mobilní telefon"
 msgid "Home phone"
 msgstr "Domácí telefon"
 
+#: tformerror.caption
+msgid "Load errors"
+msgstr "Chyby načítání"
+
 #: tformfindduplicity.ashowcontacts.caption
 msgid "Show contacts"
 msgstr "Ukázat kontakty"
@@ -359,6 +363,18 @@ msgstr "Téma:"
 msgid "DPI:"
 msgstr "DPI:"
 
+#: ucontact.sfoundblockendwithoutblockstart
+msgid "Found block end without block start"
+msgstr "Nalezen konec bloku bez začátku bloku"
+
+#: ucontact.sfoundpropertiesbeforeblockstart
+msgid "Found properties before the start of block"
+msgstr "Nalezena vlastnost před začátkem bloku"
+
+#: ucontact.sunknowncommand
+msgid "Unknown command: %s"
+msgstr "Neznámý příkaz: %s"
+
 #: ucontact.sunsupportedcontactfieldsindex
 msgid "Unsupported contact field index"
 msgstr "Nepodporovaný index pole kontaktu"
@@ -379,6 +395,10 @@ msgstr "Soubor byl upraven. Chcete jej uložit před ukončením?"
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
 msgstr "Soubor '%s' nenalezen."
+
+#: ucore.sline
+msgid "Line %d: %s"
+msgstr "Řádek %d: %s"
 
 #: ucore.smergedcontacts
 msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
@@ -417,4 +437,3 @@ msgstr "Počet:"
 #: uformmain.smodified
 msgid "Modified"
 msgstr "Upraveno"
-
