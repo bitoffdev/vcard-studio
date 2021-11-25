@@ -181,14 +181,24 @@ begin
     if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
       Photo := PhotoProperty.GetDecodedValue;
       Stream := TMemoryStream.Create;
-      Stream.Write(Photo[1], Length(Photo));
-      Stream.Position := 0;
-      JpegImage := TJPEGImage.Create;
-      JpegImage.LoadFromStream(Stream);
-      ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
-      ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
-      JpegImage.Free;
-      Stream.Free;
+      try
+        Stream.Write(Photo[1], Length(Photo));
+        Stream.Position := 0;
+        if PhotoProperty.Attributes.IndexOf('JPEG') <> -1 then begin
+          JpegImage := TJPEGImage.Create;
+          try
+            JpegImage.LoadFromStream(Stream);
+            ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
+            ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
+          finally
+            JpegImage.Free;
+          end;
+        end else begin
+          ImagePhoto.Picture.Bitmap.LoadFromStream(Stream);
+        end;
+      finally
+        Stream.Free;
+      end;
     end;
   end;
 end;
