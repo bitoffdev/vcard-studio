@@ -628,3 +628,7 @@ msgstr ""
 msgid "Modified"
 msgstr ""
 
+#: uquotedprintable.slinelengtherr
+msgid "Invalid line length for encoded text"
+msgstr ""
+
