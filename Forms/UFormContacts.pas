@@ -69,12 +69,12 @@ procedure TFormContacts.ListView1Data(Sender: TObject; Item: TListItem);
 begin
   if Assigned(Contacts) and (Item.Index < Contacts.Count) then
   with TContact(Contacts[Item.Index]) do begin
-    Item.Caption := FullName;
-    Item.SubItems.Add(FirstName);
-    Item.SubItems.Add(MiddleName);
-    Item.SubItems.Add(LastName);
-    Item.SubItems.Add(TelCell);
-    Item.SubItems.Add(TelHome);
+    Item.Caption := Fields[cfFullName];
+    Item.SubItems.Add(Fields[cfFirstName]);
+    Item.SubItems.Add(Fields[cfMiddleName]);
+    Item.SubItems.Add(Fields[cfLastName]);
+    Item.SubItems.Add(Fields[cfTelCell]);
+    Item.SubItems.Add(Fields[cfTelHome]);
     Item.Data := Contacts[Item.Index];
   end;
 end;
