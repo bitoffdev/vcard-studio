@@ -86,6 +86,7 @@ type
 
   TContacts = class(TFPGObjectList<TContact>)
     ContactsFile: TContactsFile;
+    procedure AssignToList(List: TFPGObjectList<TObject>);
     function AddNew: TContact;
     function Search(FullName: string): TContact;
     function ToString: ansistring; override;
@@ -184,9 +185,13 @@ end;
 
 procedure TContactProperty.EvaluateAttributes;
 begin
+  if Attributes.IndexOf('BASE64') <> -1 then
+    Encoding := 'BASE64'
+  else
   if Attributes.IndexOfName('ENCODING') <> -1 then
     Encoding := Attributes.Values['ENCODING']
     else Encoding := '';
+
   if Attributes.IndexOfName('CHARSET') <> -1 then
     Charset := Attributes.Values['CHARSET']
     else Charset := '';
@@ -244,6 +249,15 @@ begin
 end;
 
 { TContacts }
+
+procedure TContacts.AssignToList(List: TFPGObjectList<TObject>);
+var
+  I: Integer;
+begin
+  List.Clear;
+  for I := 0 to Count - 1 do
+    List.Add(Items[I]);
+end;
 
 function TContacts.AddNew: TContact;
 begin
@@ -418,7 +432,8 @@ begin
     AddNew('ROLE', [], 'Role', cfRole, dtString);
     AddNew('TITLE', [], 'Title', cfTitle, dtString);
     AddNew('CATEGORIES', [], 'Categories', cfCategories, dtString);
-    AddNew('ORG', [], 'Organization', cfOrganization, dtString);
+    AddNew('ORG', [], 'Organization', cfOrganization, dtString, 0);
+    AddNew('ORG', [], 'Division', cfOrganization, dtString, 1);
     AddNew('ADR', ['HOME'], 'Home Address', cfAdrHome, dtString);
     AddNew('ADR', ['HOME'], 'Home Address Street', cfHomeAddressStreet, dtString, 1);
     AddNew('ADR', ['HOME'], 'Home Address City', cfHomeAddressCity, dtString, 2);
