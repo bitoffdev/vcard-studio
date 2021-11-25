@@ -643,3 +643,7 @@ msgstr "Celkem"
 #: uformmain.smodified
 msgid "Modified"
 msgstr "Upraveno"
+
+#: uquotedprintable.slinelengtherr
+msgid "Invalid line length for encoded text"
+msgstr "Neplatná délka řádky kódovaného textu"

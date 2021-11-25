@@ -117,6 +117,9 @@ type
 
 implementation
 
+uses
+  UQuotedPrintable;
+
 resourcestring
   SVCardFile = 'vCard file';
   SUnsupportedContactFieldsIndex = 'Unsupported contact field index';
@@ -225,23 +228,28 @@ end;
 
 procedure TContactProperty.EvaluateAttributes;
 var
-  Index: Integer;
+  I: Integer;
 begin
   if Attributes.IndexOf('BASE64') <> -1 then
     Encoding := 'BASE64'
   else
-  if Attributes.IndexOfName('ENCODING') <> -1 then
-    Encoding := Attributes.Values['ENCODING']
-    else Encoding := '';
+  if Attributes.IndexOfName('ENCODING') <> -1 then begin
+    Encoding := Attributes.Values['ENCODING'];
+    if (Encoding = 'QUOTED-PRINTABLE') or (Encoding = 'BASE64') then begin
+      Values.DelimitedText := GetDecodedValue;
+      Attributes.Delete(Attributes.IndexOfName('ENCODING'));
+    end;
+  end else Encoding := '';
 
   if Attributes.IndexOfName('CHARSET') <> -1 then
     Charset := Attributes.Values['CHARSET']
     else Charset := '';
 
   // Simplify TYPE attribute from TYPE=VALUE into VALUE
-  Index := Attributes.IndexOfName('TYPE');
-  if Index <> -1 then
-    Attributes.Strings[Index] := Attributes.Values['TYPE'];
+  for I := 0 to Attributes.Count - 1 do begin
+    if Attributes.Names[I] = 'TYPE' then
+      Attributes.Strings[I] := Attributes.Values['TYPE'];
+  end;
 end;
 
 function TContactProperty.GetDecodedValue: string;
@@ -250,7 +258,7 @@ begin
     Result := DecodeStringBase64(Values.DelimitedText)
   else
   if Encoding = 'QUOTED-PRINTABLE' then
-    Result := Values.DelimitedText
+    Result := DecodeQuotedPrintable(Values.DelimitedText)
   else Result := '';
 end;
 
