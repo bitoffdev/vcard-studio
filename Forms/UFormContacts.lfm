@@ -13,7 +13,7 @@ object FormContacts: TFormContacts
   LCLVersion = '2.0.12.0'
   object ListView1: TListView
     Left = 0
-    Height = 869
+    Height = 837
     Top = 0
     Width = 1210
     Align = alClient
@@ -79,6 +79,14 @@ object FormContacts: TFormContacts
       Action = ARemove
     end
   end
+  object ListViewFilter1: TListViewFilter
+    Left = 0
+    Height = 32
+    Top = 837
+    Width = 1210
+    OnChange = ListViewFilter1Change
+    Align = alBottom
+  end
   object PopupMenuContact: TPopupMenu
     Images = Core.ImageList1
     Left = 435
@@ -123,5 +131,15 @@ object FormContacts: TFormContacts
       OnExecute = ASelectAllExecute
       ShortCut = 16449
     end
+  end
+  object ListViewSort1: TListViewSort
+    ListView = ListView1
+    OnCompareItem = ListViewSort1CompareItem
+    OnFilter = ListViewSort1Filter
+    OnColumnWidthChanged = ListViewSort1ColumnWidthChanged
+    Column = 0
+    Order = soNone
+    Left = 528
+    Top = 428
   end
 end
