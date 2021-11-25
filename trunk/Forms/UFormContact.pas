@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, ActnList, Menus, UContact;
+  ComCtrls, ActnList, Menus, ExtCtrls, UContact, base64;
 
 type
 
@@ -39,6 +39,7 @@ type
     EditPhone: TEdit;
     EditName: TEdit;
     EditCellPhone: TEdit;
+    ImagePhoto: TImage;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -54,6 +55,7 @@ type
     Label20: TLabel;
     Label21: TLabel;
     Label22: TLabel;
+    Label23: TLabel;
     LabelOrganization: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -109,10 +111,12 @@ end;
 
 procedure TFormContact.ListView1Data(Sender: TObject; Item: TListItem);
 begin
-  if Item.Index < Contact.Parent.Fields.Count then
-  with TContactField(Contact.Parent.Fields[Item.Index]) do begin
-    Item.Caption := Name;
-    Item.SubItems.Add(Contact.Fields[Index]);
+  if Item.Index < Contact.Properties.Count then
+  with Contact.Properties[Item.Index] do begin
+    Item.Caption := Contact.Properties[Item.Index].Name;
+    Item.SubItems.Add(Attributes.DelimitedText);
+    Item.SubItems.Add(Contact.Properties[Item.Index].Values.DelimitedText);
+    Item.Data := Contact.Properties[Item.Index];
   end;
 end;
 
@@ -124,7 +128,7 @@ end;
 procedure TFormContact.ReloadFields;
 begin
   if Assigned(Contact) then begin
-    ListView1.Items.Count := Contact.Parent.Fields.Count;
+    ListView1.Items.Count := Contact.Properties.Count;
   end else ListView1.Items.Count := 0;
   ListView1.Refresh;
 end;
@@ -138,8 +142,8 @@ end;
 procedure TFormContact.AEditFieldExecute(Sender: TObject);
 begin
   if Assigned(ListView1.Selected) then begin
-    Contact.Fields[TContactFieldIndex(ListView1.Selected.Index)] :=
-      InputBox(SFieldEdit, SEditFieldValue, Contact.Fields[TContactFieldIndex(ListView1.Selected.Index)]);
+    TContactProperty(ListView1.Selected.Data).Values.DelimitedText :=
+      InputBox(SFieldEdit, SEditFieldValue, TContactProperty(ListView1.Selected.Data).Values.DelimitedText);
   end;
 end;
 
@@ -151,34 +155,57 @@ begin
 end;
 
 procedure TFormContact.LoadData(Contact: TContact);
+var
+  Photo: string;
+  JpegImage: TJpegImage;
+  Stream: TMemoryStream;
+  PhotoProperty: TContactProperty;
 begin
   Self.Contact := Contact;
-  EditName.Text := Contact.FirstName;
-  EditSurname.Text := Contact.LastName;
-  EditCellPhone.Text := Contact.TelCell;
-  EditPhoneHome.Text := Contact.TelHome;
-  EditPhoneWork.Text := Contact.TelWork;
-  EditEmail.Text := Contact.EmailHome;
-  MemoNotes.Lines.Text := Contact.Note;
-  EditTitle.Text := Contact.Title;
-  EditOrganization.Text := Contact.Organization;
-  EditAddress.Text := Contact.AdrHome;
-  EditEmailHome.Text := Contact.EmailHome;
+  EditName.Text := Contact.Fields[cfFirstName];
+  EditSurname.Text := Contact.Fields[cfLastName];
+  EditCellPhone.Text := Contact.Fields[cfTelCell];
+  EditPhoneHome.Text := Contact.Fields[cfTelHome];
+  EditPhoneWork.Text := Contact.Fields[cfTelWork];
+  EditEmail.Text := Contact.Fields[cfEmail];
+  MemoNotes.Lines.Text := Contact.Fields[cfNote];
+  EditTitle.Text := Contact.Fields[cfTitle];
+  EditOrganization.Text := Contact.Fields[cfOrganization];
+  EditAddress.Text := Contact.Fields[cfAdrHome];
+  EditEmailHome.Text := Contact.Fields[cfEmailHome];
+
+  ImagePhoto.Picture.Bitmap.Clear;
+  PhotoProperty := Contact.GetProperty(cfPhoto);
+  if Assigned(PhotoProperty) then begin
+    Photo := Contact.Fields[cfPhoto];
+    if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
+      Photo := PhotoProperty.GetDecodedValue;
+      Stream := TMemoryStream.Create;
+      Stream.Write(Photo[1], Length(Photo));
+      Stream.Position := 0;
+      JpegImage := TJPEGImage.Create;
+      JpegImage.LoadFromStream(Stream);
+      ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
+      ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
+      JpegImage.Free;
+      Stream.Free;
+    end;
+  end;
 end;
 
 procedure TFormContact.SaveData(Contact: TContact);
 begin
-  Contact.FirstName := EditName.Text;
-  Contact.LastName := EditSurname.Text;
-  Contact.TelCell := EditCellPhone.Text;
-  Contact.TelHome := EditPhoneHome.Text;
-  Contact.TelWork := EditPhoneWork.Text;
-  Contact.EmailHome := EditEmail.Text;
-  Contact.Note := MemoNotes.Lines.Text;
-  Contact.Title := EditTitle.Text;
-  Contact.Organization := EditOrganization.Text;
-  Contact.AdrHome := EditAddress.Text;
-  Contact.EmailHome := EditEmailHome.Text;
+  Contact.Fields[cfFirstName] := EditName.Text;
+  Contact.Fields[cfLastName] := EditSurname.Text;
+  Contact.Fields[cfTelCell] := EditCellPhone.Text;
+  Contact.Fields[cfTelHome] := EditPhoneHome.Text;
+  Contact.Fields[cfTelWork] := EditPhoneWork.Text;
+  Contact.Fields[cfEmail] := EditEmail.Text;
+  Contact.Fields[cfNote] := MemoNotes.Lines.Text;
+  Contact.Fields[cfTitle] := EditTitle.Text;
+  Contact.Fields[cfOrganization] := EditOrganization.Text;
+  Contact.Fields[cfAdrHome] := EditAddress.Text;
+  Contact.Fields[cfEmailHome] := EditEmailHome.Text;
 end;
 
 end.

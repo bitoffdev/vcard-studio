@@ -140,6 +140,10 @@ msgstr ""
 msgid "Birthday:"
 msgstr ""
 
+#: tformcontact.label23.caption
+msgid "Photo:"
+msgstr ""
+
 #: tformcontact.label3.caption
 msgid "Phone:"
 msgstr ""
@@ -173,10 +177,16 @@ msgid "Organization:"
 msgstr ""
 
 #: tformcontact.listview1.columns[0].caption
-msgid "Item"
+msgid "Name"
 msgstr ""
 
 #: tformcontact.listview1.columns[1].caption
+msgctxt "tformcontact.listview1.columns[1].caption"
+msgid "Attributes"
+msgstr ""
+
+#: tformcontact.listview1.columns[2].caption
+msgctxt "tformcontact.listview1.columns[2].caption"
 msgid "Value"
 msgstr ""
 
@@ -345,6 +355,10 @@ msgstr ""
 
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
+msgstr ""
+
+#: ucontact.sfieldindexnotdefined
+msgid "Field index not defined"
 msgstr ""
 
 #: ucontact.sfoundblockendwithoutblockstart

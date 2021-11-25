@@ -166,6 +166,7 @@
         <Filename Value="Forms\UFormError.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormError"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit10>
     </Units>

@@ -363,7 +363,7 @@ begin
       TempFile.LoadFromFile(FileName);
       Result.Loaded := TempFile.Contacts.Count;
       for I := 0 to TempFile.Contacts.Count - 1 do begin
-        NewContact := TContactsFile(DataFile).Contacts.Search(TContact(TempFile.Contacts[I]).FullName);
+        NewContact := TContactsFile(DataFile).Contacts.Search(TContact(TempFile.Contacts[I]).Fields[cfFullName]);
         if not Assigned(NewContact) then begin
           NewContact := TContact.Create;
           NewContact.Parent := TContactsFile(DataFile);

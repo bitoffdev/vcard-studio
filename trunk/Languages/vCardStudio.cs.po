@@ -154,6 +154,10 @@ msgstr "E-mail (Práce):"
 msgid "Birthday:"
 msgstr "Narozeniny:"
 
+#: tformcontact.label23.caption
+msgid "Photo:"
+msgstr ""
+
 #: tformcontact.label3.caption
 msgid "Phone:"
 msgstr "Telefon:"
@@ -187,16 +191,26 @@ msgid "Organization:"
 msgstr "Společnost:"
 
 #: tformcontact.listview1.columns[0].caption
-msgid "Item"
+#, fuzzy
+#| msgid "Item"
+msgid "Name"
 msgstr "Položka"
 
 #: tformcontact.listview1.columns[1].caption
-msgid "Value"
+#, fuzzy
+#| msgid "Value"
+msgctxt "tformcontact.listview1.columns[1].caption"
+msgid "Attributes"
 msgstr "Hodnota"
+
+#: tformcontact.listview1.columns[2].caption
+msgctxt "tformcontact.listview1.columns[2].caption"
+msgid "Value"
+msgstr ""
 
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
-msgstr "Všechny pole"
+msgstr "Všechna pole"
 
 #: tformcontact.tabsheetdetails.caption
 msgid "Details"
@@ -229,11 +243,11 @@ msgstr "Kontakty"
 
 #: tformcontacts.listview1.columns[0].caption
 msgid "Full Name"
-msgstr "Křestní jméno"
+msgstr "Celé jméno"
 
 #: tformcontacts.listview1.columns[1].caption
 msgid "First name"
-msgstr "Prostřední jméno"
+msgstr "Křestní jméno"
 
 #: tformcontacts.listview1.columns[2].caption
 msgctxt "tformcontacts.listview1.columns[2].caption"
@@ -243,7 +257,7 @@ msgstr "Prostřední jméno"
 #: tformcontacts.listview1.columns[3].caption
 msgctxt "tformcontacts.listview1.columns[3].caption"
 msgid "Last Name"
-msgstr "Příjimení"
+msgstr "Příjmení"
 
 #: tformcontacts.listview1.columns[4].caption
 msgid "Cell phone"
@@ -363,6 +377,10 @@ msgstr "Téma:"
 msgid "DPI:"
 msgstr "DPI:"
 
+#: ucontact.sfieldindexnotdefined
+msgid "Field index not defined"
+msgstr "Index pole nenalezen"
+
 #: ucontact.sfoundblockendwithoutblockstart
 msgid "Found block end without block start"
 msgstr "Nalezen konec bloku bez začátku bloku"
@@ -437,3 +455,4 @@ msgstr "Počet:"
 #: uformmain.smodified
 msgid "Modified"
 msgstr "Upraveno"
+
