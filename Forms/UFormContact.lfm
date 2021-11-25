@@ -14,12 +14,12 @@ object FormContact: TFormContact
   object PageControlContact: TPageControl
     Left = 10
     Height = 576
-    Top = 10
+    Top = 8
     Width = 893
-    ActivePage = TabSheetAll
+    ActivePage = TabSheetGeneral
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -125,7 +125,7 @@ object FormContact: TFormContact
       object Label6: TLabel
         Left = 240
         Height = 24
-        Top = 264
+        Top = 304
         Width = 55
         Caption = 'Notes:'
         ParentColor = False
