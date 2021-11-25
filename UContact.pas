@@ -36,7 +36,7 @@ type
   { TContactFields }
 
   TContactFields = class(TFPGObjectList<TContactField>)
-    function AddNew(Name: string; Groups: TStringArray; Title: string; Index: TContactFieldIndex; DataType:
+    function AddNew(Name: string; Groups: array of string; Title: string; Index: TContactFieldIndex; DataType:
       TDataType; ValueIndex: Integer = -1): TContactField;
     function GetByIndex(Index: TContactFieldIndex): TContactField;
     procedure LoadToStrings(AItems: TStrings);
@@ -347,12 +347,16 @@ end;
 
 { TContactFields }
 
-function TContactFields.AddNew(Name: string; Groups: TStringArray; Title: string; Index: TContactFieldIndex;
+function TContactFields.AddNew(Name: string; Groups: array of string; Title: string; Index: TContactFieldIndex;
   DataType: TDataType; ValueIndex: Integer = -1): TContactField;
+var
+  I: Integer;
 begin
   Result := TContactField.Create;
   Result.SysName := Name;
-  Result.Groups := Groups;
+  SetLength(Result.Groups, Length(Groups));
+  for I := 0 to Length(Groups) - 1 do
+    Result.Groups[I] := Groups[I];
   Result.Title := Title;
   Result.Index := Index;
   Result.ValueIndex := ValueIndex;
