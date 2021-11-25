@@ -16,11 +16,12 @@ type
 
   TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
     cfTitleAfter, cfFullName, cfTelCell, cfTelHome, cfTelHome2, cfTelWork, cfTelVoip,
-    cfTelMain, cfEmail,
+    cfTelMain, cfEmail, cfTel, cfUid, cfUrl,
     cfEmailHome, cfEmailInternet, cfNickName, cfNote, cfRole, cfTitle,
-    cfCategories, cfOrganization, cfAdrHome, cfHomeAddressStreet,
-    cfHomeAddressCity, cfHomeAddressCountry, cfXTimesContacted,
-    cfXLastTimeContacted, cfPhoto, cfXJabber, cfDayOfBirth, cfRevision,
+    cfCategories, cfOrganization, cfDepartment,
+    cfHomeAddress, cfHomeAddressStreet, cfHomeAddressCity, cfHomeAddressCountry,
+    cfWorkAddress, cfWorkAddressStreet, cfWorkAddressCity, cfWorkAddressCountry,
+    cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfXJabber, cfDayOfBirth, cfRevision,
     cfVersion);
 
   TContactField = class
@@ -123,6 +124,45 @@ resourcestring
   SFoundPropertiesBeforeBlockStart = 'Found properties before the start of block';
   SFoundBlockEndWithoutBlockStart = 'Found block end without block start';
   SFieldIndexNotDefined = 'Field index not defined';
+  SLastName = 'Last Name';
+  SFirstName = 'First Name';
+  SMiddleName = 'Middle Name';
+  STitleBefore = 'Title Before';
+  STitleAfter = 'Title After';
+  SFullName = 'Full Name';
+  STelephone = 'Telephone';
+  SCellPhone = 'Cell phone';
+  SHomePhone = 'Home phone';
+  SHomePhone2 = 'Home phone 2';
+  SWorkPhone = 'Work phone';
+  SVoipPhone = 'VoIP phone';
+  SMainPhone = 'Main phone';
+  SEmail = 'E-mail';
+  SHomeEmail = 'Home Email';
+  SInternetEmail = 'Internet Email';
+  SNickName = 'Nick Name';
+  SNote = 'Note';
+  SRole = 'Role';
+  STitle = 'Title';
+  SCategories = 'Categories';
+  SOrganization = 'Organization';
+  SDepartement = 'Departement';
+  SHomeAddress = 'Home Address';
+  SHomeAddressStreet = 'Home Address Street';
+  SHomeAddressCity = 'Home Address City';
+  SHomeAddressCountry = 'Home Address Country';
+  SWorkAddress = 'Home Address';
+  SWorkAddressStreet = 'Work Address Street';
+  SWorkAddressCity = 'Work Address City';
+  SWorkAddressCountry = 'Work Address Country';
+  STimesContacted = 'Times Contacted';
+  SLastTimeContacted = 'Last Time Contacted';
+  SPhoto = 'Photo';
+  SJabber = 'Jabber';
+  SDayOfBirth = 'Day of birth';
+  SRevision = 'Revision';
+  SUniqueIdentifier = 'Unique identifier';
+  SWebAddress = 'Web address';
 
 function GetNext(var Text: string; Separator: string): string;
 begin
@@ -184,6 +224,8 @@ end;
 { TContactProperty }
 
 procedure TContactProperty.EvaluateAttributes;
+var
+  Index: Integer;
 begin
   if Attributes.IndexOf('BASE64') <> -1 then
     Encoding := 'BASE64'
@@ -195,6 +237,11 @@ begin
   if Attributes.IndexOfName('CHARSET') <> -1 then
     Charset := Attributes.Values['CHARSET']
     else Charset := '';
+
+  // Simplify TYPE attribute from TYPE=VALUE into VALUE
+  Index := Attributes.IndexOfName('TYPE');
+  if Index <> -1 then
+    Attributes.Strings[Index] := Attributes.Values['TYPE'];
 end;
 
 function TContactProperty.GetDecodedValue: string;
@@ -412,38 +459,45 @@ end;
 procedure TContactsFile.InitFields;
 begin
   with Fields do begin
-    AddNew('N', [], 'Last Name', cfLastName, dtString, 0);
-    AddNew('N', [], 'First Name', cfFirstName, dtString, 1);
-    AddNew('N', [], 'Middle Name', cfMiddleName, dtString, 2);
-    AddNew('N', [], 'Title Before', cfTitleBefore, dtString, 3);
-    AddNew('N', [], 'Title After', cfTitleAfter, dtString, 4);
-    AddNew('FN', [], 'Full Name', cfFullName, dtString);
-    AddNew('TEL', ['CELL'], 'Cell phone', cfTelCell, dtString);
-    AddNew('TEL', ['HOME'], 'Home phone', cfTelHome, dtString);
-    AddNew('TEL', ['HOME2'], 'Home phone 2', cfTelHome2, dtString);
-    AddNew('TEL', ['WORK'], 'Home work', cfTelWork, dtString);
-    AddNew('TEL', ['VOIP'], 'Tel VoIP', cfTelVoip, dtString);
-    AddNew('TEL', ['MAIN'], 'Tel Main', cfTelMain, dtString);
-    AddNew('EMAIL', [], 'Email', cfEmail, dtString);
-    AddNew('EMAIL', ['HOME'], 'Email Home', cfEmailHome, dtString);
-    AddNew('EMAIL', ['INTERNET'], 'Email Internet', cfEmailInternet, dtString);
-    AddNew('X-NICKNAME', [], 'Nick Name', cfNickName, dtString);
-    AddNew('NOTE', [], 'Note', cfNote, dtString);
-    AddNew('ROLE', [], 'Role', cfRole, dtString);
-    AddNew('TITLE', [], 'Title', cfTitle, dtString);
-    AddNew('CATEGORIES', [], 'Categories', cfCategories, dtString);
-    AddNew('ORG', [], 'Organization', cfOrganization, dtString, 0);
-    AddNew('ORG', [], 'Division', cfOrganization, dtString, 1);
-    AddNew('ADR', ['HOME'], 'Home Address', cfAdrHome, dtString);
-    AddNew('ADR', ['HOME'], 'Home Address Street', cfHomeAddressStreet, dtString, 1);
-    AddNew('ADR', ['HOME'], 'Home Address City', cfHomeAddressCity, dtString, 2);
-    AddNew('ADR', ['HOME'], 'Home Address Country', cfHomeAddressCountry, dtString, 3);
-    AddNew('X-TIMES_CONTACTED', [], 'Times Contacted', cfXTimesContacted, dtString);
-    AddNew('X-LAST_TIME_CONTACTED', [], 'Last Time Contacted', cfXLastTimeContacted, dtString);
-    AddNew('PHOTO', [], 'Photo', cfPhoto, dtString);
-    AddNew('X-JABBER', [], 'Jabber', cfXJabber, dtString);
-    AddNew('BDAY', [], 'Day of birth', cfDayOfBirth, dtString);
-    AddNew('REV', [], 'Revision', cfRevision, dtString);
+    AddNew('N', [], SLastName, cfLastName, dtString, 0);
+    AddNew('N', [], SFirstName, cfFirstName, dtString, 1);
+    AddNew('N', [], SMiddleName, cfMiddleName, dtString, 2);
+    AddNew('N', [], STitleBefore, cfTitleBefore, dtString, 3);
+    AddNew('N', [], STitleAfter, cfTitleAfter, dtString, 4);
+    AddNew('FN', [], SFullName, cfFullName, dtString);
+    AddNew('TEL', [], STelephone, cfTel, dtString);
+    AddNew('TEL', ['CELL'], SCellPhone, cfTelCell, dtString);
+    AddNew('TEL', ['HOME'], SHomePhone, cfTelHome, dtString);
+    AddNew('TEL', ['HOME2'], SHomePhone2, cfTelHome2, dtString);
+    AddNew('TEL', ['WORK'], SWorkPhone, cfTelWork, dtString);
+    AddNew('TEL', ['VOIP'], SVoipPhone, cfTelVoip, dtString);
+    AddNew('TEL', ['MAIN'], SMainPhone, cfTelMain, dtString);
+    AddNew('EMAIL', [], SEmail, cfEmail, dtString);
+    AddNew('EMAIL', ['HOME'], SHomeEmail, cfEmailHome, dtString);
+    AddNew('EMAIL', ['INTERNET'], SInternetEmail, cfEmailInternet, dtString);
+    AddNew('NICKNAME', [], SNickName, cfNickName, dtString);
+    AddNew('NOTE', [], SNote, cfNote, dtString);
+    AddNew('ROLE', [], SRole, cfRole, dtString);
+    AddNew('TITLE', [], STitle, cfTitle, dtString);
+    AddNew('CATEGORIES', [], SCategories, cfCategories, dtString);
+    AddNew('ORG', [], SOrganization, cfOrganization, dtString, 0);
+    AddNew('ORG', [], SDepartement, cfDepartment, dtString, 1);
+    AddNew('ADR', ['HOME'], SHomeAddress, cfHomeAddress, dtString);
+    AddNew('ADR', ['HOME'], SHomeAddressStreet, cfHomeAddressStreet, dtString, 1);
+    AddNew('ADR', ['HOME'], SHomeAddressCity, cfHomeAddressCity, dtString, 2);
+    AddNew('ADR', ['HOME'], SHomeAddressCountry, cfHomeAddressCountry, dtString, 3);
+    AddNew('ADR', ['WORK'], SWorkAddress, cfWorkAddress, dtString);
+    AddNew('ADR', ['WORK'], SWorkAddressStreet, cfWorkAddressStreet, dtString, 1);
+    AddNew('ADR', ['WORK'], SWorkAddressCity, cfWorkAddressCity, dtString, 2);
+    AddNew('ADR', ['WORK'], SWorkAddressCountry, cfWorkAddressCountry, dtString, 3);
+    AddNew('X-TIMES_CONTACTED', [], STimesContacted, cfXTimesContacted, dtString);
+    AddNew('X-LAST_TIME_CONTACTED', [], SLastTimeContacted, cfXLastTimeContacted, dtString);
+    AddNew('PHOTO', [], SPhoto, cfPhoto, dtString);
+    AddNew('X-JABBER', [], SJabber, cfXJabber, dtString);
+    AddNew('BDAY', [], SDayOfBirth, cfDayOfBirth, dtString);
+    AddNew('REV', [], SRevision, cfRevision, dtString);
+    AddNew('UID', [], SUniqueIdentifier, cfUid, dtString);
+    AddNew('URL', [], SWebAddress, cfUrl, dtString);
   end;
 end;
 
@@ -569,7 +623,7 @@ begin
             NewProperty := TContactProperty.Create;
             NewRecord.Properties.Add(NewProperty);
           end;
-          NewProperty.Attributes.DelimitedText := Names;
+          NewProperty.Attributes.DelimitedText := UpperCase(Names);
           if NewProperty.Attributes.Count > 0 then begin
             NewProperty.Name := NewProperty.Attributes[0];
             NewProperty.Attributes.Delete(0);
