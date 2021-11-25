@@ -26,6 +26,7 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     PopupMenuContact: TPopupMenu;
+    StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -69,6 +70,9 @@ uses
 resourcestring
   SRemoveContacts = 'Remove contacts';
   SRemoveContactsQuery = 'Do you want to remove selected contacts?';
+  STotal = 'Total';
+  SFiltered = 'Filtered';
+  SSelected = 'Selected';
 
 { TFormContacts }
 
@@ -82,7 +86,7 @@ begin
     Item.SubItems.Add(Fields[cfLastName]);
     Item.SubItems.Add(Fields[cfTelCell]);
     Item.SubItems.Add(Fields[cfTelHome]);
-    Item.Data := Contacts[Item.Index];
+    Item.Data := ListViewSort1.List[Item.Index];
   end;
 end;
 
@@ -100,6 +104,7 @@ end;
 procedure TFormContacts.ListViewFilter1Change(Sender: TObject);
 begin
   ReloadList;
+  UpdateInterface;
 end;
 
 procedure TFormContacts.ListViewSort1ColumnWidthChanged(Sender: TObject);
@@ -243,6 +248,7 @@ end;
 procedure TFormContacts.ASelectAllExecute(Sender: TObject);
 begin
   ListView1.SelectAll;
+  UpdateInterface;
 end;
 
 procedure TFormContacts.FormClose(Sender: TObject; var CloseAction: TCloseAction
@@ -262,10 +268,24 @@ begin
 end;
 
 procedure TFormContacts.UpdateInterface;
+var
+  Text: string;
+  SelectedCount: Integer;
 begin
   AAdd.Enabled := Assigned(Contacts);
   AModify.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
   ARemove.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+
+  Text := '';
+  if Assigned(Contacts) then begin
+    Text := STotal + ': ' + IntToStr(Contacts.Count);
+    if ListView1.Items.Count < Contacts.Count then
+      Text := Text + ', ' + SFiltered + ': ' + IntToStr(ListView1.Items.Count);
+    SelectedCount := ListView1.SelCount;
+    if SelectedCount > 0 then
+      Text := Text + ', ' + SSelected + ': ' + IntToStr(SelectedCount);
+  end;
+  StatusBar1.Panels[0].Text := Text;
 end;
 
 end.

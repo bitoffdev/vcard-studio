@@ -13,7 +13,7 @@ object FormMain: TFormMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.12.0'
   object CoolBar1: TCoolBar
     Left = 0
     Height = 43
@@ -106,22 +106,10 @@ object FormMain: TFormMain
       end
     end
   end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Height = 28
-    Top = 734
-    Width = 1178
-    Panels = <    
-      item
-        Width = 300
-      end>
-    ParentFont = False
-    SimplePanel = False
-  end
   object MainMenu1: TMainMenu
     Images = Core.ImageList1
-    left = 192
-    top = 120
+    Left = 192
+    Top = 120
     object MenuItemFile: TMenuItem
       Caption = 'File'
       object MenuItemFileNew: TMenuItem
@@ -186,7 +174,7 @@ object FormMain: TFormMain
     end
   end
   object PopupMenuOpenRecent: TPopupMenu
-    left = 420
-    top = 120
+    Left = 420
+    Top = 120
   end
 end

@@ -363,15 +363,15 @@ begin
       TempFile.LoadFromFile(FileName);
       Result.Loaded := TempFile.Contacts.Count;
       for I := 0 to TempFile.Contacts.Count - 1 do begin
-        NewContact := TContactsFile(DataFile).Contacts.Search(TContact(TempFile.Contacts[I]).Fields[cfFullName]);
+        NewContact := TContactsFile(DataFile).Contacts.Search(TempFile.Contacts[I].Fields[cfFullName]);
         if not Assigned(NewContact) then begin
           NewContact := TContact.Create;
           NewContact.Parent := TContactsFile(DataFile);
-          NewContact.Assign(TContact(TempFile.Contacts[I]));
+          NewContact.Assign(TempFile.Contacts[I]);
           TContactsFile(DataFile).Contacts.Add(NewContact);
           Inc(Result.New);
         end else begin
-          if NewContact.UpdateFrom(TContact(TempFile.Contacts[I])) then
+          if NewContact.UpdateFrom(TempFile.Contacts[I]) then
             Inc(Result.Updated);
         end;
       end;
@@ -401,6 +401,7 @@ begin
       FormContacts.Contacts := TContactsFile(DataFile).Contacts
       else FormContacts.Contacts := nil;
     FormContacts.ReloadList;
+    FormContacts.UpdateInterface;
   end;
 end;
 
