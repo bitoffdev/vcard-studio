@@ -203,14 +203,20 @@ begin
         if PhotoProperty.Attributes.IndexOf('JPEG') <> -1 then begin
           JpegImage := TJPEGImage.Create;
           try
-            JpegImage.LoadFromStream(Stream);
-            ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
-            ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
+            try
+              JpegImage.LoadFromStream(Stream);
+              ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
+              ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
+            except
+            end;
           finally
             JpegImage.Free;
           end;
         end else begin
-          ImagePhoto.Picture.Bitmap.LoadFromStream(Stream);
+          try
+            ImagePhoto.Picture.LoadFromStream(Stream);
+          except
+          end;
         end;
       finally
         Stream.Free;
@@ -221,8 +227,12 @@ end;
 
 procedure TFormContact.SaveData(Contact: TContact);
 begin
+  Contact.Fields[cfFullName] := EditFullName.Text;
+  Contact.Fields[cfMiddleName] := EditMiddleName.Text;
   Contact.Fields[cfFirstName] := EditFirstName.Text;
   Contact.Fields[cfLastName] := EditLastName.Text;
+  Contact.Fields[cfTitleAfter] := EditTitleAfter.Text;
+  Contact.Fields[cfTitleBefore] := EditTitleBefore.Text;
   Contact.Fields[cfTelCell] := EditCellPhone.Text;
   Contact.Fields[cfTelHome] := EditPhoneHome.Text;
   Contact.Fields[cfTelWork] := EditPhoneWork.Text;
