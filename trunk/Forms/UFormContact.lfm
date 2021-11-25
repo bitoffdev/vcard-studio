@@ -16,10 +16,10 @@ object FormContact: TFormContact
     Height = 576
     Top = 10
     Width = 893
-    ActivePage = TabSheetGeneral
+    ActivePage = TabSheetAll
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'

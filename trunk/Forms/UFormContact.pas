@@ -196,7 +196,6 @@ begin
   if Assigned(PhotoProperty) then begin
     Photo := Contact.Fields[cfPhoto];
     if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
-      Photo := PhotoProperty.GetDecodedValue;
       Stream := TMemoryStream.Create;
       try
         Stream.Write(Photo[1], Length(Photo));

@@ -8,7 +8,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, UFormMain, UCore, Common, UDataFile, SysUtils, UFormContacts,
-  UFormContact, UFormFindDuplicity, UFormGenerate, UFormError
+  UFormContact, UFormFindDuplicity, UFormGenerate, UFormError, UQuotedPrintable
   { you can add units after this };
 
 {$R *.res}
