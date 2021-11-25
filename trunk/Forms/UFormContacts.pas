@@ -258,8 +258,14 @@ begin
 end;
 
 procedure TFormContacts.FormCreate(Sender: TObject);
+var
+  I: Integer;
 begin
   FContacts := nil;
+  for I := 0 to ToolBar1.ButtonCount - 1 do begin
+    ToolBar1.Buttons[I].ShowHint := True;
+    ToolBar1.Buttons[I].Hint := ToolBar1.Buttons[I].Caption;
+  end;
 end;
 
 procedure TFormContacts.ReloadList;
