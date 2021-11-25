@@ -45,11 +45,11 @@ var
 begin
   for I := 1 to SpinEditCount.Value do begin
     Contact := Contacts.AddNew;
-    Contact.FirstName := 'First ' + IntToStr(Random(10000));
-    Contact.LastName := 'Last ' + IntToStr(Random(10000));
-    Contact.FullName := 'FullName ' + IntToStr(Random(100));
-    Contact.TelCell := IntToStr(Random(1000000000));
-    Contact.TelHome := IntToStr(Random(1000000000));
+    Contact.Fields[cfFirstName] := 'First ' + IntToStr(Random(10000));
+    Contact.Fields[cfLastName] := 'Last ' + IntToStr(Random(10000));
+    Contact.Fields[cfFullName] := 'FullName ' + IntToStr(Random(100));
+    Contact.Fields[cfTelCell] := IntToStr(Random(1000000000));
+    Contact.Fields[cfTelHome] := IntToStr(Random(1000000000));
   end;
   Close;
 end;

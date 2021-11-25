@@ -1,11 +1,11 @@
 object FormContact: TFormContact
   Left = 604
-  Height = 588
-  Top = 429
-  Width = 914
+  Height = 656
+  Top = 361
+  Width = 915
   Caption = 'Contact'
-  ClientHeight = 588
-  ClientWidth = 914
+  ClientHeight = 656
+  ClientWidth = 915
   DesignTimePPI = 144
   OnClose = FormClose
   OnCreate = FormCreate
@@ -13,9 +13,9 @@ object FormContact: TFormContact
   LCLVersion = '2.0.12.0'
   object PageControlContact: TPageControl
     Left = 10
-    Height = 508
+    Height = 576
     Top = 10
-    Width = 892
+    Width = 893
     ActivePage = TabSheetAll
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
@@ -23,8 +23,8 @@ object FormContact: TFormContact
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
-      ClientHeight = 468
-      ClientWidth = 882
+      ClientHeight = 536
+      ClientWidth = 883
       ParentFont = False
       object Label1: TLabel
         Left = 16
@@ -112,16 +112,18 @@ object FormContact: TFormContact
         ParentFont = False
       end
       object MemoNotes: TMemo
-        Left = 16
-        Height = 146
+        Left = 240
+        Height = 282
         Top = 230
-        Width = 846
+        Width = 623
         Anchors = [akTop, akLeft, akRight, akBottom]
         ParentFont = False
+        ParentShowHint = False
+        ScrollBars = ssAutoBoth
         TabOrder = 5
       end
       object Label6: TLabel
-        Left = 19
+        Left = 240
         Height = 24
         Top = 202
         Width = 55
@@ -180,11 +182,28 @@ object FormContact: TFormContact
         ParentColor = False
         ParentFont = False
       end
+      object ImagePhoto: TImage
+        Left = 16
+        Height = 208
+        Top = 232
+        Width = 207
+        Proportional = True
+        Stretch = True
+      end
+      object Label23: TLabel
+        Left = 16
+        Height = 24
+        Top = 200
+        Width = 55
+        Caption = 'Photo:'
+        ParentColor = False
+        ParentFont = False
+      end
     end
     object TabSheetDetails: TTabSheet
       Caption = 'Details'
-      ClientHeight = 468
-      ClientWidth = 882
+      ClientHeight = 536
+      ClientWidth = 883
       ParentFont = False
       object Label7: TLabel
         Left = 10
@@ -427,24 +446,28 @@ object FormContact: TFormContact
     end
     object TabSheetAll: TTabSheet
       Caption = 'All fields'
-      ClientHeight = 468
-      ClientWidth = 882
+      ClientHeight = 536
+      ClientWidth = 883
       OnShow = TabSheetAllShow
       ParentFont = False
       object ListView1: TListView
         Left = 10
-        Height = 441
+        Height = 509
         Top = 19
-        Width = 864
+        Width = 865
         Anchors = [akTop, akLeft, akRight, akBottom]
         Columns = <        
           item
-            Caption = 'Item'
-            Width = 240
+            Caption = 'Name'
+            Width = 100
+          end        
+          item
+            Caption = 'Attributes'
+            Width = 200
           end        
           item
             Caption = 'Value'
-            Width = 609
+            Width = 550
           end>
         OwnerData = True
         ParentFont = False
@@ -459,9 +482,9 @@ object FormContact: TFormContact
     end
   end
   object ButtonCancel: TButton
-    Left = 787
+    Left = 788
     Height = 37
-    Top = 538
+    Top = 606
     Width = 115
     Anchors = [akRight, akBottom]
     Caption = 'Cancel'
@@ -470,9 +493,9 @@ object FormContact: TFormContact
     TabOrder = 1
   end
   object ButtonOk: TButton
-    Left = 652
+    Left = 653
     Height = 37
-    Top = 538
+    Top = 606
     Width = 119
     Anchors = [akRight, akBottom]
     Caption = 'OK'
