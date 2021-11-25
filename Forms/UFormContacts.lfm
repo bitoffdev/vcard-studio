@@ -62,6 +62,8 @@ object FormContacts: TFormContacts
     Align = alBottom
     Images = Core.ImageList1
     ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 1
     object ToolButton1: TToolButton
       Left = 1
