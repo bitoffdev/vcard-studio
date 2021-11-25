@@ -91,8 +91,8 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #: tformcontact.label1.caption
-msgid "Name:"
-msgstr "Jméno:"
+msgid "First name:"
+msgstr "Křestní jméno:"
 
 #: tformcontact.label10.caption
 msgctxt "tformcontact.label10.caption"
@@ -156,7 +156,23 @@ msgstr "Narozeniny:"
 
 #: tformcontact.label23.caption
 msgid "Photo:"
-msgstr ""
+msgstr "Fotka:"
+
+#: tformcontact.label24.caption
+msgid "Full name:"
+msgstr "Celé jméno:"
+
+#: tformcontact.label25.caption
+msgid "Middle name:"
+msgstr "Prostřední jméno:"
+
+#: tformcontact.label26.caption
+msgid "Title before:"
+msgstr "Titul před:"
+
+#: tformcontact.label27.caption
+msgid "Title after:"
+msgstr "Titul za:"
 
 #: tformcontact.label3.caption
 msgid "Phone:"
@@ -167,7 +183,7 @@ msgid "E-mail:"
 msgstr "E-mail:"
 
 #: tformcontact.label5.caption
-msgid "Surname:"
+msgid "Last name"
 msgstr "Příjmení:"
 
 #: tformcontact.label6.caption
@@ -190,23 +206,23 @@ msgstr "Mobil (Domov):"
 msgid "Organization:"
 msgstr "Společnost:"
 
+#: tformcontact.labelorganization1.caption
+msgid "Department:"
+msgstr "Oddělení:"
+
 #: tformcontact.listview1.columns[0].caption
-#, fuzzy
-#| msgid "Item"
 msgid "Name"
-msgstr "Položka"
+msgstr "Jméno"
 
 #: tformcontact.listview1.columns[1].caption
-#, fuzzy
-#| msgid "Value"
 msgctxt "tformcontact.listview1.columns[1].caption"
 msgid "Attributes"
-msgstr "Hodnota"
+msgstr "Atributy"
 
 #: tformcontact.listview1.columns[2].caption
 msgctxt "tformcontact.listview1.columns[2].caption"
 msgid "Value"
-msgstr ""
+msgstr "Hodnota"
 
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
@@ -242,6 +258,7 @@ msgid "Contacts"
 msgstr "Kontakty"
 
 #: tformcontacts.listview1.columns[0].caption
+msgctxt "tformcontacts.listview1.columns[0].caption"
 msgid "Full Name"
 msgstr "Celé jméno"
 
@@ -260,10 +277,12 @@ msgid "Last Name"
 msgstr "Příjmení"
 
 #: tformcontacts.listview1.columns[4].caption
+msgctxt "tformcontacts.listview1.columns[4].caption"
 msgid "Cell phone"
 msgstr "Mobilní telefon"
 
 #: tformcontacts.listview1.columns[5].caption
+msgctxt "tformcontacts.listview1.columns[5].caption"
 msgid "Home phone"
 msgstr "Domácí telefon"
 
@@ -377,9 +396,34 @@ msgstr "Téma:"
 msgid "DPI:"
 msgstr "DPI:"
 
+#: ucontact.scategories
+msgid "Categories"
+msgstr "Kategorie"
+
+#: ucontact.scellphone
+msgctxt "ucontact.scellphone"
+msgid "Cell phone"
+msgstr "Mobilní telefon"
+
+#: ucontact.sdayofbirth
+msgid "Day of birth"
+msgstr "Datum narození"
+
+#: ucontact.sdepartement
+msgid "Departement"
+msgstr "Oddělení"
+
+#: ucontact.semail
+msgid "E-mail"
+msgstr "E-mail"
+
 #: ucontact.sfieldindexnotdefined
 msgid "Field index not defined"
 msgstr "Index pole nenalezen"
+
+#: ucontact.sfirstname
+msgid "First Name"
+msgstr "Křestní jméno"
 
 #: ucontact.sfoundblockendwithoutblockstart
 msgid "Found block end without block start"
@@ -388,6 +432,114 @@ msgstr "Nalezen konec bloku bez začátku bloku"
 #: ucontact.sfoundpropertiesbeforeblockstart
 msgid "Found properties before the start of block"
 msgstr "Nalezena vlastnost před začátkem bloku"
+
+#: ucontact.sfullname
+msgctxt "ucontact.sfullname"
+msgid "Full Name"
+msgstr "Celé jméno"
+
+#: ucontact.shomeaddress
+msgctxt "ucontact.shomeaddress"
+msgid "Home Address"
+msgstr "Domácí adresa"
+
+#: ucontact.shomeaddresscity
+msgid "Home Address City"
+msgstr "Domácí adresa město"
+
+#: ucontact.shomeaddresscountry
+msgid "Home Address Country"
+msgstr "Domácí adresa země"
+
+#: ucontact.shomeaddressstreet
+msgid "Home Address Street"
+msgstr "Domácí adresa ulice"
+
+#: ucontact.shomeemail
+msgid "Home Email"
+msgstr "Domácí email"
+
+#: ucontact.shomephone
+msgctxt "ucontact.shomephone"
+msgid "Home phone"
+msgstr "Domácí telefon"
+
+#: ucontact.shomephone2
+msgid "Home phone 2"
+msgstr "Domácí telefon 2"
+
+#: ucontact.sinternetemail
+msgid "Internet Email"
+msgstr "Internetová email"
+
+#: ucontact.sjabber
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ucontact.slastname
+msgctxt "ucontact.slastname"
+msgid "Last Name"
+msgstr "Příjmení"
+
+#: ucontact.slasttimecontacted
+msgid "Last Time Contacted"
+msgstr "Naposledy kontaktováno"
+
+#: ucontact.smainphone
+msgid "Main phone"
+msgstr "Hlavní telefon"
+
+#: ucontact.smiddlename
+msgid "Middle Name"
+msgstr "Prostřední jméno"
+
+#: ucontact.snickname
+msgid "Nick Name"
+msgstr "Přezdívka"
+
+#: ucontact.snote
+msgid "Note"
+msgstr "Poznámky"
+
+#: ucontact.sorganization
+msgid "Organization"
+msgstr "Organizace"
+
+#: ucontact.sphoto
+msgid "Photo"
+msgstr "Fotka"
+
+#: ucontact.srevision
+msgid "Revision"
+msgstr "Revize"
+
+#: ucontact.srole
+msgid "Role"
+msgstr "Role"
+
+#: ucontact.stelephone
+msgid "Telephone"
+msgstr "Telefon"
+
+#: ucontact.stimescontacted
+msgid "Times Contacted"
+msgstr "Počet kontaktování"
+
+#: ucontact.stitle
+msgid "Title"
+msgstr "Titul"
+
+#: ucontact.stitleafter
+msgid "Title After"
+msgstr "Titul za"
+
+#: ucontact.stitlebefore
+msgid "Title Before"
+msgstr "Titul před"
+
+#: ucontact.suniqueidentifier
+msgid "Unique identifier"
+msgstr "Unikátní identifikátor"
 
 #: ucontact.sunknowncommand
 msgid "Unknown command: %s"
@@ -401,6 +553,35 @@ msgstr "Nepodporovaný index pole kontaktu"
 msgctxt "ucontact.svcardfile"
 msgid "vCard file"
 msgstr "Soubor vCard"
+
+#: ucontact.svoipphone
+msgid "VoIP phone"
+msgstr "VoIP telefon"
+
+#: ucontact.swebaddress
+msgid "Web address"
+msgstr "Webová adresa"
+
+#: ucontact.sworkaddress
+msgctxt "ucontact.sworkaddress"
+msgid "Home Address"
+msgstr "Domácí adresa"
+
+#: ucontact.sworkaddresscity
+msgid "Work Address City"
+msgstr "Pracovní adresa město"
+
+#: ucontact.sworkaddresscountry
+msgid "Work Address Country"
+msgstr "Pracovní adresa země"
+
+#: ucontact.sworkaddressstreet
+msgid "Work Address Street"
+msgstr "Pracovní adresa ulice"
+
+#: ucontact.sworkphone
+msgid "Work phone"
+msgstr "Pracovní telefon"
 
 #: ucore.sappexit
 msgid "Application exit"
@@ -455,4 +636,3 @@ msgstr "Počet:"
 #: uformmain.smodified
 msgid "Modified"
 msgstr "Upraveno"
-

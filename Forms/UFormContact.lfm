@@ -16,10 +16,10 @@ object FormContact: TFormContact
     Height = 576
     Top = 10
     Width = 893
-    ActivePage = TabSheetAll
+    ActivePage = TabSheetGeneral
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -29,16 +29,16 @@ object FormContact: TFormContact
       object Label1: TLabel
         Left = 16
         Height = 24
-        Top = 24
-        Width = 56
-        Caption = 'Name:'
+        Top = 72
+        Width = 94
+        Caption = 'First name:'
         ParentColor = False
         ParentFont = False
       end
-      object EditName: TEdit
+      object EditFirstName: TEdit
         Left = 144
         Height = 42
-        Top = 16
+        Top = 64
         Width = 254
         ParentFont = False
         TabOrder = 0
@@ -46,7 +46,7 @@ object FormContact: TFormContact
       object Label2: TLabel
         Left = 16
         Height = 24
-        Top = 72
+        Top = 170
         Width = 95
         Caption = 'Cell phone:'
         ParentColor = False
@@ -55,7 +55,7 @@ object FormContact: TFormContact
       object EditCellPhone: TEdit
         Left = 144
         Height = 42
-        Top = 62
+        Top = 160
         Width = 254
         ParentFont = False
         TabOrder = 1
@@ -63,7 +63,7 @@ object FormContact: TFormContact
       object EditPhone: TEdit
         Left = 144
         Height = 42
-        Top = 108
+        Top = 206
         Width = 254
         ParentFont = False
         TabOrder = 2
@@ -71,7 +71,7 @@ object FormContact: TFormContact
       object Label3: TLabel
         Left = 16
         Height = 24
-        Top = 112
+        Top = 210
         Width = 59
         Caption = 'Phone:'
         ParentColor = False
@@ -80,7 +80,7 @@ object FormContact: TFormContact
       object EditEmail: TEdit
         Left = 575
         Height = 42
-        Top = 62
+        Top = 160
         Width = 254
         ParentFont = False
         TabOrder = 3
@@ -88,16 +88,16 @@ object FormContact: TFormContact
       object Label4: TLabel
         Left = 432
         Height = 24
-        Top = 72
+        Top = 170
         Width = 58
         Caption = 'E-mail:'
         ParentColor = False
         ParentFont = False
       end
-      object EditSurname: TEdit
+      object EditLastName: TEdit
         Left = 575
         Height = 42
-        Top = 16
+        Top = 64
         Width = 254
         ParentFont = False
         TabOrder = 4
@@ -105,16 +105,16 @@ object FormContact: TFormContact
       object Label5: TLabel
         Left = 432
         Height = 24
-        Top = 24
-        Width = 81
-        Caption = 'Surname:'
+        Top = 72
+        Width = 87
+        Caption = 'Last name'
         ParentColor = False
         ParentFont = False
       end
       object MemoNotes: TMemo
         Left = 240
-        Height = 282
-        Top = 230
+        Height = 176
+        Top = 336
         Width = 623
         Anchors = [akTop, akLeft, akRight, akBottom]
         ParentFont = False
@@ -125,7 +125,7 @@ object FormContact: TFormContact
       object Label6: TLabel
         Left = 240
         Height = 24
-        Top = 202
+        Top = 264
         Width = 55
         Caption = 'Notes:'
         ParentColor = False
@@ -134,7 +134,7 @@ object FormContact: TFormContact
       object EditEmailHome: TEdit
         Left = 575
         Height = 42
-        Top = 108
+        Top = 206
         Width = 254
         ParentFont = False
         TabOrder = 6
@@ -142,7 +142,7 @@ object FormContact: TFormContact
       object Label20: TLabel
         Left = 432
         Height = 24
-        Top = 112
+        Top = 210
         Width = 124
         Caption = 'E-mail (Home):'
         ParentColor = False
@@ -151,7 +151,7 @@ object FormContact: TFormContact
       object EditEmailWork: TEdit
         Left = 575
         Height = 42
-        Top = 152
+        Top = 250
         Width = 254
         ParentFont = False
         TabOrder = 7
@@ -159,7 +159,7 @@ object FormContact: TFormContact
       object Label21: TLabel
         Left = 432
         Height = 24
-        Top = 160
+        Top = 258
         Width = 117
         Caption = 'E-mail (Work):'
         ParentColor = False
@@ -168,7 +168,7 @@ object FormContact: TFormContact
       object EditBirthday: TEdit
         Left = 144
         Height = 42
-        Top = 152
+        Top = 250
         Width = 254
         ParentFont = False
         TabOrder = 8
@@ -176,28 +176,96 @@ object FormContact: TFormContact
       object Label22: TLabel
         Left = 16
         Height = 24
-        Top = 160
+        Top = 258
         Width = 76
         Caption = 'Birthday:'
         ParentColor = False
         ParentFont = False
       end
       object ImagePhoto: TImage
-        Left = 16
+        Left = 20
         Height = 208
-        Top = 232
+        Top = 344
         Width = 207
         Proportional = True
         Stretch = True
       end
       object Label23: TLabel
-        Left = 16
+        Left = 20
         Height = 24
-        Top = 200
+        Top = 304
         Width = 55
         Caption = 'Photo:'
         ParentColor = False
         ParentFont = False
+      end
+      object Label24: TLabel
+        Left = 16
+        Height = 24
+        Top = 24
+        Width = 88
+        Caption = 'Full name:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditFullName: TEdit
+        Left = 144
+        Height = 42
+        Top = 16
+        Width = 254
+        ParentFont = False
+        TabOrder = 9
+      end
+      object Label25: TLabel
+        Left = 432
+        Height = 24
+        Top = 24
+        Width = 116
+        Caption = 'Middle name:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditMiddleName: TEdit
+        Left = 575
+        Height = 42
+        Top = 16
+        Width = 254
+        ParentFont = False
+        TabOrder = 10
+      end
+      object Label26: TLabel
+        Left = 16
+        Height = 24
+        Top = 120
+        Width = 101
+        Caption = 'Title before:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditTitleBefore: TEdit
+        Left = 144
+        Height = 42
+        Top = 112
+        Width = 254
+        ParentFont = False
+        TabOrder = 11
+      end
+      object Label27: TLabel
+        Left = 432
+        Height = 24
+        Top = 120
+        Width = 85
+        Caption = 'Title after:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditTitleAfter: TEdit
+        Left = 575
+        Height = 42
+        Top = 112
+        Width = 254
+        ParentFont = False
+        TabOrder = 12
       end
     end
     object TabSheetDetails: TTabSheet
@@ -442,6 +510,23 @@ object FormContact: TFormContact
         Width = 254
         ParentFont = False
         TabOrder = 13
+      end
+      object LabelOrganization1: TLabel
+        Left = 450
+        Height = 24
+        Top = 360
+        Width = 106
+        Caption = 'Department:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditDepartment: TEdit
+        Left = 584
+        Height = 42
+        Top = 348
+        Width = 254
+        ParentFont = False
+        TabOrder = 14
       end
     end
     object TabSheetAll: TTabSheet
