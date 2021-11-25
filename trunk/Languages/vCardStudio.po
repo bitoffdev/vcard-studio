@@ -81,7 +81,7 @@ msgid "Contact"
 msgstr ""
 
 #: tformcontact.label1.caption
-msgid "Name:"
+msgid "First name:"
 msgstr ""
 
 #: tformcontact.label10.caption
@@ -144,6 +144,22 @@ msgstr ""
 msgid "Photo:"
 msgstr ""
 
+#: tformcontact.label24.caption
+msgid "Full name:"
+msgstr ""
+
+#: tformcontact.label25.caption
+msgid "Middle name:"
+msgstr ""
+
+#: tformcontact.label26.caption
+msgid "Title before:"
+msgstr ""
+
+#: tformcontact.label27.caption
+msgid "Title after:"
+msgstr ""
+
 #: tformcontact.label3.caption
 msgid "Phone:"
 msgstr ""
@@ -153,7 +169,7 @@ msgid "E-mail:"
 msgstr ""
 
 #: tformcontact.label5.caption
-msgid "Surname:"
+msgid "Last name"
 msgstr ""
 
 #: tformcontact.label6.caption
@@ -174,6 +190,10 @@ msgstr ""
 
 #: tformcontact.labelorganization.caption
 msgid "Organization:"
+msgstr ""
+
+#: tformcontact.labelorganization1.caption
+msgid "Department:"
 msgstr ""
 
 #: tformcontact.listview1.columns[0].caption
@@ -224,6 +244,7 @@ msgid "Contacts"
 msgstr ""
 
 #: tformcontacts.listview1.columns[0].caption
+msgctxt "tformcontacts.listview1.columns[0].caption"
 msgid "Full Name"
 msgstr ""
 
@@ -242,10 +263,12 @@ msgid "Last Name"
 msgstr ""
 
 #: tformcontacts.listview1.columns[4].caption
+msgctxt "tformcontacts.listview1.columns[4].caption"
 msgid "Cell phone"
 msgstr ""
 
 #: tformcontacts.listview1.columns[5].caption
+msgctxt "tformcontacts.listview1.columns[5].caption"
 msgid "Home phone"
 msgstr ""
 
@@ -357,8 +380,33 @@ msgstr ""
 msgid "DPI:"
 msgstr ""
 
+#: ucontact.scategories
+msgid "Categories"
+msgstr ""
+
+#: ucontact.scellphone
+msgctxt "ucontact.scellphone"
+msgid "Cell phone"
+msgstr ""
+
+#: ucontact.sdayofbirth
+msgid "Day of birth"
+msgstr ""
+
+#: ucontact.sdepartement
+msgid "Departement"
+msgstr ""
+
+#: ucontact.semail
+msgid "E-mail"
+msgstr ""
+
 #: ucontact.sfieldindexnotdefined
 msgid "Field index not defined"
+msgstr ""
+
+#: ucontact.sfirstname
+msgid "First Name"
 msgstr ""
 
 #: ucontact.sfoundblockendwithoutblockstart
@@ -367,6 +415,114 @@ msgstr ""
 
 #: ucontact.sfoundpropertiesbeforeblockstart
 msgid "Found properties before the start of block"
+msgstr ""
+
+#: ucontact.sfullname
+msgctxt "ucontact.sfullname"
+msgid "Full Name"
+msgstr ""
+
+#: ucontact.shomeaddress
+msgctxt "ucontact.shomeaddress"
+msgid "Home Address"
+msgstr ""
+
+#: ucontact.shomeaddresscity
+msgid "Home Address City"
+msgstr ""
+
+#: ucontact.shomeaddresscountry
+msgid "Home Address Country"
+msgstr ""
+
+#: ucontact.shomeaddressstreet
+msgid "Home Address Street"
+msgstr ""
+
+#: ucontact.shomeemail
+msgid "Home Email"
+msgstr ""
+
+#: ucontact.shomephone
+msgctxt "ucontact.shomephone"
+msgid "Home phone"
+msgstr ""
+
+#: ucontact.shomephone2
+msgid "Home phone 2"
+msgstr ""
+
+#: ucontact.sinternetemail
+msgid "Internet Email"
+msgstr ""
+
+#: ucontact.sjabber
+msgid "Jabber"
+msgstr ""
+
+#: ucontact.slastname
+msgctxt "ucontact.slastname"
+msgid "Last Name"
+msgstr ""
+
+#: ucontact.slasttimecontacted
+msgid "Last Time Contacted"
+msgstr ""
+
+#: ucontact.smainphone
+msgid "Main phone"
+msgstr ""
+
+#: ucontact.smiddlename
+msgid "Middle Name"
+msgstr ""
+
+#: ucontact.snickname
+msgid "Nick Name"
+msgstr ""
+
+#: ucontact.snote
+msgid "Note"
+msgstr ""
+
+#: ucontact.sorganization
+msgid "Organization"
+msgstr ""
+
+#: ucontact.sphoto
+msgid "Photo"
+msgstr ""
+
+#: ucontact.srevision
+msgid "Revision"
+msgstr ""
+
+#: ucontact.srole
+msgid "Role"
+msgstr ""
+
+#: ucontact.stelephone
+msgid "Telephone"
+msgstr ""
+
+#: ucontact.stimescontacted
+msgid "Times Contacted"
+msgstr ""
+
+#: ucontact.stitle
+msgid "Title"
+msgstr ""
+
+#: ucontact.stitleafter
+msgid "Title After"
+msgstr ""
+
+#: ucontact.stitlebefore
+msgid "Title Before"
+msgstr ""
+
+#: ucontact.suniqueidentifier
+msgid "Unique identifier"
 msgstr ""
 
 #: ucontact.sunknowncommand
@@ -380,6 +536,35 @@ msgstr ""
 #: ucontact.svcardfile
 msgctxt "ucontact.svcardfile"
 msgid "vCard file"
+msgstr ""
+
+#: ucontact.svoipphone
+msgid "VoIP phone"
+msgstr ""
+
+#: ucontact.swebaddress
+msgid "Web address"
+msgstr ""
+
+#: ucontact.sworkaddress
+msgctxt "ucontact.sworkaddress"
+msgid "Home Address"
+msgstr ""
+
+#: ucontact.sworkaddresscity
+msgid "Work Address City"
+msgstr ""
+
+#: ucontact.sworkaddresscountry
+msgid "Work Address Country"
+msgstr ""
+
+#: ucontact.sworkaddressstreet
+msgid "Work Address Street"
+msgstr ""
+
+#: ucontact.sworkphone
+msgid "Work phone"
 msgstr ""
 
 #: ucore.sappexit

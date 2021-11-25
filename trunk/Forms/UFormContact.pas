@@ -17,6 +17,11 @@ type
     ActionList1: TActionList;
     ButtonCancel: TButton;
     ButtonOk: TButton;
+    EditDepartment: TEdit;
+    EditFullName: TEdit;
+    EditTitleBefore: TEdit;
+    EditMiddleName: TEdit;
+    EditTitleAfter: TEdit;
     EditWebPage: TEdit;
     EditWebPageHome: TEdit;
     EditWebPageWork: TEdit;
@@ -34,10 +39,10 @@ type
     EditFaxHome: TEdit;
     EditFaxWork: TEdit;
     EditPager: TEdit;
-    EditSurname: TEdit;
+    EditLastName: TEdit;
     EditEmail: TEdit;
     EditPhone: TEdit;
-    EditName: TEdit;
+    EditFirstName: TEdit;
     EditCellPhone: TEdit;
     ImagePhoto: TImage;
     Label1: TLabel;
@@ -56,6 +61,10 @@ type
     Label21: TLabel;
     Label22: TLabel;
     Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
     LabelOrganization: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -64,6 +73,7 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    LabelOrganization1: TLabel;
     ListView1: TListView;
     MemoNotes: TMemo;
     MenuItem1: TMenuItem;
@@ -162,8 +172,12 @@ var
   PhotoProperty: TContactProperty;
 begin
   Self.Contact := Contact;
-  EditName.Text := Contact.Fields[cfFirstName];
-  EditSurname.Text := Contact.Fields[cfLastName];
+  EditFullName.Text := Contact.Fields[cfFullName];
+  EditFirstName.Text := Contact.Fields[cfFirstName];
+  EditLastName.Text := Contact.Fields[cfLastName];
+  EditMiddleName.Text := Contact.Fields[cfMiddleName];
+  EditTitleAfter.Text := Contact.Fields[cfTitleAfter];
+  EditTitleBefore.Text := Contact.Fields[cfTitleBefore];
   EditCellPhone.Text := Contact.Fields[cfTelCell];
   EditPhoneHome.Text := Contact.Fields[cfTelHome];
   EditPhoneWork.Text := Contact.Fields[cfTelWork];
@@ -171,8 +185,11 @@ begin
   MemoNotes.Lines.Text := Contact.Fields[cfNote];
   EditTitle.Text := Contact.Fields[cfTitle];
   EditOrganization.Text := Contact.Fields[cfOrganization];
-  EditAddress.Text := Contact.Fields[cfAdrHome];
-  EditEmailHome.Text := Contact.Fields[cfEmailHome];
+  EditDepartment.Text := Contact.Fields[cfDepartment];
+  EditAddress.Text := Contact.Fields[cfHomeAddress];
+  EditEmailHome.Text := Contact.Fields[cfEmail];
+  EditWebPage.Text := Contact.Fields[cfUrl];
+  EditBirthday.Text := Contact.Fields[cfDayOfBirth];
 
   ImagePhoto.Picture.Bitmap.Clear;
   PhotoProperty := Contact.GetProperty(cfPhoto);
@@ -205,8 +222,8 @@ end;
 
 procedure TFormContact.SaveData(Contact: TContact);
 begin
-  Contact.Fields[cfFirstName] := EditName.Text;
-  Contact.Fields[cfLastName] := EditSurname.Text;
+  Contact.Fields[cfFirstName] := EditFirstName.Text;
+  Contact.Fields[cfLastName] := EditLastName.Text;
   Contact.Fields[cfTelCell] := EditCellPhone.Text;
   Contact.Fields[cfTelHome] := EditPhoneHome.Text;
   Contact.Fields[cfTelWork] := EditPhoneWork.Text;
@@ -214,8 +231,11 @@ begin
   Contact.Fields[cfNote] := MemoNotes.Lines.Text;
   Contact.Fields[cfTitle] := EditTitle.Text;
   Contact.Fields[cfOrganization] := EditOrganization.Text;
-  Contact.Fields[cfAdrHome] := EditAddress.Text;
-  Contact.Fields[cfEmailHome] := EditEmailHome.Text;
+  Contact.Fields[cfDepartment] := EditDepartment.Text;
+  Contact.Fields[cfHomeAddress] := EditAddress.Text;
+  Contact.Fields[cfEmail] := EditEmailHome.Text;
+  Contact.Fields[cfUrl] := EditWebPage.Text;
+  Contact.Fields[cfDayOfBirth] := EditBirthday.Text;
 end;
 
 end.
