@@ -301,9 +301,10 @@ procedure TContacts.AssignToList(List: TFPGObjectList<TObject>);
 var
   I: Integer;
 begin
-  List.Clear;
+  while List.Count > Count do List.Delete(List.Count - 1);
+  while List.Count < Count do List.Add(nil);
   for I := 0 to Count - 1 do
-    List.Add(Items[I]);
+    List[I] := Items[I];
 end;
 
 function TContacts.AddNew: TContact;
@@ -424,8 +425,15 @@ begin
 end;
 
 procedure TContact.Assign(Source: TContact);
+var
+  I: Integer;
 begin
-  Properties.Assign(Source.Properties);
+  while Properties.Count < Source.Properties.Count do
+    Properties.Add(TContactProperty.Create);
+  while Properties.Count > Source.Properties.Count do
+    Properties.Delete(Properties.Count - 1);
+  for I := 0 to Properties.Count - 1 do
+    Properties[I].Assign(Source.Properties[I]);
 end;
 
 function TContact.UpdateFrom(Source: TContact): Boolean;

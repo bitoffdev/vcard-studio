@@ -184,7 +184,7 @@ msgstr "E-mail:"
 
 #: tformcontact.label5.caption
 msgid "Last name"
-msgstr "Příjmení:"
+msgstr "Příjmení"
 
 #: tformcontact.label6.caption
 msgid "Notes:"
@@ -620,6 +620,10 @@ msgstr "Upravit hodnotu položky"
 msgid "Field edit"
 msgstr "Upravit pole"
 
+#: uformcontacts.sfiltered
+msgid "Filtered"
+msgstr "Filtrovaných"
+
 #: uformcontacts.sremovecontacts
 msgid "Remove contacts"
 msgstr "Odstranit kontakty"
@@ -628,10 +632,13 @@ msgstr "Odstranit kontakty"
 msgid "Do you want to remove selected contacts?"
 msgstr "Opravdu chcete odstranit vybrané kontakty?"
 
-#: uformmain.scount
-msgctxt "uformmain.scount"
-msgid "Count:"
-msgstr "Počet:"
+#: uformcontacts.sselected
+msgid "Selected"
+msgstr "Vybraných"
+
+#: uformcontacts.stotal
+msgid "Total"
+msgstr "Celkem"
 
 #: uformmain.smodified
 msgid "Modified"
