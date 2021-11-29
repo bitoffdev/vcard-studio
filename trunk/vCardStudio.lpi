@@ -100,7 +100,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="12">
+    <Units Count="14">
       <Unit0>
         <Filename Value="vCardStudio.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -173,6 +173,20 @@
         <Filename Value="UQuotedPrintable.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="Forms\UFormProperty.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormProperty"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="Forms\UFormProperties.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormProperties"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -73,6 +73,7 @@ msgid "Cancel"
 msgstr ""
 
 #: tformcontact.buttonok.caption
+msgctxt "tformcontact.buttonok.caption"
 msgid "OK"
 msgstr ""
 
@@ -104,24 +105,8 @@ msgstr ""
 msgid "Pager:"
 msgstr ""
 
-#: tformcontact.label15.caption
-msgid "Web page:"
-msgstr ""
-
-#: tformcontact.label16.caption
-msgid "Web page (Home):"
-msgstr ""
-
-#: tformcontact.label17.caption
-msgid "Web page (Work):"
-msgstr ""
-
 #: tformcontact.label18.caption
 msgid "Title:"
-msgstr ""
-
-#: tformcontact.label19.caption
-msgid "Address:"
 msgstr ""
 
 #: tformcontact.label2.caption
@@ -160,12 +145,92 @@ msgstr ""
 msgid "Title after:"
 msgstr ""
 
+#: tformcontact.label28.caption
+msgctxt "tformcontact.label28.caption"
+msgid "Street:"
+msgstr ""
+
+#: tformcontact.label29.caption
+msgctxt "tformcontact.label29.caption"
+msgid "City:"
+msgstr ""
+
 #: tformcontact.label3.caption
 msgid "Phone:"
 msgstr ""
 
+#: tformcontact.label30.caption
+msgctxt "tformcontact.label30.caption"
+msgid "Region:"
+msgstr ""
+
+#: tformcontact.label31.caption
+msgctxt "tformcontact.label31.caption"
+msgid "Country:"
+msgstr ""
+
+#: tformcontact.label32.caption
+msgctxt "tformcontact.label32.caption"
+msgid "Web address:"
+msgstr ""
+
+#: tformcontact.label33.caption
+msgctxt "tformcontact.label33.caption"
+msgid "Postal code:"
+msgstr ""
+
+#: tformcontact.label34.caption
+msgctxt "tformcontact.label34.caption"
+msgid "Post office box:"
+msgstr ""
+
+#: tformcontact.label35.caption
+msgctxt "tformcontact.label35.caption"
+msgid "Extended street:"
+msgstr ""
+
+#: tformcontact.label36.caption
+msgctxt "tformcontact.label36.caption"
+msgid "Street:"
+msgstr ""
+
+#: tformcontact.label37.caption
+msgctxt "tformcontact.label37.caption"
+msgid "Extended street:"
+msgstr ""
+
+#: tformcontact.label38.caption
+msgctxt "tformcontact.label38.caption"
+msgid "Region:"
+msgstr ""
+
+#: tformcontact.label39.caption
+msgctxt "tformcontact.label39.caption"
+msgid "Country:"
+msgstr ""
+
 #: tformcontact.label4.caption
 msgid "E-mail:"
+msgstr ""
+
+#: tformcontact.label40.caption
+msgctxt "tformcontact.label40.caption"
+msgid "Web address:"
+msgstr ""
+
+#: tformcontact.label41.caption
+msgctxt "tformcontact.label41.caption"
+msgid "Postal code:"
+msgstr ""
+
+#: tformcontact.label42.caption
+msgctxt "tformcontact.label42.caption"
+msgid "City:"
+msgstr ""
+
+#: tformcontact.label43.caption
+msgctxt "tformcontact.label43.caption"
+msgid "Post office box:"
 msgstr ""
 
 #: tformcontact.label5.caption
@@ -196,45 +261,39 @@ msgstr ""
 msgid "Department:"
 msgstr ""
 
-#: tformcontact.listview1.columns[0].caption
-msgid "Name"
-msgstr ""
-
-#: tformcontact.listview1.columns[1].caption
-msgctxt "tformcontact.listview1.columns[1].caption"
-msgid "Attributes"
-msgstr ""
-
-#: tformcontact.listview1.columns[2].caption
-msgctxt "tformcontact.listview1.columns[2].caption"
-msgid "Value"
-msgstr ""
-
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
-msgstr ""
-
-#: tformcontact.tabsheetdetails.caption
-msgid "Details"
 msgstr ""
 
 #: tformcontact.tabsheetgeneral.caption
 msgid "General"
 msgstr ""
 
+#: tformcontact.tabsheetprivate.caption
+msgid "Private"
+msgstr ""
+
+#: tformcontact.tabsheetwork.caption
+msgid "Work"
+msgstr ""
+
 #: tformcontacts.aadd.caption
+msgctxt "tformcontacts.aadd.caption"
 msgid "Add"
 msgstr ""
 
 #: tformcontacts.amodify.caption
+msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
 msgstr ""
 
 #: tformcontacts.aremove.caption
+msgctxt "tformcontacts.aremove.caption"
 msgid "Remove"
 msgstr ""
 
 #: tformcontacts.aselectall.caption
+msgctxt "tformcontacts.aselectall.caption"
 msgid "Select all"
 msgstr ""
 
@@ -249,6 +308,7 @@ msgid "Full Name"
 msgstr ""
 
 #: tformcontacts.listview1.columns[1].caption
+msgctxt "tformcontacts.listview1.columns[1].caption"
 msgid "First name"
 msgstr ""
 
@@ -290,6 +350,7 @@ msgid "Contact field:"
 msgstr ""
 
 #: tformfindduplicity.listview1.columns[0].caption
+msgctxt "tformfindduplicity.listview1.columns[0].caption"
 msgid "Field"
 msgstr ""
 
@@ -344,6 +405,76 @@ msgstr ""
 
 #: tformmain.menuitemview.caption
 msgid "View"
+msgstr ""
+
+#: tformproperties.aadd.caption
+msgctxt "tformproperties.aadd.caption"
+msgid "Add"
+msgstr ""
+
+#: tformproperties.amodify.caption
+msgctxt "tformproperties.amodify.caption"
+msgid "Modify"
+msgstr ""
+
+#: tformproperties.aremove.caption
+msgctxt "tformproperties.aremove.caption"
+msgid "Remove"
+msgstr ""
+
+#: tformproperties.aselectall.caption
+msgctxt "tformproperties.aselectall.caption"
+msgid "Select all"
+msgstr ""
+
+#: tformproperties.caption
+msgctxt "tformproperties.caption"
+msgid "Contacts"
+msgstr ""
+
+#: tformproperties.listview1.columns[0].caption
+msgctxt "tformproperties.listview1.columns[0].caption"
+msgid "Name"
+msgstr ""
+
+#: tformproperties.listview1.columns[1].caption
+msgctxt "tformproperties.listview1.columns[1].caption"
+msgid "Attributes"
+msgstr ""
+
+#: tformproperties.listview1.columns[2].caption
+msgctxt "tformproperties.listview1.columns[2].caption"
+msgid "Values"
+msgstr ""
+
+#: tformproperty.buttoncancel.caption
+msgctxt "tformproperty.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformproperty.buttonok.caption
+msgctxt "tformproperty.buttonok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformproperty.caption
+msgctxt "tformproperty.caption"
+msgid "Field"
+msgstr ""
+
+#: tformproperty.label1.caption
+msgctxt "tformproperty.label1.caption"
+msgid "Name:"
+msgstr ""
+
+#: tformproperty.label2.caption
+msgctxt "tformproperty.label2.caption"
+msgid "Attributes:"
+msgstr ""
+
+#: tformproperty.label3.caption
+msgctxt "tformproperty.label3.caption"
+msgid "Values:"
 msgstr ""
 
 #: tformsettings.buttoncancel.caption
@@ -422,21 +553,32 @@ msgctxt "ucontact.sfullname"
 msgid "Full Name"
 msgstr ""
 
-#: ucontact.shomeaddress
-msgctxt "ucontact.shomeaddress"
-msgid "Home Address"
-msgstr ""
-
 #: ucontact.shomeaddresscity
-msgid "Home Address City"
+msgid "Home address city"
 msgstr ""
 
 #: ucontact.shomeaddresscountry
-msgid "Home Address Country"
+msgid "Home address country"
+msgstr ""
+
+#: ucontact.shomeaddresspostalcode
+msgid "Home address postal code"
+msgstr ""
+
+#: ucontact.shomeaddresspostofficebox
+msgid "Home address post office box"
+msgstr ""
+
+#: ucontact.shomeaddressregion
+msgid "Home address region"
 msgstr ""
 
 #: ucontact.shomeaddressstreet
-msgid "Home Address Street"
+msgid "Home address street"
+msgstr ""
+
+#: ucontact.shomeaddressstreetextended
+msgid "Home address extended street"
 msgstr ""
 
 #: ucontact.shomeemail
@@ -542,25 +684,40 @@ msgstr ""
 msgid "VoIP phone"
 msgstr ""
 
-#: ucontact.swebaddress
-msgid "Web address"
+#: ucontact.swebaddresshome
+msgid "Web address home"
 msgstr ""
 
-#: ucontact.sworkaddress
-msgctxt "ucontact.sworkaddress"
-msgid "Home Address"
+#: ucontact.swebaddresswork
+msgid "Web address work"
 msgstr ""
 
 #: ucontact.sworkaddresscity
-msgid "Work Address City"
+msgid "Work address city"
 msgstr ""
 
 #: ucontact.sworkaddresscountry
-msgid "Work Address Country"
+msgid "Work address country"
+msgstr ""
+
+#: ucontact.sworkaddresspostalcode
+msgid "Work address postal code"
+msgstr ""
+
+#: ucontact.sworkaddresspostofficebox
+msgid "Work address post office box"
+msgstr ""
+
+#: ucontact.sworkaddressregion
+msgid "Work address region"
 msgstr ""
 
 #: ucontact.sworkaddressstreet
-msgid "Work Address Street"
+msgid "Work address street"
+msgstr ""
+
+#: ucontact.sworkaddressstreetextended
+msgid "Work address extended street"
 msgstr ""
 
 #: ucontact.sworkphone
@@ -605,6 +762,7 @@ msgid "Field edit"
 msgstr ""
 
 #: uformcontacts.sfiltered
+msgctxt "uformcontacts.sfiltered"
 msgid "Filtered"
 msgstr ""
 
@@ -617,15 +775,40 @@ msgid "Do you want to remove selected contacts?"
 msgstr ""
 
 #: uformcontacts.sselected
+msgctxt "uformcontacts.sselected"
 msgid "Selected"
 msgstr ""
 
 #: uformcontacts.stotal
+msgctxt "uformcontacts.stotal"
 msgid "Total"
 msgstr ""
 
 #: uformmain.smodified
 msgid "Modified"
+msgstr ""
+
+#: uformproperties.sfiltered
+msgctxt "uformproperties.sfiltered"
+msgid "Filtered"
+msgstr ""
+
+#: uformproperties.sremovepropertiesquery
+msgid "Do you want to remove selected fields?"
+msgstr ""
+
+#: uformproperties.sremovepropertites
+msgid "Remove fields"
+msgstr ""
+
+#: uformproperties.sselected
+msgctxt "uformproperties.sselected"
+msgid "Selected"
+msgstr ""
+
+#: uformproperties.stotal
+msgctxt "uformproperties.stotal"
+msgid "Total"
 msgstr ""
 
 #: uquotedprintable.slinelengtherr
