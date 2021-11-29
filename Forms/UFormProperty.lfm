@@ -1,0 +1,82 @@
+object FormProperty: TFormProperty
+  Left = 760
+  Height = 525
+  Top = 469
+  Width = 802
+  Caption = 'Field'
+  ClientHeight = 525
+  ClientWidth = 802
+  DesignTimePPI = 144
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object ButtonOk: TButton
+    Left = 536
+    Height = 37
+    Top = 472
+    Width = 119
+    Anchors = [akRight, akBottom]
+    Caption = 'OK'
+    ModalResult = 1
+    OnClick = ButtonOkClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object ButtonCancel: TButton
+    Left = 672
+    Height = 37
+    Top = 472
+    Width = 115
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 24
+    Height = 24
+    Top = 20
+    Width = 56
+    Caption = 'Name:'
+    ParentColor = False
+  end
+  object EditName: TEdit
+    Left = 166
+    Height = 42
+    Top = 20
+    Width = 322
+    TabOrder = 2
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 24
+    Top = 72
+    Width = 88
+    Caption = 'Attributes:'
+    ParentColor = False
+  end
+  object EditAttributes: TEdit
+    Left = 166
+    Height = 42
+    Top = 72
+    Width = 322
+    TabOrder = 3
+  end
+  object Label3: TLabel
+    Left = 24
+    Height = 24
+    Top = 128
+    Width = 60
+    Caption = 'Values:'
+    ParentColor = False
+  end
+  object EditValues: TEdit
+    Left = 166
+    Height = 42
+    Top = 120
+    Width = 322
+    TabOrder = 4
+  end
+end
