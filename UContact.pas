@@ -16,11 +16,13 @@ type
 
   TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
     cfTitleAfter, cfFullName, cfTelCell, cfTelHome, cfTelHome2, cfTelWork, cfTelVoip,
-    cfTelMain, cfEmail, cfTel, cfUid, cfUrl,
+    cfTelMain, cfEmail, cfTel, cfUid, cfUrlHome, cfUrlWork,
     cfEmailHome, cfEmailInternet, cfNickName, cfNote, cfRole, cfTitle,
     cfCategories, cfOrganization, cfDepartment,
-    cfHomeAddress, cfHomeAddressStreet, cfHomeAddressCity, cfHomeAddressCountry,
-    cfWorkAddress, cfWorkAddressStreet, cfWorkAddressCity, cfWorkAddressCountry,
+    cfHomeAddressStreet, cfHomeAddressStreetExtended, cfHomeAddressCity, cfHomeAddressCountry,
+    cfHomeAddressPostalCode, cfHomeAddressRegion, cfHomeAddressPostOfficeBox,
+    cfWorkAddressStreet, cfWorkAddressStreetExtended, cfWorkAddressCity, cfWorkAddressCountry,
+    cfWorkAddressPostalCode, cfWorkAddressRegion, cfWorkAddressPostOfficeBox,
     cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfXJabber, cfDayOfBirth, cfRevision,
     cfVersion);
 
@@ -61,6 +63,7 @@ type
   { TContactProperties }
 
   TContactProperties = class(TFPGObjectList<TContactProperty>)
+    procedure AssignToList(List: TFPGObjectList<TObject>);
     function GetByName(Name: string): TContactProperty;
     function GetByNameGroups(Name: string; Groups: TStringArray): TContactProperty;
     function GetByNameGroupsMultiple(Name: string; Groups: TStringArray): TContactProperties;
@@ -150,14 +153,20 @@ resourcestring
   SCategories = 'Categories';
   SOrganization = 'Organization';
   SDepartement = 'Departement';
-  SHomeAddress = 'Home Address';
-  SHomeAddressStreet = 'Home Address Street';
-  SHomeAddressCity = 'Home Address City';
-  SHomeAddressCountry = 'Home Address Country';
-  SWorkAddress = 'Home Address';
-  SWorkAddressStreet = 'Work Address Street';
-  SWorkAddressCity = 'Work Address City';
-  SWorkAddressCountry = 'Work Address Country';
+  SHomeAddressPostOfficeBox = 'Home address post office box';
+  SHomeAddressStreetExtended = 'Home address extended street';
+  SHomeAddressStreet = 'Home address street';
+  SHomeAddressCity = 'Home address city';
+  SHomeAddressRegion = 'Home address region';
+  SHomeAddressPostalCode = 'Home address postal code';
+  SHomeAddressCountry = 'Home address country';
+  SWorkAddressPostOfficeBox = 'Work address post office box';
+  SWorkAddressStreetExtended = 'Work address extended street';
+  SWorkAddressStreet = 'Work address street';
+  SWorkAddressCity = 'Work address city';
+  SWorkAddressRegion = 'Work address region';
+  SWorkAddressPostalCode = 'Work address postal code';
+  SWorkAddressCountry = 'Work address country';
   STimesContacted = 'Times Contacted';
   SLastTimeContacted = 'Last Time Contacted';
   SPhoto = 'Photo';
@@ -165,7 +174,8 @@ resourcestring
   SDayOfBirth = 'Day of birth';
   SRevision = 'Revision';
   SUniqueIdentifier = 'Unique identifier';
-  SWebAddress = 'Web address';
+  SWebAddressHome = 'Web address home';
+  SWebAddressWork = 'Web address work';
 
 function GetNext(var Text: string; Separator: string): string;
 begin
@@ -191,6 +201,16 @@ begin
 end;
 
 { TContactProperties }
+
+procedure TContactProperties.AssignToList(List: TFPGObjectList<TObject>);
+var
+  I: Integer;
+begin
+  while List.Count > Count do List.Delete(List.Count - 1);
+  while List.Count < Count do List.Add(nil);
+  for I := 0 to Count - 1 do
+    List[I] := Items[I];
+end;
 
 function TContactProperties.GetByName(Name: string): TContactProperty;
 var
@@ -440,6 +460,7 @@ procedure TContact.Assign(Source: TContact);
 var
   I: Integer;
 begin
+  Parent := Source.Parent;
   while Properties.Count < Source.Properties.Count do
     Properties.Add(TContactProperty.Create);
   while Properties.Count > Source.Properties.Count do
@@ -502,14 +523,20 @@ begin
     AddNew('CATEGORIES', [], SCategories, cfCategories, dtString);
     AddNew('ORG', [], SOrganization, cfOrganization, dtString, 0);
     AddNew('ORG', [], SDepartement, cfDepartment, dtString, 1);
-    AddNew('ADR', ['HOME'], SHomeAddress, cfHomeAddress, dtString);
-    AddNew('ADR', ['HOME'], SHomeAddressStreet, cfHomeAddressStreet, dtString, 1);
-    AddNew('ADR', ['HOME'], SHomeAddressCity, cfHomeAddressCity, dtString, 2);
-    AddNew('ADR', ['HOME'], SHomeAddressCountry, cfHomeAddressCountry, dtString, 3);
-    AddNew('ADR', ['WORK'], SWorkAddress, cfWorkAddress, dtString);
-    AddNew('ADR', ['WORK'], SWorkAddressStreet, cfWorkAddressStreet, dtString, 1);
-    AddNew('ADR', ['WORK'], SWorkAddressCity, cfWorkAddressCity, dtString, 2);
-    AddNew('ADR', ['WORK'], SWorkAddressCountry, cfWorkAddressCountry, dtString, 3);
+    AddNew('ADR', ['HOME'], SHomeAddressPostOfficeBox, cfHomeAddressPostOfficeBox, dtString, 0);
+    AddNew('ADR', ['HOME'], SHomeAddressStreetExtended, cfHomeAddressStreetExtended, dtString, 1);
+    AddNew('ADR', ['HOME'], SHomeAddressStreet, cfHomeAddressStreet, dtString, 2);
+    AddNew('ADR', ['HOME'], SHomeAddressCity, cfHomeAddressCity, dtString, 3);
+    AddNew('ADR', ['HOME'], SHomeAddressRegion, cfHomeAddressRegion, dtString, 4);
+    AddNew('ADR', ['HOME'], SHomeAddressPostalCode, cfHomeAddressPostalCode, dtString, 5);
+    AddNew('ADR', ['HOME'], SHomeAddressCountry, cfHomeAddressCountry, dtString, 6);
+    AddNew('ADR', ['WORK'], SWorkAddressPostOfficeBox, cfWorkAddressPostOfficeBox, dtString, 0);
+    AddNew('ADR', ['WORK'], SWorkAddressStreetExtended, cfWorkAddressStreetExtended, dtString, 1);
+    AddNew('ADR', ['WORK'], SWorkAddressStreet, cfWorkAddressStreet, dtString, 2);
+    AddNew('ADR', ['WORK'], SWorkAddressCity, cfWorkAddressCity, dtString, 3);
+    AddNew('ADR', ['WORK'], SWorkAddressRegion, cfWorkAddressRegion, dtString, 4);
+    AddNew('ADR', ['WORK'], SWorkAddressPostalCode, cfWorkAddressPostalCode, dtString, 5);
+    AddNew('ADR', ['WORK'], SWorkAddressCountry, cfWorkAddressCountry, dtString, 6);
     AddNew('X-TIMES_CONTACTED', [], STimesContacted, cfXTimesContacted, dtString);
     AddNew('X-LAST_TIME_CONTACTED', [], SLastTimeContacted, cfXLastTimeContacted, dtString);
     AddNew('PHOTO', [], SPhoto, cfPhoto, dtString);
@@ -517,7 +544,8 @@ begin
     AddNew('BDAY', [], SDayOfBirth, cfDayOfBirth, dtString);
     AddNew('REV', [], SRevision, cfRevision, dtString);
     AddNew('UID', [], SUniqueIdentifier, cfUid, dtString);
-    AddNew('URL', [], SWebAddress, cfUrl, dtString);
+    AddNew('URL', ['HOME'], SWebAddressHome, cfUrlHome, dtString);
+    AddNew('URL', ['WORK'], SWebAddressWork, cfUrlWork, dtString);
   end;
 end;
 

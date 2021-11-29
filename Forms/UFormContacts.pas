@@ -196,15 +196,21 @@ var
 begin
   FormContact := TFormContact.Create(nil);
   try
-  if FormContact.ShowModal = mrOK then begin
     Contact := TContact.Create;
-    Contact.Parent := Contacts.ContactsFile;
-    FormContact.SaveData(Contact);
-    Contacts.Add(Contact);
-    Core.DataFile.Modified := True;
-    ReloadList;
-    UpdateInterface;
-  end;
+    try
+      Contact.Parent := Contacts.ContactsFile;
+      FormContact.Contact := Contact;
+      if FormContact.ShowModal = mrOK then begin
+        Contacts.Add(Contact);
+        Contact := nil;
+        Core.DataFile.Modified := True;
+        ReloadList;
+        UpdateInterface;
+      end;
+    finally
+      if Assigned(Contact) then
+        Contact.Free;
+    end;
   finally
     FormContact.Free;
   end;
@@ -213,15 +219,22 @@ end;
 procedure TFormContacts.AModifyExecute(Sender: TObject);
 var
   FormContact: TFormContact;
+  Contact: TContact;
 begin
   FormContact := TFormContact.Create(nil);
   try
-    FormContact.LoadData(TContact(ListView1.Selected.Data));
-    if FormContact.ShowModal = mrOK then begin
-      FormContact.SaveData(TContact(ListView1.Selected.Data));
-      Core.DataFile.Modified := True;
-      ReloadList;
-      UpdateInterface;
+    Contact := TContact.Create;
+    Contact.Assign(TContact(ListView1.Selected.Data));
+    FormContact.Contact := Contact;
+    try
+      if FormContact.ShowModal = mrOK then begin
+        TContact(ListView1.Selected.Data).Assign(Contact);
+        Core.DataFile.Modified := True;
+        ReloadList;
+        UpdateInterface;
+      end;
+    finally
+      Contact.Free;
     end;
   finally
     FormContact.Free;

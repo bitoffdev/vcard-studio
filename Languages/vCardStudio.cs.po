@@ -83,6 +83,7 @@ msgid "Cancel"
 msgstr "Zrušit"
 
 #: tformcontact.buttonok.caption
+msgctxt "tformcontact.buttonok.caption"
 msgid "OK"
 msgstr "OK"
 
@@ -115,28 +116,9 @@ msgstr "Fax (Práce):"
 msgid "Pager:"
 msgstr "Pager:"
 
-#: tformcontact.label15.caption
-msgctxt "tformcontact.label15.caption"
-msgid "Web page:"
-msgstr "Webové stránky:"
-
-#: tformcontact.label16.caption
-msgctxt "tformcontact.label16.caption"
-msgid "Web page (Home):"
-msgstr "Webové stránky (Domov):"
-
-#: tformcontact.label17.caption
-msgctxt "tformcontact.label17.caption"
-msgid "Web page (Work):"
-msgstr "Webové stránky (Práce):"
-
 #: tformcontact.label18.caption
 msgid "Title:"
 msgstr "Titul:"
-
-#: tformcontact.label19.caption
-msgid "Address:"
-msgstr "Adresa:"
 
 #: tformcontact.label2.caption
 msgid "Cell phone:"
@@ -174,13 +156,93 @@ msgstr "Titul před:"
 msgid "Title after:"
 msgstr "Titul za:"
 
+#: tformcontact.label28.caption
+msgctxt "tformcontact.label28.caption"
+msgid "Street:"
+msgstr "Adresa:"
+
+#: tformcontact.label29.caption
+msgctxt "tformcontact.label29.caption"
+msgid "City:"
+msgstr "Město:"
+
 #: tformcontact.label3.caption
 msgid "Phone:"
 msgstr "Telefon:"
 
+#: tformcontact.label30.caption
+msgctxt "tformcontact.label30.caption"
+msgid "Region:"
+msgstr "Kraj:"
+
+#: tformcontact.label31.caption
+msgctxt "tformcontact.label31.caption"
+msgid "Country:"
+msgstr "Země:"
+
+#: tformcontact.label32.caption
+msgctxt "tformcontact.label32.caption"
+msgid "Web address:"
+msgstr "Webová adresa:"
+
+#: tformcontact.label33.caption
+msgctxt "tformcontact.label33.caption"
+msgid "Postal code:"
+msgstr "PSČ:"
+
+#: tformcontact.label34.caption
+msgctxt "tformcontact.label34.caption"
+msgid "Post office box:"
+msgstr "Číslo schránky:"
+
+#: tformcontact.label35.caption
+msgctxt "tformcontact.label35.caption"
+msgid "Extended street:"
+msgstr "Rozšířená ulice:"
+
+#: tformcontact.label36.caption
+msgctxt "tformcontact.label36.caption"
+msgid "Street:"
+msgstr "Ulice:"
+
+#: tformcontact.label37.caption
+msgctxt "tformcontact.label37.caption"
+msgid "Extended street:"
+msgstr "Rozšířená ulice:"
+
+#: tformcontact.label38.caption
+msgctxt "tformcontact.label38.caption"
+msgid "Region:"
+msgstr "Kraj:"
+
+#: tformcontact.label39.caption
+msgctxt "tformcontact.label39.caption"
+msgid "Country:"
+msgstr "Země:"
+
 #: tformcontact.label4.caption
 msgid "E-mail:"
 msgstr "E-mail:"
+
+#: tformcontact.label40.caption
+msgctxt "tformcontact.label40.caption"
+msgid "Web address:"
+msgstr "Webová adresa:"
+
+#: tformcontact.label41.caption
+msgctxt "tformcontact.label41.caption"
+msgid "Postal code:"
+msgstr "PSČ:"
+
+#: tformcontact.label42.caption
+msgctxt "tformcontact.label42.caption"
+msgid "City:"
+msgstr "Město:"
+
+#: tformcontact.label43.caption
+msgctxt "tformcontact.label43.caption"
+msgid "Post office box:"
+msgstr "Číslo schránky:"
 
 #: tformcontact.label5.caption
 msgid "Last name"
@@ -210,45 +272,39 @@ msgstr "Společnost:"
 msgid "Department:"
 msgstr "Oddělení:"
 
-#: tformcontact.listview1.columns[0].caption
-msgid "Name"
-msgstr "Jméno"
-
-#: tformcontact.listview1.columns[1].caption
-msgctxt "tformcontact.listview1.columns[1].caption"
-msgid "Attributes"
-msgstr "Atributy"
-
-#: tformcontact.listview1.columns[2].caption
-msgctxt "tformcontact.listview1.columns[2].caption"
-msgid "Value"
-msgstr "Hodnota"
-
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
 msgstr "Všechna pole"
-
-#: tformcontact.tabsheetdetails.caption
-msgid "Details"
-msgstr "Podrobnosti"
 
 #: tformcontact.tabsheetgeneral.caption
 msgid "General"
 msgstr "Obecné"
 
+#: tformcontact.tabsheetprivate.caption
+msgid "Private"
+msgstr "Soukromé"
+
+#: tformcontact.tabsheetwork.caption
+msgid "Work"
+msgstr "Zaměstnání"
+
 #: tformcontacts.aadd.caption
+msgctxt "tformcontacts.aadd.caption"
 msgid "Add"
 msgstr "Přidat"
 
 #: tformcontacts.amodify.caption
+msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
 msgstr "Upravit"
 
 #: tformcontacts.aremove.caption
+msgctxt "tformcontacts.aremove.caption"
 msgid "Remove"
 msgstr "Odstranit"
 
 #: tformcontacts.aselectall.caption
+msgctxt "tformcontacts.aselectall.caption"
 msgid "Select all"
 msgstr "Vybrat vše"
 
@@ -263,6 +319,7 @@ msgid "Full Name"
 msgstr "Celé jméno"
 
 #: tformcontacts.listview1.columns[1].caption
+msgctxt "tformcontacts.listview1.columns[1].caption"
 msgid "First name"
 msgstr "Křestní jméno"
 
@@ -304,6 +361,7 @@ msgid "Contact field:"
 msgstr "Pole kontaktu:"
 
 #: tformfindduplicity.listview1.columns[0].caption
+msgctxt "tformfindduplicity.listview1.columns[0].caption"
 msgid "Field"
 msgstr "Pole"
 
@@ -361,6 +419,76 @@ msgstr "Nástroje"
 #: tformmain.menuitemview.caption
 msgid "View"
 msgstr "Zobrazení"
+
+#: tformproperties.aadd.caption
+msgctxt "tformproperties.aadd.caption"
+msgid "Add"
+msgstr "Přidat"
+
+#: tformproperties.amodify.caption
+msgctxt "tformproperties.amodify.caption"
+msgid "Modify"
+msgstr "Upravit"
+
+#: tformproperties.aremove.caption
+msgctxt "tformproperties.aremove.caption"
+msgid "Remove"
+msgstr "Odstranit"
+
+#: tformproperties.aselectall.caption
+msgctxt "tformproperties.aselectall.caption"
+msgid "Select all"
+msgstr "Vybrat vše"
+
+#: tformproperties.caption
+msgctxt "tformproperties.caption"
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: tformproperties.listview1.columns[0].caption
+msgctxt "tformproperties.listview1.columns[0].caption"
+msgid "Name"
+msgstr "Jméno:"
+
+#: tformproperties.listview1.columns[1].caption
+msgctxt "tformproperties.listview1.columns[1].caption"
+msgid "Attributes"
+msgstr "Vlastnosti"
+
+#: tformproperties.listview1.columns[2].caption
+msgctxt "tformproperties.listview1.columns[2].caption"
+msgid "Values"
+msgstr "Hodnoty"
+
+#: tformproperty.buttoncancel.caption
+msgctxt "tformproperty.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformproperty.buttonok.caption
+msgctxt "tformproperty.buttonok.caption"
+msgid "OK"
+msgstr "OK"
+
+#: tformproperty.caption
+msgctxt "tformproperty.caption"
+msgid "Field"
+msgstr "Pole"
+
+#: tformproperty.label1.caption
+msgctxt "tformproperty.label1.caption"
+msgid "Name:"
+msgstr "Jméno:"
+
+#: tformproperty.label2.caption
+msgctxt "tformproperty.label2.caption"
+msgid "Attributes:"
+msgstr "Vlastnosti:"
+
+#: tformproperty.label3.caption
+msgctxt "tformproperty.label3.caption"
+msgid "Values:"
+msgstr "Hodnoty:"
 
 #: tformsettings.buttoncancel.caption
 msgctxt "tformsettings.buttoncancel.caption"
@@ -438,22 +566,33 @@ msgctxt "ucontact.sfullname"
 msgid "Full Name"
 msgstr "Celé jméno"
 
-#: ucontact.shomeaddress
-msgctxt "ucontact.shomeaddress"
-msgid "Home Address"
-msgstr "Domácí adresa"
-
 #: ucontact.shomeaddresscity
-msgid "Home Address City"
+msgid "Home address city"
 msgstr "Domácí adresa město"
 
 #: ucontact.shomeaddresscountry
-msgid "Home Address Country"
+msgid "Home address country"
 msgstr "Domácí adresa země"
 
+#: ucontact.shomeaddresspostalcode
+msgid "Home address postal code"
+msgstr "Domácí adresa PSČ"
+
+#: ucontact.shomeaddresspostofficebox
+msgid "Home address post office box"
+msgstr "Domácí adresa číslo schránky"
+
+#: ucontact.shomeaddressregion
+msgid "Home address region"
+msgstr "Domácí adresa kraj"
+
 #: ucontact.shomeaddressstreet
-msgid "Home Address Street"
+msgid "Home address street"
 msgstr "Domácí adresa ulice"
+
+#: ucontact.shomeaddressstreetextended
+msgid "Home address extended street"
+msgstr "Domácí adresa rozšířená ulice"
 
 #: ucontact.shomeemail
 msgid "Home Email"
@@ -558,26 +697,41 @@ msgstr "Soubor vCard"
 msgid "VoIP phone"
 msgstr "VoIP telefon"
 
-#: ucontact.swebaddress
-msgid "Web address"
-msgstr "Webová adresa"
+#: ucontact.swebaddresshome
+msgid "Web address home"
+msgstr "Webová adresa domácí"
 
-#: ucontact.sworkaddress
-msgctxt "ucontact.sworkaddress"
-msgid "Home Address"
-msgstr "Domácí adresa"
+#: ucontact.swebaddresswork
+msgid "Web address work"
+msgstr "Webová adresa pracovní"
 
 #: ucontact.sworkaddresscity
-msgid "Work Address City"
+msgid "Work address city"
 msgstr "Pracovní adresa město"
 
 #: ucontact.sworkaddresscountry
-msgid "Work Address Country"
+msgid "Work address country"
 msgstr "Pracovní adresa země"
 
+#: ucontact.sworkaddresspostalcode
+msgid "Work address postal code"
+msgstr "Pracovní adresa PSČ"
+
+#: ucontact.sworkaddresspostofficebox
+msgid "Work address post office box"
+msgstr "Pracovní adresa číslo schárnky"
+
+#: ucontact.sworkaddressregion
+msgid "Work address region"
+msgstr "Pracovní adresa kraj"
+
 #: ucontact.sworkaddressstreet
-msgid "Work Address Street"
+msgid "Work address street"
 msgstr "Pracovní adresa ulice"
+
+#: ucontact.sworkaddressstreetextended
+msgid "Work address extended street"
+msgstr "Pracovní adresa rozšířená ulice"
 
 #: ucontact.sworkphone
 msgid "Work phone"
@@ -621,6 +775,7 @@ msgid "Field edit"
 msgstr "Upravit pole"
 
 #: uformcontacts.sfiltered
+msgctxt "uformcontacts.sfiltered"
 msgid "Filtered"
 msgstr "Filtrovaných"
 
@@ -633,16 +788,41 @@ msgid "Do you want to remove selected contacts?"
 msgstr "Opravdu chcete odstranit vybrané kontakty?"
 
 #: uformcontacts.sselected
+msgctxt "uformcontacts.sselected"
 msgid "Selected"
 msgstr "Vybraných"
 
 #: uformcontacts.stotal
+msgctxt "uformcontacts.stotal"
 msgid "Total"
 msgstr "Celkem"
 
 #: uformmain.smodified
 msgid "Modified"
 msgstr "Upraveno"
+
+#: uformproperties.sfiltered
+msgctxt "uformproperties.sfiltered"
+msgid "Filtered"
+msgstr "Filtrovaných"
+
+#: uformproperties.sremovepropertiesquery
+msgid "Do you want to remove selected fields?"
+msgstr "Opravdu chcete odstranit tato pole?"
+
+#: uformproperties.sremovepropertites
+msgid "Remove fields"
+msgstr "Odstranění polí"
+
+#: uformproperties.sselected
+msgctxt "uformproperties.sselected"
+msgid "Selected"
+msgstr "Vybraných"
+
+#: uformproperties.stotal
+msgctxt "uformproperties.stotal"
+msgid "Total"
+msgstr "Celkem"
 
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
