@@ -17,21 +17,36 @@ type
     ActionList1: TActionList;
     ButtonCancel: TButton;
     ButtonOk: TButton;
-    EditAddressHomeCity: TEdit;
-    EditAddressHomeCountry: TEdit;
-    EditAddressHomePostalCode: TEdit;
-    EditAddressHomePostOfficeBox: TEdit;
-    EditAddressHomeRegion: TEdit;
-    EditAddressHomeStreetExtended: TEdit;
-    EditAddressWorkStreet: TEdit;
+    EditHomeAddressCity: TEdit;
+    EditHomeAddressCountry: TEdit;
+    EditHomeAddressPostalCode: TEdit;
+    EditHomeAddressPostOfficeBox: TEdit;
+    EditHomeAddressRegion: TEdit;
+    EditHomeAddressStreet: TEdit;
+    EditHomeAddressStreetExtended: TEdit;
     EditAddressWorkCity: TEdit;
-    EditAddressWorkRegion: TEdit;
     EditAddressWorkCountry: TEdit;
-    EditAddressHomeStreet: TEdit;
-    EditWebWork: TEdit;
     EditAddressWorkPostalCode: TEdit;
     EditAddressWorkPostOfficeBox: TEdit;
+    EditAddressWorkRegion: TEdit;
+    EditAddressWorkStreet: TEdit;
     EditAddressWorkStreetExtended: TEdit;
+    EditAniversary: TEdit;
+    EditWorkEmail: TEdit;
+    EditPager: TEdit;
+    EditFax: TEdit;
+    EditWeb: TEdit;
+    EditHomeFax: TEdit;
+    EditWorkFax: TEdit;
+    EditHomeMobile: TEdit;
+    EditWorkMobile: TEdit;
+    EditWorkPager: TEdit;
+    EditHomePhone: TEdit;
+    EditNickName: TEdit;
+    EditHomePager: TEdit;
+    EditHomeEmail: TEdit;
+    EditHomeWeb: TEdit;
+    EditWorkWeb: TEdit;
     EditDepartment: TEdit;
     EditFullName: TEdit;
     EditOrganization: TEdit;
@@ -39,23 +54,15 @@ type
     EditTitleBefore: TEdit;
     EditMiddleName: TEdit;
     EditTitleAfter: TEdit;
-    EditEmailHome: TEdit;
-    EditEmailWork: TEdit;
     EditBirthday: TEdit;
-    EditPhoneHome: TEdit;
-    EditPhoneWork: TEdit;
-    EditCellPhoneHome: TEdit;
-    EditCellPhoneWork: TEdit;
-    EditFax: TEdit;
-    EditFaxHome: TEdit;
-    EditFaxWork: TEdit;
-    EditPager: TEdit;
     EditLastName: TEdit;
     EditEmail: TEdit;
     EditPhone: TEdit;
     EditFirstName: TEdit;
-    EditCellPhone: TEdit;
-    EditWebHome: TEdit;
+    EditMobile: TEdit;
+    EditWorkPhone: TEdit;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     ImagePhoto: TImage;
     Label1: TLabel;
     Label10: TLabel;
@@ -63,10 +70,12 @@ type
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
     Label18: TLabel;
+    Label19: TLabel;
     Label2: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
@@ -91,6 +100,9 @@ type
     Label41: TLabel;
     Label42: TLabel;
     Label43: TLabel;
+    Label44: TLabel;
+    Label45: TLabel;
+    Label46: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
@@ -102,9 +114,10 @@ type
     MenuItem1: TMenuItem;
     PageControlContact: TPageControl;
     PopupMenu1: TPopupMenu;
+    TabSheetOthers: TTabSheet;
+    TabSheetHome: TTabSheet;
     TabSheetWork: TTabSheet;
     TabSheetGeneral: TTabSheet;
-    TabSheetPrivate: TTabSheet;
     TabSheetAll: TTabSheet;
     procedure ButtonOkClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -214,19 +227,44 @@ var
 begin
   FormProperties.Properties := Contact.Properties;
 
+  // General
   EditFullName.Text := Contact.Fields[cfFullName];
   EditFirstName.Text := Contact.Fields[cfFirstName];
   EditLastName.Text := Contact.Fields[cfLastName];
   EditMiddleName.Text := Contact.Fields[cfMiddleName];
   EditTitleAfter.Text := Contact.Fields[cfTitleAfter];
   EditTitleBefore.Text := Contact.Fields[cfTitleBefore];
-  EditCellPhone.Text := Contact.Fields[cfTelCell];
-  EditPhoneHome.Text := Contact.Fields[cfTelHome];
-  EditPhoneWork.Text := Contact.Fields[cfTelWork];
+  EditNickName.Text := Contact.Fields[cfNickName];
   EditEmail.Text := Contact.Fields[cfEmail];
-  MemoNotes.Lines.Text := Contact.Fields[cfNote];
+  EditPhone.Text := Contact.Fields[cfTel];
+  EditMobile.Text := Contact.Fields[cfTelCell];
+  EditFax.Text := Contact.Fields[cfTelFax];
+  EditPager.Text := Contact.Fields[cfTelPager];
+  EditBirthday.Text := Contact.Fields[cfDayOfBirth];
+  EditAniversary.Text := Contact.Fields[cfAnniversary];
+  EditWeb.Text := Contact.Fields[cfUrl];
+
+  // Home
+  EditHomeEmail.Text := Contact.Fields[cfEmailHome];
+  EditHomePhone.Text := Contact.Fields[cfTelHome];
+  EditHomeMobile.Text := Contact.Fields[cfTelCellHome];
+  EditHomeFax.Text := Contact.Fields[cfTelFaxHome];
+  EditHomePager.Text := Contact.Fields[cfTelPagerHome];
+  EditHomeAddressPostOfficeBox.Text := Contact.Fields[cfHomeAddressPostOfficeBox];
+  EditHomeAddressStreet.Text := Contact.Fields[cfHomeAddressStreet];
+  EditHomeAddressStreetExtended.Text := Contact.Fields[cfHomeAddressStreetExtended];
+  EditHomeAddressCity.Text := Contact.Fields[cfHomeAddressCity];
+  EditHomeAddressRegion.Text := Contact.Fields[cfHomeAddressRegion];
+  EditHomeAddressCountry.Text := Contact.Fields[cfHomeAddressCountry];
+  EditHomeAddressPostalCode.Text := Contact.Fields[cfHomeAddressPostalCode];
+  EditHomeWeb.Text := Contact.Fields[cfUrlHome];
 
   // Work
+  EditWorkEmail.Text := Contact.Fields[cfEmailWork];
+  EditWorkPhone.Text := Contact.Fields[cfTelWork];
+  EditWorkMobile.Text := Contact.Fields[cfTelCellWork];
+  EditWorkFax.Text := Contact.Fields[cfTelFaxWork];
+  EditWorkPager.Text := Contact.Fields[cfTelPagerWork];
   EditTitle.Text := Contact.Fields[cfTitle];
   EditOrganization.Text := Contact.Fields[cfOrganization];
   EditDepartment.Text := Contact.Fields[cfDepartment];
@@ -237,20 +275,11 @@ begin
   EditAddressWorkRegion.Text := Contact.Fields[cfWorkAddressRegion];
   EditAddressWorkCountry.Text := Contact.Fields[cfWorkAddressCountry];
   EditAddressWorkPostalCode.Text := Contact.Fields[cfWorkAddressPostalCode];
-  EditWebHome.Text := Contact.Fields[cfUrlWork];
+  EditWorkWeb.Text := Contact.Fields[cfUrlWork];
 
-  // Private
-  EditAddressHomePostOfficeBox.Text := Contact.Fields[cfHomeAddressPostOfficeBox];
-  EditAddressHomeStreet.Text := Contact.Fields[cfHomeAddressStreet];
-  EditAddressHomeStreetExtended.Text := Contact.Fields[cfHomeAddressStreetExtended];
-  EditAddressHomeCity.Text := Contact.Fields[cfHomeAddressCity];
-  EditAddressHomeRegion.Text := Contact.Fields[cfHomeAddressRegion];
-  EditAddressHomeCountry.Text := Contact.Fields[cfHomeAddressCountry];
-  EditAddressHomePostalCode.Text := Contact.Fields[cfHomeAddressPostalCode];
-  EditWebHome.Text := Contact.Fields[cfUrlHome];
-  EditBirthday.Text := Contact.Fields[cfDayOfBirth];
+  // Others
+  MemoNotes.Lines.Text := Contact.Fields[cfNote];
 
-  EditEmailHome.Text := Contact.Fields[cfEmail];
   ImagePhoto.Picture.Bitmap.Clear;
   PhotoProperty := Contact.GetProperty(cfPhoto);
   if Assigned(PhotoProperty) then begin
@@ -287,21 +316,44 @@ end;
 
 procedure TFormContact.SaveData;
 begin
+  // General
   Contact.Fields[cfFullName] := EditFullName.Text;
   Contact.Fields[cfMiddleName] := EditMiddleName.Text;
   Contact.Fields[cfFirstName] := EditFirstName.Text;
   Contact.Fields[cfLastName] := EditLastName.Text;
   Contact.Fields[cfTitleAfter] := EditTitleAfter.Text;
   Contact.Fields[cfTitleBefore] := EditTitleBefore.Text;
-  Contact.Fields[cfTelCell] := EditCellPhone.Text;
-  Contact.Fields[cfTelHome] := EditPhoneHome.Text;
-  Contact.Fields[cfTelWork] := EditPhoneWork.Text;
+  Contact.Fields[cfNickName] := EditNickName.Text;
   Contact.Fields[cfEmail] := EditEmail.Text;
-  Contact.Fields[cfNote] := MemoNotes.Lines.Text;
-  Contact.Fields[cfEmail] := EditEmailHome.Text;
+  Contact.Fields[cfTel] := EditPhone.Text;
+  Contact.Fields[cfTelCell] := EditMobile.Text;
+  Contact.Fields[cfTelFax] := EditFax.Text;
+  Contact.Fields[cfTelPager] := EditPager.Text;
   Contact.Fields[cfDayOfBirth] := EditBirthday.Text;
+  Contact.Fields[cfAnniversary] := EditAniversary.Text;
+  Contact.Fields[cfUrl] := EditWeb.Text;
+
+  // Home
+  Contact.Fields[cfEmailHome] := EditHomeEmail.Text;
+  Contact.Fields[cfTelHome] := EditHomePhone.Text;
+  Contact.Fields[cfTelCellHome] := EditHomeMobile.Text;
+  Contact.Fields[cfTelFaxHome] := EditHomeFax.Text;
+  Contact.Fields[cfTelPagerHome] := EditHomePager.Text;
+  Contact.Fields[cfHomeAddressPostOfficeBox] := EditHomeAddressPostOfficeBox.Text;
+  Contact.Fields[cfHomeAddressStreet] := EditHomeAddressStreet.Text;
+  Contact.Fields[cfHomeAddressStreetExtended] := EditHomeAddressStreetExtended.Text;
+  Contact.Fields[cfHomeAddressCity] := EditHomeAddressCity.Text;
+  Contact.Fields[cfHomeAddressRegion] := EditHomeAddressRegion.Text;
+  Contact.Fields[cfHomeAddressCountry] := EditHomeAddressCountry.Text;
+  Contact.Fields[cfHomeAddressPostalCode] := EditHomeAddressPostalCode.Text;
+  Contact.Fields[cfUrlHome] := EditHomeWeb.Text;
 
   // Work
+  Contact.Fields[cfEmailWork] := EditWorkEmail.Text;
+  Contact.Fields[cfTelWork] := EditWorkPhone.Text;
+  Contact.Fields[cfTelCellWork] := EditWorkMobile.Text;
+  Contact.Fields[cfTelFaxWork] := EditWorkFax.Text;
+  Contact.Fields[cfTelPagerWork] := EditWorkPager.Text;
   Contact.Fields[cfTitle] := EditTitle.Text;
   Contact.Fields[cfOrganization] := EditOrganization.Text;
   Contact.Fields[cfDepartment] := EditDepartment.Text;
@@ -312,17 +364,10 @@ begin
   Contact.Fields[cfWorkAddressRegion] := EditAddressWorkRegion.Text;
   Contact.Fields[cfWorkAddressCountry] := EditAddressWorkCountry.Text;
   Contact.Fields[cfWorkAddressPostalCode] := EditAddressWorkPostalCode.Text;
-  Contact.Fields[cfUrlWork] := EditWebWork.Text;
+  Contact.Fields[cfUrlWork] := EditWorkWeb.Text;
 
-  // Private
-  Contact.Fields[cfHomeAddressPostOfficeBox] := EditAddressHomePostOfficeBox.Text;
-  Contact.Fields[cfHomeAddressStreet] := EditAddressHomeStreet.Text;
-  Contact.Fields[cfHomeAddressStreetExtended] := EditAddressHomeStreetExtended.Text;
-  Contact.Fields[cfHomeAddressCity] := EditAddressHomeCity.Text;
-  Contact.Fields[cfHomeAddressRegion] := EditAddressHomeRegion.Text;
-  Contact.Fields[cfHomeAddressCountry] := EditAddressHomeCountry.Text;
-  Contact.Fields[cfHomeAddressPostalCode] := EditAddressHomePostalCode.Text;
-  Contact.Fields[cfUrlHome] := EditWebHome.Text;
+  // Others
+  Contact.Fields[cfNote] := MemoNotes.Lines.Text;
 end;
 
 end.
