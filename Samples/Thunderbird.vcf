@@ -1,0 +1,21 @@
+BEGIN:VCARD
+VERSION:4.0
+EMAIL;PREF=1:somebody@email.xyz
+EMAIL:second@gmail.com
+FN:Name Surname
+NICKNAME:Nickname
+NOTE:some notes
+ORG:company;department
+TITLE:position
+BDAY;VALUE=DATE:19800317
+N:Surname;Name;;;
+ADR;TYPE=home:;dsdsd;address;city;region;12334;country
+ADR;TYPE=work:;sdasd;address;city;region;12345;country
+TEL;TYPE=home;VALUE=TEXT:411222333
+TEL;TYPE=work;VALUE=TEXT:543578888
+TEL;TYPE=fax;VALUE=TEXT:444555666
+TEL;TYPE=pager;VALUE=TEXT:777666444
+TEL;TYPE=cell;VALUE=TEXT:777888999
+URL;VALUE=URL:http://sdsd.cc
+UID:77284b9a-c4eb-4f35-a00c-e0fb8f202c60
+END:VCARD
