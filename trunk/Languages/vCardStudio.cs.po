@@ -91,28 +91,57 @@ msgstr "OK"
 msgid "Contact"
 msgstr "Kontakt"
 
+#: tformcontact.groupbox1.caption
+msgctxt "tformcontact.groupbox1.caption"
+msgid "Address"
+msgstr "Adresa"
+
+#: tformcontact.groupbox2.caption
+msgctxt "tformcontact.groupbox2.caption"
+msgid "Address"
+msgstr "Adresa"
+
 #: tformcontact.label1.caption
 msgid "First name:"
 msgstr "Křestní jméno:"
 
 #: tformcontact.label10.caption
 msgctxt "tformcontact.label10.caption"
-msgid "Cell phone (Work):"
-msgstr "Mobil (Práce):"
+msgid "Pager:"
+msgstr "Pager:"
 
 #: tformcontact.label11.caption
+msgctxt "tformcontact.label11.caption"
 msgid "Fax:"
 msgstr "Fax:"
 
 #: tformcontact.label12.caption
-msgid "Fax (Home):"
-msgstr "Fax (Domov):"
+msgctxt "tformcontact.label12.caption"
+msgid "Mobile:"
+msgstr "Mobil:"
 
 #: tformcontact.label13.caption
-msgid "Fax (Work):"
-msgstr "Fax (Práce):"
+msgctxt "tformcontact.label13.caption"
+msgid "Phone:"
+msgstr "Telefon:"
 
 #: tformcontact.label14.caption
+msgctxt "tformcontact.label14.caption"
+msgid "Pager:"
+msgstr "Pager:"
+
+#: tformcontact.label15.caption
+msgctxt "tformcontact.label15.caption"
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: tformcontact.label16.caption
+msgctxt "tformcontact.label16.caption"
+msgid "Fax:"
+msgstr "Fax:"
+
+#: tformcontact.label17.caption
+msgctxt "tformcontact.label17.caption"
 msgid "Pager:"
 msgstr "Pager:"
 
@@ -120,17 +149,15 @@ msgstr "Pager:"
 msgid "Title:"
 msgstr "Titul:"
 
+#: tformcontact.label19.caption
+msgctxt "tformcontact.label19.caption"
+msgid "Mobile:"
+msgstr "Mobil:"
+
 #: tformcontact.label2.caption
-msgid "Cell phone:"
-msgstr "Mobilní číslo:"
-
-#: tformcontact.label20.caption
-msgid "E-mail (Home):"
-msgstr "E-mail (Domov):"
-
-#: tformcontact.label21.caption
-msgid "E-mail (Work):"
-msgstr "E-mail (Práce):"
+msgctxt "tformcontact.label2.caption"
+msgid "Mobile:"
+msgstr "Mobil:"
 
 #: tformcontact.label22.caption
 msgid "Birthday:"
@@ -167,6 +194,7 @@ msgid "City:"
 msgstr "Město:"
 
 #: tformcontact.label3.caption
+msgctxt "tformcontact.label3.caption"
 msgid "Phone:"
 msgstr "Telefon:"
 
@@ -221,6 +249,7 @@ msgid "Country:"
 msgstr "Země:"
 
 #: tformcontact.label4.caption
+msgctxt "tformcontact.label4.caption"
 msgid "E-mail:"
 msgstr "E-mail:"
 
@@ -244,6 +273,19 @@ msgctxt "tformcontact.label43.caption"
 msgid "Post office box:"
 msgstr "Číslo schránky:"
 
+#: tformcontact.label44.caption
+msgid "Nickname:"
+msgstr "Přezdívka:"
+
+#: tformcontact.label45.caption
+msgid "Anniversary:"
+msgstr "Výročí:"
+
+#: tformcontact.label46.caption
+msgctxt "tformcontact.label46.caption"
+msgid "Web address:"
+msgstr "Webová adresa:"
+
 #: tformcontact.label5.caption
 msgid "Last name"
 msgstr "Příjmení"
@@ -253,16 +295,19 @@ msgid "Notes:"
 msgstr "Poznámky:"
 
 #: tformcontact.label7.caption
-msgid "Phone (Home):"
-msgstr "Telefon (Domov):"
+msgctxt "tformcontact.label7.caption"
+msgid "E-mail:"
+msgstr "E-mail:"
 
 #: tformcontact.label8.caption
-msgid "Phone (Work):"
-msgstr "Telefon (Práce):"
+msgctxt "tformcontact.label8.caption"
+msgid "E-mail:"
+msgstr "E-mail:"
 
 #: tformcontact.label9.caption
-msgid "Cell phone (Home):"
-msgstr "Mobil (Domov):"
+msgctxt "tformcontact.label9.caption"
+msgid "Fax:"
+msgstr "Fax:"
 
 #: tformcontact.labelorganization.caption
 msgid "Organization:"
@@ -280,9 +325,13 @@ msgstr "Všechna pole"
 msgid "General"
 msgstr "Obecné"
 
-#: tformcontact.tabsheetprivate.caption
-msgid "Private"
-msgstr "Soukromé"
+#: tformcontact.tabsheethome.caption
+msgid "Home"
+msgstr "Domov"
+
+#: tformcontact.tabsheetothers.caption
+msgid "Others"
+msgstr "Ostatní"
 
 #: tformcontact.tabsheetwork.caption
 msgid "Work"
@@ -524,14 +573,13 @@ msgstr "Téma:"
 msgid "DPI:"
 msgstr "DPI:"
 
+#: ucontact.sanniversary
+msgid "Anniversary"
+msgstr "Výročí"
+
 #: ucontact.scategories
 msgid "Categories"
 msgstr "Kategorie"
-
-#: ucontact.scellphone
-msgctxt "ucontact.scellphone"
-msgid "Cell phone"
-msgstr "Mobilní telefon"
 
 #: ucontact.sdayofbirth
 msgid "Day of birth"
@@ -544,6 +592,10 @@ msgstr "Oddělení"
 #: ucontact.semail
 msgid "E-mail"
 msgstr "E-mail"
+
+#: ucontact.sfax
+msgid "Fax"
+msgstr ""
 
 #: ucontact.sfieldindexnotdefined
 msgid "Field index not defined"
@@ -595,8 +647,20 @@ msgid "Home address extended street"
 msgstr "Domácí adresa rozšířená ulice"
 
 #: ucontact.shomeemail
-msgid "Home Email"
-msgstr "Domácí email"
+msgid "Home E-mail"
+msgstr "Domácí E-mail"
+
+#: ucontact.shomefax
+msgid "Home fax"
+msgstr ""
+
+#: ucontact.shomemobile
+msgid "Home mobile"
+msgstr ""
+
+#: ucontact.shomepager
+msgid "Home pager"
+msgstr ""
 
 #: ucontact.shomephone
 msgctxt "ucontact.shomephone"
@@ -608,8 +672,8 @@ msgid "Home phone 2"
 msgstr "Domácí telefon 2"
 
 #: ucontact.sinternetemail
-msgid "Internet Email"
-msgstr "Internetová email"
+msgid "Internet E-mail"
+msgstr "Internetový E-mail"
 
 #: ucontact.sjabber
 msgid "Jabber"
@@ -632,8 +696,12 @@ msgstr "Hlavní telefon"
 msgid "Middle Name"
 msgstr "Prostřední jméno"
 
+#: ucontact.smobilephone
+msgid "Mobile phone"
+msgstr ""
+
 #: ucontact.snickname
-msgid "Nick Name"
+msgid "Nick name"
 msgstr "Přezdívka"
 
 #: ucontact.snote
@@ -643,6 +711,10 @@ msgstr "Poznámky"
 #: ucontact.sorganization
 msgid "Organization"
 msgstr "Organizace"
+
+#: ucontact.spager
+msgid "Pager"
+msgstr ""
 
 #: ucontact.sphoto
 msgid "Photo"
@@ -680,14 +752,6 @@ msgstr "Titul před"
 msgid "Unique identifier"
 msgstr "Unikátní identifikátor"
 
-#: ucontact.sunknowncommand
-msgid "Unknown command: %s"
-msgstr "Neznámý příkaz: %s"
-
-#: ucontact.sunsupportedcontactfieldsindex
-msgid "Unsupported contact field index"
-msgstr "Nepodporovaný index pole kontaktu"
-
 #: ucontact.svcardfile
 msgctxt "ucontact.svcardfile"
 msgid "vCard file"
@@ -696,6 +760,10 @@ msgstr "Soubor vCard"
 #: ucontact.svoipphone
 msgid "VoIP phone"
 msgstr "VoIP telefon"
+
+#: ucontact.swebaddress
+msgid "Web address"
+msgstr ""
 
 #: ucontact.swebaddresshome
 msgid "Web address home"
@@ -732,6 +800,22 @@ msgstr "Pracovní adresa ulice"
 #: ucontact.sworkaddressstreetextended
 msgid "Work address extended street"
 msgstr "Pracovní adresa rozšířená ulice"
+
+#: ucontact.sworkemail
+msgid "Work E-mail"
+msgstr ""
+
+#: ucontact.sworkfax
+msgid "Work fax"
+msgstr ""
+
+#: ucontact.sworkmobile
+msgid "Work mobile"
+msgstr ""
+
+#: ucontact.sworkpager
+msgid "Work pager"
+msgstr ""
 
 #: ucontact.sworkphone
 msgid "Work phone"

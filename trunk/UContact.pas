@@ -15,20 +15,24 @@ type
   TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage);
 
   TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
-    cfTitleAfter, cfFullName, cfTelCell, cfTelHome, cfTelHome2, cfTelWork, cfTelVoip,
-    cfTelMain, cfEmail, cfTel, cfUid, cfUrlHome, cfUrlWork,
-    cfEmailHome, cfEmailInternet, cfNickName, cfNote, cfRole, cfTitle,
+    cfTitleAfter, cfFullName,
+    cfTel, cfTelCell, cfTelFax, cfTelPager, cfTelHome2, cfTelVoip, cfTelMain,
+    cfTelHome, cfTelCellHome, cfTelFaxHome, cfTelPagerHome,
+    cfTelWork, cfTelCellWork, cfTelFaxWork, cfTelPagerWork,
+    cfEmail, cfUid, cfUrl, cfUrlHome, cfUrlWork,
+    cfEmailHome, cfEmailWork, cfEmailInternet, cfNickName, cfNote, cfRole, cfTitle,
     cfCategories, cfOrganization, cfDepartment,
     cfHomeAddressStreet, cfHomeAddressStreetExtended, cfHomeAddressCity, cfHomeAddressCountry,
     cfHomeAddressPostalCode, cfHomeAddressRegion, cfHomeAddressPostOfficeBox,
     cfWorkAddressStreet, cfWorkAddressStreetExtended, cfWorkAddressCity, cfWorkAddressCountry,
     cfWorkAddressPostalCode, cfWorkAddressRegion, cfWorkAddressPostOfficeBox,
     cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfXJabber, cfDayOfBirth, cfRevision,
-    cfVersion);
+    cfVersion, cfAnniversary);
 
   TContactField = class
     SysName: string;
     Groups: TStringArray;
+    NoGroups: TStringArray;
     Title: string;
     Index: TContactFieldIndex;
     ValueIndex: Integer;
@@ -38,7 +42,8 @@ type
   { TContactFields }
 
   TContactFields = class(TFPGObjectList<TContactField>)
-    function AddNew(Name: string; Groups: array of string; Title: string; Index: TContactFieldIndex; DataType:
+    function AddNew(Name: string; Groups: array of string; NoGroups: array of string;
+      Title: string; Index: TContactFieldIndex; DataType:
       TDataType; ValueIndex: Integer = -1): TContactField;
     function GetByIndex(Index: TContactFieldIndex): TContactField;
     procedure LoadToStrings(AItems: TStrings);
@@ -54,7 +59,8 @@ type
     Charset: string;
     procedure EvaluateAttributes;
     function GetDecodedValue: string;
-    function MatchNameGroups(AName: string; Groups: TStringArray): Boolean;
+    function MatchNameGroups(AName: string; Groups: TStringArray;
+      NoGroups: TStringArray): Boolean;
     procedure Assign(Source: TContactProperty);
     constructor Create;
     destructor Destroy; override;
@@ -65,8 +71,10 @@ type
   TContactProperties = class(TFPGObjectList<TContactProperty>)
     procedure AssignToList(List: TFPGObjectList<TObject>);
     function GetByName(Name: string): TContactProperty;
-    function GetByNameGroups(Name: string; Groups: TStringArray): TContactProperty;
-    function GetByNameGroupsMultiple(Name: string; Groups: TStringArray): TContactProperties;
+    function GetByNameGroups(Name: string; Groups: TStringArray;
+      NoGroups: TStringArray): TContactProperty;
+    function GetByNameGroupsMultiple(Name: string; Groups: TStringArray;
+      NoGroups: TStringArray): TContactProperties;
   end;
 
   { TContact }
@@ -125,8 +133,6 @@ uses
 
 resourcestring
   SVCardFile = 'vCard file';
-  SUnsupportedContactFieldsIndex = 'Unsupported contact field index';
-  SUnknownCommand = 'Unknown command: %s';
   SFoundPropertiesBeforeBlockStart = 'Found properties before the start of block';
   SFoundBlockEndWithoutBlockStart = 'Found block end without block start';
   SFieldIndexNotDefined = 'Field index not defined';
@@ -137,16 +143,25 @@ resourcestring
   STitleAfter = 'Title After';
   SFullName = 'Full Name';
   STelephone = 'Telephone';
-  SCellPhone = 'Cell phone';
+  SMobilePhone = 'Mobile phone';
+  SPager = 'Pager';
+  SFax = 'Fax';
   SHomePhone = 'Home phone';
-  SHomePhone2 = 'Home phone 2';
+  SHomeMobile = 'Home mobile';
+  SHomeFax = 'Home fax';
+  SHomePager = 'Home pager';
   SWorkPhone = 'Work phone';
+  SWorkFax = 'Work fax';
+  SWorkPager = 'Work pager';
+  SWorkMobile = 'Work mobile';
+  SHomePhone2 = 'Home phone 2';
   SVoipPhone = 'VoIP phone';
   SMainPhone = 'Main phone';
   SEmail = 'E-mail';
-  SHomeEmail = 'Home Email';
-  SInternetEmail = 'Internet Email';
-  SNickName = 'Nick Name';
+  SHomeEmail = 'Home E-mail';
+  SWorkEmail = 'Work E-mail';
+  SInternetEmail = 'Internet E-mail';
+  SNickName = 'Nick name';
   SNote = 'Note';
   SRole = 'Role';
   STitle = 'Title';
@@ -172,8 +187,10 @@ resourcestring
   SPhoto = 'Photo';
   SJabber = 'Jabber';
   SDayOfBirth = 'Day of birth';
+  SAnniversary = 'Anniversary';
   SRevision = 'Revision';
   SUniqueIdentifier = 'Unique identifier';
+  SWebAddress = 'Web address';
   SWebAddressHome = 'Web address home';
   SWebAddressWork = 'Web address work';
 
@@ -222,25 +239,25 @@ begin
     else Result := nil;
 end;
 
-function TContactProperties.GetByNameGroups(Name: string; Groups: TStringArray
-  ): TContactProperty;
+function TContactProperties.GetByNameGroups(Name: string; Groups: TStringArray;
+  NoGroups: TStringArray): TContactProperty;
 var
   I: Integer;
 begin
   I := 0;
-  while (I < Count) and not Items[I].MatchNameGroups(Name, Groups) do Inc(I);
+  while (I < Count) and not Items[I].MatchNameGroups(Name, Groups, NoGroups) do Inc(I);
   if I < Count then Result := Items[I]
     else Result := nil;
 end;
 
 function TContactProperties.GetByNameGroupsMultiple(Name: string;
-  Groups: TStringArray): TContactProperties;
+  Groups: TStringArray; NoGroups: TStringArray): TContactProperties;
 var
   I: Integer;
 begin
   Result := TContactProperties.Create(False);
   for I := 0 to Count - 1 do
-  if Items[I].MatchNameGroups(Name, Groups) then
+  if Items[I].MatchNameGroups(Name, Groups, NoGroups) then
     Result.Add(Items[I]);
 end;
 
@@ -282,15 +299,26 @@ begin
   else Result := '';
 end;
 
-function TContactProperty.MatchNameGroups(AName: string; Groups: TStringArray
-  ): Boolean;
+function TContactProperty.MatchNameGroups(AName: string; Groups: TStringArray;
+  NoGroups: TStringArray): Boolean;
 var
   I: Integer;
+  Attr: string;
 begin
+  Attr := Attributes.DelimitedText;
   Result := Name = AName;
-  if Result then begin
+  if Result and (Length(Groups) > 0) then begin
     for I := 0 to Length(Groups) - 1 do
-      if Attributes.IndexOf(Groups[I]) = -1 then begin
+      if (Attributes.IndexOf(Groups[I]) = -1) and
+      (Attributes.IndexOf('TYPE=' + Groups[I]) = -1) then begin
+        Result := False;
+        Break;
+      end;
+  end;
+  if Result and (Length(NoGroups) > 0) then begin
+    for I := 0 to Length(NoGroups) - 1 do
+      if (Attributes.IndexOf(NoGroups[I]) <> -1) or
+      (Attributes.IndexOf('TYPE=' + NoGroups[I]) <> -1) then begin
         Result := False;
         Break;
       end;
@@ -367,7 +395,8 @@ end;
 
 { TContactFields }
 
-function TContactFields.AddNew(Name: string; Groups: array of string; Title: string; Index: TContactFieldIndex;
+function TContactFields.AddNew(Name: string; Groups: array of string;
+  NoGroups: array of string; Title: string; Index: TContactFieldIndex;
   DataType: TDataType; ValueIndex: Integer = -1): TContactField;
 var
   I: Integer;
@@ -377,6 +406,9 @@ begin
   SetLength(Result.Groups, Length(Groups));
   for I := 0 to Length(Groups) - 1 do
     Result.Groups[I] := Groups[I];
+  SetLength(Result.NoGroups, Length(NoGroups));
+  for I := 0 to Length(NoGroups) - 1 do
+    Result.NoGroups[I] := NoGroups[I];
   Result.Title := Title;
   Result.Index := Index;
   Result.ValueIndex := ValueIndex;
@@ -430,18 +462,32 @@ var
 begin
   Field := Parent.Fields.GetByIndex(Index);
   if Assigned(Field) then begin
-    Prop := Properties.GetByNameGroups(Field.SysName, Field.Groups);
-    if not Assigned(Prop) then begin
+    Prop := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
+    if (not Assigned(Prop)) and (AValue <> '') then begin
       Prop := TContactProperty.Create;
       Prop.Name := Field.SysName;
       for I := 0 to Length(Field.Groups) - 1 do
         Prop.Attributes.Add(Field.Groups[I]);
       Properties.Add(Prop);
     end;
-    if Field.ValueIndex <> -1 then begin
-      while Prop.Values.Count <= Field.ValueIndex do Prop.Values.Add('');
-      Prop.Values.Strings[Field.ValueIndex] := AValue
-    end else Prop.Values.DelimitedText := AValue;
+    if Assigned(Prop) then begin
+      if Field.ValueIndex <> -1 then begin
+        // Extend subitems count
+        while Prop.Values.Count <= Field.ValueIndex do
+          Prop.Values.Add('');
+
+        Prop.Values.Strings[Field.ValueIndex] := AValue;
+      end else Prop.Values.DelimitedText := AValue;
+
+      // Remove empty items
+      while (Prop.Values.Count > 0) and (Prop.Values.Strings[Prop.Values.Count - 1] = '') do
+        Prop.Values.Delete(Prop.Values.Count - 1);
+
+      // Remove if empty
+      if Prop.Values.Text = '' then begin
+        Properties.Remove(Prop);
+      end;
+    end;
   end else raise Exception.Create(SFieldIndexNotDefined);
 end;
 
@@ -452,7 +498,7 @@ var
 begin
   Field := Parent.Fields.GetByIndex(Index);
   if Assigned(Field) then begin
-    Result := Properties.GetByNameGroups(Field.SysName, Field.Groups);
+    Result := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
   end else raise Exception.Create(SFieldIndexNotDefined);
 end;
 
@@ -500,52 +546,63 @@ end;
 procedure TContactsFile.InitFields;
 begin
   with Fields do begin
-    AddNew('N', [], SLastName, cfLastName, dtString, 0);
-    AddNew('N', [], SFirstName, cfFirstName, dtString, 1);
-    AddNew('N', [], SMiddleName, cfMiddleName, dtString, 2);
-    AddNew('N', [], STitleBefore, cfTitleBefore, dtString, 3);
-    AddNew('N', [], STitleAfter, cfTitleAfter, dtString, 4);
-    AddNew('FN', [], SFullName, cfFullName, dtString);
-    AddNew('TEL', [], STelephone, cfTel, dtString);
-    AddNew('TEL', ['CELL'], SCellPhone, cfTelCell, dtString);
-    AddNew('TEL', ['HOME'], SHomePhone, cfTelHome, dtString);
-    AddNew('TEL', ['HOME2'], SHomePhone2, cfTelHome2, dtString);
-    AddNew('TEL', ['WORK'], SWorkPhone, cfTelWork, dtString);
-    AddNew('TEL', ['VOIP'], SVoipPhone, cfTelVoip, dtString);
-    AddNew('TEL', ['MAIN'], SMainPhone, cfTelMain, dtString);
-    AddNew('EMAIL', [], SEmail, cfEmail, dtString);
-    AddNew('EMAIL', ['HOME'], SHomeEmail, cfEmailHome, dtString);
-    AddNew('EMAIL', ['INTERNET'], SInternetEmail, cfEmailInternet, dtString);
-    AddNew('NICKNAME', [], SNickName, cfNickName, dtString);
-    AddNew('NOTE', [], SNote, cfNote, dtString);
-    AddNew('ROLE', [], SRole, cfRole, dtString);
-    AddNew('TITLE', [], STitle, cfTitle, dtString);
-    AddNew('CATEGORIES', [], SCategories, cfCategories, dtString);
-    AddNew('ORG', [], SOrganization, cfOrganization, dtString, 0);
-    AddNew('ORG', [], SDepartement, cfDepartment, dtString, 1);
-    AddNew('ADR', ['HOME'], SHomeAddressPostOfficeBox, cfHomeAddressPostOfficeBox, dtString, 0);
-    AddNew('ADR', ['HOME'], SHomeAddressStreetExtended, cfHomeAddressStreetExtended, dtString, 1);
-    AddNew('ADR', ['HOME'], SHomeAddressStreet, cfHomeAddressStreet, dtString, 2);
-    AddNew('ADR', ['HOME'], SHomeAddressCity, cfHomeAddressCity, dtString, 3);
-    AddNew('ADR', ['HOME'], SHomeAddressRegion, cfHomeAddressRegion, dtString, 4);
-    AddNew('ADR', ['HOME'], SHomeAddressPostalCode, cfHomeAddressPostalCode, dtString, 5);
-    AddNew('ADR', ['HOME'], SHomeAddressCountry, cfHomeAddressCountry, dtString, 6);
-    AddNew('ADR', ['WORK'], SWorkAddressPostOfficeBox, cfWorkAddressPostOfficeBox, dtString, 0);
-    AddNew('ADR', ['WORK'], SWorkAddressStreetExtended, cfWorkAddressStreetExtended, dtString, 1);
-    AddNew('ADR', ['WORK'], SWorkAddressStreet, cfWorkAddressStreet, dtString, 2);
-    AddNew('ADR', ['WORK'], SWorkAddressCity, cfWorkAddressCity, dtString, 3);
-    AddNew('ADR', ['WORK'], SWorkAddressRegion, cfWorkAddressRegion, dtString, 4);
-    AddNew('ADR', ['WORK'], SWorkAddressPostalCode, cfWorkAddressPostalCode, dtString, 5);
-    AddNew('ADR', ['WORK'], SWorkAddressCountry, cfWorkAddressCountry, dtString, 6);
-    AddNew('X-TIMES_CONTACTED', [], STimesContacted, cfXTimesContacted, dtString);
-    AddNew('X-LAST_TIME_CONTACTED', [], SLastTimeContacted, cfXLastTimeContacted, dtString);
-    AddNew('PHOTO', [], SPhoto, cfPhoto, dtString);
-    AddNew('X-JABBER', [], SJabber, cfXJabber, dtString);
-    AddNew('BDAY', [], SDayOfBirth, cfDayOfBirth, dtString);
-    AddNew('REV', [], SRevision, cfRevision, dtString);
-    AddNew('UID', [], SUniqueIdentifier, cfUid, dtString);
-    AddNew('URL', ['HOME'], SWebAddressHome, cfUrlHome, dtString);
-    AddNew('URL', ['WORK'], SWebAddressWork, cfUrlWork, dtString);
+    AddNew('N', [], [], SLastName, cfLastName, dtString, 0);
+    AddNew('N', [], [], SFirstName, cfFirstName, dtString, 1);
+    AddNew('N', [], [], SMiddleName, cfMiddleName, dtString, 2);
+    AddNew('N', [], [], STitleBefore, cfTitleBefore, dtString, 3);
+    AddNew('N', [], [], STitleAfter, cfTitleAfter, dtString, 4);
+    AddNew('FN', [], [], SFullName, cfFullName, dtString);
+    AddNew('TEL', [], ['CELL', 'FAX', 'PAGER', 'WORK', 'HOME'], STelephone, cfTel, dtString);
+    AddNew('TEL', ['CELL'], ['WORK', 'HOME'], SMobilePhone, cfTelCell, dtString);
+    AddNew('TEL', ['FAX'], ['WORK', 'HOME'], SFax, cfTelFax, dtString);
+    AddNew('TEL', ['PAGER'], ['WORK', 'HOME'], SPager, cfTelPager, dtString);
+    AddNew('TEL', ['HOME'], ['CELL', 'FAX', 'PAGER'], SHomePhone, cfTelHome, dtString);
+    AddNew('TEL', ['HOME', 'CELL'], [], SHomeMobile, cfTelCellHome, dtString);
+    AddNew('TEL', ['HOME', 'FAX'], [], SHomeFax, cfTelFaxHome, dtString);
+    AddNew('TEL', ['HOME', 'PAGER'], [], SHomePager, cfTelPagerHome, dtString);
+    AddNew('TEL', ['WORK'], ['CELL', 'FAX', 'PAGER'], SWorkPhone, cfTelWork, dtString);
+    AddNew('TEL', ['WORK', 'CELL'], [], SWorkMobile, cfTelCellWork, dtString);
+    AddNew('TEL', ['WORK', 'FAX'], [], SWorkFax, cfTelFaxWork, dtString);
+    AddNew('TEL', ['WORK', 'PAGER'], [], SWorkPager, cfTelPagerWork, dtString);
+    AddNew('TEL', ['HOME2'], [], SHomePhone2, cfTelHome2, dtString);
+    AddNew('TEL', ['VOIP'], [], SVoipPhone, cfTelVoip, dtString);
+    AddNew('TEL', ['MAIN'], [], SMainPhone, cfTelMain, dtString);
+    AddNew('EMAIL', [], ['HOME', 'WORK', 'INTERNET'], SEmail, cfEmail, dtString);
+    AddNew('EMAIL', ['HOME'], [], SHomeEmail, cfEmailHome, dtString);
+    AddNew('EMAIL', ['WORK'], [], SWorkEmail, cfEmailWork, dtString);
+    AddNew('EMAIL', ['INTERNET'], [], SInternetEmail, cfEmailInternet, dtString);
+    AddNew('NICKNAME', [], [], SNickName, cfNickName, dtString);
+    AddNew('NOTE', [], [], SNote, cfNote, dtString);
+    AddNew('ROLE', [], [], SRole, cfRole, dtString);
+    AddNew('TITLE', [], [], STitle, cfTitle, dtString);
+    AddNew('CATEGORIES', [], [], SCategories, cfCategories, dtString);
+    AddNew('ORG', [], [], SOrganization, cfOrganization, dtString, 0);
+    AddNew('ORG', [], [], SDepartement, cfDepartment, dtString, 1);
+    AddNew('ADR', ['HOME'], [], SHomeAddressPostOfficeBox, cfHomeAddressPostOfficeBox, dtString, 0);
+    AddNew('ADR', ['HOME'], [], SHomeAddressStreetExtended, cfHomeAddressStreetExtended, dtString, 1);
+    AddNew('ADR', ['HOME'], [], SHomeAddressStreet, cfHomeAddressStreet, dtString, 2);
+    AddNew('ADR', ['HOME'], [], SHomeAddressCity, cfHomeAddressCity, dtString, 3);
+    AddNew('ADR', ['HOME'], [], SHomeAddressRegion, cfHomeAddressRegion, dtString, 4);
+    AddNew('ADR', ['HOME'], [], SHomeAddressPostalCode, cfHomeAddressPostalCode, dtString, 5);
+    AddNew('ADR', ['HOME'], [], SHomeAddressCountry, cfHomeAddressCountry, dtString, 6);
+    AddNew('ADR', ['WORK'], [], SWorkAddressPostOfficeBox, cfWorkAddressPostOfficeBox, dtString, 0);
+    AddNew('ADR', ['WORK'], [], SWorkAddressStreetExtended, cfWorkAddressStreetExtended, dtString, 1);
+    AddNew('ADR', ['WORK'], [], SWorkAddressStreet, cfWorkAddressStreet, dtString, 2);
+    AddNew('ADR', ['WORK'], [], SWorkAddressCity, cfWorkAddressCity, dtString, 3);
+    AddNew('ADR', ['WORK'], [], SWorkAddressRegion, cfWorkAddressRegion, dtString, 4);
+    AddNew('ADR', ['WORK'], [], SWorkAddressPostalCode, cfWorkAddressPostalCode, dtString, 5);
+    AddNew('ADR', ['WORK'], [], SWorkAddressCountry, cfWorkAddressCountry, dtString, 6);
+    AddNew('X-TIMES_CONTACTED', [], [], STimesContacted, cfXTimesContacted, dtString);
+    AddNew('X-LAST_TIME_CONTACTED', [], [], SLastTimeContacted, cfXLastTimeContacted, dtString);
+    AddNew('PHOTO', [], [], SPhoto, cfPhoto, dtString);
+    AddNew('X-JABBER', [], [], SJabber, cfXJabber, dtString);
+    AddNew('BDAY', [], [], SDayOfBirth, cfDayOfBirth, dtString);
+    AddNew('ANNIVERSARY', [], [], SAnniversary, cfAnniversary, dtString);
+    AddNew('REV', [], [], SRevision, cfRevision, dtString);
+    AddNew('UID', [], [], SUniqueIdentifier, cfUid, dtString);
+    AddNew('URL', [], ['HOME', 'WORK'], SWebAddress, cfUrl, dtString);
+    AddNew('URL', ['HOME'], [], SWebAddressHome, cfUrlHome, dtString);
+    AddNew('URL', ['WORK'], [], SWebAddressWork, cfUrlWork, dtString);
   end;
 end;
 
