@@ -81,27 +81,57 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: tformcontact.groupbox1.caption
+msgctxt "tformcontact.groupbox1.caption"
+msgid "Address"
+msgstr ""
+
+#: tformcontact.groupbox2.caption
+msgctxt "tformcontact.groupbox2.caption"
+msgid "Address"
+msgstr ""
+
 #: tformcontact.label1.caption
 msgid "First name:"
 msgstr ""
 
 #: tformcontact.label10.caption
-msgid "Cell phone (Work):"
+msgctxt "tformcontact.label10.caption"
+msgid "Pager:"
 msgstr ""
 
 #: tformcontact.label11.caption
+msgctxt "tformcontact.label11.caption"
 msgid "Fax:"
 msgstr ""
 
 #: tformcontact.label12.caption
-msgid "Fax (Home):"
+msgctxt "tformcontact.label12.caption"
+msgid "Mobile:"
 msgstr ""
 
 #: tformcontact.label13.caption
-msgid "Fax (Work):"
+msgctxt "tformcontact.label13.caption"
+msgid "Phone:"
 msgstr ""
 
 #: tformcontact.label14.caption
+msgctxt "tformcontact.label14.caption"
+msgid "Pager:"
+msgstr ""
+
+#: tformcontact.label15.caption
+msgctxt "tformcontact.label15.caption"
+msgid "Phone:"
+msgstr ""
+
+#: tformcontact.label16.caption
+msgctxt "tformcontact.label16.caption"
+msgid "Fax:"
+msgstr ""
+
+#: tformcontact.label17.caption
+msgctxt "tformcontact.label17.caption"
 msgid "Pager:"
 msgstr ""
 
@@ -109,16 +139,14 @@ msgstr ""
 msgid "Title:"
 msgstr ""
 
+#: tformcontact.label19.caption
+msgctxt "tformcontact.label19.caption"
+msgid "Mobile:"
+msgstr ""
+
 #: tformcontact.label2.caption
-msgid "Cell phone:"
-msgstr ""
-
-#: tformcontact.label20.caption
-msgid "E-mail (Home):"
-msgstr ""
-
-#: tformcontact.label21.caption
-msgid "E-mail (Work):"
+msgctxt "tformcontact.label2.caption"
+msgid "Mobile:"
 msgstr ""
 
 #: tformcontact.label22.caption
@@ -156,6 +184,7 @@ msgid "City:"
 msgstr ""
 
 #: tformcontact.label3.caption
+msgctxt "tformcontact.label3.caption"
 msgid "Phone:"
 msgstr ""
 
@@ -210,6 +239,7 @@ msgid "Country:"
 msgstr ""
 
 #: tformcontact.label4.caption
+msgctxt "tformcontact.label4.caption"
 msgid "E-mail:"
 msgstr ""
 
@@ -233,6 +263,19 @@ msgctxt "tformcontact.label43.caption"
 msgid "Post office box:"
 msgstr ""
 
+#: tformcontact.label44.caption
+msgid "Nickname:"
+msgstr ""
+
+#: tformcontact.label45.caption
+msgid "Anniversary:"
+msgstr ""
+
+#: tformcontact.label46.caption
+msgctxt "tformcontact.label46.caption"
+msgid "Web address:"
+msgstr ""
+
 #: tformcontact.label5.caption
 msgid "Last name"
 msgstr ""
@@ -242,15 +285,18 @@ msgid "Notes:"
 msgstr ""
 
 #: tformcontact.label7.caption
-msgid "Phone (Home):"
+msgctxt "tformcontact.label7.caption"
+msgid "E-mail:"
 msgstr ""
 
 #: tformcontact.label8.caption
-msgid "Phone (Work):"
+msgctxt "tformcontact.label8.caption"
+msgid "E-mail:"
 msgstr ""
 
 #: tformcontact.label9.caption
-msgid "Cell phone (Home):"
+msgctxt "tformcontact.label9.caption"
+msgid "Fax:"
 msgstr ""
 
 #: tformcontact.labelorganization.caption
@@ -269,8 +315,12 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: tformcontact.tabsheetprivate.caption
-msgid "Private"
+#: tformcontact.tabsheethome.caption
+msgid "Home"
+msgstr ""
+
+#: tformcontact.tabsheetothers.caption
+msgid "Others"
 msgstr ""
 
 #: tformcontact.tabsheetwork.caption
@@ -511,13 +561,12 @@ msgstr ""
 msgid "DPI:"
 msgstr ""
 
-#: ucontact.scategories
-msgid "Categories"
+#: ucontact.sanniversary
+msgid "Anniversary"
 msgstr ""
 
-#: ucontact.scellphone
-msgctxt "ucontact.scellphone"
-msgid "Cell phone"
+#: ucontact.scategories
+msgid "Categories"
 msgstr ""
 
 #: ucontact.sdayofbirth
@@ -530,6 +579,10 @@ msgstr ""
 
 #: ucontact.semail
 msgid "E-mail"
+msgstr ""
+
+#: ucontact.sfax
+msgid "Fax"
 msgstr ""
 
 #: ucontact.sfieldindexnotdefined
@@ -582,7 +635,19 @@ msgid "Home address extended street"
 msgstr ""
 
 #: ucontact.shomeemail
-msgid "Home Email"
+msgid "Home E-mail"
+msgstr ""
+
+#: ucontact.shomefax
+msgid "Home fax"
+msgstr ""
+
+#: ucontact.shomemobile
+msgid "Home mobile"
+msgstr ""
+
+#: ucontact.shomepager
+msgid "Home pager"
 msgstr ""
 
 #: ucontact.shomephone
@@ -595,7 +660,7 @@ msgid "Home phone 2"
 msgstr ""
 
 #: ucontact.sinternetemail
-msgid "Internet Email"
+msgid "Internet E-mail"
 msgstr ""
 
 #: ucontact.sjabber
@@ -619,8 +684,12 @@ msgstr ""
 msgid "Middle Name"
 msgstr ""
 
+#: ucontact.smobilephone
+msgid "Mobile phone"
+msgstr ""
+
 #: ucontact.snickname
-msgid "Nick Name"
+msgid "Nick name"
 msgstr ""
 
 #: ucontact.snote
@@ -629,6 +698,10 @@ msgstr ""
 
 #: ucontact.sorganization
 msgid "Organization"
+msgstr ""
+
+#: ucontact.spager
+msgid "Pager"
 msgstr ""
 
 #: ucontact.sphoto
@@ -667,14 +740,6 @@ msgstr ""
 msgid "Unique identifier"
 msgstr ""
 
-#: ucontact.sunknowncommand
-msgid "Unknown command: %s"
-msgstr ""
-
-#: ucontact.sunsupportedcontactfieldsindex
-msgid "Unsupported contact field index"
-msgstr ""
-
 #: ucontact.svcardfile
 msgctxt "ucontact.svcardfile"
 msgid "vCard file"
@@ -682,6 +747,10 @@ msgstr ""
 
 #: ucontact.svoipphone
 msgid "VoIP phone"
+msgstr ""
+
+#: ucontact.swebaddress
+msgid "Web address"
 msgstr ""
 
 #: ucontact.swebaddresshome
@@ -718,6 +787,22 @@ msgstr ""
 
 #: ucontact.sworkaddressstreetextended
 msgid "Work address extended street"
+msgstr ""
+
+#: ucontact.sworkemail
+msgid "Work E-mail"
+msgstr ""
+
+#: ucontact.sworkfax
+msgid "Work fax"
+msgstr ""
+
+#: ucontact.sworkmobile
+msgid "Work mobile"
+msgstr ""
+
+#: ucontact.sworkpager
+msgid "Work pager"
 msgstr ""
 
 #: ucontact.sworkphone
