@@ -1,0 +1,6 @@
+VERSION:2.1
+N:;Contact;;;
+FN:Contact
+TEL;PREF;WORK;VOICE:123 456 789
+END:VCARD
+
