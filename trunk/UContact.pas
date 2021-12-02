@@ -12,7 +12,7 @@ type
 
   TErrorEvent = procedure (Text: string; Line: Integer) of object;
 
-  TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage);
+  TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage, dtStringList);
 
   TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
     cfTitleAfter, cfFullName,
@@ -52,9 +52,13 @@ type
   { TContactProperty }
 
   TContactProperty = class
+  private
+    function GetValueItem(Index: Integer): string;
+    procedure SetValueItem(Index: Integer; AValue: string);
+  public
     Name: string;
     Attributes: TStringList;
-    Values: TStringList;
+    Value: string;
     Encoding: string;
     Charset: string;
     procedure EvaluateAttributes;
@@ -64,6 +68,7 @@ type
     procedure Assign(Source: TContactProperty);
     constructor Create;
     destructor Destroy; override;
+    property ValueItem[Index: Integer]: string read GetValueItem write SetValueItem;
   end;
 
   { TContactProperties }
@@ -263,6 +268,51 @@ end;
 
 { TContactProperty }
 
+function TContactProperty.GetValueItem(Index: Integer): string;
+var
+  List: TStringList;
+begin
+  List := TStringList.Create;
+  try
+    List.Delimiter := ';';
+    List.NameValueSeparator := '=';
+    List.StrictDelimiter := True;
+    List.DelimitedText := Value;
+    if Index < List.Count then
+      Result := List.Strings[Index]
+      else Result := '';
+  finally
+    List.Free;
+  end;
+end;
+
+procedure TContactProperty.SetValueItem(Index: Integer; AValue: string);
+var
+  List: TStringList;
+begin
+  List := TStringList.Create;
+  try
+    List.Delimiter := ';';
+    List.NameValueSeparator := '=';
+    List.StrictDelimiter := True;
+    List.DelimitedText := Value;
+
+    // Extend subitems count
+    while List.Count <= Index do
+      List.Add('');
+
+    List.Strings[Index] := AValue;
+
+    // Remove empty items
+    while (List.Count > 0) and (List.Strings[List.Count - 1] = '') do
+      List.Delete(List.Count - 1);
+
+    Value := List.DelimitedText;
+  finally
+    List.Free;
+  end;
+end;
+
 procedure TContactProperty.EvaluateAttributes;
 var
   I: Integer;
@@ -273,7 +323,7 @@ begin
   if Attributes.IndexOfName('ENCODING') <> -1 then begin
     Encoding := Attributes.Values['ENCODING'];
     if (Encoding = 'QUOTED-PRINTABLE') or (Encoding = 'BASE64') then begin
-      Values.DelimitedText := GetDecodedValue;
+      Value := GetDecodedValue;
       Attributes.Delete(Attributes.IndexOfName('ENCODING'));
     end;
   end else Encoding := '';
@@ -291,11 +341,12 @@ end;
 
 function TContactProperty.GetDecodedValue: string;
 begin
-  if Encoding = 'BASE64' then
-    Result := DecodeStringBase64(Values.DelimitedText)
-  else
-  if Encoding = 'QUOTED-PRINTABLE' then
-    Result := DecodeQuotedPrintable(Values.DelimitedText)
+  if Encoding = 'BASE64' then begin
+    Result := DecodeStringBase64(Value)
+  end else
+  if Encoding = 'QUOTED-PRINTABLE' then begin
+    Result := DecodeQuotedPrintable(Value)
+  end
   else Result := '';
 end;
 
@@ -329,7 +380,9 @@ procedure TContactProperty.Assign(Source: TContactProperty);
 begin
   Name := Source.Name;
   Attributes.Assign(Source.Attributes);
-  Values.Assign(Source.Values);
+  Value := Source.Value;
+  Encoding := Source.Encoding;
+  Charset := Source.Charset;
 end;
 
 constructor TContactProperty.Create;
@@ -338,15 +391,10 @@ begin
   Attributes.Delimiter := ';';
   Attributes.NameValueSeparator := '=';
   Attributes.StrictDelimiter := True;
-  Values := TStringList.Create;
-  Values.Delimiter := ';';
-  Values.NameValueSeparator := '=';
-  Values.StrictDelimiter := True;
 end;
 
 destructor TContactProperty.Destroy;
 begin
-  FreeAndNil(Values);
   FreeAndNil(Attributes);
   inherited;
 end;
@@ -447,10 +495,8 @@ begin
   if Assigned(Prop) then begin
     Field := Parent.Fields.GetByIndex(Index);
     if Field.ValueIndex <> -1 then begin
-      if Field.ValueIndex < Prop.Values.Count then
-        Result := Prop.Values.Strings[Field.ValueIndex]
-        else Result := '';
-    end else Result := Prop.Values.DelimitedText;
+      Result := Prop.ValueItem[Field.ValueIndex]
+    end else Result := Prop.Value;
   end else Result := '';
 end;
 
@@ -472,19 +518,11 @@ begin
     end;
     if Assigned(Prop) then begin
       if Field.ValueIndex <> -1 then begin
-        // Extend subitems count
-        while Prop.Values.Count <= Field.ValueIndex do
-          Prop.Values.Add('');
-
-        Prop.Values.Strings[Field.ValueIndex] := AValue;
-      end else Prop.Values.DelimitedText := AValue;
-
-      // Remove empty items
-      while (Prop.Values.Count > 0) and (Prop.Values.Strings[Prop.Values.Count - 1] = '') do
-        Prop.Values.Delete(Prop.Values.Count - 1);
+        Prop.ValueItem[Field.ValueIndex] := AValue;
+      end else Prop.Value := AValue;
 
       // Remove if empty
-      if Prop.Values.Text = '' then begin
+      if Prop.Value = '' then begin
         Properties.Remove(Prop);
       end;
     end;
@@ -594,10 +632,10 @@ begin
     AddNew('ADR', ['WORK'], [], SWorkAddressCountry, cfWorkAddressCountry, dtString, 6);
     AddNew('X-TIMES_CONTACTED', [], [], STimesContacted, cfXTimesContacted, dtString);
     AddNew('X-LAST_TIME_CONTACTED', [], [], SLastTimeContacted, cfXLastTimeContacted, dtString);
-    AddNew('PHOTO', [], [], SPhoto, cfPhoto, dtString);
+    AddNew('PHOTO', [], [], SPhoto, cfPhoto, dtImage);
     AddNew('X-JABBER', [], [], SJabber, cfXJabber, dtString);
-    AddNew('BDAY', [], [], SDayOfBirth, cfDayOfBirth, dtString);
-    AddNew('ANNIVERSARY', [], [], SAnniversary, cfAnniversary, dtString);
+    AddNew('BDAY', [], [], SDayOfBirth, cfDayOfBirth, dtDate);
+    AddNew('ANNIVERSARY', [], [], SAnniversary, cfAnniversary, dtDate);
     AddNew('REV', [], [], SRevision, cfRevision, dtString);
     AddNew('UID', [], [], SUniqueIdentifier, cfUid, dtString);
     AddNew('URL', [], ['HOME', 'WORK'], SWebAddress, cfUrl, dtString);
@@ -640,7 +678,6 @@ var
   Output: TStringList;
   I: Integer;
   J: Integer;
-  Value: string;
   NameText: string;
 begin
   inherited;
@@ -651,7 +688,6 @@ begin
       Add('BEGIN:VCARD');
       for J := 0 to Properties.Count - 1 do
       with Properties[J] do begin
-        Value := Values.DelimitedText;
         if Pos(LineEnding, Value) > 0 then begin
           NameText := Name;
           if Attributes.Count > 0 then
@@ -718,6 +754,10 @@ begin
             Inc(I);
             if (Length(Lines[I]) > 0) and (Lines[I][1] = ' ') then begin
               Value := Value + Trim(Lines[I]);
+            end else
+            if (Length(Lines[I]) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
+              (Lines[I][1] = '=') then begin
+              Value := Value + Copy(Trim(Lines[I]), 2, MaxInt);
             end else begin
               Dec(I);
               Break;
@@ -733,7 +773,7 @@ begin
             NewProperty.Name := NewProperty.Attributes[0];
             NewProperty.Attributes.Delete(0);
           end;
-          NewProperty.Values.DelimitedText := Value;
+          NewProperty.Value := Value;
           NewProperty.EvaluateAttributes;
         end else Error(SFoundPropertiesBeforeBlockStart, I + 1);
       end;

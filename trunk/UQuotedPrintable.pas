@@ -20,7 +20,7 @@ const
 
 function DecodeQuotedPrintable(Text: string): string;
 var
-  O, Count, WS: Byte;
+  O, Count, WS: Integer;
   I: integer;
   InBuf: array[0..Pred(MaxLine)] of Byte;
   OutBuf: array[0..Pred(MaxLine)] of Byte;

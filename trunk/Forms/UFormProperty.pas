@@ -79,7 +79,7 @@ begin
   if Assigned(FContactProperty) then begin
     EditName.Text := FContactProperty.Name;
     EditAttributes.Text := FContactProperty.Attributes.DelimitedText;
-    EditValues.Text := FContactProperty.Values.DelimitedText;
+    EditValues.Text := FContactProperty.Value;
   end else begin
     EditName.Text := '';
     EditAttributes.Text := '';
@@ -94,7 +94,7 @@ procedure TFormProperty.SaveData;
 begin
   FContactProperty.Name := EditName.Text;
   FContactProperty.Attributes.DelimitedText := EditAttributes.Text;
-  FContactProperty.Values.DelimitedText := EditValues.Text;
+  FContactProperty.Value := EditValues.Text;
 end;
 
 end.
