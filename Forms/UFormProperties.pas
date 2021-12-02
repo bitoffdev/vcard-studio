@@ -82,7 +82,7 @@ begin
   with TContactProperty(ListViewSort1.List[Item.Index]) do begin
     Item.Caption := Name;
     Item.SubItems.Add(Attributes.DelimitedText);
-    Item.SubItems.Add(Values.DelimitedText);
+    Item.SubItems.Add(Value);
     Item.Data := ListViewSort1.List[Item.Index];
   end;
 end;
@@ -117,7 +117,7 @@ begin
     case Column of
       0: Result := CompareString(TContactProperty(Item1).Name, TContactProperty(Item2).Name);
       1: Result := CompareString(TContactProperty(Item1).Attributes.DelimitedText, TContactProperty(Item2).Attributes.DelimitedText);
-      2: Result := CompareString(TContactProperty(Item1).Values.DelimitedText, TContactProperty(Item2).Values.DelimitedText);
+      2: Result := CompareString(TContactProperty(Item1).Value, TContactProperty(Item2).Value);
     end;
     if ListViewSort1.Order = soDown then Result := -Result;
   end else Result := 0;
@@ -148,7 +148,7 @@ begin
            if Pos(UTF8LowerCase(StringGrid.Cells[1, 0]),
              UTF8LowerCase(TContactProperty(List.Items[I]).Attributes.DelimitedText)) > 0 then Inc(FoundCount);
            if Pos(UTF8LowerCase(StringGrid.Cells[2, 0]),
-             UTF8LowerCase(TContactProperty(List.Items[I]).Values.DelimitedText)) > 0 then Inc(FoundCount);
+             UTF8LowerCase(TContactProperty(List.Items[I]).Value)) > 0 then Inc(FoundCount);
            if FoundCount <> EnteredCount then List.Delete(I);
          end;
       end;

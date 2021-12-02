@@ -170,7 +170,7 @@ begin
   with Contact.Properties[Item.Index] do begin
     Item.Caption := Contact.Properties[Item.Index].Name;
     Item.SubItems.Add(Attributes.DelimitedText);
-    Item.SubItems.Add(Contact.Properties[Item.Index].Values.DelimitedText);
+    Item.SubItems.Add(Contact.Properties[Item.Index].Value);
     Item.Data := Contact.Properties[Item.Index];
   end;
 end;

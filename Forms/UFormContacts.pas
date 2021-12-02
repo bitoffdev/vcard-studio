@@ -132,7 +132,9 @@ end;
 procedure TFormContacts.ListViewSort1Filter(ListViewSort: TListViewSort);
 begin
   if Assigned(Contacts) then Contacts.AssignToList(ListViewSort1.List)
-    else ListViewSort1.List.Clear;
+    else begin
+      ListViewSort1.List.Clear;
+    end;
   FilterList(ListViewSort1.List);
 end;
 
@@ -177,6 +179,7 @@ begin
   FContacts := AValue;
   ReloadList;
   UpdateInterface;
+  ListViewFilter1.Reset;
 end;
 
 procedure TFormContacts.FormShow(Sender: TObject);
