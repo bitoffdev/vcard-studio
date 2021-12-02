@@ -82,10 +82,18 @@ msgctxt "tformcontact.buttoncancel.caption"
 msgid "Cancel"
 msgstr "Zrušit"
 
+#: tformcontact.buttonnext.caption
+msgid "Next"
+msgstr "Další"
+
 #: tformcontact.buttonok.caption
 msgctxt "tformcontact.buttonok.caption"
 msgid "OK"
 msgstr "OK"
+
+#: tformcontact.buttonprevious.caption
+msgid "Previous"
+msgstr "Předchozí"
 
 #: tformcontact.caption
 msgid "Contact"
@@ -162,10 +170,6 @@ msgstr "Mobil:"
 #: tformcontact.label22.caption
 msgid "Birthday:"
 msgstr "Narozeniny:"
-
-#: tformcontact.label23.caption
-msgid "Photo:"
-msgstr "Fotka:"
 
 #: tformcontact.label24.caption
 msgid "Full name:"
@@ -497,7 +501,7 @@ msgstr "Kontakty"
 #: tformproperties.listview1.columns[0].caption
 msgctxt "tformproperties.listview1.columns[0].caption"
 msgid "Name"
-msgstr "Jméno:"
+msgstr "Jméno"
 
 #: tformproperties.listview1.columns[1].caption
 msgctxt "tformproperties.listview1.columns[1].caption"
@@ -595,7 +599,7 @@ msgstr "E-mail"
 
 #: ucontact.sfax
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 #: ucontact.sfieldindexnotdefined
 msgid "Field index not defined"
@@ -648,28 +652,28 @@ msgstr "Domácí adresa rozšířená ulice"
 
 #: ucontact.shomeemail
 msgid "Home E-mail"
-msgstr "Domácí E-mail"
+msgstr "Domov E-mail"
 
 #: ucontact.shomefax
 msgid "Home fax"
-msgstr ""
+msgstr "Domov fax"
 
 #: ucontact.shomemobile
 msgid "Home mobile"
-msgstr ""
+msgstr "Domov mobil"
 
 #: ucontact.shomepager
 msgid "Home pager"
-msgstr ""
+msgstr "Domov pager"
 
 #: ucontact.shomephone
 msgctxt "ucontact.shomephone"
 msgid "Home phone"
-msgstr "Domácí telefon"
+msgstr "Domov telefon"
 
 #: ucontact.shomephone2
 msgid "Home phone 2"
-msgstr "Domácí telefon 2"
+msgstr "Domov telefon 2"
 
 #: ucontact.sinternetemail
 msgid "Internet E-mail"
@@ -698,7 +702,7 @@ msgstr "Prostřední jméno"
 
 #: ucontact.smobilephone
 msgid "Mobile phone"
-msgstr ""
+msgstr "Mobil"
 
 #: ucontact.snickname
 msgid "Nick name"
@@ -714,7 +718,7 @@ msgstr "Organizace"
 
 #: ucontact.spager
 msgid "Pager"
-msgstr ""
+msgstr "Pager"
 
 #: ucontact.sphoto
 msgid "Photo"
@@ -763,7 +767,7 @@ msgstr "VoIP telefon"
 
 #: ucontact.swebaddress
 msgid "Web address"
-msgstr ""
+msgstr "Webová adresa"
 
 #: ucontact.swebaddresshome
 msgid "Web address home"
@@ -803,19 +807,19 @@ msgstr "Pracovní adresa rozšířená ulice"
 
 #: ucontact.sworkemail
 msgid "Work E-mail"
-msgstr ""
+msgstr "Práce E-mail"
 
 #: ucontact.sworkfax
 msgid "Work fax"
-msgstr ""
+msgstr "Práce fax"
 
 #: ucontact.sworkmobile
 msgid "Work mobile"
-msgstr ""
+msgstr "Práce mobil"
 
 #: ucontact.sworkpager
 msgid "Work pager"
-msgstr ""
+msgstr "Práce pager"
 
 #: ucontact.sworkphone
 msgid "Work phone"
