@@ -63,6 +63,7 @@ type
     Charset: string;
     procedure EvaluateAttributes;
     function GetDecodedValue: string;
+    function GetEncodedValue: string;
     function MatchNameGroups(AName: string; Groups: TStringArray;
       NoGroups: TStringArray): Boolean;
     procedure Assign(Source: TContactProperty);
@@ -342,10 +343,21 @@ end;
 function TContactProperty.GetDecodedValue: string;
 begin
   if Encoding = 'BASE64' then begin
-    Result := DecodeStringBase64(Value)
+    Result := DecodeStringBase64(Value);
   end else
   if Encoding = 'QUOTED-PRINTABLE' then begin
-    Result := DecodeQuotedPrintable(Value)
+    Result := DecodeQuotedPrintable(Value);
+  end
+  else Result := '';
+end;
+
+function TContactProperty.GetEncodedValue: string;
+begin
+  if Encoding = 'BASE64' then begin
+    Result := EncodeStringBase64(Value);
+  end else
+  if Encoding = 'QUOTED-PRINTABLE' then begin
+    Result := EncodeQuotedPrintable(Value);
   end
   else Result := '';
 end;
@@ -354,9 +366,7 @@ function TContactProperty.MatchNameGroups(AName: string; Groups: TStringArray;
   NoGroups: TStringArray): Boolean;
 var
   I: Integer;
-  Attr: string;
 begin
-  Attr := Attributes.DelimitedText;
   Result := Name = AName;
   if Result and (Length(Groups) > 0) then begin
     for I := 0 to Length(Groups) - 1 do
@@ -679,6 +689,7 @@ var
   I: Integer;
   J: Integer;
   NameText: string;
+  Value2: string;
 begin
   inherited;
   try
@@ -688,21 +699,22 @@ begin
       Add('BEGIN:VCARD');
       for J := 0 to Properties.Count - 1 do
       with Properties[J] do begin
-        if Pos(LineEnding, Value) > 0 then begin
-          NameText := Name;
-          if Attributes.Count > 0 then
-            NameText := NameText + ';' + Attributes.DelimitedText;
-          Add(NameText + ':' + GetNext(Value, LineEnding));
-          while Pos(LineEnding, Value) > 0 do begin
-            Add(' ' + GetNext(Value, LineEnding));
+        NameText := Name;
+        if Attributes.Count > 0 then
+          NameText := NameText + ';' + Attributes.DelimitedText;
+        if Encoding <> '' then begin
+          Value2 := GetEncodedValue;
+          NameText := NameText + ';' + Encoding;
+        end else Value2 := Value;
+        if Pos(LineEnding, Value2) > 0 then begin
+          Add(NameText + ':' + GetNext(Value2, LineEnding));
+          while Pos(LineEnding, Value2) > 0 do begin
+            Add(' ' + GetNext(Value2, LineEnding));
           end;
-          Add(' ' + GetNext(Value, LineEnding));
+          Add(' ' + GetNext(Value2, LineEnding));
           Add('');
         end else begin
-          NameText := Name;
-          if Attributes.Count > 0 then
-            NameText := NameText + ';' + Attributes.DelimitedText;
-          Add(NameText + ':' + Value);
+          Add(NameText + ':' + Value2);
         end;
       end;
       Add('END:VCARD');
@@ -768,7 +780,7 @@ begin
             NewProperty := TContactProperty.Create;
             NewRecord.Properties.Add(NewProperty);
           end;
-          NewProperty.Attributes.DelimitedText := UpperCase(Names);
+          NewProperty.Attributes.DelimitedText := Names;
           if NewProperty.Attributes.Count > 0 then begin
             NewProperty.Name := NewProperty.Attributes[0];
             NewProperty.Attributes.Delete(0);

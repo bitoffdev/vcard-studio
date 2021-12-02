@@ -11,71 +11,13 @@ msgstr ""
 "Language: cs\n"
 "X-Generator: Poedit 3.0\n"
 
-#: tcore.aabout.caption
-msgid "About..."
-msgstr "O aplikaci..."
+#: tformcontact.aphotoload.caption
+msgid "Load from file"
+msgstr "Načíst ze souboru"
 
-#: tcore.aexit.caption
-msgid "Exit"
-msgstr "Ukončit"
-
-#: tcore.afileclose.caption
-msgctxt "tcore.afileclose.caption"
-msgid "Close"
-msgstr "Zavřít"
-
-#: tcore.afilemerge.caption
-msgid "Merge..."
-msgstr "Sloučení..."
-
-#: tcore.afilenew.caption
-msgid "New"
-msgstr "Nový"
-
-#: tcore.afileopen.caption
-msgid "Open..."
-msgstr "Otevřít..."
-
-#: tcore.afileopenrecent.caption
-msgctxt "tcore.afileopenrecent.caption"
-msgid "Open recent"
-msgstr "Otevřít nedávné"
-
-#: tcore.afilesave.caption
-msgid "Save"
-msgstr "Uložit"
-
-#: tcore.afilesaveas.caption
-msgid "Save as..."
-msgstr "Uložit jako..."
-
-#: tcore.afindduplicate.caption
-msgctxt "tcore.afindduplicate.caption"
-msgid "Find duplicities"
-msgstr "Najít duplikáty"
-
-#: tcore.agenerate.caption
-msgctxt "tcore.agenerate.caption"
-msgid "Generate contacts"
-msgstr "Generovat kontakty"
-
-#: tcore.ahomepage.caption
-msgctxt "tcore.ahomepage.caption"
-msgid "Home page"
-msgstr "Domovská stránka"
-
-#: tcore.applicationinfo1.description
-msgid "vCard files management tool"
-msgstr "Nástroj pro správu souborů vCard"
-
-#: tcore.asettings.caption
-msgctxt "tcore.asettings.caption"
-msgid "Settings"
-msgstr "Nastavení"
-
-#: tformcontact.aeditfield.caption
-msgid "Edit"
-msgstr "Upravit"
+#: tformcontact.aphotosave.caption
+msgid "Save to file"
+msgstr "Uložit do souboru"
 
 #: tformcontact.buttoncancel.caption
 msgctxt "tformcontact.buttoncancel.caption"

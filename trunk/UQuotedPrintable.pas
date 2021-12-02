@@ -8,6 +8,7 @@ uses
   Classes, SysUtils;
 
 function DecodeQuotedPrintable(Text: string): string;
+function EncodeQuotedPrintable(Text: string): string;
 
 
 implementation
@@ -198,6 +199,11 @@ begin
     OutStream.Free;
     BufStream.Free;
   end;
+end;
+
+function EncodeQuotedPrintable(Text: string): string;
+begin
+  Result := Text;
 end;
 
 end.
