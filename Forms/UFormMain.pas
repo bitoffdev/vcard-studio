@@ -48,6 +48,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItemToolbarClick(Sender: TObject);
   private
@@ -94,12 +95,19 @@ begin
   FormContacts.Free;
 end;
 
+procedure TFormMain.FormResize(Sender: TObject);
+begin
+  CoolBar1.AutosizeBands;
+end;
+
 procedure TFormMain.FormShow(Sender: TObject);
 begin
   SetToolbarHints;
   Core.Initialize;
   Core.ThemeManager1.UseTheme(Self);
   Core.PersistentForm1.Load(Self);
+  Core.ScaleDPI1.ScaleControl(CoolBar1, Core.ScaleDPI1.DesignDPI);
+  CoolBar1.AutosizeBands;
 
   FormContacts := TFormContacts.Create(nil);
   FormContacts.Contacts := TContactsFile(Core.DataFile).Contacts;
