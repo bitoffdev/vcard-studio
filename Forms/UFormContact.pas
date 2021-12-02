@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, ActnList, Menus, ExtCtrls, UContact, base64, UFormProperties;
+  ComCtrls, ActnList, Menus, ExtCtrls, UContact, UFormProperties;
 
 type
 
@@ -16,7 +16,9 @@ type
     AEditField: TAction;
     ActionList1: TActionList;
     ButtonCancel: TButton;
+    ButtonNext: TButton;
     ButtonOk: TButton;
+    ButtonPrevious: TButton;
     EditHomeAddressCity: TEdit;
     EditHomeAddressCountry: TEdit;
     EditHomeAddressPostalCode: TEdit;
@@ -77,7 +79,6 @@ type
     Label19: TLabel;
     Label2: TLabel;
     Label22: TLabel;
-    Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
     Label26: TLabel;
@@ -119,7 +120,9 @@ type
     TabSheetWork: TTabSheet;
     TabSheetGeneral: TTabSheet;
     TabSheetAll: TTabSheet;
+    procedure ButtonNextClick(Sender: TObject);
     procedure ButtonOkClick(Sender: TObject);
+    procedure ButtonPreviousClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -129,12 +132,16 @@ type
     procedure TabSheetGeneralShow(Sender: TObject);
   private
     FContact: TContact;
+    FOnNext: TNotifyEvent;
+    FOnPrevious: TNotifyEvent;
     FormProperties: TFormProperties;
     procedure SetContact(AValue: TContact);
   public
     procedure LoadData;
     procedure SaveData;
     property Contact: TContact read FContact write SetContact;
+    property OnPrevious: TNotifyEvent read FOnPrevious write FOnPrevious;
+    property OnNext: TNotifyEvent read FOnNext write FOnNext;
   end;
 
 var
@@ -147,10 +154,6 @@ implementation
 
 uses
   UCore;
-
-resourcestring
-  SFieldEdit = 'Field edit';
-  SEditFieldValue = 'Edit field value';
 
 { TFormContact }
 
@@ -203,6 +206,16 @@ end;
 procedure TFormContact.ButtonOkClick(Sender: TObject);
 begin
   SaveData;
+end;
+
+procedure TFormContact.ButtonNextClick(Sender: TObject);
+begin
+  if Assigned(FOnNext) then FOnNext(Self);
+end;
+
+procedure TFormContact.ButtonPreviousClick(Sender: TObject);
+begin
+  if Assigned(FOnPrevious) then FOnPrevious(Self);
 end;
 
 procedure TFormContact.FormCreate(Sender: TObject);
