@@ -6,14 +6,15 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, ActnList, Menus, ExtCtrls, UContact, UFormProperties;
+  ComCtrls, ActnList, Menus, ExtCtrls, ExtDlgs, UContact, UFormProperties;
 
 type
 
   { TFormContact }
 
   TFormContact = class(TForm)
-    AEditField: TAction;
+    APhotoSave: TAction;
+    APhotoLoad: TAction;
     ActionList1: TActionList;
     ButtonCancel: TButton;
     ButtonNext: TButton;
@@ -113,13 +114,18 @@ type
     LabelOrganization1: TLabel;
     MemoNotes: TMemo;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    OpenPictureDialog1: TOpenPictureDialog;
     PageControlContact: TPageControl;
-    PopupMenu1: TPopupMenu;
+    PopupMenuPhoto: TPopupMenu;
+    SavePictureDialog1: TSavePictureDialog;
     TabSheetOthers: TTabSheet;
     TabSheetHome: TTabSheet;
     TabSheetWork: TTabSheet;
     TabSheetGeneral: TTabSheet;
     TabSheetAll: TTabSheet;
+    procedure APhotoLoadExecute(Sender: TObject);
+    procedure APhotoSaveExecute(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
     procedure ButtonOkClick(Sender: TObject);
     procedure ButtonPreviousClick(Sender: TObject);
@@ -139,6 +145,7 @@ type
   public
     procedure LoadData;
     procedure SaveData;
+    procedure UpdateInterface;
     property Contact: TContact read FContact write SetContact;
     property OnPrevious: TNotifyEvent read FOnPrevious write FOnPrevious;
     property OnNext: TNotifyEvent read FOnNext write FOnNext;
@@ -165,6 +172,7 @@ begin
   FormProperties.ManualDock(TabSheetAll, nil, alClient);
   FormProperties.Align := alClient;
   FormProperties.Show;
+  UpdateInterface;
 end;
 
 procedure TFormContact.ListView1Data(Sender: TObject; Item: TListItem);
@@ -194,7 +202,7 @@ procedure TFormContact.SetContact(AValue: TContact);
 begin
   if FContact = AValue then Exit;
   FContact := AValue;
-  LoadData;
+  if Visible then LoadData;
 end;
 
 procedure TFormContact.FormClose(Sender: TObject; var CloseAction: TCloseAction
@@ -211,6 +219,20 @@ end;
 procedure TFormContact.ButtonNextClick(Sender: TObject);
 begin
   if Assigned(FOnNext) then FOnNext(Self);
+end;
+
+procedure TFormContact.APhotoLoadExecute(Sender: TObject);
+begin
+  if OpenPictureDialog1.Execute then begin
+    ImagePhoto.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+  end;
+end;
+
+procedure TFormContact.APhotoSaveExecute(Sender: TObject);
+begin
+  if SavePictureDialog1.Execute then begin
+    ImagePhoto.Picture.SaveToFile(SavePictureDialog1.FileName);
+  end;
 end;
 
 procedure TFormContact.ButtonPreviousClick(Sender: TObject);
@@ -293,6 +315,7 @@ begin
   // Others
   MemoNotes.Lines.Text := Contact.Fields[cfNote];
 
+  // Photo
   ImagePhoto.Picture.Bitmap.Clear;
   PhotoProperty := Contact.GetProperty(cfPhoto);
   if Assigned(PhotoProperty) then begin
@@ -325,9 +348,15 @@ begin
       end;
     end;
   end;
+  UpdateInterface;
 end;
 
 procedure TFormContact.SaveData;
+var
+  Photo: string;
+  PhotoProperty: TContactProperty;
+  Stream: TMemoryStream;
+  JpegImage: TJpegImage;
 begin
   // General
   Contact.Fields[cfFullName] := EditFullName.Text;
@@ -381,6 +410,52 @@ begin
 
   // Others
   Contact.Fields[cfNote] := MemoNotes.Lines.Text;
+
+  // Photo
+  if (ImagePhoto.Picture.Bitmap.Width <> 0) and (ImagePhoto.Picture.Bitmap.Height <> 0) then begin
+    PhotoProperty := Contact.GetProperty(cfPhoto);
+    if not Assigned(PhotoProperty) then begin
+      PhotoProperty := TContactProperty.Create;
+      PhotoProperty.Name := 'PHOTO';
+      PhotoProperty.Attributes.DelimitedText := 'JPEG';
+      Contact.Properties.Add(PhotoProperty);
+    end;
+    PhotoProperty.Encoding := 'BASE64';
+    Stream := TMemoryStream.Create;
+    try
+      if PhotoProperty.Attributes.IndexOf('JPEG') <> -1 then begin
+        JpegImage := TJPEGImage.Create;
+        try
+          try
+            JpegImage.SetSize(ImagePhoto.Picture.Bitmap.Width, ImagePhoto.Picture.Bitmap.Height);
+            JpegImage.Canvas.Draw(0, 0, ImagePhoto.Picture.Bitmap);
+            JpegImage.SaveToStream(Stream);
+          except
+          end;
+        finally
+          JpegImage.Free;
+        end;
+      end else begin
+        try
+          ImagePhoto.Picture.SaveToStream(Stream);
+        except
+        end;
+      end;
+
+      SetLength(Photo, Stream.Size);
+      Stream.Position := 0;
+      Stream.Read(Photo[1], Length(Photo));
+      Contact.Fields[cfPhoto] := Photo;
+    finally
+      Stream.Free;
+    end;
+  end;
+end;
+
+procedure TFormContact.UpdateInterface;
+begin
+  APhotoSave.Enabled := (ImagePhoto.Picture.Bitmap.Width <> 0) and
+    (ImagePhoto.Picture.Bitmap.Height <> 0);
 end;
 
 end.

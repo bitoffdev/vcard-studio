@@ -1,70 +1,12 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: tcore.aabout.caption
-msgid "About..."
+#: tformcontact.aphotoload.caption
+msgid "Load from file"
 msgstr ""
 
-#: tcore.aexit.caption
-msgid "Exit"
-msgstr ""
-
-#: tcore.afileclose.caption
-msgctxt "tcore.afileclose.caption"
-msgid "Close"
-msgstr ""
-
-#: tcore.afilemerge.caption
-msgid "Merge..."
-msgstr ""
-
-#: tcore.afilenew.caption
-msgid "New"
-msgstr ""
-
-#: tcore.afileopen.caption
-msgid "Open..."
-msgstr ""
-
-#: tcore.afileopenrecent.caption
-msgctxt "tcore.afileopenrecent.caption"
-msgid "Open recent"
-msgstr ""
-
-#: tcore.afilesave.caption
-msgid "Save"
-msgstr ""
-
-#: tcore.afilesaveas.caption
-msgid "Save as..."
-msgstr ""
-
-#: tcore.afindduplicate.caption
-msgctxt "tcore.afindduplicate.caption"
-msgid "Find duplicities"
-msgstr ""
-
-#: tcore.agenerate.caption
-msgctxt "tcore.agenerate.caption"
-msgid "Generate contacts"
-msgstr ""
-
-#: tcore.ahomepage.caption
-msgctxt "tcore.ahomepage.caption"
-msgid "Home page"
-msgstr ""
-
-#: tcore.applicationinfo1.description
-msgid "vCard files management tool"
-msgstr ""
-
-#: tcore.asettings.caption
-msgctxt "tcore.asettings.caption"
-msgid "Settings"
-msgstr ""
-
-#: tformcontact.aeditfield.caption
-msgid "Edit"
+#: tformcontact.aphotosave.caption
+msgid "Save to file"
 msgstr ""
 
 #: tformcontact.buttoncancel.caption
