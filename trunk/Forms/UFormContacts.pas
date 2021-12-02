@@ -50,6 +50,8 @@ type
     FContacts: TContacts;
     procedure FilterList(List: TFPGObjectList<TObject>);
     procedure SetContacts(AValue: TContacts);
+    procedure FormContactPrevious(Sender: TObject);
+    procedure FormContactNext(Sender: TObject);
   public
     property Contacts: TContacts read FContacts write SetContacts;
     procedure ReloadList;
@@ -182,6 +184,24 @@ begin
   ListViewFilter1.Reset;
 end;
 
+procedure TFormContacts.FormContactPrevious(Sender: TObject);
+var
+  I: Integer;
+begin
+  I := ListViewSort1.List.IndexOf(TFormContact(Sender).Contact);
+  if (I <> -1) and (I > 0) then
+    TFormContact(Sender).Contact := TContact(ListViewSort1.List[I - 1]);
+end;
+
+procedure TFormContacts.FormContactNext(Sender: TObject);
+var
+  I: Integer;
+begin
+  I := ListViewSort1.List.IndexOf(TFormContact(Sender).Contact);
+  if (I <> -1) and (I < ListViewSort1.List.Count - 1) then
+    TFormContact(Sender).Contact := TContact(ListViewSort1.List[I + 1]);
+end;
+
 procedure TFormContacts.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
@@ -203,6 +223,8 @@ begin
     try
       Contact.Parent := Contacts.ContactsFile;
       FormContact.Contact := Contact;
+      FormContact.OnPrevious := FormContactPrevious;
+      FormContact.OnNext := FormContactNext;
       if FormContact.ShowModal = mrOK then begin
         Contacts.Add(Contact);
         Contact := nil;
@@ -229,6 +251,8 @@ begin
     Contact := TContact.Create;
     Contact.Assign(TContact(ListView1.Selected.Data));
     FormContact.Contact := Contact;
+    FormContact.OnPrevious := FormContactPrevious;
+    FormContact.OnNext := FormContactNext;
     try
       if FormContact.ShowModal = mrOK then begin
         TContact(ListView1.Selected.Data).Assign(Contact);

@@ -72,9 +72,17 @@ msgctxt "tformcontact.buttoncancel.caption"
 msgid "Cancel"
 msgstr ""
 
+#: tformcontact.buttonnext.caption
+msgid "Next"
+msgstr ""
+
 #: tformcontact.buttonok.caption
 msgctxt "tformcontact.buttonok.caption"
 msgid "OK"
+msgstr ""
+
+#: tformcontact.buttonprevious.caption
+msgid "Previous"
 msgstr ""
 
 #: tformcontact.caption
@@ -151,10 +159,6 @@ msgstr ""
 
 #: tformcontact.label22.caption
 msgid "Birthday:"
-msgstr ""
-
-#: tformcontact.label23.caption
-msgid "Photo:"
 msgstr ""
 
 #: tformcontact.label24.caption
