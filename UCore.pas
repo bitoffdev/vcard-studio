@@ -400,8 +400,6 @@ begin
     if Assigned(DataFile) then
       FormContacts.Contacts := TContactsFile(DataFile).Contacts
       else FormContacts.Contacts := nil;
-    FormContacts.ReloadList;
-    FormContacts.UpdateInterface;
   end;
 end;
 

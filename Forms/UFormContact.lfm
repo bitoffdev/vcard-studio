@@ -17,10 +17,10 @@ object FormContact: TFormContact
     Height = 782
     Top = 8
     Width = 939
-    ActivePage = TabSheetGeneral
+    ActivePage = TabSheetOthers
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -834,7 +834,7 @@ object FormContact: TFormContact
       ClientWidth = 929
       object MemoNotes: TMemo
         Left = 16
-        Height = 167
+        Height = 392
         Top = 48
         Width = 893
         Anchors = [akTop, akLeft, akRight, akBottom]
