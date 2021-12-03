@@ -306,9 +306,11 @@ begin
           try
             try
               JpegImage.LoadFromStream(Stream);
-              ImagePhoto.Picture.Bitmap.Clear;
-              ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
-              ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
+              with ImagePhoto.Picture.Bitmap do begin
+                PixelFormat := pf24bit;
+                SetSize(JpegImage.Width, JpegImage.Height);
+                Canvas.Draw(0, 0, JpegImage);
+              end;
               ProfilePhotoActive := True;
             except
               ProfilePhotoActive := False;
