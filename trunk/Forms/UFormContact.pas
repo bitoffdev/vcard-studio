@@ -146,6 +146,8 @@ type
     FOnNext: TNotifyEvent;
     FOnPrevious: TNotifyEvent;
     FormProperties: TFormProperties;
+    ProfilePhotoActive: Boolean;
+    procedure DefaultPhoto;
     procedure SetContact(AValue: TContact);
     procedure ReloadAllPropertiesTab;
   public
@@ -209,7 +211,7 @@ begin
   Contact.Fields[cfUrl] := EditWeb.Text;
 
   // Photo
-  if (ImagePhoto.Picture.Bitmap.Width <> 0) and (ImagePhoto.Picture.Bitmap.Height <> 0) then begin
+  if ProfilePhotoActive then begin
     PhotoProperty := Contact.GetProperty(cfPhoto);
     if not Assigned(PhotoProperty) then begin
       PhotoProperty := TContactProperty.Create;
@@ -291,7 +293,9 @@ begin
               JpegImage.LoadFromStream(Stream);
               ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
               ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
+              ProfilePhotoActive := True;
             except
+              DefaultPhoto;
             end;
           finally
             JpegImage.Free;
@@ -299,14 +303,16 @@ begin
         end else begin
           try
             ImagePhoto.Picture.LoadFromStream(Stream);
+            ProfilePhotoActive := True;
           except
+            DefaultPhoto;
           end;
         end;
       finally
         Stream.Free;
       end;
-    end;
-  end;
+    end else DefaultPhoto;
+  end else DefaultPhoto;
 end;
 
 procedure TFormContact.TabSheetHomeHide(Sender: TObject);
@@ -399,6 +405,12 @@ begin
   EditWorkWeb.Text := Contact.Fields[cfUrlWork];
 end;
 
+procedure TFormContact.DefaultPhoto;
+begin
+  ProfilePhotoActive := False;
+  ImagePhoto.Picture.Assign(Core.GetProfileImage.Picture);
+end;
+
 procedure TFormContact.SetContact(AValue: TContact);
 begin
   if FContact = AValue then Exit;
@@ -457,8 +469,7 @@ end;
 
 procedure TFormContact.UpdateInterface;
 begin
-  APhotoSave.Enabled := (ImagePhoto.Picture.Bitmap.Width <> 0) and
-    (ImagePhoto.Picture.Bitmap.Height <> 0);
+  APhotoSave.Enabled := ProfilePhotoActive;
 end;
 
 end.
