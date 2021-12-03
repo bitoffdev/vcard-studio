@@ -61,6 +61,10 @@ msgctxt "tcore.asettings.caption"
 msgid "Settings"
 msgstr ""
 
+#: tformcontact.aphotoclear.caption
+msgid "Clear"
+msgstr ""
+
 #: tformcontact.aphotoload.caption
 msgid "Load from file"
 msgstr ""

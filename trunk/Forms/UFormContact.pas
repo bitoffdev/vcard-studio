@@ -13,6 +13,7 @@ type
   { TFormContact }
 
   TFormContact = class(TForm)
+    APhotoClear: TAction;
     APhotoSave: TAction;
     APhotoLoad: TAction;
     ActionList1: TActionList;
@@ -115,6 +116,7 @@ type
     MemoNotes: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
     PageControlContact: TPageControl;
     PopupMenuPhoto: TPopupMenu;
@@ -124,6 +126,7 @@ type
     TabSheetWork: TTabSheet;
     TabSheetGeneral: TTabSheet;
     TabSheetAll: TTabSheet;
+    procedure APhotoClearExecute(Sender: TObject);
     procedure APhotoLoadExecute(Sender: TObject);
     procedure APhotoSaveExecute(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
@@ -142,14 +145,17 @@ type
     procedure TabSheetWorkHide(Sender: TObject);
     procedure TabSheetWorkShow(Sender: TObject);
   private
+    FProfilePhotoActive: Boolean;
+    procedure SetProfilePhotoActive(AValue: Boolean);
+  private
     FContact: TContact;
     FOnNext: TNotifyEvent;
     FOnPrevious: TNotifyEvent;
     FormProperties: TFormProperties;
-    ProfilePhotoActive: Boolean;
-    procedure DefaultPhoto;
     procedure SetContact(AValue: TContact);
     procedure ReloadAllPropertiesTab;
+    property ProfilePhotoActive: Boolean read FProfilePhotoActive
+      write SetProfilePhotoActive;
   public
     procedure UpdateInterface;
     property Contact: TContact read FContact write SetContact;
@@ -177,6 +183,12 @@ begin
   FormProperties.ManualDock(TabSheetAll, nil, alClient);
   FormProperties.Align := alClient;
   FormProperties.Show;
+
+  // Force to load default profile image
+  ProfilePhotoActive := True;
+  ProfilePhotoActive := False;
+
+  PageControlContact.TabIndex := Core.LastContactTabIndex;
   UpdateInterface;
 end;
 
@@ -248,6 +260,10 @@ begin
     finally
       Stream.Free;
     end;
+  end else begin
+    PhotoProperty := Contact.GetProperty(cfPhoto);
+    if Assigned(PhotoProperty) then
+       Contact.Properties.Remove(PhotoProperty);
   end;
 
   ReloadAllPropertiesTab;
@@ -277,7 +293,6 @@ begin
   EditWeb.Text := Contact.Fields[cfUrl];
 
   // Photo
-  ImagePhoto.Picture.Bitmap.Clear;
   PhotoProperty := Contact.GetProperty(cfPhoto);
   if Assigned(PhotoProperty) then begin
     Photo := Contact.Fields[cfPhoto];
@@ -291,11 +306,12 @@ begin
           try
             try
               JpegImage.LoadFromStream(Stream);
+              ImagePhoto.Picture.Bitmap.Clear;
               ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
               ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
               ProfilePhotoActive := True;
             except
-              DefaultPhoto;
+              ProfilePhotoActive := False;
             end;
           finally
             JpegImage.Free;
@@ -305,14 +321,14 @@ begin
             ImagePhoto.Picture.LoadFromStream(Stream);
             ProfilePhotoActive := True;
           except
-            DefaultPhoto;
+            ProfilePhotoActive := False;
           end;
         end;
       finally
         Stream.Free;
       end;
-    end else DefaultPhoto;
-  end else DefaultPhoto;
+    end else ProfilePhotoActive := False;
+  end else ProfilePhotoActive := False;
 end;
 
 procedure TFormContact.TabSheetHomeHide(Sender: TObject);
@@ -405,10 +421,14 @@ begin
   EditWorkWeb.Text := Contact.Fields[cfUrlWork];
 end;
 
-procedure TFormContact.DefaultPhoto;
+procedure TFormContact.SetProfilePhotoActive(AValue: Boolean);
 begin
-  ProfilePhotoActive := False;
-  ImagePhoto.Picture.Assign(Core.GetProfileImage.Picture);
+  if FProfilePhotoActive = AValue then Exit;
+  FProfilePhotoActive := AValue;
+  if not FProfilePhotoActive then begin
+    ImagePhoto.Picture.Assign(Core.GetProfileImage.Picture);
+  end;
+  UpdateInterface;
 end;
 
 procedure TFormContact.SetContact(AValue: TContact);
@@ -427,6 +447,10 @@ end;
 procedure TFormContact.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
+  // Hide PageControl to fire TabSheet OnHide event on form close
+  PageControlContact.ActivePage.Hide;
+
+  Core.LastContactTabIndex := PageControlContact.TabIndex;
   Core.PersistentForm1.Save(Self);
 end;
 
@@ -439,7 +463,13 @@ procedure TFormContact.APhotoLoadExecute(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then begin
     ImagePhoto.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+    ProfilePhotoActive := True;
   end;
+end;
+
+procedure TFormContact.APhotoClearExecute(Sender: TObject);
+begin
+  ProfilePhotoActive := False;
 end;
 
 procedure TFormContact.APhotoSaveExecute(Sender: TObject);
@@ -470,6 +500,7 @@ end;
 procedure TFormContact.UpdateInterface;
 begin
   APhotoSave.Enabled := ProfilePhotoActive;
+  APhotoClear.Enabled := ProfilePhotoActive;
 end;
 
 end.

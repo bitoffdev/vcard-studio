@@ -80,6 +80,7 @@ type
     DataFile: TDataFile;
     FileClosed: Boolean;
     ReopenLastFileOnStart: Boolean;
+    LastContactTabIndex: Integer;
     ToolbarVisible: Boolean;
     function GetProfileImage: TImage;
     procedure FileNew;
@@ -277,8 +278,10 @@ begin
 end;
 
 procedure TCore.DataModuleCreate(Sender: TObject);
+{$IFDEF Linux}
 const
   LinuxLanguagesDir = '/usr/share/vCardStudio/Languages';
+{$ENDIF}
 begin
   {$IFDEF Linux}
   // If installed in Linux system then use installation directory for po files
@@ -426,6 +429,7 @@ begin
       else ThemeManager1.Theme := ThemeManager1.Themes.FindByName('System');
     FormMain.MenuItemToolbar.Checked := ReadBoolWithDefault('ToolBarVisible', True);
     ReopenLastFileOnStart := ReadBoolWithDefault('ReopenLastFileOnStart', True);
+    LastContactTabIndex := ReadIntegerWithDefault('LastContactTabIndex', 0);
   finally
     Free;
   end;
@@ -447,6 +451,7 @@ begin
       else DeleteValue('Theme');
     WriteBool('ToolBarVisible', FormMain.MenuItemToolbar.Checked);
     WriteBool('ReopenLastFileOnStart', ReopenLastFileOnStart);
+    WriteInteger('LastContactTabIndex', LastContactTabIndex);
   finally
     Free;
   end;
@@ -463,7 +468,6 @@ const
 begin
   if not Assigned(ProfileImage) then begin
     ProfileImage := TImage.Create(nil);
-    ProfileImage.Picture.LoadFromFile(ProfilePhotoFileName);
     if FileExists(ProfilePhotoFileName) then
       ProfileImage.Picture.LoadFromFile(ProfilePhotoFileName);
   end;
