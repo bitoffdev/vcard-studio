@@ -856,14 +856,6 @@ msgctxt "udatafile.sdatafilename"
 msgid "File"
 msgstr "Soubor"
 
-#: uformcontact.seditfieldvalue
-msgid "Edit field value"
-msgstr "Upravit hodnotu položky"
-
-#: uformcontact.sfieldedit
-msgid "Field edit"
-msgstr "Upravit pole"
-
 #: uformcontacts.sfiltered
 msgctxt "uformcontacts.sfiltered"
 msgid "Filtered"
@@ -917,3 +909,4 @@ msgstr "Celkem"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
+

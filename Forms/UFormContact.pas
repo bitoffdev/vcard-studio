@@ -127,24 +127,28 @@ type
     procedure APhotoLoadExecute(Sender: TObject);
     procedure APhotoSaveExecute(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
-    procedure ButtonOkClick(Sender: TObject);
     procedure ButtonPreviousClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ListView1Data(Sender: TObject; Item: TListItem);
     procedure TabSheetAllShow(Sender: TObject);
+    procedure TabSheetGeneralHide(Sender: TObject);
     procedure TabSheetGeneralShow(Sender: TObject);
+    procedure TabSheetHomeHide(Sender: TObject);
+    procedure TabSheetHomeShow(Sender: TObject);
+    procedure TabSheetOthersHide(Sender: TObject);
+    procedure TabSheetOthersShow(Sender: TObject);
+    procedure TabSheetWorkHide(Sender: TObject);
+    procedure TabSheetWorkShow(Sender: TObject);
   private
     FContact: TContact;
     FOnNext: TNotifyEvent;
     FOnPrevious: TNotifyEvent;
     FormProperties: TFormProperties;
     procedure SetContact(AValue: TContact);
+    procedure ReloadAllPropertiesTab;
   public
-    procedure LoadData;
-    procedure SaveData;
     procedure UpdateInterface;
     property Contact: TContact read FContact write SetContact;
     property OnPrevious: TNotifyEvent read FOnPrevious write FOnPrevious;
@@ -167,7 +171,6 @@ uses
 procedure TFormContact.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
-  PageControlContact.TabIndex := 0;
 
   FormProperties.ManualDock(TabSheetAll, nil, alClient);
   FormProperties.Align := alClient;
@@ -175,190 +178,20 @@ begin
   UpdateInterface;
 end;
 
-procedure TFormContact.ListView1Data(Sender: TObject; Item: TListItem);
-begin
-  if Item.Index < Contact.Properties.Count then
-  with Contact.Properties[Item.Index] do begin
-    Item.Caption := Contact.Properties[Item.Index].Name;
-    Item.SubItems.Add(Attributes.DelimitedText);
-    Item.SubItems.Add(Contact.Properties[Item.Index].Value);
-    Item.Data := Contact.Properties[Item.Index];
-  end;
-end;
-
 procedure TFormContact.TabSheetAllShow(Sender: TObject);
 begin
-  SaveData;
+  FormProperties.Properties := Contact.Properties;
   FormProperties.ReloadList;
   FormProperties.UpdateInterface;
 end;
 
-procedure TFormContact.TabSheetGeneralShow(Sender: TObject);
-begin
-  LoadData;
-end;
-
-procedure TFormContact.SetContact(AValue: TContact);
-begin
-  if FContact = AValue then Exit;
-  FContact := AValue;
-  if Visible then LoadData;
-end;
-
-procedure TFormContact.FormClose(Sender: TObject; var CloseAction: TCloseAction
-  );
-begin
-  Core.PersistentForm1.Save(Self);
-end;
-
-procedure TFormContact.ButtonOkClick(Sender: TObject);
-begin
-  SaveData;
-end;
-
-procedure TFormContact.ButtonNextClick(Sender: TObject);
-begin
-  if Assigned(FOnNext) then FOnNext(Self);
-end;
-
-procedure TFormContact.APhotoLoadExecute(Sender: TObject);
-begin
-  if OpenPictureDialog1.Execute then begin
-    ImagePhoto.Picture.LoadFromFile(OpenPictureDialog1.FileName);
-  end;
-end;
-
-procedure TFormContact.APhotoSaveExecute(Sender: TObject);
-begin
-  if SavePictureDialog1.Execute then begin
-    ImagePhoto.Picture.SaveToFile(SavePictureDialog1.FileName);
-  end;
-end;
-
-procedure TFormContact.ButtonPreviousClick(Sender: TObject);
-begin
-  if Assigned(FOnPrevious) then FOnPrevious(Self);
-end;
-
-procedure TFormContact.FormCreate(Sender: TObject);
-begin
-  Core.Translator.TranslateComponentRecursive(Self);
-  Core.ThemeManager1.UseTheme(Self);
-  FContact := nil;
-  FormProperties := TFormProperties.Create(nil);
-end;
-
-procedure TFormContact.FormDestroy(Sender: TObject);
-begin
-  FreeAndNil(FormProperties);
-end;
-
-procedure TFormContact.LoadData;
-var
-  Photo: string;
-  JpegImage: TJpegImage;
-  Stream: TMemoryStream;
-  PhotoProperty: TContactProperty;
-begin
-  FormProperties.Properties := Contact.Properties;
-
-  // General
-  EditFullName.Text := Contact.Fields[cfFullName];
-  EditFirstName.Text := Contact.Fields[cfFirstName];
-  EditLastName.Text := Contact.Fields[cfLastName];
-  EditMiddleName.Text := Contact.Fields[cfMiddleName];
-  EditTitleAfter.Text := Contact.Fields[cfTitleAfter];
-  EditTitleBefore.Text := Contact.Fields[cfTitleBefore];
-  EditNickName.Text := Contact.Fields[cfNickName];
-  EditEmail.Text := Contact.Fields[cfEmail];
-  EditPhone.Text := Contact.Fields[cfTel];
-  EditMobile.Text := Contact.Fields[cfTelCell];
-  EditFax.Text := Contact.Fields[cfTelFax];
-  EditPager.Text := Contact.Fields[cfTelPager];
-  EditBirthday.Text := Contact.Fields[cfDayOfBirth];
-  EditAniversary.Text := Contact.Fields[cfAnniversary];
-  EditWeb.Text := Contact.Fields[cfUrl];
-
-  // Home
-  EditHomeEmail.Text := Contact.Fields[cfEmailHome];
-  EditHomePhone.Text := Contact.Fields[cfTelHome];
-  EditHomeMobile.Text := Contact.Fields[cfTelCellHome];
-  EditHomeFax.Text := Contact.Fields[cfTelFaxHome];
-  EditHomePager.Text := Contact.Fields[cfTelPagerHome];
-  EditHomeAddressPostOfficeBox.Text := Contact.Fields[cfHomeAddressPostOfficeBox];
-  EditHomeAddressStreet.Text := Contact.Fields[cfHomeAddressStreet];
-  EditHomeAddressStreetExtended.Text := Contact.Fields[cfHomeAddressStreetExtended];
-  EditHomeAddressCity.Text := Contact.Fields[cfHomeAddressCity];
-  EditHomeAddressRegion.Text := Contact.Fields[cfHomeAddressRegion];
-  EditHomeAddressCountry.Text := Contact.Fields[cfHomeAddressCountry];
-  EditHomeAddressPostalCode.Text := Contact.Fields[cfHomeAddressPostalCode];
-  EditHomeWeb.Text := Contact.Fields[cfUrlHome];
-
-  // Work
-  EditWorkEmail.Text := Contact.Fields[cfEmailWork];
-  EditWorkPhone.Text := Contact.Fields[cfTelWork];
-  EditWorkMobile.Text := Contact.Fields[cfTelCellWork];
-  EditWorkFax.Text := Contact.Fields[cfTelFaxWork];
-  EditWorkPager.Text := Contact.Fields[cfTelPagerWork];
-  EditTitle.Text := Contact.Fields[cfTitle];
-  EditOrganization.Text := Contact.Fields[cfOrganization];
-  EditDepartment.Text := Contact.Fields[cfDepartment];
-  EditAddressWorkPostOfficeBox.Text := Contact.Fields[cfWorkAddressPostOfficeBox];
-  EditAddressWorkStreet.Text := Contact.Fields[cfWorkAddressStreet];
-  EditAddressWorkStreetExtended.Text := Contact.Fields[cfWorkAddressStreetExtended];
-  EditAddressWorkCity.Text := Contact.Fields[cfWorkAddressCity];
-  EditAddressWorkRegion.Text := Contact.Fields[cfWorkAddressRegion];
-  EditAddressWorkCountry.Text := Contact.Fields[cfWorkAddressCountry];
-  EditAddressWorkPostalCode.Text := Contact.Fields[cfWorkAddressPostalCode];
-  EditWorkWeb.Text := Contact.Fields[cfUrlWork];
-
-  // Others
-  MemoNotes.Lines.Text := Contact.Fields[cfNote];
-
-  // Photo
-  ImagePhoto.Picture.Bitmap.Clear;
-  PhotoProperty := Contact.GetProperty(cfPhoto);
-  if Assigned(PhotoProperty) then begin
-    Photo := Contact.Fields[cfPhoto];
-    if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
-      Stream := TMemoryStream.Create;
-      try
-        Stream.Write(Photo[1], Length(Photo));
-        Stream.Position := 0;
-        if PhotoProperty.Attributes.IndexOf('JPEG') <> -1 then begin
-          JpegImage := TJPEGImage.Create;
-          try
-            try
-              JpegImage.LoadFromStream(Stream);
-              ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
-              ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
-            except
-            end;
-          finally
-            JpegImage.Free;
-          end;
-        end else begin
-          try
-            ImagePhoto.Picture.LoadFromStream(Stream);
-          except
-          end;
-        end;
-      finally
-        Stream.Free;
-      end;
-    end;
-  end;
-  UpdateInterface;
-end;
-
-procedure TFormContact.SaveData;
+procedure TFormContact.TabSheetGeneralHide(Sender: TObject);
 var
   Photo: string;
   PhotoProperty: TContactProperty;
   Stream: TMemoryStream;
   JpegImage: TJpegImage;
 begin
-  // General
   Contact.Fields[cfFullName] := EditFullName.Text;
   Contact.Fields[cfMiddleName] := EditMiddleName.Text;
   Contact.Fields[cfFirstName] := EditFirstName.Text;
@@ -374,42 +207,6 @@ begin
   Contact.Fields[cfDayOfBirth] := EditBirthday.Text;
   Contact.Fields[cfAnniversary] := EditAniversary.Text;
   Contact.Fields[cfUrl] := EditWeb.Text;
-
-  // Home
-  Contact.Fields[cfEmailHome] := EditHomeEmail.Text;
-  Contact.Fields[cfTelHome] := EditHomePhone.Text;
-  Contact.Fields[cfTelCellHome] := EditHomeMobile.Text;
-  Contact.Fields[cfTelFaxHome] := EditHomeFax.Text;
-  Contact.Fields[cfTelPagerHome] := EditHomePager.Text;
-  Contact.Fields[cfHomeAddressPostOfficeBox] := EditHomeAddressPostOfficeBox.Text;
-  Contact.Fields[cfHomeAddressStreet] := EditHomeAddressStreet.Text;
-  Contact.Fields[cfHomeAddressStreetExtended] := EditHomeAddressStreetExtended.Text;
-  Contact.Fields[cfHomeAddressCity] := EditHomeAddressCity.Text;
-  Contact.Fields[cfHomeAddressRegion] := EditHomeAddressRegion.Text;
-  Contact.Fields[cfHomeAddressCountry] := EditHomeAddressCountry.Text;
-  Contact.Fields[cfHomeAddressPostalCode] := EditHomeAddressPostalCode.Text;
-  Contact.Fields[cfUrlHome] := EditHomeWeb.Text;
-
-  // Work
-  Contact.Fields[cfEmailWork] := EditWorkEmail.Text;
-  Contact.Fields[cfTelWork] := EditWorkPhone.Text;
-  Contact.Fields[cfTelCellWork] := EditWorkMobile.Text;
-  Contact.Fields[cfTelFaxWork] := EditWorkFax.Text;
-  Contact.Fields[cfTelPagerWork] := EditWorkPager.Text;
-  Contact.Fields[cfTitle] := EditTitle.Text;
-  Contact.Fields[cfOrganization] := EditOrganization.Text;
-  Contact.Fields[cfDepartment] := EditDepartment.Text;
-  Contact.Fields[cfWorkAddressPostOfficeBox] := EditAddressWorkPostOfficeBox.Text;
-  Contact.Fields[cfWorkAddressStreet] := EditAddressWorkStreet.Text;
-  Contact.Fields[cfWorkAddressStreetExtended] := EditAddressWorkStreetExtended.Text;
-  Contact.Fields[cfWorkAddressCity] := EditAddressWorkCity.Text;
-  Contact.Fields[cfWorkAddressRegion] := EditAddressWorkRegion.Text;
-  Contact.Fields[cfWorkAddressCountry] := EditAddressWorkCountry.Text;
-  Contact.Fields[cfWorkAddressPostalCode] := EditAddressWorkPostalCode.Text;
-  Contact.Fields[cfUrlWork] := EditWorkWeb.Text;
-
-  // Others
-  Contact.Fields[cfNote] := MemoNotes.Lines.Text;
 
   // Photo
   if (ImagePhoto.Picture.Bitmap.Width <> 0) and (ImagePhoto.Picture.Bitmap.Height <> 0) then begin
@@ -450,6 +247,212 @@ begin
       Stream.Free;
     end;
   end;
+
+  ReloadAllPropertiesTab;
+end;
+
+procedure TFormContact.TabSheetGeneralShow(Sender: TObject);
+var
+  Photo: string;
+  JpegImage: TJpegImage;
+  Stream: TMemoryStream;
+  PhotoProperty: TContactProperty;
+begin
+  EditFullName.Text := Contact.Fields[cfFullName];
+  EditFirstName.Text := Contact.Fields[cfFirstName];
+  EditLastName.Text := Contact.Fields[cfLastName];
+  EditMiddleName.Text := Contact.Fields[cfMiddleName];
+  EditTitleAfter.Text := Contact.Fields[cfTitleAfter];
+  EditTitleBefore.Text := Contact.Fields[cfTitleBefore];
+  EditNickName.Text := Contact.Fields[cfNickName];
+  EditEmail.Text := Contact.Fields[cfEmail];
+  EditPhone.Text := Contact.Fields[cfTel];
+  EditMobile.Text := Contact.Fields[cfTelCell];
+  EditFax.Text := Contact.Fields[cfTelFax];
+  EditPager.Text := Contact.Fields[cfTelPager];
+  EditBirthday.Text := Contact.Fields[cfDayOfBirth];
+  EditAniversary.Text := Contact.Fields[cfAnniversary];
+  EditWeb.Text := Contact.Fields[cfUrl];
+
+  // Photo
+  ImagePhoto.Picture.Bitmap.Clear;
+  PhotoProperty := Contact.GetProperty(cfPhoto);
+  if Assigned(PhotoProperty) then begin
+    Photo := Contact.Fields[cfPhoto];
+    if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
+      Stream := TMemoryStream.Create;
+      try
+        Stream.Write(Photo[1], Length(Photo));
+        Stream.Position := 0;
+        if PhotoProperty.Attributes.IndexOf('JPEG') <> -1 then begin
+          JpegImage := TJPEGImage.Create;
+          try
+            try
+              JpegImage.LoadFromStream(Stream);
+              ImagePhoto.Picture.Bitmap.SetSize(JpegImage.Width, JpegImage.Height);
+              ImagePhoto.Picture.Bitmap.Canvas.Draw(0, 0, JpegImage);
+            except
+            end;
+          finally
+            JpegImage.Free;
+          end;
+        end else begin
+          try
+            ImagePhoto.Picture.LoadFromStream(Stream);
+          except
+          end;
+        end;
+      finally
+        Stream.Free;
+      end;
+    end;
+  end;
+end;
+
+procedure TFormContact.TabSheetHomeHide(Sender: TObject);
+begin
+  Contact.Fields[cfEmailHome] := EditHomeEmail.Text;
+  Contact.Fields[cfTelHome] := EditHomePhone.Text;
+  Contact.Fields[cfTelCellHome] := EditHomeMobile.Text;
+  Contact.Fields[cfTelFaxHome] := EditHomeFax.Text;
+  Contact.Fields[cfTelPagerHome] := EditHomePager.Text;
+  Contact.Fields[cfHomeAddressPostOfficeBox] := EditHomeAddressPostOfficeBox.Text;
+  Contact.Fields[cfHomeAddressStreet] := EditHomeAddressStreet.Text;
+  Contact.Fields[cfHomeAddressStreetExtended] := EditHomeAddressStreetExtended.Text;
+  Contact.Fields[cfHomeAddressCity] := EditHomeAddressCity.Text;
+  Contact.Fields[cfHomeAddressRegion] := EditHomeAddressRegion.Text;
+  Contact.Fields[cfHomeAddressCountry] := EditHomeAddressCountry.Text;
+  Contact.Fields[cfHomeAddressPostalCode] := EditHomeAddressPostalCode.Text;
+  Contact.Fields[cfUrlHome] := EditHomeWeb.Text;
+
+  ReloadAllPropertiesTab;
+end;
+
+procedure TFormContact.TabSheetHomeShow(Sender: TObject);
+begin
+  EditHomeEmail.Text := Contact.Fields[cfEmailHome];
+  EditHomePhone.Text := Contact.Fields[cfTelHome];
+  EditHomeMobile.Text := Contact.Fields[cfTelCellHome];
+  EditHomeFax.Text := Contact.Fields[cfTelFaxHome];
+  EditHomePager.Text := Contact.Fields[cfTelPagerHome];
+  EditHomeAddressPostOfficeBox.Text := Contact.Fields[cfHomeAddressPostOfficeBox];
+  EditHomeAddressStreet.Text := Contact.Fields[cfHomeAddressStreet];
+  EditHomeAddressStreetExtended.Text := Contact.Fields[cfHomeAddressStreetExtended];
+  EditHomeAddressCity.Text := Contact.Fields[cfHomeAddressCity];
+  EditHomeAddressRegion.Text := Contact.Fields[cfHomeAddressRegion];
+  EditHomeAddressCountry.Text := Contact.Fields[cfHomeAddressCountry];
+  EditHomeAddressPostalCode.Text := Contact.Fields[cfHomeAddressPostalCode];
+  EditHomeWeb.Text := Contact.Fields[cfUrlHome];
+end;
+
+procedure TFormContact.TabSheetOthersHide(Sender: TObject);
+begin
+  Contact.Fields[cfNote] := MemoNotes.Lines.Text;
+
+  ReloadAllPropertiesTab;
+end;
+
+procedure TFormContact.TabSheetOthersShow(Sender: TObject);
+begin
+  MemoNotes.Lines.Text := Contact.Fields[cfNote];
+end;
+
+procedure TFormContact.TabSheetWorkHide(Sender: TObject);
+begin
+  Contact.Fields[cfEmailWork] := EditWorkEmail.Text;
+  Contact.Fields[cfTelWork] := EditWorkPhone.Text;
+  Contact.Fields[cfTelCellWork] := EditWorkMobile.Text;
+  Contact.Fields[cfTelFaxWork] := EditWorkFax.Text;
+  Contact.Fields[cfTelPagerWork] := EditWorkPager.Text;
+  Contact.Fields[cfTitle] := EditTitle.Text;
+  Contact.Fields[cfOrganization] := EditOrganization.Text;
+  Contact.Fields[cfDepartment] := EditDepartment.Text;
+  Contact.Fields[cfWorkAddressPostOfficeBox] := EditAddressWorkPostOfficeBox.Text;
+  Contact.Fields[cfWorkAddressStreet] := EditAddressWorkStreet.Text;
+  Contact.Fields[cfWorkAddressStreetExtended] := EditAddressWorkStreetExtended.Text;
+  Contact.Fields[cfWorkAddressCity] := EditAddressWorkCity.Text;
+  Contact.Fields[cfWorkAddressRegion] := EditAddressWorkRegion.Text;
+  Contact.Fields[cfWorkAddressCountry] := EditAddressWorkCountry.Text;
+  Contact.Fields[cfWorkAddressPostalCode] := EditAddressWorkPostalCode.Text;
+  Contact.Fields[cfUrlWork] := EditWorkWeb.Text;
+
+  ReloadAllPropertiesTab;
+end;
+
+procedure TFormContact.TabSheetWorkShow(Sender: TObject);
+begin
+  EditWorkEmail.Text := Contact.Fields[cfEmailWork];
+  EditWorkPhone.Text := Contact.Fields[cfTelWork];
+  EditWorkMobile.Text := Contact.Fields[cfTelCellWork];
+  EditWorkFax.Text := Contact.Fields[cfTelFaxWork];
+  EditWorkPager.Text := Contact.Fields[cfTelPagerWork];
+  EditTitle.Text := Contact.Fields[cfTitle];
+  EditOrganization.Text := Contact.Fields[cfOrganization];
+  EditDepartment.Text := Contact.Fields[cfDepartment];
+  EditAddressWorkPostOfficeBox.Text := Contact.Fields[cfWorkAddressPostOfficeBox];
+  EditAddressWorkStreet.Text := Contact.Fields[cfWorkAddressStreet];
+  EditAddressWorkStreetExtended.Text := Contact.Fields[cfWorkAddressStreetExtended];
+  EditAddressWorkCity.Text := Contact.Fields[cfWorkAddressCity];
+  EditAddressWorkRegion.Text := Contact.Fields[cfWorkAddressRegion];
+  EditAddressWorkCountry.Text := Contact.Fields[cfWorkAddressCountry];
+  EditAddressWorkPostalCode.Text := Contact.Fields[cfWorkAddressPostalCode];
+  EditWorkWeb.Text := Contact.Fields[cfUrlWork];
+end;
+
+procedure TFormContact.SetContact(AValue: TContact);
+begin
+  if FContact = AValue then Exit;
+  FContact := AValue;
+end;
+
+procedure TFormContact.ReloadAllPropertiesTab;
+begin
+  if TabSheetAll.Visible then begin
+    TabSheetAllShow(nil);
+  end;
+end;
+
+procedure TFormContact.FormClose(Sender: TObject; var CloseAction: TCloseAction
+  );
+begin
+  Core.PersistentForm1.Save(Self);
+end;
+
+procedure TFormContact.ButtonNextClick(Sender: TObject);
+begin
+  if Assigned(FOnNext) then FOnNext(Self);
+end;
+
+procedure TFormContact.APhotoLoadExecute(Sender: TObject);
+begin
+  if OpenPictureDialog1.Execute then begin
+    ImagePhoto.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+  end;
+end;
+
+procedure TFormContact.APhotoSaveExecute(Sender: TObject);
+begin
+  if SavePictureDialog1.Execute then begin
+    ImagePhoto.Picture.SaveToFile(SavePictureDialog1.FileName);
+  end;
+end;
+
+procedure TFormContact.ButtonPreviousClick(Sender: TObject);
+begin
+  if Assigned(FOnPrevious) then FOnPrevious(Self);
+end;
+
+procedure TFormContact.FormCreate(Sender: TObject);
+begin
+  Core.Translator.TranslateComponentRecursive(Self);
+  Core.ThemeManager1.UseTheme(Self);
+  FContact := nil;
+  FormProperties := TFormProperties.Create(nil);
+end;
+
+procedure TFormContact.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(FormProperties);
 end;
 
 procedure TFormContact.UpdateInterface;
