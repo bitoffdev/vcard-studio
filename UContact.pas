@@ -690,6 +690,12 @@ var
   J: Integer;
   NameText: string;
   Value2: string;
+  Text: string;
+  LineIndex: Integer;
+  OutText: string;
+  LinePrefix: string;
+const
+  MaxLineLength = 73;
 begin
   inherited;
   try
@@ -704,7 +710,7 @@ begin
           NameText := NameText + ';' + Attributes.DelimitedText;
         if Encoding <> '' then begin
           Value2 := GetEncodedValue;
-          NameText := NameText + ';' + Encoding;
+          NameText := NameText + ';ENCODING=' + Encoding;
         end else Value2 := Value;
         if Pos(LineEnding, Value2) > 0 then begin
           Add(NameText + ':' + GetNext(Value2, LineEnding));
@@ -714,7 +720,22 @@ begin
           Add(' ' + GetNext(Value2, LineEnding));
           Add('');
         end else begin
-          Add(NameText + ':' + Value2);
+          OutText := NameText + ':' + Value2;
+          LineIndex := 0;
+          LinePrefix := '';
+          while True do begin
+            if Length(OutText) > MaxLineLength then begin
+              if (LineIndex > 0) and (LinePrefix = '') then LinePrefix := ' ';
+              Add(LinePrefix + Copy(OutText, 1, MaxLineLength));
+              System.Delete(OutText, 1, MaxLineLength);
+              Inc(LineIndex);
+              Continue;
+            end else begin
+              Add(LinePrefix + OutText);
+              Break;
+            end;
+          end;
+          if LinePrefix <> '' then Add('');
         end;
       end;
       Add('END:VCARD');

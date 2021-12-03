@@ -28,16 +28,16 @@ var
   Decoding: Boolean;
   Keeper: Boolean;
   Abort: Boolean;
-  BufStream: TMemoryStream;
+  InStream: TMemoryStream;
   OutStream: TMemoryStream;
 begin
   Result := '';
-  BufStream := TMemoryStream.Create;
+  InStream := TMemoryStream.Create;
   OutStream := TMemoryStream.Create;
   try
   if Text <> '' then begin
-    BufStream.Write(Text[1], Length(Text));
-    BufStream.Position := 0;
+    InStream.Write(Text[1], Length(Text));
+    InStream.Position := 0;
   end;
   Abort := False;
   FillChar(InBuf, SizeOf(InBuf), #0);
@@ -47,7 +47,7 @@ begin
 
   { Skip any CR/LF's to get to the encoded stuff }
   while True do begin
-    if BufStream.Read(Char(InBuf[0]), 1) = 0then
+    if InStream.Read(Char(InBuf[0]), 1) = 0then
       Exit;
     if ((InBuf[0] <> $0D) and (InBuf[0] <> $0A)) then begin
       Keeper := True;
@@ -69,7 +69,7 @@ begin
     while True do begin
       if (I > High(InBuf)) then
         raise Exception.Create(SLineLengthErr);
-      if BufStream.Read(Char(InBuf[I]), 1) = 0 then
+      if InStream.Read(Char(InBuf[I]), 1) = 0 then
         Break;
       case InBuf[I] of
         $0A : Continue;
@@ -194,16 +194,99 @@ begin
   end;
   SetLength(Result, OutStream.Size);
   OutStream.Position := 0;
-  OutStream.Read(Result[1], Length(Result));
+  if OutStream.Size > 0 then
+    OutStream.Read(Result[1], Length(Result));
   finally
     OutStream.Free;
-    BufStream.Free;
+    InStream.Free;
   end;
 end;
 
 function EncodeQuotedPrintable(Text: string): string;
+var
+  O, W: Integer;
+  WordBuf, OutBuf: array[0..80] of AnsiChar;
+  CurChar: AnsiChar;
+  Abort: Boolean;
+  InStream: TStream;
+  OutStream: TMemoryStream;
+
+  procedure SendLine;
+  begin
+    if (OutBuf[O - 1] = #9) or (OutBuf[O - 1] = #32) then begin
+      OutBuf[O] := '=';
+      Inc(O);
+    end;
+    OutStream.Write(OutBuf, O);
+    FillChar(OutBuf, SizeOf(OutBuf), #0);
+    O := 0;
+  end;
+
+  procedure AddWordToOutBuf;
+  var
+    J : Integer;
+  begin
+    if (O + W) > 74 then SendLine;
+    for J := 0 to (W - 1) do begin
+      OutBuf[O] := WordBuf[J];
+      Inc(O);
+    end;
+    W := 0;
+  end;
+
+  procedure AddHexToWord(B : Byte);
+  const
+    HexDigits : array[0..$F] of AnsiChar = '0123456789ABCDEF';
+  begin
+    if W > 73 then AddWordToOutBuf;
+    WordBuf[W] := '=';
+    WordBuf[W + 1] := HexDigits[B shr 4];
+    WordBuf[W + 2] := HexDigits[B and $F];
+    Inc(W, 3)
+  end;
+
 begin
-  Result := Text;
+  Result := '';
+  InStream := TMemoryStream.Create;
+  OutStream := TMemoryStream.Create;
+  try
+    if Text <> '' then begin
+      InStream.Write(Text[1], Length(Text));
+      InStream.Position := 0;
+    end;
+
+    Abort := False;
+    O := 0;
+    W := 0;
+    FillChar(OutBuf, SizeOf(OutBuf), #0);
+    while (InStream.Read(CurChar, 1) = 1) and not Abort do begin
+      if (Ord(CurChar) in [33..60, 62..126]) then begin
+        WordBuf[W] := CurChar;
+        Inc(W);
+        if W > 74 then AddWordToOutBuf;
+      end else if (CurChar = ' ') or (CurChar = #9) then begin
+        WordBuf[W] := CurChar;
+        Inc(W);
+        AddWordToOutBuf;
+      end else if (CurChar = #13) then begin
+        AddWordToOutBuf;
+        SendLine;
+      end else if (CurChar = #10) then begin
+        { Do nothing }
+      end else begin
+        AddHexToWord(Byte(CurChar));
+      end;
+    end;
+    AddWordToOutBuf;
+    OutStream.Write(OutBuf, O);
+    SetLength(Result, OutStream.Size);
+    OutStream.Position := 0;
+    if OutStream.Size > 0 then
+      OutStream.Read(Result[1], Length(Result));
+  finally
+    OutStream.Free;
+    InStream.Free;
+  end;
 end;
 
 end.
