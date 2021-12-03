@@ -136,6 +136,7 @@ object FormContact: TFormContact
         Height = 210
         Top = 16
         Width = 207
+        Center = True
         PopupMenu = PopupMenuPhoto
         Proportional = True
         Stretch = True

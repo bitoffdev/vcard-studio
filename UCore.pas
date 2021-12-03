@@ -5,7 +5,7 @@ unit UCore;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Controls, ActnList, Forms, Dialogs,
+  Classes, SysUtils, FileUtil, Controls, ActnList, Forms, Dialogs, ExtCtrls,
   ULastOpenedList, UApplicationInfo, UPersistentForm, UScaleDPI, UCommon,
   UTranslator, UDataFile, Menus, URegistry, UTheme, UAboutDialog, Registry;
 
@@ -68,6 +68,7 @@ type
     InitializeStarted: Boolean;
     InitializeFinished: Boolean;
     LoadErrors: string;
+    ProfileImage: TImage;
     procedure FileModified(Sender: TObject);
     function FindFirstNonOption: string;
     procedure UpdateFile;
@@ -80,6 +81,7 @@ type
     FileClosed: Boolean;
     ReopenLastFileOnStart: Boolean;
     ToolbarVisible: Boolean;
+    function GetProfileImage: TImage;
     procedure FileNew;
     procedure FileOpen(FileName: string);
     procedure FileClose;
@@ -293,6 +295,8 @@ procedure TCore.DataModuleDestroy(Sender: TObject);
 begin
   FileClose;
   SaveConfig;
+  if Assigned(ProfileImage) then
+    FreeAndNil(ProfileImage);
 end;
 
 procedure TCore.LastOpenedList1Change(Sender: TObject);
@@ -451,6 +455,19 @@ end;
 procedure TCore.DoError(Text: string; Line: Integer);
 begin
   LoadErrors := LoadErrors + Format(SLine, [Line, Text]) + LineEnding;
+end;
+
+function TCore.GetProfileImage: TImage;
+const
+  ProfilePhotoFileName = 'Images/Profile.png';
+begin
+  if not Assigned(ProfileImage) then begin
+    ProfileImage := TImage.Create(nil);
+    ProfileImage.Picture.LoadFromFile(ProfilePhotoFileName);
+    if FileExists(ProfilePhotoFileName) then
+      ProfileImage.Picture.LoadFromFile(ProfilePhotoFileName);
+  end;
+  Result := ProfileImage;
 end;
 
 procedure TCore.UpdateInterface;
