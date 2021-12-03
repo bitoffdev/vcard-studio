@@ -71,6 +71,9 @@ msgctxt "tcore.asettings.caption"
 msgid "Settings"
 msgstr "Nastavení"
 
+msgid "Clear"
+msgstr "Vyčistit"
+
 #: tformcontact.aphotoload.caption
 msgid "Load from file"
 msgstr "Načíst ze souboru"
@@ -909,4 +912,3 @@ msgstr "Celkem"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
-

@@ -57,5 +57,6 @@
 {"hash":147653555,"name":"tformcontact.buttonprevious.caption","sourcebytes":[80,114,101,118,105,111,117,115],"value":"Previous"},
 {"hash":347380,"name":"tformcontact.buttonnext.caption","sourcebytes":[78,101,120,116],"value":"Next"},
 {"hash":8431845,"name":"tformcontact.aphotoload.caption","sourcebytes":[76,111,97,100,32,102,114,111,109,32,102,105,108,101],"value":"Load from file"},
-{"hash":9308581,"name":"tformcontact.aphotosave.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101],"value":"Save to file"}
+{"hash":9308581,"name":"tformcontact.aphotosave.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101],"value":"Save to file"},
+{"hash":4860802,"name":"tformcontact.aphotoclear.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"}
 ]}
