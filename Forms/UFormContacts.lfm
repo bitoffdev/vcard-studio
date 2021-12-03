@@ -13,7 +13,7 @@ object FormContacts: TFormContacts
   LCLVersion = '2.0.12.0'
   object ListView1: TListView
     Left = 0
-    Height = 810
+    Height = 801
     Top = 0
     Width = 1210
     Align = alClient
@@ -57,7 +57,7 @@ object FormContacts: TFormContacts
   object ToolBar1: TToolBar
     Left = 0
     Height = 39
-    Top = 842
+    Top = 833
     Width = 1210
     Align = alBottom
     Images = Core.ImageList1
@@ -76,23 +76,28 @@ object FormContacts: TFormContacts
       Action = AModify
     end
     object ToolButton3: TToolButton
-      Left = 71
+      Left = 106
       Top = 2
       Action = ARemove
+    end
+    object ToolButton4: TToolButton
+      Left = 71
+      Top = 2
+      Action = AClone
     end
   end
   object ListViewFilter1: TListViewFilter
     Left = 0
     Height = 32
-    Top = 810
+    Top = 801
     Width = 1210
     OnChange = ListViewFilter1Change
     Align = alBottom
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 27
-    Top = 881
+    Height = 36
+    Top = 872
     Width = 1210
     Panels = <    
       item
@@ -107,11 +112,14 @@ object FormContacts: TFormContacts
     object MenuItem1: TMenuItem
       Action = AAdd
     end
-    object MenuItem3: TMenuItem
-      Action = ARemove
-    end
     object MenuItem2: TMenuItem
       Action = AModify
+    end
+    object MenuItem5: TMenuItem
+      Action = AClone
+    end
+    object MenuItem3: TMenuItem
+      Action = ARemove
     end
     object MenuItem4: TMenuItem
       Action = ASelectAll
@@ -143,6 +151,11 @@ object FormContacts: TFormContacts
       Caption = 'Select all'
       OnExecute = ASelectAllExecute
       ShortCut = 16449
+    end
+    object AClone: TAction
+      Caption = 'Clone'
+      ImageIndex = 11
+      OnExecute = ACloneExecute
     end
   end
   object ListViewSort1: TListViewSort

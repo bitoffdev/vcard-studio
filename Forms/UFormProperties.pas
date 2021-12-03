@@ -14,6 +14,7 @@ type
 
   TFormProperties = class(TForm)
     AAdd: TAction;
+    AClone: TAction;
     ASelectAll: TAction;
     ARemove: TAction;
     AModify: TAction;
@@ -25,6 +26,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
     PopupMenuField: TPopupMenu;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
@@ -32,6 +34,7 @@ type
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     procedure AAddExecute(Sender: TObject);
+    procedure ACloneExecute(Sender: TObject);
     procedure AModifyExecute(Sender: TObject);
     procedure ARemoveExecute(Sender: TObject);
     procedure ASelectAllExecute(Sender: TObject);
@@ -77,12 +80,24 @@ resourcestring
 { TFormProperties }
 
 procedure TFormProperties.ListView1Data(Sender: TObject; Item: TListItem);
+
+  procedure AddItem(Text: string; IsCaption: Boolean = False);
+  begin
+    if IsCaption then begin
+      if Text <> '' then Item.Caption := Text
+        else Item.Caption := ' ';
+    end else begin
+      if Text <> '' then Item.SubItems.Add(Text)
+        else Item.SubItems.Add(' ');
+    end;
+  end;
+
 begin
   if Item.Index < ListViewSort1.List.Count then
   with TContactProperty(ListViewSort1.List[Item.Index]) do begin
-    Item.Caption := Name;
-    Item.SubItems.Add(Attributes.DelimitedText);
-    Item.SubItems.Add(Value);
+    AddItem(Name, True);
+    AddItem(Attributes.DelimitedText);
+    AddItem(Value);
     Item.Data := ListViewSort1.List[Item.Index];
   end;
 end;
@@ -185,6 +200,33 @@ begin
   FormProperty := TFormProperty.Create(nil);
   try
     ContactProperty := TContactProperty.Create;
+    FormProperty.ContactProperty := ContactProperty;
+    try
+      if FormProperty.ShowModal = mrOK then begin
+        Properties.Add(ContactProperty);
+        ContactProperty := nil;
+        Core.DataFile.Modified := True;
+        ReloadList;
+        UpdateInterface;
+      end;
+    finally
+      if Assigned(ContactProperty) then
+        ContactProperty.Free;
+    end;
+  finally
+    FormProperty.Free;
+  end;
+end;
+
+procedure TFormProperties.ACloneExecute(Sender: TObject);
+var
+  FormProperty: TFormProperty;
+  ContactProperty: TContactProperty;
+begin
+  FormProperty := TFormProperty.Create(nil);
+  try
+    ContactProperty := TContactProperty.Create;
+    ContactProperty.Assign(TContactProperty(ListView1.Selected.Data));
     FormProperty.ContactProperty := ContactProperty;
     try
       if FormProperty.ShowModal = mrOK then begin

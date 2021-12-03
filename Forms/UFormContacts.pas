@@ -14,6 +14,7 @@ type
 
   TFormContacts = class(TForm)
     AAdd: TAction;
+    AClone: TAction;
     ASelectAll: TAction;
     ARemove: TAction;
     AModify: TAction;
@@ -25,13 +26,16 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
     PopupMenuContact: TPopupMenu;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
     procedure AAddExecute(Sender: TObject);
+    procedure ACloneExecute(Sender: TObject);
     procedure AModifyExecute(Sender: TObject);
     procedure ARemoveExecute(Sender: TObject);
     procedure ASelectAllExecute(Sender: TObject);
@@ -79,15 +83,28 @@ resourcestring
 { TFormContacts }
 
 procedure TFormContacts.ListView1Data(Sender: TObject; Item: TListItem);
+
+  procedure AddItem(Text: string; IsCaption: Boolean = False);
+  begin
+    if IsCaption then begin
+      if Text <> '' then Item.Caption := Text
+        else Item.Caption := ' ';
+    end else begin
+      if Text <> '' then Item.SubItems.Add(Text)
+        else Item.SubItems.Add(' ');
+    end;
+  end;
+
 begin
   if Item.Index < ListViewSort1.List.Count then
   with TContact(ListViewSort1.List[Item.Index]) do begin
-    Item.Caption := Fields[cfFullName];
-    Item.SubItems.Add(Fields[cfFirstName]);
-    Item.SubItems.Add(Fields[cfMiddleName]);
-    Item.SubItems.Add(Fields[cfLastName]);
-    Item.SubItems.Add(Fields[cfTelCell]);
-    Item.SubItems.Add(Fields[cfTelHome]);
+
+    AddItem(Fields[cfFullName], True);
+    AddItem(Fields[cfFirstName]);
+    AddItem(Fields[cfMiddleName]);
+    AddItem(Fields[cfLastName]);
+    AddItem(Fields[cfTelCell]);
+    AddItem(Fields[cfTelHome]);
     Item.Data := ListViewSort1.List[Item.Index];
   end;
 end;
@@ -227,6 +244,35 @@ begin
       FormContact.OnNext := FormContactNext;
       if FormContact.ShowModal = mrOK then begin
         Contacts.Add(Contact);
+        Core.DataFile.Modified := True;
+        ReloadList;
+        UpdateInterface;
+        Contact := nil;
+      end;
+    finally
+      if Assigned(Contact) then
+        Contact.Free;
+    end;
+  finally
+    FormContact.Free;
+  end;
+end;
+
+procedure TFormContacts.ACloneExecute(Sender: TObject);
+var
+  FormContact: TFormContact;
+  Contact: TContact;
+begin
+  FormContact := TFormContact.Create(nil);
+  try
+    Contact := TContact.Create;
+    try
+      Contact.Assign(TContact(ListView1.Selected.Data));
+      FormContact.Contact := Contact;
+      FormContact.OnPrevious := FormContactPrevious;
+      FormContact.OnNext := FormContactNext;
+      if FormContact.ShowModal = mrOK then begin
+        Contacts.Add(Contact);
         Contact := nil;
         Core.DataFile.Modified := True;
         ReloadList;
@@ -249,11 +295,11 @@ begin
   FormContact := TFormContact.Create(nil);
   try
     Contact := TContact.Create;
-    Contact.Assign(TContact(ListView1.Selected.Data));
-    FormContact.Contact := Contact;
-    FormContact.OnPrevious := FormContactPrevious;
-    FormContact.OnNext := FormContactNext;
     try
+      Contact.Assign(TContact(ListView1.Selected.Data));
+      FormContact.Contact := Contact;
+      FormContact.OnPrevious := FormContactPrevious;
+      FormContact.OnNext := FormContactNext;
       if FormContact.ShowModal = mrOK then begin
         TContact(ListView1.Selected.Data).Assign(Contact);
         Core.DataFile.Modified := True;
