@@ -142,6 +142,7 @@ resourcestring
   SFoundPropertiesBeforeBlockStart = 'Found properties before the start of block';
   SFoundBlockEndWithoutBlockStart = 'Found block end without block start';
   SFieldIndexNotDefined = 'Field index not defined';
+  SContactHasNoParent = 'Contact has no parent';
   SLastName = 'Last Name';
   SFirstName = 'First Name';
   SMiddleName = 'Middle Name';
@@ -477,7 +478,9 @@ end;
 function TContactFields.GetByIndex(Index: TContactFieldIndex): TContactField;
 var
   I: Integer;
+  C: Integer;
 begin
+  C := Count;
   I := 0;
   while (I < Count) and (Items[I].Index <> Index) do Inc(I);
   if I < Count then Result := Items[I]
@@ -501,6 +504,7 @@ var
   Prop: TContactProperty;
   Field: TContactField;
 begin
+  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
   Prop := GetProperty(Index);
   if Assigned(Prop) then begin
     Field := Parent.Fields.GetByIndex(Index);
@@ -516,6 +520,7 @@ var
   Field: TContactField;
   I: Integer;
 begin
+  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
   Field := Parent.Fields.GetByIndex(Index);
   if Assigned(Field) then begin
     Prop := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
@@ -541,9 +546,9 @@ end;
 
 function TContact.GetProperty(Index: TContactFieldIndex): TContactProperty;
 var
-  Prop: TContactProperty;
   Field: TContactField;
 begin
+  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
   Field := Parent.Fields.GetByIndex(Index);
   if Assigned(Field) then begin
     Result := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
@@ -554,7 +559,6 @@ procedure TContact.Assign(Source: TContact);
 var
   I: Integer;
 begin
-  Parent := Source.Parent;
   while Properties.Count < Source.Properties.Count do
     Properties.Add(TContactProperty.Create);
   while Properties.Count > Source.Properties.Count do
@@ -567,6 +571,7 @@ function TContact.UpdateFrom(Source: TContact): Boolean;
 var
   I: Integer;
 begin
+  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
   Result := False;
   for I := 0 to Parent.Fields.Count - 1 do begin
     if (Source.Fields[Parent.Fields[I].Index] <> '') and

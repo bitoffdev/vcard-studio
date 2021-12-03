@@ -24,8 +24,8 @@ object FormContact: TFormContact
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
-      ClientHeight = 744
-      ClientWidth = 931
+      ClientHeight = 742
+      ClientWidth = 929
       OnHide = TabSheetGeneralHide
       OnShow = TabSheetGeneralShow
       ParentFont = False
@@ -297,8 +297,8 @@ object FormContact: TFormContact
     end
     object TabSheetHome: TTabSheet
       Caption = 'Home'
-      ClientHeight = 744
-      ClientWidth = 931
+      ClientHeight = 742
+      ClientWidth = 929
       OnHide = TabSheetHomeHide
       OnShow = TabSheetHomeShow
       ParentFont = False
@@ -393,8 +393,8 @@ object FormContact: TFormContact
         Width = 892
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Address'
-        ClientHeight = 212
-        ClientWidth = 888
+        ClientHeight = 215
+        ClientWidth = 890
         TabOrder = 6
         object Label36: TLabel
           Left = 8
@@ -537,8 +537,8 @@ object FormContact: TFormContact
     end
     object TabSheetWork: TTabSheet
       Caption = 'Work'
-      ClientHeight = 744
-      ClientWidth = 931
+      ClientHeight = 742
+      ClientWidth = 929
       OnHide = TabSheetWorkHide
       OnShow = TabSheetWorkShow
       object EditOrganization: TEdit
@@ -615,8 +615,8 @@ object FormContact: TFormContact
         Top = 312
         Width = 911
         Caption = 'Address'
-        ClientHeight = 217
-        ClientWidth = 907
+        ClientHeight = 220
+        ClientWidth = 909
         TabOrder = 4
         object Label31: TLabel
           Left = 10
@@ -826,8 +826,8 @@ object FormContact: TFormContact
     end
     object TabSheetOthers: TTabSheet
       Caption = 'Others'
-      ClientHeight = 744
-      ClientWidth = 931
+      ClientHeight = 742
+      ClientWidth = 929
       OnHide = TabSheetOthersHide
       OnShow = TabSheetOthersShow
       object MemoNotes: TMemo

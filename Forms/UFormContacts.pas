@@ -52,13 +52,17 @@ type
     procedure ListViewSort1Filter(ListViewSort: TListViewSort);
   private
     FContacts: TContacts;
+    FUpdateCount: Integer;
     procedure FilterList(List: TFPGObjectList<TObject>);
     procedure SetContacts(AValue: TContacts);
     procedure FormContactPrevious(Sender: TObject);
     procedure FormContactNext(Sender: TObject);
+    procedure DoUpdateInterface;
   public
     property Contacts: TContacts read FContacts write SetContacts;
     procedure ReloadList;
+    procedure BeginUpdate;
+    procedure EndUpdate;
     procedure UpdateInterface;
   end;
 
@@ -79,6 +83,7 @@ resourcestring
   STotal = 'Total';
   SFiltered = 'Filtered';
   SSelected = 'Selected';
+  SEndUpdateTooLow = 'Update counter error';
 
 { TFormContacts }
 
@@ -98,7 +103,6 @@ procedure TFormContacts.ListView1Data(Sender: TObject; Item: TListItem);
 begin
   if Item.Index < ListViewSort1.List.Count then
   with TContact(ListViewSort1.List[Item.Index]) do begin
-
     AddItem(Fields[cfFullName], True);
     AddItem(Fields[cfFirstName]);
     AddItem(Fields[cfMiddleName]);
@@ -219,6 +223,27 @@ begin
     TFormContact(Sender).Contact := TContact(ListViewSort1.List[I + 1]);
 end;
 
+procedure TFormContacts.DoUpdateInterface;
+var
+  Text: string;
+  SelectedCount: Integer;
+begin
+  AAdd.Enabled := Assigned(Contacts);
+  AModify.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  ARemove.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+
+  Text := '';
+  if Assigned(Contacts) then begin
+    Text := STotal + ': ' + IntToStr(Contacts.Count);
+    if ListView1.Items.Count < Contacts.Count then
+      Text := Text + ', ' + SFiltered + ': ' + IntToStr(ListView1.Items.Count);
+    SelectedCount := ListView1.SelCount;
+    if SelectedCount > 0 then
+      Text := Text + ', ' + SSelected + ': ' + IntToStr(SelectedCount);
+  end;
+  StatusBar1.Panels[0].Text := Text;
+end;
+
 procedure TFormContacts.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
@@ -267,6 +292,7 @@ begin
   try
     Contact := TContact.Create;
     try
+      Contact.Parent := Contacts.ContactsFile;
       Contact.Assign(TContact(ListView1.Selected.Data));
       FormContact.Contact := Contact;
       FormContact.OnPrevious := FormContactPrevious;
@@ -296,6 +322,7 @@ begin
   try
     Contact := TContact.Create;
     try
+      Contact.Parent := Contacts.ContactsFile;
       Contact.Assign(TContact(ListView1.Selected.Data));
       FormContact.Contact := Contact;
       FormContact.OnPrevious := FormContactPrevious;
@@ -332,9 +359,16 @@ begin
 end;
 
 procedure TFormContacts.ASelectAllExecute(Sender: TObject);
+var
+  I: Integer;
 begin
-  ListView1.SelectAll;
-  UpdateInterface;
+  BeginUpdate;
+  ListView1.BeginUpdate;
+  for I := 0 to ListView1.Items.Count - 1 do
+    ListView1.Items[I].Selected := True;
+  //ListView1.SelectAll;
+  ListView1.EndUpdate;
+  EndUpdate;
 end;
 
 procedure TFormContacts.FormClose(Sender: TObject; var CloseAction: TCloseAction
@@ -359,25 +393,21 @@ begin
   ListViewSort1.Refresh;
 end;
 
-procedure TFormContacts.UpdateInterface;
-var
-  Text: string;
-  SelectedCount: Integer;
+procedure TFormContacts.BeginUpdate;
 begin
-  AAdd.Enabled := Assigned(Contacts);
-  AModify.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  ARemove.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  Inc(FUpdateCount);
+end;
 
-  Text := '';
-  if Assigned(Contacts) then begin
-    Text := STotal + ': ' + IntToStr(Contacts.Count);
-    if ListView1.Items.Count < Contacts.Count then
-      Text := Text + ', ' + SFiltered + ': ' + IntToStr(ListView1.Items.Count);
-    SelectedCount := ListView1.SelCount;
-    if SelectedCount > 0 then
-      Text := Text + ', ' + SSelected + ': ' + IntToStr(SelectedCount);
-  end;
-  StatusBar1.Panels[0].Text := Text;
+procedure TFormContacts.EndUpdate;
+begin
+  if FUpdateCount <= 0 then raise Exception(SEndUpdateTooLow);
+  Dec(FUpdateCount);
+  if FUpdateCount = 0 then DoUpdateInterface;
+end;
+
+procedure TFormContacts.UpdateInterface;
+begin
+  if FUpdateCount = 0 then DoUpdateInterface;
 end;
 
 end.

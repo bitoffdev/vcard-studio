@@ -589,6 +589,10 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
+#: ucontact.scontacthasnoparent
+msgid "Contact has no parent"
+msgstr ""
+
 #: ucontact.sdayofbirth
 msgid "Day of birth"
 msgstr ""
@@ -856,6 +860,10 @@ msgstr ""
 #: udatafile.sdatafilename
 msgctxt "udatafile.sdatafilename"
 msgid "File"
+msgstr ""
+
+#: uformcontacts.sendupdatetoolow
+msgid "Update counter error"
 msgstr ""
 
 #: uformcontacts.sfiltered
