@@ -71,6 +71,7 @@ msgctxt "tcore.asettings.caption"
 msgid "Settings"
 msgstr "Nastavení"
 
+#: tformcontact.aphotoclear.caption
 msgid "Clear"
 msgstr "Vyčistit"
 
@@ -351,6 +352,11 @@ msgctxt "tformcontacts.aadd.caption"
 msgid "Add"
 msgstr "Přidat"
 
+#: tformcontacts.aclone.caption
+msgctxt "tformcontacts.aclone.caption"
+msgid "Clone"
+msgstr "Klonovat"
+
 #: tformcontacts.amodify.caption
 msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
@@ -482,6 +488,11 @@ msgstr "Zobrazení"
 msgctxt "tformproperties.aadd.caption"
 msgid "Add"
 msgstr "Přidat"
+
+#: tformproperties.aclone.caption
+msgctxt "tformproperties.aclone.caption"
+msgid "Clone"
+msgstr "Klonovat"
 
 #: tformproperties.amodify.caption
 msgctxt "tformproperties.amodify.caption"

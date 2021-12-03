@@ -342,6 +342,11 @@ msgctxt "tformcontacts.aadd.caption"
 msgid "Add"
 msgstr ""
 
+#: tformcontacts.aclone.caption
+msgctxt "tformcontacts.aclone.caption"
+msgid "Clone"
+msgstr ""
+
 #: tformcontacts.amodify.caption
 msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
@@ -470,6 +475,11 @@ msgstr ""
 #: tformproperties.aadd.caption
 msgctxt "tformproperties.aadd.caption"
 msgid "Add"
+msgstr ""
+
+#: tformproperties.aclone.caption
+msgctxt "tformproperties.aclone.caption"
+msgid "Clone"
 msgstr ""
 
 #: tformproperties.amodify.caption
