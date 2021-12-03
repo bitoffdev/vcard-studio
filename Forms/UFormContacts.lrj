@@ -9,5 +9,6 @@
 {"hash":18340,"name":"tformcontacts.aadd.caption","sourcebytes":[65,100,100],"value":"Add"},
 {"hash":88453081,"name":"tformcontacts.amodify.caption","sourcebytes":[77,111,100,105,102,121],"value":"Modify"},
 {"hash":93079237,"name":"tformcontacts.aremove.caption","sourcebytes":[82,101,109,111,118,101],"value":"Remove"},
-{"hash":195296268,"name":"tformcontacts.aselectall.caption","sourcebytes":[83,101,108,101,99,116,32,97,108,108],"value":"Select all"}
+{"hash":195296268,"name":"tformcontacts.aselectall.caption","sourcebytes":[83,101,108,101,99,116,32,97,108,108],"value":"Select all"},
+{"hash":4863557,"name":"tformcontacts.aclone.caption","sourcebytes":[67,108,111,110,101],"value":"Clone"}
 ]}
