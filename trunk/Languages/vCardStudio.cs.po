@@ -601,6 +601,10 @@ msgstr "Výročí"
 msgid "Categories"
 msgstr "Kategorie"
 
+#: ucontact.scontacthasnoparent
+msgid "Contact has no parent"
+msgstr "Kontakt nemá rodiče"
+
 #: ucontact.sdayofbirth
 msgid "Day of birth"
 msgstr "Datum narození"
@@ -869,6 +873,10 @@ msgstr "Všechny soubory"
 msgctxt "udatafile.sdatafilename"
 msgid "File"
 msgstr "Soubor"
+
+#: uformcontacts.sendupdatetoolow
+msgid "Update counter error"
+msgstr "Chyba čítače aktualizací"
 
 #: uformcontacts.sfiltered
 msgctxt "uformcontacts.sfiltered"

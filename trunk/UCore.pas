@@ -373,8 +373,8 @@ begin
         NewContact := TContactsFile(DataFile).Contacts.Search(TempFile.Contacts[I].Fields[cfFullName]);
         if not Assigned(NewContact) then begin
           NewContact := TContact.Create;
-          NewContact.Parent := TContactsFile(DataFile);
           NewContact.Assign(TempFile.Contacts[I]);
+          NewContact.Parent := TContactsFile(DataFile);
           TContactsFile(DataFile).Contacts.Add(NewContact);
           Inc(Result.New);
         end else begin
