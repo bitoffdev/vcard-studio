@@ -844,14 +844,6 @@ msgctxt "udatafile.sdatafilename"
 msgid "File"
 msgstr ""
 
-#: uformcontact.seditfieldvalue
-msgid "Edit field value"
-msgstr ""
-
-#: uformcontact.sfieldedit
-msgid "Field edit"
-msgstr ""
-
 #: uformcontacts.sfiltered
 msgctxt "uformcontacts.sfiltered"
 msgid "Filtered"
