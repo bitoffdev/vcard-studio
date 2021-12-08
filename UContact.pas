@@ -279,43 +279,60 @@ end;
 function EndsWith(Text, What: string): Boolean;
 begin
   Result := Copy(Text, Length(Text) - Length(What) + 1, MaxInt) = What;
-  if Result then begin
-    Result := Result;
-  end;
 end;
 
 function EncodeEscaped(Text: string): string;
 var
   I: Integer;
+  O: Integer;
 begin
   Result := '';
   I := 1;
+  O := 1;
+  SetLength(Result, Length(Text)); // Preallocate string
   while I <= Length(Text) do begin
-    if Text[I] in [',', '\', ';'] then Result := Result + '\' + Text[I]
-      else Result := Result + Text[I];
+    if Text[I] in [',', '\', ';'] then begin
+        Result[O] := '\';
+        Inc(O);
+        Result[O] := Text[I];
+        SetLength(Result, Length(Result) + 1);
+        Inc(O);
+      end else begin
+        Result[O] := Text[I];
+        Inc(O);
+      end;
     Inc(I);
   end;
+  SetLength(Result, O - 1);
 end;
 
 function DecodeEscaped(Text: string): string;
 var
   I: Integer;
+  O: Integer;
   Escaped: Boolean;
 begin
   Result := '';
   I := 1;
+  O := 1;
   Escaped := False;
+  SetLength(Result, Length(Text)); // Preallocate string
   while I <= Length(Text) do begin
     if Escaped then begin
-      Result := Result + Text[I];
+      Result[O] := Text[I];
+      Inc(O);
       Escaped := False;
     end else begin
       if Text[I] = '\' then begin
         Escaped := True;
-      end else Result := Result + Text[I];
+      end else begin
+        Result[O] := Text[I];
+        Inc(O);
+      end;
     end;
     Inc(I);
   end;
+  SetLength(Result, O - 1);
 end;
 
 { TContactField }
@@ -900,7 +917,7 @@ begin
           NewProperty.Name := NewProperty.Attributes[0];
           NewProperty.Attributes.Delete(0);
         end;
-        NewProperty.Value := DecodeEscaped(Value);
+        NewProperty.Value := Value;
         NewProperty.EvaluateAttributes;
       end else begin
         Parent.Error(SExpectedProperty, I + 1);
