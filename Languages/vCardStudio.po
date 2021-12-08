@@ -165,8 +165,20 @@ msgctxt "tformcontact.label2.caption"
 msgid "Mobile:"
 msgstr ""
 
+#: tformcontact.label20.caption
+msgid "Jabber:"
+msgstr ""
+
+#: tformcontact.label21.caption
+msgid "MSN:"
+msgstr ""
+
 #: tformcontact.label22.caption
 msgid "Birthday:"
+msgstr ""
+
+#: tformcontact.label23.caption
+msgid "IRC:"
 msgstr ""
 
 #: tformcontact.label24.caption
@@ -288,6 +300,14 @@ msgctxt "tformcontact.label46.caption"
 msgid "Web address:"
 msgstr ""
 
+#: tformcontact.label47.caption
+msgid "Google Talk:"
+msgstr ""
+
+#: tformcontact.label48.caption
+msgid "Windows Live:"
+msgstr ""
+
 #: tformcontact.label5.caption
 msgid "Last name"
 msgstr ""
@@ -319,8 +339,32 @@ msgstr ""
 msgid "Department:"
 msgstr ""
 
+#: tformcontact.labelorganization2.caption
+msgid "Skype:"
+msgstr ""
+
+#: tformcontact.labelorganization3.caption
+msgid "ICQ:"
+msgstr ""
+
+#: tformcontact.labelorganization4.caption
+msgid "AIM:"
+msgstr ""
+
+#: tformcontact.labelorganization5.caption
+msgid "Yahoo!:"
+msgstr ""
+
+#: tformcontact.labelorganization6.caption
+msgid "QQ:"
+msgstr ""
+
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
+msgstr ""
+
+#: tformcontact.tabsheetchat.caption
+msgid "Chat"
 msgstr ""
 
 #: tformcontact.tabsheetgeneral.caption
@@ -597,6 +641,10 @@ msgstr ""
 msgid "DPI:"
 msgstr ""
 
+#: ucontact.saim
+msgid "AIM"
+msgstr ""
+
 #: ucontact.sanniversary
 msgid "Anniversary"
 msgstr ""
@@ -654,6 +702,10 @@ msgctxt "ucontact.sfullname"
 msgid "Full Name"
 msgstr ""
 
+#: ucontact.sgoogletalk
+msgid "Google Talk"
+msgstr ""
+
 #: ucontact.shomeaddresscity
 msgid "Home address city"
 msgstr ""
@@ -707,8 +759,16 @@ msgstr ""
 msgid "Home phone 2"
 msgstr ""
 
+#: ucontact.sicq
+msgid "ICQ"
+msgstr ""
+
 #: ucontact.sinternetemail
 msgid "Internet E-mail"
+msgstr ""
+
+#: ucontact.sirc
+msgid "IRC"
 msgstr ""
 
 #: ucontact.sjabber
@@ -736,6 +796,10 @@ msgstr ""
 msgid "Mobile phone"
 msgstr ""
 
+#: ucontact.smsn
+msgid "MSN"
+msgstr ""
+
 #: ucontact.snickname
 msgid "Nick name"
 msgstr ""
@@ -756,12 +820,20 @@ msgstr ""
 msgid "Photo"
 msgstr ""
 
+#: ucontact.sqq
+msgid "QQ"
+msgstr ""
+
 #: ucontact.srevision
 msgid "Revision"
 msgstr ""
 
 #: ucontact.srole
 msgid "Role"
+msgstr ""
+
+#: ucontact.sskype
+msgid "Skype"
 msgstr ""
 
 #: ucontact.stelephone
@@ -807,6 +879,10 @@ msgstr ""
 
 #: ucontact.swebaddresswork
 msgid "Web address work"
+msgstr ""
+
+#: ucontact.swindowslive
+msgid "Windows Live"
 msgstr ""
 
 #: ucontact.sworkaddresscity
@@ -855,6 +931,10 @@ msgstr ""
 
 #: ucontact.sworkphone
 msgid "Work phone"
+msgstr ""
+
+#: ucontact.syahoo
+msgid "Yahoo!"
 msgstr ""
 
 #: ucore.sappexit
