@@ -500,7 +500,7 @@ object Core: TCore
     EmailContact = 'robie@centrum.cz'
     AppName = 'vCard Studio'
     Description = 'vCard files management tool'
-    ReleaseDate = 44524
+    ReleaseDate = 44539
     RegistryKey = '\Software\Chronosoft\vCard Studio'
     RegistryRoot = rrKeyCurrentUser
     License = 'CC0'
