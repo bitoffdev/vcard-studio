@@ -559,6 +559,10 @@ msgctxt "tformproperty.label3.caption"
 msgid "Values:"
 msgstr ""
 
+#: tformproperty.label4.caption
+msgid "Field:"
+msgstr ""
+
 #: tformsettings.buttoncancel.caption
 msgctxt "tformsettings.buttoncancel.caption"
 msgid "Cancel"

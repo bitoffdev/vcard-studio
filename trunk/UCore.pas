@@ -355,6 +355,7 @@ begin
   if DoClose then begin
     if Assigned(DataFile) then FreeAndNil(DataFile);
     FileClosed := True;
+    UpdateFile;
   end;
 end;
 
