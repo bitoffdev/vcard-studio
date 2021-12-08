@@ -332,10 +332,12 @@ begin
   else
   if Attributes.IndexOfName('ENCODING') <> -1 then begin
     Encoding := Attributes.Values['ENCODING'];
+    if (Encoding = 'B') or (Encoding = 'b') then Encoding := 'BASE64';
+    if (Encoding = 'Q') or (Encoding = 'q') then Encoding := 'QUOTED-PRINTABLE';
     if (Encoding = 'QUOTED-PRINTABLE') or (Encoding = 'BASE64') then begin
       Value := GetDecodedValue;
       Attributes.Delete(Attributes.IndexOfName('ENCODING'));
-    end;
+    end else
   end else Encoding := '';
 
   if Attributes.IndexOfName('CHARSET') <> -1 then
@@ -346,6 +348,8 @@ begin
   for I := 0 to Attributes.Count - 1 do begin
     if Attributes.Names[I] = 'TYPE' then
       Attributes.Strings[I] := Attributes.Values['TYPE'];
+    if Attributes.Names[I] = 'type' then
+      Attributes.Strings[I] := Attributes.Values['type'];
   end;
 end;
 
