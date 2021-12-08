@@ -6,7 +6,7 @@ description: |
   A tool for work with contacts stored in vCard format (.vcf).
   
   Features:
-  * Add, Edit, Remove contacts
+  * Add, Edit, Clone, Remove contacts
   * Merge files together
   * Find duplicate contacts
 confinement: strict
