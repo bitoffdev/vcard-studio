@@ -33,6 +33,7 @@ type
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
     procedure AAddExecute(Sender: TObject);
     procedure ACloneExecute(Sender: TObject);
     procedure AModifyExecute(Sender: TObject);

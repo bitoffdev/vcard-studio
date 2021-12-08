@@ -64,9 +64,14 @@ object FormProperties: TFormProperties
       Action = AModify
     end
     object ToolButton3: TToolButton
-      Left = 71
+      Left = 106
       Top = 2
       Action = ARemove
+    end
+    object ToolButton4: TToolButton
+      Left = 71
+      Top = 2
+      Action = AClone
     end
   end
   object ListViewFilter1: TListViewFilter

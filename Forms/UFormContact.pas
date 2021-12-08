@@ -205,6 +205,7 @@ var
   PhotoProperty: TContactProperty;
   Stream: TMemoryStream;
   JpegImage: TJpegImage;
+  PngImage: TPortableNetworkGraphic;
 begin
   Contact.Fields[cfFullName] := EditFullName.Text;
   Contact.Fields[cfMiddleName] := EditMiddleName.Text;
@@ -246,6 +247,19 @@ begin
         finally
           JpegImage.Free;
         end;
+      end else
+      if PhotoProperty.Attributes.IndexOf('PNG') <> -1 then begin
+        PngImage := TPortableNetworkGraphic.Create;
+        try
+          try
+            PngImage.SetSize(ImagePhoto.Picture.Bitmap.Width, ImagePhoto.Picture.Bitmap.Height);
+            PngImage.Canvas.Draw(0, 0, ImagePhoto.Picture.Bitmap);
+            PngImage.SaveToStream(Stream);
+          except
+          end;
+        finally
+          PngImage.Free;
+        end;
       end else begin
         try
           ImagePhoto.Picture.SaveToStream(Stream);
@@ -273,6 +287,7 @@ procedure TFormContact.TabSheetGeneralShow(Sender: TObject);
 var
   Photo: string;
   JpegImage: TJpegImage;
+  PngImage: TPortableNetworkGraphic;
   Stream: TMemoryStream;
   PhotoProperty: TContactProperty;
 begin
@@ -317,6 +332,24 @@ begin
             end;
           finally
             JpegImage.Free;
+          end;
+        end else
+        if PhotoProperty.Attributes.IndexOf('PNG') <> -1 then begin
+          PngImage := TPortableNetworkGraphic.Create;
+          try
+            try
+              PngImage.LoadFromStream(Stream);
+              with ImagePhoto.Picture.Bitmap do begin
+                PixelFormat := pf24bit;
+                SetSize(PngImage.Width, PngImage.Height);
+                Canvas.Draw(0, 0, PngImage);
+              end;
+              ProfilePhotoActive := True;
+            except
+              ProfilePhotoActive := False;
+            end;
+          finally
+            PngImage.Free;
           end;
         end else begin
           try
