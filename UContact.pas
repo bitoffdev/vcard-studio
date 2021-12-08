@@ -29,6 +29,8 @@ type
     cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfXJabber, cfDayOfBirth, cfRevision,
     cfVersion, cfAnniversary);
 
+  { TContactField }
+
   TContactField = class
     SysName: string;
     Groups: TStringArray;
@@ -37,6 +39,8 @@ type
     Index: TContactFieldIndex;
     ValueIndex: Integer;
     DataType: TDataType;
+    function GroupsContain(Name: string): Boolean;
+    function Match(ASysName: string; AGroups: TStringArray): Boolean;
   end;
 
   { TContactFields }
@@ -45,6 +49,8 @@ type
     function AddNew(Name: string; Groups: array of string; NoGroups: array of string;
       Title: string; Index: TContactFieldIndex; DataType:
       TDataType; ValueIndex: Integer = -1): TContactField;
+    function GetBySysName(SysName: string): TContactField;
+    function GetBySysNameGroups(SysName: string; Groups: TStringArray): TContactField;
     function GetByIndex(Index: TContactFieldIndex): TContactField;
     procedure LoadToStrings(AItems: TStrings);
   end;
@@ -235,6 +241,35 @@ begin
       Result := False;
       Break;
     end;
+end;
+
+{ TContactField }
+
+function TContactField.GroupsContain(Name: string): Boolean;
+var
+  I: Integer;
+begin
+  Result := False;
+  for I := 0 to Length(Groups) - 1 do
+    if Groups[I] = Name then begin
+      Result := True;
+      Break;
+    end;
+end;
+
+function TContactField.Match(ASysName: string; AGroups: TStringArray): Boolean;
+var
+  I: Integer;
+begin
+  Result := ASysName = SysName;
+  if Result then begin
+    for I := 0 to Length(AGroups) - 1 do begin
+      if not GroupsContain(AGroups[I]) then begin
+        Result := False;
+        Break;
+      end;
+    end;
+  end;
 end;
 
 { TContactProperties }
@@ -490,6 +525,31 @@ begin
   Result.ValueIndex := ValueIndex;
   Result.DataType := DataType;
   Add(Result);
+end;
+
+function TContactFields.GetBySysName(SysName: string): TContactField;
+var
+  I: Integer;
+  C: Integer;
+begin
+  C := Count;
+  I := 0;
+  while (I < Count) and (Items[I].SysName <> SysName) do Inc(I);
+  if I < Count then Result := Items[I]
+    else Result := nil;
+end;
+
+function TContactFields.GetBySysNameGroups(SysName: string; Groups: TStringArray
+  ): TContactField;
+var
+  I: Integer;
+  C: Integer;
+begin
+  C := Count;
+  I := 0;
+  while (I < Count) and not Items[I].Match(SysName, Groups) do Inc(I);
+  if I < Count then Result := Items[I]
+    else Result := nil;
 end;
 
 function TContactFields.GetByIndex(Index: TContactFieldIndex): TContactField;
