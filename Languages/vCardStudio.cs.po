@@ -76,10 +76,12 @@ msgid "Clear"
 msgstr "Vyčistit"
 
 #: tformcontact.aphotoload.caption
+msgctxt "tformcontact.aphotoload.caption"
 msgid "Load from file"
 msgstr "Načíst ze souboru"
 
 #: tformcontact.aphotosave.caption
+msgctxt "tformcontact.aphotosave.caption"
 msgid "Save to file"
 msgstr "Uložit do souboru"
 
@@ -357,6 +359,11 @@ msgctxt "tformcontacts.aclone.caption"
 msgid "Clone"
 msgstr "Klonovat"
 
+#: tformcontacts.aloadfromfile.caption
+msgctxt "tformcontacts.aloadfromfile.caption"
+msgid "Load from file..."
+msgstr "Načíst ze souboru..."
+
 #: tformcontacts.amodify.caption
 msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
@@ -366,6 +373,11 @@ msgstr "Upravit"
 msgctxt "tformcontacts.aremove.caption"
 msgid "Remove"
 msgstr "Odstranit"
+
+#: tformcontacts.asavetofile.caption
+msgctxt "tformcontacts.asavetofile.caption"
+msgid "Save to file..."
+msgstr "Uložit do souboru..."
 
 #: tformcontacts.aselectall.caption
 msgctxt "tformcontacts.aselectall.caption"
@@ -616,6 +628,10 @@ msgstr "Oddělení"
 #: ucontact.semail
 msgid "E-mail"
 msgstr "E-mail"
+
+#: ucontact.sexpectedproperty
+msgid "Expected contact property"
+msgstr "Očekávána vlastnost kontaktu"
 
 #: ucontact.sfax
 msgid "Fax"
@@ -931,3 +947,4 @@ msgstr "Celkem"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
+

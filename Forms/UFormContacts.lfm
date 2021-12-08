@@ -13,7 +13,7 @@ object FormContacts: TFormContacts
   LCLVersion = '2.0.12.0'
   object ListView1: TListView
     Left = 0
-    Height = 810
+    Height = 801
     Top = 0
     Width = 1210
     Align = alClient
@@ -57,7 +57,7 @@ object FormContacts: TFormContacts
   object ToolBar1: TToolBar
     Left = 0
     Height = 39
-    Top = 842
+    Top = 833
     Width = 1210
     Align = alBottom
     Images = Core.ImageList1
@@ -85,19 +85,35 @@ object FormContacts: TFormContacts
       Top = 2
       Action = AClone
     end
+    object ToolButton5: TToolButton
+      Left = 141
+      Height = 33
+      Top = 2
+      Style = tbsSeparator
+    end
+    object ToolButton6: TToolButton
+      Left = 149
+      Top = 2
+      Action = ALoadFromFile
+    end
+    object ToolButton7: TToolButton
+      Left = 184
+      Top = 2
+      Action = ASaveToFile
+    end
   end
   object ListViewFilter1: TListViewFilter
     Left = 0
     Height = 32
-    Top = 810
+    Top = 801
     Width = 1210
     OnChange = ListViewFilter1Change
     Align = alBottom
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 27
-    Top = 881
+    Height = 36
+    Top = 872
     Width = 1210
     Panels = <    
       item
@@ -123,6 +139,15 @@ object FormContacts: TFormContacts
     end
     object MenuItem4: TMenuItem
       Action = ASelectAll
+    end
+    object MenuItem6: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem7: TMenuItem
+      Action = ALoadFromFile
+    end
+    object MenuItem8: TMenuItem
+      Action = ASaveToFile
     end
   end
   object ActionList1: TActionList
@@ -157,6 +182,16 @@ object FormContacts: TFormContacts
       ImageIndex = 11
       OnExecute = ACloneExecute
     end
+    object ALoadFromFile: TAction
+      Caption = 'Load from file...'
+      ImageIndex = 5
+      OnExecute = ALoadFromFileExecute
+    end
+    object ASaveToFile: TAction
+      Caption = 'Save to file...'
+      ImageIndex = 7
+      OnExecute = ASaveToFileExecute
+    end
   end
   object ListViewSort1: TListViewSort
     ListView = ListView1
@@ -167,5 +202,13 @@ object FormContacts: TFormContacts
     Order = soNone
     Left = 528
     Top = 428
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 720
+    Top = 408
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 720
+    Top = 480
   end
 end

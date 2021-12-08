@@ -81,6 +81,7 @@ type
     FileClosed: Boolean;
     ReopenLastFileOnStart: Boolean;
     LastContactTabIndex: Integer;
+    LastContactFileName: string;
     ToolbarVisible: Boolean;
     function GetProfileImage: TImage;
     procedure FileNew;
@@ -430,6 +431,7 @@ begin
     FormMain.MenuItemToolbar.Checked := ReadBoolWithDefault('ToolBarVisible', True);
     ReopenLastFileOnStart := ReadBoolWithDefault('ReopenLastFileOnStart', True);
     LastContactTabIndex := ReadIntegerWithDefault('LastContactTabIndex', 0);
+    LastContactFileName := ReadStringWithDefault('LastContactFileName', '');
   finally
     Free;
   end;
@@ -452,6 +454,7 @@ begin
     WriteBool('ToolBarVisible', FormMain.MenuItemToolbar.Checked);
     WriteBool('ReopenLastFileOnStart', ReopenLastFileOnStart);
     WriteInteger('LastContactTabIndex', LastContactTabIndex);
+    WriteString('LastContactFileName', LastContactFileName);
   finally
     Free;
   end;
