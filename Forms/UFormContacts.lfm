@@ -13,7 +13,7 @@ object FormContacts: TFormContacts
   LCLVersion = '2.0.12.0'
   object ListView1: TListView
     Left = 0
-    Height = 801
+    Height = 810
     Top = 0
     Width = 1210
     Align = alClient
@@ -35,12 +35,20 @@ object FormContacts: TFormContacts
         Width = 150
       end    
       item
-        Caption = 'Cell phone'
+        Caption = 'Phone'
+        Width = 150
+      end    
+      item
+        Caption = 'Mobile'
         Width = 150
       end    
       item
         Caption = 'Home phone'
-        Width = 295
+        Width = 150
+      end    
+      item
+        Caption = 'Work phone'
+        Width = 150
       end>
     MultiSelect = True
     OwnerData = True
@@ -57,7 +65,7 @@ object FormContacts: TFormContacts
   object ToolBar1: TToolBar
     Left = 0
     Height = 39
-    Top = 833
+    Top = 842
     Width = 1210
     Align = alBottom
     Images = Core.ImageList1
@@ -105,15 +113,15 @@ object FormContacts: TFormContacts
   object ListViewFilter1: TListViewFilter
     Left = 0
     Height = 32
-    Top = 801
+    Top = 810
     Width = 1210
     OnChange = ListViewFilter1Change
     Align = alBottom
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 36
-    Top = 872
+    Height = 27
+    Top = 881
     Width = 1210
     Panels = <    
       item
