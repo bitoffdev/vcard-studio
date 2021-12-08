@@ -633,6 +633,10 @@ msgstr "E-mail"
 msgid "Expected contact property"
 msgstr "Očekávána vlastnost kontaktu"
 
+#: ucontact.sexpectedvcardbegin
+msgid "Expected vCard begin"
+msgstr "Očekáván začátek vCard"
+
 #: ucontact.sfax
 msgid "Fax"
 msgstr "Fax"
@@ -947,4 +951,3 @@ msgstr "Celkem"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
-
