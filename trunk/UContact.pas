@@ -144,10 +144,15 @@ implementation
 uses
   UQuotedPrintable;
 
+const
+  VCardBegin = 'BEGIN:VCARD';
+  VCardEnd = 'END:VCARD';
+
 resourcestring
   SVCardFile = 'vCard file';
   SFoundPropertiesBeforeBlockStart = 'Found properties before the start of block';
   SFoundBlockEndWithoutBlockStart = 'Found block end without block start';
+  SExpectedVCardBegin = 'Expected vCard begin';
   SFieldIndexNotDefined = 'Field index not defined';
   SContactHasNoParent = 'Contact has no parent';
   SExpectedProperty = 'Expected contact property';
@@ -609,10 +614,8 @@ end;
 procedure TContact.SaveToStrings(Output: TStrings);
 var
   I: Integer;
-  J: Integer;
   NameText: string;
   Value2: string;
-  Text: string;
   LineIndex: Integer;
   OutText: string;
   LinePrefix: string;
@@ -620,9 +623,9 @@ const
   MaxLineLength = 73;
 begin
     with Output do begin
-      Add('BEGIN:VCARD');
-      for J := 0 to Properties.Count - 1 do
-      with Properties[J] do begin
+      Add(VCardBegin);
+      for I := 0 to Properties.Count - 1 do
+      with Properties[I] do begin
         NameText := Name;
         if Attributes.Count > 0 then
           NameText := NameText + ';' + Attributes.DelimitedText;
@@ -656,7 +659,7 @@ begin
           if LinePrefix <> '' then Add('');
         end;
       end;
-      Add('END:VCARD');
+      Add(VCardEnd);
     end;
 end;
 
@@ -680,16 +683,16 @@ begin
       // Skip empty lines
     end else
     if ParseState = psNone then begin
-      if Line = 'BEGIN:VCARD' then begin
+      if Line = VCardBegin then begin
         ParseState := psInside;
       end else begin
-        Parent.Error('Expected vCard begin', I + 1);
+        Parent.Error(SExpectedVCardBegin, I + 1);
         I := -1;
         Break;
       end;
     end else
     if ParseState = psInside then begin
-      if Line = 'END:VCARD' then begin
+      if Line = VCardEnd then begin
         ParseState := psFinished;
         Inc(I);
         Break;
@@ -755,6 +758,12 @@ begin
   Lines := TStringList.Create;
   try
     Lines.LoadFromFile(FileName);
+    if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
+      Lines.LoadFromFile(FileName, TEncoding.Unicode);
+      if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
+        Lines.LoadFromFile(FileName, TEncoding.BigEndianUnicode);
+      end;
+    end;
     I := LoadFromStrings(Lines);
   finally
     Lines.Free;
@@ -881,6 +890,12 @@ begin
   Contacts.Clear;
   Lines := TStringList.Create;
   Lines.LoadFromFile(FileName);
+  if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
+    Lines.LoadFromFile(FileName, TEncoding.Unicode);
+    if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
+      Lines.LoadFromFile(FileName, TEncoding.BigEndianUnicode);
+    end;
+  end;
   try
     I := 0;
     while I < Lines.Count do begin

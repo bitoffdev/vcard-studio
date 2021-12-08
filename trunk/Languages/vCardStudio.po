@@ -621,6 +621,10 @@ msgstr ""
 msgid "Expected contact property"
 msgstr ""
 
+#: ucontact.sexpectedvcardbegin
+msgid "Expected vCard begin"
+msgstr ""
+
 #: ucontact.sfax
 msgid "Fax"
 msgstr ""
