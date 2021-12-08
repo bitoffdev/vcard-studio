@@ -757,14 +757,6 @@ msgstr "Index pole nenalezen"
 msgid "First Name"
 msgstr "Křestní jméno"
 
-#: ucontact.sfoundblockendwithoutblockstart
-msgid "Found block end without block start"
-msgstr "Nalezen konec bloku bez začátku bloku"
-
-#: ucontact.sfoundpropertiesbeforeblockstart
-msgid "Found properties before the start of block"
-msgstr "Nalezena vlastnost před začátkem bloku"
-
 #: ucontact.sfullname
 msgctxt "ucontact.sfullname"
 msgid "Full Name"
@@ -1135,3 +1127,4 @@ msgstr "Celkem"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
+
