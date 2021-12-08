@@ -119,8 +119,10 @@ begin
     AddItem(Fields[cfFirstName]);
     AddItem(Fields[cfMiddleName]);
     AddItem(Fields[cfLastName]);
+    AddItem(Fields[cfTel]);
     AddItem(Fields[cfTelCell]);
     AddItem(Fields[cfTelHome]);
+    AddItem(Fields[cfTelWork]);
     Item.Data := ListViewSort1.List[Item.Index];
   end;
 end;
@@ -157,8 +159,10 @@ begin
       1: Result := CompareString(TContact(Item1).Fields[cfFirstName], TContact(Item2).Fields[cfFirstName]);
       2: Result := CompareString(TContact(Item1).Fields[cfMiddleName], TContact(Item2).Fields[cfMiddleName]);
       3: Result := CompareString(TContact(Item1).Fields[cfLastName], TContact(Item2).Fields[cfLastName]);
-      4: Result := CompareString(TContact(Item1).Fields[cfTelCell], TContact(Item2).Fields[cfTelCell]);
-      5: Result := CompareString(TContact(Item1).Fields[cfTelHome], TContact(Item2).Fields[cfTelHome]);
+      4: Result := CompareString(TContact(Item1).Fields[cfTel], TContact(Item2).Fields[cfTel]);
+      5: Result := CompareString(TContact(Item1).Fields[cfTelCell], TContact(Item2).Fields[cfTelCell]);
+      6: Result := CompareString(TContact(Item1).Fields[cfTelHome], TContact(Item2).Fields[cfTelHome]);
+      7: Result := CompareString(TContact(Item1).Fields[cfTelWork], TContact(Item2).Fields[cfTelWork]);
     end;
     if ListViewSort1.Order = soDown then Result := -Result;
   end else Result := 0;
@@ -195,9 +199,13 @@ begin
            if Pos(UTF8LowerCase(StringGrid.Cells[3, 0]),
              UTF8LowerCase(TContact(List.Items[I]).Fields[cfLastName])) > 0 then Inc(FoundCount);
            if Pos(UTF8LowerCase(StringGrid.Cells[4, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTelCell])) > 0 then Inc(FoundCount);
+             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTel])) > 0 then Inc(FoundCount);
            if Pos(UTF8LowerCase(StringGrid.Cells[5, 0]),
+             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTelCell])) > 0 then Inc(FoundCount);
+           if Pos(UTF8LowerCase(StringGrid.Cells[6, 0]),
              UTF8LowerCase(TContact(List.Items[I]).Fields[cfTelHome])) > 0 then Inc(FoundCount);
+           if Pos(UTF8LowerCase(StringGrid.Cells[7, 0]),
+             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTelWork])) > 0 then Inc(FoundCount);
            if FoundCount <> EnteredCount then List.Delete(I);
          end;
       end;

@@ -639,9 +639,7 @@ end;
 function TContactFields.GetBySysName(SysName: string): TContactField;
 var
   I: Integer;
-  C: Integer;
 begin
-  C := Count;
   I := 0;
   while (I < Count) and (Items[I].SysName <> SysName) do Inc(I);
   if I < Count then Result := Items[I]
@@ -652,9 +650,7 @@ function TContactFields.GetBySysNameGroups(SysName: string; Groups: TStringArray
   ): TContactField;
 var
   I: Integer;
-  C: Integer;
 begin
-  C := Count;
   I := 0;
   while (I < Count) and not Items[I].Match(SysName, Groups) do Inc(I);
   if I < Count then Result := Items[I]
@@ -950,12 +946,14 @@ begin
   Lines := TStringList.Create;
   try
     Lines.LoadFromFile(FileName);
+    {$IF FPC_FULLVERSION>=30200}
     if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
       Lines.LoadFromFile(FileName, TEncoding.Unicode);
       if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
         Lines.LoadFromFile(FileName, TEncoding.BigEndianUnicode);
       end;
     end;
+    {$ENDIF}
     LoadFromStrings(Lines);
   finally
     Lines.Free;
@@ -1123,12 +1121,14 @@ begin
   Contacts.Clear;
   Lines := TStringList.Create;
   Lines.LoadFromFile(FileName);
+  {$IF FPC_FULLVERSION>=30200}
   if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
     Lines.LoadFromFile(FileName, TEncoding.Unicode);
     if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
       Lines.LoadFromFile(FileName, TEncoding.BigEndianUnicode);
     end;
   end;
+  {$ENDIF}
   try
     I := 0;
     while I < Lines.Count do begin

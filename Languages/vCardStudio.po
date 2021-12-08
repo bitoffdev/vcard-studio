@@ -497,12 +497,22 @@ msgstr ""
 
 #: tformcontacts.listview1.columns[4].caption
 msgctxt "tformcontacts.listview1.columns[4].caption"
-msgid "Cell phone"
+msgid "Phone"
 msgstr ""
 
 #: tformcontacts.listview1.columns[5].caption
 msgctxt "tformcontacts.listview1.columns[5].caption"
+msgid "Mobile"
+msgstr ""
+
+#: tformcontacts.listview1.columns[6].caption
+msgctxt "tformcontacts.listview1.columns[6].caption"
 msgid "Home phone"
+msgstr ""
+
+#: tformcontacts.listview1.columns[7].caption
+msgctxt "tformcontacts.listview1.columns[7].caption"
+msgid "Work phone"
 msgstr ""
 
 #: tformerror.caption
@@ -1018,6 +1028,7 @@ msgid "Work pager"
 msgstr ""
 
 #: ucontact.sworkphone
+msgctxt "ucontact.sworkphone"
 msgid "Work phone"
 msgstr ""
 

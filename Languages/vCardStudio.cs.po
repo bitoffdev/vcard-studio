@@ -507,13 +507,23 @@ msgstr "Příjmení"
 
 #: tformcontacts.listview1.columns[4].caption
 msgctxt "tformcontacts.listview1.columns[4].caption"
-msgid "Cell phone"
-msgstr "Mobilní telefon"
+msgid "Phone"
+msgstr "Telefon"
 
 #: tformcontacts.listview1.columns[5].caption
 msgctxt "tformcontacts.listview1.columns[5].caption"
+msgid "Mobile"
+msgstr "Mobil"
+
+#: tformcontacts.listview1.columns[6].caption
+msgctxt "tformcontacts.listview1.columns[6].caption"
 msgid "Home phone"
 msgstr "Domácí telefon"
+
+#: tformcontacts.listview1.columns[7].caption
+msgctxt "tformcontacts.listview1.columns[7].caption"
+msgid "Work phone"
+msgstr "Pracovní telefon"
 
 #: tformerror.caption
 msgid "Load errors"
@@ -1030,6 +1040,7 @@ msgid "Work pager"
 msgstr "Práce pager"
 
 #: ucontact.sworkphone
+msgctxt "ucontact.sworkphone"
 msgid "Work phone"
 msgstr "Pracovní telefon"
 
@@ -1127,4 +1138,3 @@ msgstr "Celkem"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
-
