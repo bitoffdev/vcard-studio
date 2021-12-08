@@ -22,7 +22,18 @@ type
     ButtonOk: TButton;
     ButtonPrevious: TButton;
     EditAim: TEdit;
+    EditMatrix: TEdit;
+    EditYouTube: TEdit;
+    EditGender: TEdit;
+    EditLinkedIn: TEdit;
+    EditFacebook: TEdit;
+    EditInstagram: TEdit;
+    EditMySpace: TEdit;
+    EditTwitter: TEdit;
+    EditReddit: TEdit;
+    EditMastodon: TEdit;
     EditWindowsLive: TEdit;
+    EditSnapchat: TEdit;
     EditYahoo: TEdit;
     EditGoogleTalk: TEdit;
     EditMsn: TEdit;
@@ -75,6 +86,7 @@ type
     EditMobile: TEdit;
     EditWorkPhone: TEdit;
     EditQq: TEdit;
+    EditPeerTube: TEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     ImagePhoto: TImage;
@@ -121,18 +133,30 @@ type
     Label46: TLabel;
     Label47: TLabel;
     Label48: TLabel;
+    Label49: TLabel;
     Label5: TLabel;
+    Label50: TLabel;
+    Label51: TLabel;
+    Label52: TLabel;
+    Label53: TLabel;
+    Label54: TLabel;
+    Label55: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
     LabelOrganization: TLabel;
     LabelOrganization1: TLabel;
+    LabelOrganization10: TLabel;
+    LabelOrganization11: TLabel;
     LabelOrganization2: TLabel;
     LabelOrganization3: TLabel;
     LabelOrganization4: TLabel;
     LabelOrganization5: TLabel;
     LabelOrganization6: TLabel;
+    LabelOrganization7: TLabel;
+    LabelOrganization8: TLabel;
+    LabelOrganization9: TLabel;
     MemoNotes: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -141,6 +165,7 @@ type
     PageControlContact: TPageControl;
     PopupMenuPhoto: TPopupMenu;
     SavePictureDialog1: TSavePictureDialog;
+    TabSheetSocial: TTabSheet;
     TabSheetChat: TTabSheet;
     TabSheetOthers: TTabSheet;
     TabSheetHome: TTabSheet;
@@ -165,6 +190,8 @@ type
     procedure TabSheetHomeShow(Sender: TObject);
     procedure TabSheetOthersHide(Sender: TObject);
     procedure TabSheetOthersShow(Sender: TObject);
+    procedure TabSheetSocialHide(Sender: TObject);
+    procedure TabSheetSocialShow(Sender: TObject);
     procedure TabSheetWorkHide(Sender: TObject);
     procedure TabSheetWorkShow(Sender: TObject);
   private
@@ -224,6 +251,7 @@ end;
 
 procedure TFormContact.TabSheetChatHide(Sender: TObject);
 begin
+  Contact.Fields[cfMatrix] := EditMatrix.Text;
   Contact.Fields[cfJabber] := EditJabber.Text;
   Contact.Fields[cfIcq] := EditIcq.Text;
   Contact.Fields[cfMsn] := EditMsn.Text;
@@ -233,11 +261,14 @@ begin
   Contact.Fields[cfWindowsLive] := EditWindowsLive.Text;
   Contact.Fields[cfYahoo] := EditYahoo.Text;
   Contact.Fields[cfAim] := EditAim.Text;
-  Contact.Fields[cfIrc] := EditIrc.Text
+  Contact.Fields[cfIrc] := EditIrc.Text;
+
+  ReloadAllPropertiesTab;
 end;
 
 procedure TFormContact.TabSheetChatShow(Sender: TObject);
 begin
+  EditMatrix.Text := Contact.Fields[cfMatrix];
   EditJabber.Text := Contact.Fields[cfJabber];
   EditIcq.Text := Contact.Fields[cfIcq];
   EditMsn.Text := Contact.Fields[cfMsn];
@@ -273,6 +304,7 @@ begin
   Contact.Fields[cfDayOfBirth] := EditBirthday.Text;
   Contact.Fields[cfAnniversary] := EditAniversary.Text;
   Contact.Fields[cfUrl] := EditWeb.Text;
+  Contact.Fields[cfGender] := EditGender.Text;
 
   // Photo
   if ProfilePhotoActive then begin
@@ -357,6 +389,7 @@ begin
   EditBirthday.Text := Contact.Fields[cfDayOfBirth];
   EditAniversary.Text := Contact.Fields[cfAnniversary];
   EditWeb.Text := Contact.Fields[cfUrl];
+  EditGender.Text := Contact.Fields[cfGender];
 
   // Photo
   PhotoProperty := Contact.GetProperty(cfPhoto);
@@ -463,6 +496,36 @@ end;
 procedure TFormContact.TabSheetOthersShow(Sender: TObject);
 begin
   MemoNotes.Lines.Text := Contact.Fields[cfNote];
+end;
+
+procedure TFormContact.TabSheetSocialHide(Sender: TObject);
+begin
+  Contact.Fields[cfFacebook] := EditFacebook.Text;
+  Contact.Fields[cfTwitter] := EditTwitter.Text;
+  Contact.Fields[cfInstagram] := EditInstagram.Text;
+  Contact.Fields[cfYouTube] := EditYouTube.Text;
+  Contact.Fields[cfPeerTube] := EditPeerTube.Text;
+  Contact.Fields[cfMastodon] := EditMastodon.Text;
+  Contact.Fields[cfLinkedIn] := EditLinkedIn.Text;
+  Contact.Fields[cfSnapchat] := EditSnapchat.Text;
+  Contact.Fields[cfReddit] := EditReddit.Text;
+  Contact.Fields[cfMySpace] := EditMySpace.Text;
+
+  ReloadAllPropertiesTab;
+end;
+
+procedure TFormContact.TabSheetSocialShow(Sender: TObject);
+begin
+  EditFacebook.Text := Contact.Fields[cfFacebook];
+  EditTwitter.Text := Contact.Fields[cfTwitter];
+  EditInstagram.Text := Contact.Fields[cfInstagram];
+  EditYouTube.Text := Contact.Fields[cfYouTube];
+  EditPeerTube.Text := Contact.Fields[cfPeerTube];
+  EditMastodon.Text := Contact.Fields[cfMastodon];
+  EditLinkedIn.Text := Contact.Fields[cfLinkedIn];
+  EditSnapchat.Text := Contact.Fields[cfSnapchat];
+  EditReddit.Text := Contact.Fields[cfReddit];
+  EditMySpace.Text := Contact.Fields[cfMySpace];
 end;
 
 procedure TFormContact.TabSheetWorkHide(Sender: TObject);

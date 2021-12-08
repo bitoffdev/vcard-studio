@@ -12,7 +12,7 @@ type
 
   TErrorEvent = procedure (Text: string; Line: Integer) of object;
 
-  TDataType = (dtString, dtInteger, dtDate, dtDateTime, dtImage, dtStringList);
+  TDataType = (dtNone, dtString, dtInteger, dtDate, dtDateTime, dtImage, dtStringList);
 
   TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
     cfTitleAfter, cfFullName,
@@ -27,9 +27,13 @@ type
     cfWorkAddressStreet, cfWorkAddressStreetExtended, cfWorkAddressCity, cfWorkAddressCountry,
     cfWorkAddressPostalCode, cfWorkAddressRegion, cfWorkAddressPostOfficeBox,
     cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfDayOfBirth, cfRevision,
-    cfVersion, cfAnniversary,
+    cfVersion, cfAnniversary, cfGender,
     cfJabber, cfIcq, cfWindowsLive, cfGoogleTalk, cfAim, cfQq, cfYahoo, cfIrc,
-    cfSkype, cfMsn);
+    cfSkype, cfMsn,
+    cfTwitter, cfFacebook, cfInstagram, cfSnapchat, cfMatrix, cfYoutube,
+    cfPeerTube, cfLinkedIn, cfMastodon, cfMySpace, cfReddit);
+
+  TContactFields = class;
 
   { TContactField }
 
@@ -41,8 +45,13 @@ type
     Index: TContactFieldIndex;
     ValueIndex: Integer;
     DataType: TDataType;
+    Alternatives: TContactFields;
+    function AddAlternative(Name: string; Groups: array of string; NoGroups:
+      array of string): TContactField;
     function GroupsContain(Name: string): Boolean;
     function Match(ASysName: string; AGroups: TStringArray): Boolean;
+    constructor Create;
+    destructor Destroy; override;
   end;
 
   { TContactFields }
@@ -50,7 +59,7 @@ type
   TContactFields = class(TFPGObjectList<TContactField>)
     function AddNew(Name: string; Groups: array of string; NoGroups: array of string;
       Title: string; Index: TContactFieldIndex; DataType:
-      TDataType; ValueIndex: Integer = -1): TContactField;
+      TDataType = dtNone; ValueIndex: Integer = -1): TContactField;
     function GetBySysName(SysName: string): TContactField;
     function GetBySysNameGroups(SysName: string; Groups: TStringArray): TContactField;
     function GetByIndex(Index: TContactFieldIndex): TContactField;
@@ -100,7 +109,8 @@ type
   public
     Properties: TContactProperties;
     Parent: TContactsFile;
-    function GetProperty(Index: TContactFieldIndex): TContactProperty;
+    function GetProperty(Field: TContactField): TContactProperty; overload;
+    function GetProperty(FieldIndex: TContactFieldIndex): TContactProperty; overload;
     procedure Assign(Source: TContact);
     function UpdateFrom(Source: TContact): Boolean;
     constructor Create;
@@ -221,6 +231,8 @@ resourcestring
   SWebAddress = 'Web address';
   SWebAddressHome = 'Web address home';
   SWebAddressWork = 'Web address work';
+  SGender = 'Gender';
+  // Chat
   SMsn = 'MSN';
   SGoogleTalk = 'Google Talk';
   SWindowsLive = 'Windows Live';
@@ -230,6 +242,18 @@ resourcestring
   SIcq = 'ICQ';
   SYahoo = 'Yahoo!';
   SSkype = 'Skype';
+  SMatrix = 'Matrix';
+  // Social
+  STwitter = 'Twitter';
+  SFacebook = 'Facebook';
+  SInstagram = 'Instagram';
+  SMastodon = 'Mastodon';
+  SSnapchat = 'Snapchat';
+  SLinkedIn = 'LinkedIn';
+  SYouTube = 'YouTube';
+  SPeerTube = 'PeerTube';
+  SReddit = 'Reddit';
+  SMySpace = 'MySpace';
 
 function GetNext(var Text: string; Separator: string): string;
 begin
@@ -256,6 +280,12 @@ end;
 
 { TContactField }
 
+function TContactField.AddAlternative(Name: string; Groups: array of string;
+  NoGroups: array of string): TContactField;
+begin
+  Result := Alternatives.AddNew(Name, Groups, NoGroups, Title, Index, DataType, ValueIndex);
+end;
+
 function TContactField.GroupsContain(Name: string): Boolean;
 var
   I: Integer;
@@ -281,6 +311,17 @@ begin
       end;
     end;
   end;
+end;
+
+constructor TContactField.Create;
+begin
+  Alternatives := TContactFields.Create;
+end;
+
+destructor TContactField.Destroy;
+begin
+  FreeAndNil(Alternatives);
+  inherited;
 end;
 
 { TContactProperties }
@@ -519,7 +560,7 @@ end;
 
 function TContactFields.AddNew(Name: string; Groups: array of string;
   NoGroups: array of string; Title: string; Index: TContactFieldIndex;
-  DataType: TDataType; ValueIndex: Integer = -1): TContactField;
+  DataType: TDataType = dtNone; ValueIndex: Integer = -1): TContactField;
 var
   I: Integer;
 begin
@@ -566,9 +607,7 @@ end;
 function TContactFields.GetByIndex(Index: TContactFieldIndex): TContactField;
 var
   I: Integer;
-  C: Integer;
 begin
-  C := Count;
   I := 0;
   while (I < Count) and (Items[I].Index <> Index) do Inc(I);
   if I < Count then Result := Items[I]
@@ -593,13 +632,16 @@ var
   Field: TContactField;
 begin
   if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
-  Prop := GetProperty(Index);
-  if Assigned(Prop) then begin
-    Field := Parent.Fields.GetByIndex(Index);
-    if Field.ValueIndex <> -1 then begin
-      Result := Prop.ValueItem[Field.ValueIndex]
-    end else Result := Prop.Value;
-  end else Result := '';
+  Field := Parent.Fields.GetByIndex(Index);
+  if Assigned(Field) then begin
+    Prop := GetProperty(Field);
+    if Assigned(Prop) then begin
+      Field := Parent.Fields.GetByIndex(Index);
+      if Field.ValueIndex <> -1 then begin
+        Result := Prop.ValueItem[Field.ValueIndex]
+      end else Result := Prop.Value;
+    end else Result := '';
+  end else raise Exception.Create(SFieldIndexNotDefined);
 end;
 
 procedure TContact.SetField(Index: TContactFieldIndex; AValue: string);
@@ -611,7 +653,7 @@ begin
   if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
   Field := Parent.Fields.GetByIndex(Index);
   if Assigned(Field) then begin
-    Prop := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
+    Prop := GetProperty(Field);
     if (not Assigned(Prop)) and (AValue <> '') then begin
       Prop := TContactProperty.Create;
       Prop.Name := Field.SysName;
@@ -632,15 +674,29 @@ begin
   end else raise Exception.Create(SFieldIndexNotDefined);
 end;
 
-function TContact.GetProperty(Index: TContactFieldIndex): TContactProperty;
+function TContact.GetProperty(Field: TContactField): TContactProperty;
+var
+  I: Integer;
+begin
+  Result := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
+  I := 0;
+  while (not Assigned(Result)) and (I < Field.Alternatives.Count) do begin
+    Result := Properties.GetByNameGroups(Field.Alternatives[I].SysName,
+      Field.Alternatives[I].Groups, Field.Alternatives[I].NoGroups);
+    if Assigned(Result) then Break;
+    Inc(I);
+  end;
+end;
+
+function TContact.GetProperty(FieldIndex: TContactFieldIndex): TContactProperty;
 var
   Field: TContactField;
 begin
   if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
-  Field := Parent.Fields.GetByIndex(Index);
+  Field := Parent.Fields.GetByIndex(FieldIndex);
   if Assigned(Field) then begin
-    Result := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
-  end else raise Exception.Create(SFieldIndexNotDefined);
+    Result := GetProperty(Field);
+  end else Result := nil;
 end;
 
 procedure TContact.Assign(Source: TContact);
@@ -871,7 +927,8 @@ begin
     AddNew('EMAIL', ['HOME'], [], SHomeEmail, cfEmailHome, dtString);
     AddNew('EMAIL', ['WORK'], [], SWorkEmail, cfEmailWork, dtString);
     AddNew('EMAIL', ['INTERNET'], [], SInternetEmail, cfEmailInternet, dtString);
-    AddNew('NICKNAME', [], [], SNickName, cfNickName, dtString);
+    with AddNew('NICKNAME', [], [], SNickName, cfNickName, dtString) do
+      AddAlternative('X-NICKNAME', [], []);
     AddNew('NOTE', [], [], SNote, cfNote, dtString);
     AddNew('ROLE', [], [], SRole, cfRole, dtString);
     AddNew('TITLE', [], [], STitle, cfTitle, dtString);
@@ -902,16 +959,46 @@ begin
     AddNew('URL', [], ['HOME', 'WORK'], SWebAddress, cfUrl, dtString);
     AddNew('URL', ['HOME'], [], SWebAddressHome, cfUrlHome, dtString);
     AddNew('URL', ['WORK'], [], SWebAddressWork, cfUrlWork, dtString);
+    with AddNew('GENDER', [], [], SGender, cfGender, dtString) do
+      AddAlternative('X-CENTRUM-CZ-SEX', [], []);
+    // Chat
+    AddNew('X-MATRIX', [], [], SMatrix, cfMatrix, dtString);
     AddNew('X-JABBER', [], [], SJabber, cfJabber, dtString);
     AddNew('X-AIM', [], [], SAim, cfAim, dtString);
     AddNew('X-Windows Live', [], [], SWindowsLive, cfWindowsLive, dtString);
     AddNew('X-YAHOO', [], [], SYahoo, cfYahoo, dtString);
-    AddNew('X-SKYPE-USERNAME', [], [], SSkype, cfSkype, dtString);
+    with AddNew('X-SKYPE-USERNAME', [], [], SSkype, cfSkype, dtString) do begin
+      AddAlternative('X-SKYPE', [], []);
+      AddAlternative('X-CENTRUM-CZ-SKYPE', [], []);
+    end;
     AddNew('X-QQ', [], [], SQq, cfQq, dtString);
     AddNew('X-GOOGLE-TALK', [], [], SGoogleTalk, cfGoogleTalk, dtString);
-    AddNew('X-ICQ', [], [], SIcq, cfIcq, dtString);
+    with AddNew('X-ICQ', [], [], SIcq, cfIcq, dtString) do
+      AddAlternative('X-CENTRUM-CZ-ICQ', [], []);
     AddNew('X-IRC', [], [], SIrc, cfIrc, dtString);
-    AddNew('X-MSN', [], [], SMsn, cfMsn, dtString);
+    with AddNew('X-MSN', [], [], SMsn, cfMsn, dtString) do
+      AddAlternative('X-CENTRUM-CZ-MSN', [], []);
+    // Social
+    with AddNew('X-TWITTER', [], [], STwitter, cfTwitter, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['TWITTER'], []);
+    with AddNew('X-FACEBOOK', [], [], SFacebook, cfFacebook, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['FACEBOOK'], []);
+    with AddNew('X-MASTODON', [], [], SMastodon, cfMastodon, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['MASTODON'], []);
+    with AddNew('X-YOUTUBE', [], [], SYouTube, cfYouTube, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['YOUTUBE'], []);
+    with AddNew('X-PEERTUBE', [], [], SPeerTube, cfPeerTube, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['PEERTUBE'], []);
+    with AddNew('X-LINKEDIN', [], [], SLinkedIn, cfLinkedIn, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['LINKEDIN'], []);
+    with AddNew('X-SNAPCHAT', [], [], SSnapchat, cfSnapchat, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['SNAPCHAT'], []);
+    with AddNew('X-INSTAGRAM', [], [], SInstagram, cfInstagram, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['INSTAGRAM'], []);
+    with AddNew('X-REDDIT', [], [], SReddit, cfReddit, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['REDDIT'], []);
+    with AddNew('X-MYSPACE', [], [], SMySpace, cfMySpace, dtString) do
+      AddAlternative('X-SOCIALPROFILE', ['MYSPACE'], []);
   end;
 end;
 

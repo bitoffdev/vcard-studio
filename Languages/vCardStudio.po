@@ -308,8 +308,36 @@ msgstr ""
 msgid "Windows Live:"
 msgstr ""
 
+#: tformcontact.label49.caption
+msgid "Gender:"
+msgstr ""
+
 #: tformcontact.label5.caption
 msgid "Last name"
+msgstr ""
+
+#: tformcontact.label50.caption
+msgid "Myspace:"
+msgstr ""
+
+#: tformcontact.label51.caption
+msgid "Twitter:"
+msgstr ""
+
+#: tformcontact.label52.caption
+msgid "Instagram:"
+msgstr ""
+
+#: tformcontact.label53.caption
+msgid "LinkedIn:"
+msgstr ""
+
+#: tformcontact.label54.caption
+msgid "Snapchat:"
+msgstr ""
+
+#: tformcontact.label55.caption
+msgid "Matrix:"
 msgstr ""
 
 #: tformcontact.label6.caption
@@ -339,6 +367,14 @@ msgstr ""
 msgid "Department:"
 msgstr ""
 
+#: tformcontact.labelorganization10.caption
+msgid "Reddit:"
+msgstr ""
+
+#: tformcontact.labelorganization11.caption
+msgid "Facebook:"
+msgstr ""
+
 #: tformcontact.labelorganization2.caption
 msgid "Skype:"
 msgstr ""
@@ -359,6 +395,18 @@ msgstr ""
 msgid "QQ:"
 msgstr ""
 
+#: tformcontact.labelorganization7.caption
+msgid "PeerTube:"
+msgstr ""
+
+#: tformcontact.labelorganization8.caption
+msgid "YouTube:"
+msgstr ""
+
+#: tformcontact.labelorganization9.caption
+msgid "Mastodon:"
+msgstr ""
+
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
 msgstr ""
@@ -377,6 +425,10 @@ msgstr ""
 
 #: tformcontact.tabsheetothers.caption
 msgid "Others"
+msgstr ""
+
+#: tformcontact.tabsheetsocial.caption
+msgid "Social"
 msgstr ""
 
 #: tformcontact.tabsheetwork.caption
@@ -677,6 +729,10 @@ msgstr ""
 msgid "Expected vCard begin"
 msgstr ""
 
+#: ucontact.sfacebook
+msgid "Facebook"
+msgstr ""
+
 #: ucontact.sfax
 msgid "Fax"
 msgstr ""
@@ -700,6 +756,10 @@ msgstr ""
 #: ucontact.sfullname
 msgctxt "ucontact.sfullname"
 msgid "Full Name"
+msgstr ""
+
+#: ucontact.sgender
+msgid "Gender"
 msgstr ""
 
 #: ucontact.sgoogletalk
@@ -763,6 +823,10 @@ msgstr ""
 msgid "ICQ"
 msgstr ""
 
+#: ucontact.sinstagram
+msgid "Instagram"
+msgstr ""
+
 #: ucontact.sinternetemail
 msgid "Internet E-mail"
 msgstr ""
@@ -784,8 +848,20 @@ msgstr ""
 msgid "Last Time Contacted"
 msgstr ""
 
+#: ucontact.slinkedin
+msgid "LinkedIn"
+msgstr ""
+
 #: ucontact.smainphone
 msgid "Main phone"
+msgstr ""
+
+#: ucontact.smastodon
+msgid "Mastodon"
+msgstr ""
+
+#: ucontact.smatrix
+msgid "Matrix"
 msgstr ""
 
 #: ucontact.smiddlename
@@ -798,6 +874,10 @@ msgstr ""
 
 #: ucontact.smsn
 msgid "MSN"
+msgstr ""
+
+#: ucontact.smyspace
+msgid "MySpace"
 msgstr ""
 
 #: ucontact.snickname
@@ -816,12 +896,20 @@ msgstr ""
 msgid "Pager"
 msgstr ""
 
+#: ucontact.speertube
+msgid "PeerTube"
+msgstr ""
+
 #: ucontact.sphoto
 msgid "Photo"
 msgstr ""
 
 #: ucontact.sqq
 msgid "QQ"
+msgstr ""
+
+#: ucontact.sreddit
+msgid "Reddit"
 msgstr ""
 
 #: ucontact.srevision
@@ -834,6 +922,10 @@ msgstr ""
 
 #: ucontact.sskype
 msgid "Skype"
+msgstr ""
+
+#: ucontact.ssnapchat
+msgid "Snapchat"
 msgstr ""
 
 #: ucontact.stelephone
@@ -854,6 +946,10 @@ msgstr ""
 
 #: ucontact.stitlebefore
 msgid "Title Before"
+msgstr ""
+
+#: ucontact.stwitter
+msgid "Twitter"
 msgstr ""
 
 #: ucontact.suniqueidentifier
@@ -935,6 +1031,10 @@ msgstr ""
 
 #: ucontact.syahoo
 msgid "Yahoo!"
+msgstr ""
+
+#: ucontact.syoutube
+msgid "YouTube"
 msgstr ""
 
 #: ucore.sappexit
