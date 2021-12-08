@@ -15,6 +15,8 @@ type
   TFormContacts = class(TForm)
     AAdd: TAction;
     AClone: TAction;
+    ALoadFromFile: TAction;
+    ASaveToFile: TAction;
     ASelectAll: TAction;
     ARemove: TAction;
     AModify: TAction;
@@ -27,17 +29,27 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    OpenDialog1: TOpenDialog;
     PopupMenuContact: TPopupMenu;
+    SaveDialog1: TSaveDialog;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
     procedure AAddExecute(Sender: TObject);
     procedure ACloneExecute(Sender: TObject);
+    procedure ALoadFromFileExecute(Sender: TObject);
     procedure AModifyExecute(Sender: TObject);
     procedure ARemoveExecute(Sender: TObject);
+    procedure ASaveToFileExecute(Sender: TObject);
     procedure ASelectAllExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -313,6 +325,28 @@ begin
   end;
 end;
 
+procedure TFormContacts.ALoadFromFileExecute(Sender: TObject);
+var
+  TempFile: TContactsFile;
+begin
+  if Assigned(ListView1.Selected) then begin
+    TempFile := TContactsFile.Create;
+    try
+      OpenDialog1.Filter := TempFile.GetFileFilter;
+      OpenDialog1.DefaultExt := TempFile.GetFileExt;
+    finally
+      TempFile.Free;
+    end;
+    OpenDialog1.InitialDir := ExtractFileDir(Core.LastContactFileName);
+    OpenDialog1.FileName := ExtractFileName(Core.LastContactFileName);
+    if OpenDialog1.Execute then begin
+      TContact(ListView1.Selected.Data).LoadFromFile(OpenDialog1.FileName);
+      Core.LastContactFileName := OpenDialog1.FileName;
+      ReloadList;
+    end;
+  end;
+end;
+
 procedure TFormContacts.AModifyExecute(Sender: TObject);
 var
   FormContact: TFormContact;
@@ -355,6 +389,28 @@ begin
     Core.DataFile.Modified := True;
     ReloadList;
     UpdateInterface;
+  end;
+end;
+
+procedure TFormContacts.ASaveToFileExecute(Sender: TObject);
+var
+  TempFile: TContactsFile;
+begin
+  if Assigned(ListView1.Selected) then begin
+    TempFile := TContactsFile.Create;
+    try
+      SaveDialog1.Filter := TempFile.GetFileFilter;
+      SaveDialog1.DefaultExt := TempFile.GetFileExt;
+    finally
+      TempFile.Free;
+    end;
+    SaveDialog1.InitialDir := ExtractFileDir(Core.LastContactFileName);
+    SaveDialog1.FileName := TContact(ListView1.Selected.Data).Fields[cfFullName] +
+      VCardFileExt;
+    if SaveDialog1.Execute then begin
+      TContact(ListView1.Selected.Data).SaveToFile(SaveDialog1.FileName);
+      Core.LastContactFileName := SaveDialog1.FileName;
+    end;
   end;
 end;
 
@@ -408,6 +464,12 @@ end;
 procedure TFormContacts.UpdateInterface;
 begin
   if FUpdateCount = 0 then DoUpdateInterface;
+  ALoadFromFile.Enabled := Assigned(ListView1.Selected);
+  ASaveToFile.Enabled := Assigned(ListView1.Selected);
+  AModify.Enabled := Assigned(ListView1.Selected);
+  AClone.Enabled := Assigned(ListView1.Selected);
+  ARemove.Enabled := Assigned(ListView1.Selected);
+  ASelectAll.Enabled := ListView1.Items.Count > 0;
 end;
 
 end.

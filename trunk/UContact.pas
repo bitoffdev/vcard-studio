@@ -97,6 +97,10 @@ type
     function UpdateFrom(Source: TContact): Boolean;
     constructor Create;
     destructor Destroy; override;
+    procedure SaveToStrings(Output: TStrings);
+    function LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
+    procedure SaveToFile(FileName: string);
+    procedure LoadFromFile(FileName: string);
     property Fields[Index: TContactFieldIndex]: string read GetField write SetField;
   end;
 
@@ -131,6 +135,9 @@ type
     property OnError: TErrorEvent read FOnError write FOnError;
   end;
 
+const
+  VCardFileExt = '.vcf';
+
 
 implementation
 
@@ -143,6 +150,7 @@ resourcestring
   SFoundBlockEndWithoutBlockStart = 'Found block end without block start';
   SFieldIndexNotDefined = 'Field index not defined';
   SContactHasNoParent = 'Contact has no parent';
+  SExpectedProperty = 'Expected contact property';
   SLastName = 'Last Name';
   SFirstName = 'First Name';
   SMiddleName = 'Middle Name';
@@ -594,6 +602,161 @@ begin
   inherited;
 end;
 
+procedure TContact.SaveToStrings(Output: TStrings);
+var
+  I: Integer;
+  J: Integer;
+  NameText: string;
+  Value2: string;
+  Text: string;
+  LineIndex: Integer;
+  OutText: string;
+  LinePrefix: string;
+const
+  MaxLineLength = 73;
+begin
+    with Output do begin
+      Add('BEGIN:VCARD');
+      for J := 0 to Properties.Count - 1 do
+      with Properties[J] do begin
+        NameText := Name;
+        if Attributes.Count > 0 then
+          NameText := NameText + ';' + Attributes.DelimitedText;
+        if Encoding <> '' then begin
+          Value2 := GetEncodedValue;
+          NameText := NameText + ';ENCODING=' + Encoding;
+        end else Value2 := Value;
+        if Pos(LineEnding, Value2) > 0 then begin
+          Add(NameText + ':' + GetNext(Value2, LineEnding));
+          while Pos(LineEnding, Value2) > 0 do begin
+            Add(' ' + GetNext(Value2, LineEnding));
+          end;
+          Add(' ' + GetNext(Value2, LineEnding));
+          Add('');
+        end else begin
+          OutText := NameText + ':' + Value2;
+          LineIndex := 0;
+          LinePrefix := '';
+          while True do begin
+            if Length(OutText) > MaxLineLength then begin
+              if (LineIndex > 0) and (LinePrefix = '') then LinePrefix := ' ';
+              Add(LinePrefix + Copy(OutText, 1, MaxLineLength));
+              System.Delete(OutText, 1, MaxLineLength);
+              Inc(LineIndex);
+              Continue;
+            end else begin
+              Add(LinePrefix + OutText);
+              Break;
+            end;
+          end;
+          if LinePrefix <> '' then Add('');
+        end;
+      end;
+      Add('END:VCARD');
+    end;
+end;
+
+function TContact.LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
+type
+  TParseState = (psNone, psInside, psFinished);
+var
+  ParseState: TParseState;
+  Line: string;
+  Value: string;
+  I: Integer;
+  NewProperty: TContactProperty;
+  CommandPart: string;
+  Names: string;
+begin
+  ParseState := psNone;
+  I := StartLine;
+  while I < Lines.Count do begin
+    Line := Trim(Lines[I]);
+    if Line = '' then begin
+      // Skip empty lines
+    end else
+    if ParseState = psNone then begin
+      if Line = 'BEGIN:VCARD' then begin
+        ParseState := psInside;
+      end else begin
+        Parent.Error('Expected vCard begin', I + 1);
+        I := -1;
+        Break;
+      end;
+    end else
+    if ParseState = psInside then begin
+      if Line = 'END:VCARD' then begin
+        ParseState := psFinished;
+        Inc(I);
+        Break;
+      end else
+      if Pos(':', Line) > 0 then begin
+        CommandPart := GetNext(Line, ':');
+        Names := CommandPart;
+        Value := Line;
+        while True do begin
+          Inc(I);
+          if (Length(Lines[I]) > 0) and (Lines[I][1] = ' ') then begin
+            Value := Value + Trim(Lines[I]);
+          end else
+          if (Length(Lines[I]) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
+            (Lines[I][1] = '=') then begin
+            Value := Value + Copy(Trim(Lines[I]), 2, MaxInt);
+          end else begin
+            Dec(I);
+            Break;
+          end;
+        end;
+        NewProperty := Properties.GetByName(Names);
+        if not Assigned(NewProperty) then begin
+          NewProperty := TContactProperty.Create;
+          Properties.Add(NewProperty);
+        end;
+        NewProperty.Attributes.DelimitedText := Names;
+        if NewProperty.Attributes.Count > 0 then begin
+          NewProperty.Name := NewProperty.Attributes[0];
+          NewProperty.Attributes.Delete(0);
+        end;
+        NewProperty.Value := Value;
+        NewProperty.EvaluateAttributes;
+      end else begin
+        Parent.Error(SExpectedProperty, I + 1);
+        I := -1;
+        Break;
+      end;
+    end;
+    Inc(I);
+  end;
+  Result := I;
+end;
+
+procedure TContact.SaveToFile(FileName: string);
+var
+  Lines: TStringList;
+begin
+  Lines := TStringList.Create;
+  try
+    SaveToStrings(Lines);
+    Lines.SaveToFile(FileName);
+  finally
+    Lines.Free;
+  end;
+end;
+
+procedure TContact.LoadFromFile(FileName: string);
+var
+  Lines: TStringList;
+  I: Integer;
+begin
+  Lines := TStringList.Create;
+  try
+    Lines.LoadFromFile(FileName);
+    I := LoadFromStrings(Lines);
+  finally
+    Lines.Free;
+  end;
+end;
+
 { TContactsFile }
 
 procedure TContactsFile.InitFields;
@@ -671,7 +834,7 @@ end;
 
 function TContactsFile.GetFileExt: string;
 begin
-  Result := '.vcf';
+  Result := VCardFileExt;
 end;
 
 function TContactsFile.GetFileFilter: string;
@@ -692,59 +855,12 @@ procedure TContactsFile.SaveToFile(FileName: string);
 var
   Output: TStringList;
   I: Integer;
-  J: Integer;
-  NameText: string;
-  Value2: string;
-  Text: string;
-  LineIndex: Integer;
-  OutText: string;
-  LinePrefix: string;
-const
-  MaxLineLength = 73;
 begin
   inherited;
+  Output := TStringList.Create;
   try
-    Output := TStringList.Create;
     for I := 0 to Contacts.Count - 1 do
-    with Contacts[I], Output do begin
-      Add('BEGIN:VCARD');
-      for J := 0 to Properties.Count - 1 do
-      with Properties[J] do begin
-        NameText := Name;
-        if Attributes.Count > 0 then
-          NameText := NameText + ';' + Attributes.DelimitedText;
-        if Encoding <> '' then begin
-          Value2 := GetEncodedValue;
-          NameText := NameText + ';ENCODING=' + Encoding;
-        end else Value2 := Value;
-        if Pos(LineEnding, Value2) > 0 then begin
-          Add(NameText + ':' + GetNext(Value2, LineEnding));
-          while Pos(LineEnding, Value2) > 0 do begin
-            Add(' ' + GetNext(Value2, LineEnding));
-          end;
-          Add(' ' + GetNext(Value2, LineEnding));
-          Add('');
-        end else begin
-          OutText := NameText + ':' + Value2;
-          LineIndex := 0;
-          LinePrefix := '';
-          while True do begin
-            if Length(OutText) > MaxLineLength then begin
-              if (LineIndex > 0) and (LinePrefix = '') then LinePrefix := ' ';
-              Add(LinePrefix + Copy(OutText, 1, MaxLineLength));
-              System.Delete(OutText, 1, MaxLineLength);
-              Inc(LineIndex);
-              Continue;
-            end else begin
-              Add(LinePrefix + OutText);
-              Break;
-            end;
-          end;
-          if LinePrefix <> '' then Add('');
-        end;
-      end;
-      Add('END:VCARD');
-    end;
+      Contacts[I].SaveToStrings(Output);
     Output.SaveToFile(FileName);
   finally
     Output.Free;
@@ -754,68 +870,24 @@ end;
 procedure TContactsFile.LoadFromFile(FileName: string);
 var
   Lines: TStringList;
-  Line: string;
-  Value: string;
+  Contact: TContact;
   I: Integer;
-  NewRecord: TContact;
-  NewProperty: TContactProperty;
-  CommandPart: string;
-  Names: string;
 begin
   inherited;
-  NewRecord := nil;
   Contacts.Clear;
   Lines := TStringList.Create;
   Lines.LoadFromFile(FileName);
   try
     I := 0;
     while I < Lines.Count do begin
-      Line := Lines[I];
-      if Line = '' then
-      else
-      if Line = 'BEGIN:VCARD' then begin
-        NewRecord := TContact.Create;
-        NewRecord.Parent := Self;
-      end else
-      if Line = 'END:VCARD' then begin
-        if Assigned(NewRecord) then begin
-          Contacts.Add(NewRecord);
-          NewRecord := nil;
-        end else Error(SFoundBlockEndWithoutBlockStart, I + 1);
-      end else
-      if Pos(':', Line) > 0 then begin
-        CommandPart := GetNext(Line, ':');
-        if Assigned(NewRecord) then begin
-          Names := CommandPart;
-          Value := Line;
-          while True do begin
-            Inc(I);
-            if (Length(Lines[I]) > 0) and (Lines[I][1] = ' ') then begin
-              Value := Value + Trim(Lines[I]);
-            end else
-            if (Length(Lines[I]) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
-              (Lines[I][1] = '=') then begin
-              Value := Value + Copy(Trim(Lines[I]), 2, MaxInt);
-            end else begin
-              Dec(I);
-              Break;
-            end;
-          end;
-          NewProperty := NewRecord.Properties.GetByName(Names);
-          if not Assigned(NewProperty) then begin
-            NewProperty := TContactProperty.Create;
-            NewRecord.Properties.Add(NewProperty);
-          end;
-          NewProperty.Attributes.DelimitedText := Names;
-          if NewProperty.Attributes.Count > 0 then begin
-            NewProperty.Name := NewProperty.Attributes[0];
-            NewProperty.Attributes.Delete(0);
-          end;
-          NewProperty.Value := Value;
-          NewProperty.EvaluateAttributes;
-        end else Error(SFoundPropertiesBeforeBlockStart, I + 1);
+      Contact := TContact.Create;
+      Contact.Parent := Self;
+      I := Contact.LoadFromStrings(Lines, I);
+      if (I <= Lines.Count) and (I <> -1) then Contacts.Add(Contact)
+      else begin
+        FreeAndNil(Contact);
+        Break;
       end;
-      Inc(I);
     end;
   finally
     Lines.Free;
