@@ -318,9 +318,37 @@ msgstr "Google Talk:"
 msgid "Windows Live:"
 msgstr "Windows Live:"
 
+#: tformcontact.label49.caption
+msgid "Gender:"
+msgstr "Pohlaví:"
+
 #: tformcontact.label5.caption
 msgid "Last name"
 msgstr "Příjmení"
+
+#: tformcontact.label50.caption
+msgid "Myspace:"
+msgstr "MySpace:"
+
+#: tformcontact.label51.caption
+msgid "Twitter:"
+msgstr "Twitter:"
+
+#: tformcontact.label52.caption
+msgid "Instagram:"
+msgstr "Instagram:"
+
+#: tformcontact.label53.caption
+msgid "LinkedIn:"
+msgstr "LinkedIn:"
+
+#: tformcontact.label54.caption
+msgid "Snapchat:"
+msgstr "Snapchat:"
+
+#: tformcontact.label55.caption
+msgid "Matrix:"
+msgstr "Matrix:"
 
 #: tformcontact.label6.caption
 msgid "Notes:"
@@ -349,6 +377,14 @@ msgstr "Společnost:"
 msgid "Department:"
 msgstr "Oddělení:"
 
+#: tformcontact.labelorganization10.caption
+msgid "Reddit:"
+msgstr "Reddit:"
+
+#: tformcontact.labelorganization11.caption
+msgid "Facebook:"
+msgstr "Facebook:"
+
 #: tformcontact.labelorganization2.caption
 msgid "Skype:"
 msgstr "Skype:"
@@ -369,6 +405,18 @@ msgstr "Yahoo!:"
 msgid "QQ:"
 msgstr "QQ:"
 
+#: tformcontact.labelorganization7.caption
+msgid "PeerTube:"
+msgstr "PeerTube:"
+
+#: tformcontact.labelorganization8.caption
+msgid "YouTube:"
+msgstr "YouTube:"
+
+#: tformcontact.labelorganization9.caption
+msgid "Mastodon:"
+msgstr "Mastodon:"
+
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
 msgstr "Všechna pole"
@@ -388,6 +436,10 @@ msgstr "Domov"
 #: tformcontact.tabsheetothers.caption
 msgid "Others"
 msgstr "Ostatní"
+
+#: tformcontact.tabsheetsocial.caption
+msgid "Social"
+msgstr "Sociální"
 
 #: tformcontact.tabsheetwork.caption
 msgid "Work"
@@ -689,6 +741,10 @@ msgstr "Očekávána vlastnost kontaktu"
 msgid "Expected vCard begin"
 msgstr "Očekáván začátek vCard"
 
+#: ucontact.sfacebook
+msgid "Facebook"
+msgstr "Facebook"
+
 #: ucontact.sfax
 msgid "Fax"
 msgstr "Fax"
@@ -713,6 +769,10 @@ msgstr "Nalezena vlastnost před začátkem bloku"
 msgctxt "ucontact.sfullname"
 msgid "Full Name"
 msgstr "Celé jméno"
+
+#: ucontact.sgender
+msgid "Gender"
+msgstr "Pohlaví"
 
 #: ucontact.sgoogletalk
 msgid "Google Talk"
@@ -775,6 +835,10 @@ msgstr "Domov telefon 2"
 msgid "ICQ"
 msgstr "ICQ"
 
+#: ucontact.sinstagram
+msgid "Instagram"
+msgstr "Instagram"
+
 #: ucontact.sinternetemail
 msgid "Internet E-mail"
 msgstr "Internetový E-mail"
@@ -796,9 +860,21 @@ msgstr "Příjmení"
 msgid "Last Time Contacted"
 msgstr "Naposledy kontaktováno"
 
+#: ucontact.slinkedin
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
 #: ucontact.smainphone
 msgid "Main phone"
 msgstr "Hlavní telefon"
+
+#: ucontact.smastodon
+msgid "Mastodon"
+msgstr "Mastodon"
+
+#: ucontact.smatrix
+msgid "Matrix"
+msgstr "Matrix"
 
 #: ucontact.smiddlename
 msgid "Middle Name"
@@ -811,6 +887,10 @@ msgstr "Mobil"
 #: ucontact.smsn
 msgid "MSN"
 msgstr "MSN"
+
+#: ucontact.smyspace
+msgid "MySpace"
+msgstr "MySpace"
 
 #: ucontact.snickname
 msgid "Nick name"
@@ -828,6 +908,10 @@ msgstr "Organizace"
 msgid "Pager"
 msgstr "Pager"
 
+#: ucontact.speertube
+msgid "PeerTube"
+msgstr "PeerTube"
+
 #: ucontact.sphoto
 msgid "Photo"
 msgstr "Fotka"
@@ -835,6 +919,10 @@ msgstr "Fotka"
 #: ucontact.sqq
 msgid "QQ"
 msgstr "QQ"
+
+#: ucontact.sreddit
+msgid "Reddit"
+msgstr "Reddit"
 
 #: ucontact.srevision
 msgid "Revision"
@@ -847,6 +935,10 @@ msgstr "Role"
 #: ucontact.sskype
 msgid "Skype"
 msgstr "Skype"
+
+#: ucontact.ssnapchat
+msgid "Snapchat"
+msgstr "Snapchat"
 
 #: ucontact.stelephone
 msgid "Telephone"
@@ -867,6 +959,10 @@ msgstr "Titul za"
 #: ucontact.stitlebefore
 msgid "Title Before"
 msgstr "Titul před"
+
+#: ucontact.stwitter
+msgid "Twitter"
+msgstr "Twitter"
 
 #: ucontact.suniqueidentifier
 msgid "Unique identifier"
@@ -948,6 +1044,10 @@ msgstr "Pracovní telefon"
 #: ucontact.syahoo
 msgid "Yahoo!"
 msgstr "Yahoo!"
+
+#: ucontact.syoutube
+msgid "YouTube"
+msgstr "YouTube"
 
 #: ucore.sappexit
 msgid "Application exit"
