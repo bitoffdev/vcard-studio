@@ -66,10 +66,12 @@ msgid "Clear"
 msgstr ""
 
 #: tformcontact.aphotoload.caption
+msgctxt "tformcontact.aphotoload.caption"
 msgid "Load from file"
 msgstr ""
 
 #: tformcontact.aphotosave.caption
+msgctxt "tformcontact.aphotosave.caption"
 msgid "Save to file"
 msgstr ""
 
@@ -347,6 +349,11 @@ msgctxt "tformcontacts.aclone.caption"
 msgid "Clone"
 msgstr ""
 
+#: tformcontacts.aloadfromfile.caption
+msgctxt "tformcontacts.aloadfromfile.caption"
+msgid "Load from file..."
+msgstr ""
+
 #: tformcontacts.amodify.caption
 msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
@@ -355,6 +362,11 @@ msgstr ""
 #: tformcontacts.aremove.caption
 msgctxt "tformcontacts.aremove.caption"
 msgid "Remove"
+msgstr ""
+
+#: tformcontacts.asavetofile.caption
+msgctxt "tformcontacts.asavetofile.caption"
+msgid "Save to file..."
 msgstr ""
 
 #: tformcontacts.aselectall.caption
@@ -603,6 +615,10 @@ msgstr ""
 
 #: ucontact.semail
 msgid "E-mail"
+msgstr ""
+
+#: ucontact.sexpectedproperty
+msgid "Expected contact property"
 msgstr ""
 
 #: ucontact.sfax
