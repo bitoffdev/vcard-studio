@@ -175,9 +175,21 @@ msgctxt "tformcontact.label2.caption"
 msgid "Mobile:"
 msgstr "Mobil:"
 
+#: tformcontact.label20.caption
+msgid "Jabber:"
+msgstr "Jabber:"
+
+#: tformcontact.label21.caption
+msgid "MSN:"
+msgstr "MSN:"
+
 #: tformcontact.label22.caption
 msgid "Birthday:"
 msgstr "Narozeniny:"
+
+#: tformcontact.label23.caption
+msgid "IRC:"
+msgstr "IRC:"
 
 #: tformcontact.label24.caption
 msgid "Full name:"
@@ -298,6 +310,14 @@ msgctxt "tformcontact.label46.caption"
 msgid "Web address:"
 msgstr "Webová adresa:"
 
+#: tformcontact.label47.caption
+msgid "Google Talk:"
+msgstr "Google Talk:"
+
+#: tformcontact.label48.caption
+msgid "Windows Live:"
+msgstr "Windows Live:"
+
 #: tformcontact.label5.caption
 msgid "Last name"
 msgstr "Příjmení"
@@ -329,9 +349,33 @@ msgstr "Společnost:"
 msgid "Department:"
 msgstr "Oddělení:"
 
+#: tformcontact.labelorganization2.caption
+msgid "Skype:"
+msgstr "Skype:"
+
+#: tformcontact.labelorganization3.caption
+msgid "ICQ:"
+msgstr "ICQ:"
+
+#: tformcontact.labelorganization4.caption
+msgid "AIM:"
+msgstr "AIM:"
+
+#: tformcontact.labelorganization5.caption
+msgid "Yahoo!:"
+msgstr "Yahoo!:"
+
+#: tformcontact.labelorganization6.caption
+msgid "QQ:"
+msgstr "QQ:"
+
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
 msgstr "Všechna pole"
+
+#: tformcontact.tabsheetchat.caption
+msgid "Chat"
+msgstr "Chat"
 
 #: tformcontact.tabsheetgeneral.caption
 msgid "General"
@@ -609,6 +653,10 @@ msgstr "Téma:"
 msgid "DPI:"
 msgstr "DPI:"
 
+#: ucontact.saim
+msgid "AIM"
+msgstr "AIM"
+
 #: ucontact.sanniversary
 msgid "Anniversary"
 msgstr "Výročí"
@@ -666,6 +714,10 @@ msgctxt "ucontact.sfullname"
 msgid "Full Name"
 msgstr "Celé jméno"
 
+#: ucontact.sgoogletalk
+msgid "Google Talk"
+msgstr "Google Talk"
+
 #: ucontact.shomeaddresscity
 msgid "Home address city"
 msgstr "Domácí adresa město"
@@ -719,9 +771,17 @@ msgstr "Domov telefon"
 msgid "Home phone 2"
 msgstr "Domov telefon 2"
 
+#: ucontact.sicq
+msgid "ICQ"
+msgstr "ICQ"
+
 #: ucontact.sinternetemail
 msgid "Internet E-mail"
 msgstr "Internetový E-mail"
+
+#: ucontact.sirc
+msgid "IRC"
+msgstr "IRC"
 
 #: ucontact.sjabber
 msgid "Jabber"
@@ -748,6 +808,10 @@ msgstr "Prostřední jméno"
 msgid "Mobile phone"
 msgstr "Mobil"
 
+#: ucontact.smsn
+msgid "MSN"
+msgstr "MSN"
+
 #: ucontact.snickname
 msgid "Nick name"
 msgstr "Přezdívka"
@@ -768,6 +832,10 @@ msgstr "Pager"
 msgid "Photo"
 msgstr "Fotka"
 
+#: ucontact.sqq
+msgid "QQ"
+msgstr "QQ"
+
 #: ucontact.srevision
 msgid "Revision"
 msgstr "Revize"
@@ -775,6 +843,10 @@ msgstr "Revize"
 #: ucontact.srole
 msgid "Role"
 msgstr "Role"
+
+#: ucontact.sskype
+msgid "Skype"
+msgstr "Skype"
 
 #: ucontact.stelephone
 msgid "Telephone"
@@ -820,6 +892,10 @@ msgstr "Webová adresa domácí"
 #: ucontact.swebaddresswork
 msgid "Web address work"
 msgstr "Webová adresa pracovní"
+
+#: ucontact.swindowslive
+msgid "Windows Live"
+msgstr "Windows Live"
 
 #: ucontact.sworkaddresscity
 msgid "Work address city"
@@ -868,6 +944,10 @@ msgstr "Práce pager"
 #: ucontact.sworkphone
 msgid "Work phone"
 msgstr "Pracovní telefon"
+
+#: ucontact.syahoo
+msgid "Yahoo!"
+msgstr "Yahoo!"
 
 #: ucore.sappexit
 msgid "Application exit"

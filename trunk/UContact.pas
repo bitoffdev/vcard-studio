@@ -26,8 +26,10 @@ type
     cfHomeAddressPostalCode, cfHomeAddressRegion, cfHomeAddressPostOfficeBox,
     cfWorkAddressStreet, cfWorkAddressStreetExtended, cfWorkAddressCity, cfWorkAddressCountry,
     cfWorkAddressPostalCode, cfWorkAddressRegion, cfWorkAddressPostOfficeBox,
-    cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfXJabber, cfDayOfBirth, cfRevision,
-    cfVersion, cfAnniversary);
+    cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfDayOfBirth, cfRevision,
+    cfVersion, cfAnniversary,
+    cfJabber, cfIcq, cfWindowsLive, cfGoogleTalk, cfAim, cfQq, cfYahoo, cfIrc,
+    cfSkype, cfMsn);
 
   { TContactField }
 
@@ -219,6 +221,15 @@ resourcestring
   SWebAddress = 'Web address';
   SWebAddressHome = 'Web address home';
   SWebAddressWork = 'Web address work';
+  SMsn = 'MSN';
+  SGoogleTalk = 'Google Talk';
+  SWindowsLive = 'Windows Live';
+  SAim = 'AIM';
+  SQq = 'QQ';
+  SIrc = 'IRC';
+  SIcq = 'ICQ';
+  SYahoo = 'Yahoo!';
+  SSkype = 'Skype';
 
 function GetNext(var Text: string; Separator: string): string;
 begin
@@ -884,7 +895,6 @@ begin
     AddNew('X-TIMES_CONTACTED', [], [], STimesContacted, cfXTimesContacted, dtString);
     AddNew('X-LAST_TIME_CONTACTED', [], [], SLastTimeContacted, cfXLastTimeContacted, dtString);
     AddNew('PHOTO', [], [], SPhoto, cfPhoto, dtImage);
-    AddNew('X-JABBER', [], [], SJabber, cfXJabber, dtString);
     AddNew('BDAY', [], [], SDayOfBirth, cfDayOfBirth, dtDate);
     AddNew('ANNIVERSARY', [], [], SAnniversary, cfAnniversary, dtDate);
     AddNew('REV', [], [], SRevision, cfRevision, dtString);
@@ -892,6 +902,16 @@ begin
     AddNew('URL', [], ['HOME', 'WORK'], SWebAddress, cfUrl, dtString);
     AddNew('URL', ['HOME'], [], SWebAddressHome, cfUrlHome, dtString);
     AddNew('URL', ['WORK'], [], SWebAddressWork, cfUrlWork, dtString);
+    AddNew('X-JABBER', [], [], SJabber, cfJabber, dtString);
+    AddNew('X-AIM', [], [], SAim, cfAim, dtString);
+    AddNew('X-Windows Live', [], [], SWindowsLive, cfWindowsLive, dtString);
+    AddNew('X-YAHOO', [], [], SYahoo, cfYahoo, dtString);
+    AddNew('X-SKYPE-USERNAME', [], [], SSkype, cfSkype, dtString);
+    AddNew('X-QQ', [], [], SQq, cfQq, dtString);
+    AddNew('X-GOOGLE-TALK', [], [], SGoogleTalk, cfGoogleTalk, dtString);
+    AddNew('X-ICQ', [], [], SIcq, cfIcq, dtString);
+    AddNew('X-IRC', [], [], SIrc, cfIrc, dtString);
+    AddNew('X-MSN', [], [], SMsn, cfMsn, dtString);
   end;
 end;
 

@@ -21,6 +21,13 @@ type
     ButtonNext: TButton;
     ButtonOk: TButton;
     ButtonPrevious: TButton;
+    EditAim: TEdit;
+    EditWindowsLive: TEdit;
+    EditYahoo: TEdit;
+    EditGoogleTalk: TEdit;
+    EditMsn: TEdit;
+    EditIrc: TEdit;
+    EditSkype: TEdit;
     EditHomeAddressCity: TEdit;
     EditHomeAddressCountry: TEdit;
     EditHomeAddressPostalCode: TEdit;
@@ -36,6 +43,8 @@ type
     EditAddressWorkStreet: TEdit;
     EditAddressWorkStreetExtended: TEdit;
     EditAniversary: TEdit;
+    EditJabber: TEdit;
+    EditIcq: TEdit;
     EditWorkEmail: TEdit;
     EditPager: TEdit;
     EditFax: TEdit;
@@ -65,6 +74,7 @@ type
     EditFirstName: TEdit;
     EditMobile: TEdit;
     EditWorkPhone: TEdit;
+    EditQq: TEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     ImagePhoto: TImage;
@@ -80,7 +90,10 @@ type
     Label18: TLabel;
     Label19: TLabel;
     Label2: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
     Label22: TLabel;
+    Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
     Label26: TLabel;
@@ -106,6 +119,8 @@ type
     Label44: TLabel;
     Label45: TLabel;
     Label46: TLabel;
+    Label47: TLabel;
+    Label48: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
@@ -113,6 +128,11 @@ type
     Label9: TLabel;
     LabelOrganization: TLabel;
     LabelOrganization1: TLabel;
+    LabelOrganization2: TLabel;
+    LabelOrganization3: TLabel;
+    LabelOrganization4: TLabel;
+    LabelOrganization5: TLabel;
+    LabelOrganization6: TLabel;
     MemoNotes: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -121,6 +141,7 @@ type
     PageControlContact: TPageControl;
     PopupMenuPhoto: TPopupMenu;
     SavePictureDialog1: TSavePictureDialog;
+    TabSheetChat: TTabSheet;
     TabSheetOthers: TTabSheet;
     TabSheetHome: TTabSheet;
     TabSheetWork: TTabSheet;
@@ -136,6 +157,8 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TabSheetAllShow(Sender: TObject);
+    procedure TabSheetChatHide(Sender: TObject);
+    procedure TabSheetChatShow(Sender: TObject);
     procedure TabSheetGeneralHide(Sender: TObject);
     procedure TabSheetGeneralShow(Sender: TObject);
     procedure TabSheetHomeHide(Sender: TObject);
@@ -197,6 +220,34 @@ begin
   FormProperties.Properties := Contact.Properties;
   FormProperties.ReloadList;
   FormProperties.UpdateInterface;
+end;
+
+procedure TFormContact.TabSheetChatHide(Sender: TObject);
+begin
+  Contact.Fields[cfJabber] := EditJabber.Text;
+  Contact.Fields[cfIcq] := EditIcq.Text;
+  Contact.Fields[cfMsn] := EditMsn.Text;
+  Contact.Fields[cfSkype] := EditSkype.Text;
+  Contact.Fields[cfQq] := EditQq.Text;
+  Contact.Fields[cfGoogleTalk] := EditGoogleTalk.Text;
+  Contact.Fields[cfWindowsLive] := EditWindowsLive.Text;
+  Contact.Fields[cfYahoo] := EditYahoo.Text;
+  Contact.Fields[cfAim] := EditAim.Text;
+  Contact.Fields[cfIrc] := EditIrc.Text
+end;
+
+procedure TFormContact.TabSheetChatShow(Sender: TObject);
+begin
+  EditJabber.Text := Contact.Fields[cfJabber];
+  EditIcq.Text := Contact.Fields[cfIcq];
+  EditMsn.Text := Contact.Fields[cfMsn];
+  EditSkype.Text := Contact.Fields[cfSkype];
+  EditQq.Text := Contact.Fields[cfQq];
+  EditGoogleTalk.Text := Contact.Fields[cfGoogleTalk];
+  EditWindowsLive.Text := Contact.Fields[cfWindowsLive];
+  EditYahoo.Text := Contact.Fields[cfYahoo];
+  EditAim.Text := Contact.Fields[cfAim];
+  EditIrc.Text := Contact.Fields[cfIrc];
 end;
 
 procedure TFormContact.TabSheetGeneralHide(Sender: TObject);
