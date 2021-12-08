@@ -745,14 +745,6 @@ msgstr ""
 msgid "First Name"
 msgstr ""
 
-#: ucontact.sfoundblockendwithoutblockstart
-msgid "Found block end without block start"
-msgstr ""
-
-#: ucontact.sfoundpropertiesbeforeblockstart
-msgid "Found properties before the start of block"
-msgstr ""
-
 #: ucontact.sfullname
 msgctxt "ucontact.sfullname"
 msgid "Full Name"

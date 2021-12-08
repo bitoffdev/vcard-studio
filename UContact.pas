@@ -168,8 +168,6 @@ const
 
 resourcestring
   SVCardFile = 'vCard file';
-  SFoundPropertiesBeforeBlockStart = 'Found properties before the start of block';
-  SFoundBlockEndWithoutBlockStart = 'Found block end without block start';
   SExpectedVCardBegin = 'Expected vCard begin';
   SFieldIndexNotDefined = 'Field index not defined';
   SContactHasNoParent = 'Contact has no parent';
@@ -278,6 +276,48 @@ begin
     end;
 end;
 
+function EndsWith(Text, What: string): Boolean;
+begin
+  Result := Copy(Text, Length(Text) - Length(What) + 1, MaxInt) = What;
+  if Result then begin
+    Result := Result;
+  end;
+end;
+
+function EncodeEscaped(Text: string): string;
+var
+  I: Integer;
+begin
+  Result := '';
+  I := 1;
+  while I <= Length(Text) do begin
+    if Text[I] in [',', '\', ';'] then Result := Result + '\' + Text[I]
+      else Result := Result + Text[I];
+    Inc(I);
+  end;
+end;
+
+function DecodeEscaped(Text: string): string;
+var
+  I: Integer;
+  Escaped: Boolean;
+begin
+  Result := '';
+  I := 1;
+  Escaped := False;
+  while I <= Length(Text) do begin
+    if Escaped then begin
+      Result := Result + Text[I];
+      Escaped := False;
+    end else begin
+      if Text[I] = '\' then begin
+        Escaped := True;
+      end else Result := Result + Text[I];
+    end;
+    Inc(I);
+  end;
+end;
+
 { TContactField }
 
 function TContactField.AddAlternative(Name: string; Groups: array of string;
@@ -341,7 +381,7 @@ var
   I: Integer;
 begin
   I := 0;
-  while (I < Count) and (Items[I].Name <> Name) do Inc(I);
+  while (I < Count) and (Items[I].Name <> Name) and (not EndsWith(Items[I].Name, '.' + Name)) do Inc(I);
   if I < Count then Result := Items[I]
     else Result := nil;
 end;
@@ -472,7 +512,7 @@ function TContactProperty.MatchNameGroups(AName: string; Groups: TStringArray;
 var
   I: Integer;
 begin
-  Result := Name = AName;
+  Result := (Name = AName) or EndsWith(Name, '.' + AName);
   if Result and (Length(Groups) > 0) then begin
     for I := 0 to Length(Groups) - 1 do
       if (Attributes.IndexOf(Groups[I]) = -1) and
@@ -638,7 +678,7 @@ begin
     if Assigned(Prop) then begin
       Field := Parent.Fields.GetByIndex(Index);
       if Field.ValueIndex <> -1 then begin
-        Result := Prop.ValueItem[Field.ValueIndex]
+        Result := DecodeEscaped(Prop.ValueItem[Field.ValueIndex])
       end else Result := Prop.Value;
     end else Result := '';
   end else raise Exception.Create(SFieldIndexNotDefined);
@@ -663,7 +703,7 @@ begin
     end;
     if Assigned(Prop) then begin
       if Field.ValueIndex <> -1 then begin
-        Prop.ValueItem[Field.ValueIndex] := AValue;
+        Prop.ValueItem[Field.ValueIndex] := EncodeEscaped(AValue);
       end else Prop.Value := AValue;
 
       // Remove if empty
@@ -746,6 +786,7 @@ var
   LineIndex: Integer;
   OutText: string;
   LinePrefix: string;
+  CutLength: Integer;
 const
   MaxLineLength = 73;
 begin
@@ -773,9 +814,17 @@ begin
           LinePrefix := '';
           while True do begin
             if Length(OutText) > MaxLineLength then begin
-              if (LineIndex > 0) and (LinePrefix = '') then LinePrefix := ' ';
-              Add(LinePrefix + Copy(OutText, 1, MaxLineLength));
-              System.Delete(OutText, 1, MaxLineLength);
+              CutLength := MaxLineLength;
+              if Encoding = 'QUOTED-PRINTABLE' then begin
+                // Do not cut encoded items
+                if ((CutLength - 2) >= 1) and (OutText[CutLength - 2] = '=') then
+                  Dec(CutLength, 2)
+                else if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = '=') then
+                  Dec(CutLength, 1);
+              end;
+              Add(LinePrefix + Copy(OutText, 1, CutLength));
+              LinePrefix := ' ';
+              System.Delete(OutText, 1, CutLength);
               Inc(LineIndex);
               Continue;
             end else begin
@@ -851,7 +900,7 @@ begin
           NewProperty.Name := NewProperty.Attributes[0];
           NewProperty.Attributes.Delete(0);
         end;
-        NewProperty.Value := Value;
+        NewProperty.Value := DecodeEscaped(Value);
         NewProperty.EvaluateAttributes;
       end else begin
         Parent.Error(SExpectedProperty, I + 1);
@@ -880,7 +929,6 @@ end;
 procedure TContact.LoadFromFile(FileName: string);
 var
   Lines: TStringList;
-  I: Integer;
 begin
   Lines := TStringList.Create;
   try
@@ -891,7 +939,7 @@ begin
         Lines.LoadFromFile(FileName, TEncoding.BigEndianUnicode);
       end;
     end;
-    I := LoadFromStrings(Lines);
+    LoadFromStrings(Lines);
   finally
     Lines.Free;
   end;
@@ -1052,6 +1100,7 @@ var
   Lines: TStringList;
   Contact: TContact;
   I: Integer;
+  NewI: Integer;
 begin
   inherited;
   Contacts.Clear;
@@ -1068,9 +1117,16 @@ begin
     while I < Lines.Count do begin
       Contact := TContact.Create;
       Contact.Parent := Self;
-      I := Contact.LoadFromStrings(Lines, I);
-      if (I <= Lines.Count) and (I <> -1) then Contacts.Add(Contact)
-      else begin
+      NewI := Contact.LoadFromStrings(Lines, I);
+      if NewI <= Lines.Count then begin
+        if NewI <> -1 then begin
+          Contacts.Add(Contact);
+          I := NewI;
+        end else begin
+          FreeAndNil(Contact);
+          Inc(I);
+        end;
+      end else begin
         FreeAndNil(Contact);
         Break;
       end;

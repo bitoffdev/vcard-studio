@@ -287,6 +287,7 @@ var
   PhotoProperty: TContactProperty;
   Stream: TMemoryStream;
   JpegImage: TJpegImage;
+  GifImage: TGIFImage;
   PngImage: TPortableNetworkGraphic;
 begin
   Contact.Fields[cfFullName] := EditFullName.Text;
@@ -343,6 +344,19 @@ begin
         finally
           PngImage.Free;
         end;
+      end else
+      if PhotoProperty.Attributes.IndexOf('GIF') <> -1 then begin
+        GifImage := TGIFImage.Create;
+        try
+          try
+            GifImage.SetSize(ImagePhoto.Picture.Bitmap.Width, ImagePhoto.Picture.Bitmap.Height);
+            GifImage.Canvas.Draw(0, 0, ImagePhoto.Picture.Bitmap);
+            GifImage.SaveToStream(Stream);
+          except
+          end;
+        finally
+          GifImage.Free;
+        end;
       end else begin
         try
           ImagePhoto.Picture.SaveToStream(Stream);
@@ -371,6 +385,7 @@ var
   Photo: string;
   JpegImage: TJpegImage;
   PngImage: TPortableNetworkGraphic;
+  GifImage: TGIFImage;
   Stream: TMemoryStream;
   PhotoProperty: TContactProperty;
 begin
@@ -434,6 +449,24 @@ begin
             end;
           finally
             PngImage.Free;
+          end;
+        end else
+        if PhotoProperty.Attributes.IndexOf('GIF') <> -1 then begin
+          GifImage := TGIFImage.Create;
+          try
+            try
+              GifImage.LoadFromStream(Stream);
+              with ImagePhoto.Picture.Bitmap do begin
+                PixelFormat := pf24bit;
+                SetSize(GifImage.Width, GifImage.Height);
+                Canvas.Draw(0, 0, GifImage);
+              end;
+              ProfilePhotoActive := True;
+            except
+              ProfilePhotoActive := False;
+            end;
+          finally
+            GifImage.Free;
           end;
         end else begin
           try
