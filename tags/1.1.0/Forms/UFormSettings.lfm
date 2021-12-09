@@ -1,0 +1,127 @@
+object FormSettings: TFormSettings
+  Left = 798
+  Height = 360
+  Top = 367
+  Width = 577
+  Caption = 'Settings'
+  ClientHeight = 360
+  ClientWidth = 577
+  Constraints.MinHeight = 360
+  Constraints.MinWidth = 480
+  DesignTimePPI = 144
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.0.12.0'
+  object ComboBoxLanguage: TComboBox
+    Left = 192
+    Height = 41
+    Top = 36
+    Width = 312
+    ItemHeight = 0
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 24
+    Height = 24
+    Top = 36
+    Width = 88
+    Caption = 'Language:'
+    ParentColor = False
+    ParentFont = False
+  end
+  object ButtonOk: TButton
+    Left = 451
+    Height = 37
+    Top = 307
+    Width = 113
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    ModalResult = 1
+    OnClick = ButtonOkClick
+    ParentFont = False
+    TabOrder = 2
+  end
+  object ButtonCancel: TButton
+    Left = 307
+    Height = 37
+    Top = 307
+    Width = 113
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 1
+  end
+  object CheckBoxAutomaticDPI: TCheckBox
+    Left = 19
+    Height = 30
+    Top = 125
+    Width = 148
+    Caption = 'Automatic DPI'
+    OnChange = CheckBoxAutomaticDPIChange
+    ParentFont = False
+    TabOrder = 3
+    Visible = False
+  end
+  object SpinEditDPI: TSpinEdit
+    Left = 192
+    Height = 42
+    Top = 173
+    Width = 145
+    MaxValue = 300
+    MinValue = 96
+    ParentFont = False
+    TabOrder = 4
+    Value = 96
+    Visible = False
+  end
+  object LabelDPI: TLabel
+    Left = 96
+    Height = 24
+    Top = 182
+    Width = 35
+    Caption = 'DPI:'
+    ParentColor = False
+    ParentFont = False
+    Visible = False
+  end
+  object CheckBoxReopenLastFileOnStart: TCheckBox
+    Left = 19
+    Height = 30
+    Top = 86
+    Width = 226
+    Caption = 'Reopen last file on start'
+    ParentFont = False
+    TabOrder = 5
+  end
+  object Bevel1: TBevel
+    Left = 12
+    Height = 2
+    Top = 288
+    Width = 547
+    Anchors = [akLeft, akRight, akBottom]
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 24
+    Top = 221
+    Width = 63
+    Caption = 'Theme:'
+    ParentColor = False
+    ParentFont = False
+  end
+  object ComboBoxTheme: TComboBox
+    Left = 192
+    Height = 41
+    Top = 221
+    Width = 312
+    ItemHeight = 0
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 6
+  end
+end

@@ -1,0 +1,18 @@
+{"version":1,"strings":[
+{"hash":106593811,"name":"tformcontacts.caption","sourcebytes":[67,111,110,116,97,99,116,115],"value":"Contacts"},
+{"hash":48565237,"name":"tformcontacts.listview1.columns[0].caption","sourcebytes":[70,117,108,108,32,78,97,109,101],"value":"Full Name"},
+{"hash":174299301,"name":"tformcontacts.listview1.columns[1].caption","sourcebytes":[70,105,114,115,116,32,110,97,109,101],"value":"First name"},
+{"hash":36093573,"name":"tformcontacts.listview1.columns[2].caption","sourcebytes":[77,105,100,100,108,101,32,110,97,109,101],"value":"Middle name"},
+{"hash":174397109,"name":"tformcontacts.listview1.columns[3].caption","sourcebytes":[76,97,115,116,32,78,97,109,101],"value":"Last Name"},
+{"hash":5699141,"name":"tformcontacts.listview1.columns[4].caption","sourcebytes":[80,104,111,110,101],"value":"Phone"},
+{"hash":88444965,"name":"tformcontacts.listview1.columns[5].caption","sourcebytes":[77,111,98,105,108,101],"value":"Mobile"},
+{"hash":124920949,"name":"tformcontacts.listview1.columns[6].caption","sourcebytes":[72,111,109,101,32,112,104,111,110,101],"value":"Home phone"},
+{"hash":225645765,"name":"tformcontacts.listview1.columns[7].caption","sourcebytes":[87,111,114,107,32,112,104,111,110,101],"value":"Work phone"},
+{"hash":18340,"name":"tformcontacts.aadd.caption","sourcebytes":[65,100,100],"value":"Add"},
+{"hash":88453081,"name":"tformcontacts.amodify.caption","sourcebytes":[77,111,100,105,102,121],"value":"Modify"},
+{"hash":93079237,"name":"tformcontacts.aremove.caption","sourcebytes":[82,101,109,111,118,101],"value":"Remove"},
+{"hash":195296268,"name":"tformcontacts.aselectall.caption","sourcebytes":[83,101,108,101,99,116,32,97,108,108],"value":"Select all"},
+{"hash":4863557,"name":"tformcontacts.aclone.caption","sourcebytes":[67,108,111,110,101],"value":"Clone"},
+{"hash":177113358,"name":"tformcontacts.aloadfromfile.caption","sourcebytes":[76,111,97,100,32,102,114,111,109,32,102,105,108,101,46,46,46],"value":"Load from file..."},
+{"hash":10127854,"name":"tformcontacts.asavetofile.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101,46,46,46],"value":"Save to file..."}
+]}
