@@ -197,7 +197,7 @@ begin
     for I := 0 to Count - 1 do begin
       if Items[I].Fields[cfFullName] <> '' then begin
         FileName := SelectDirectoryDialog1.FileName + DirectorySeparator +
-          Items[I].Fields[cfFullName] + VCardFileExt;
+          Items[I].FullNameToFileName + VCardFileExt;
         Items[I].SaveToFile(FileName);
         Inc(C);
       end;
@@ -208,6 +208,9 @@ begin
     if ModalResult = mrYes then begin
       {$IFDEF WINDOWS}
       ExecuteProgram('explorer.exe', ['"' + SelectDirectoryDialog1.FileName + '"']);
+      {$ENDIF}
+      {$IFDEF LINUX}
+      ExecuteProgram('/usr/bin/xdg-open', [SelectDirectoryDialog1.FileName]);
       {$ENDIF}
     end;
   end;
@@ -524,6 +527,8 @@ begin
   AFileClose.Enabled := Assigned(DataFile);
   AFileSplit.Enabled := Assigned(DataFile);
   AFileMerge.Enabled := Assigned(DataFile);
+  AFindDuplicate.Enabled := Assigned(DataFile);
+  AGenerate.Enabled := Assigned(DataFile);
 end;
 
 procedure TCore.Initialize;

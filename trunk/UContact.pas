@@ -109,6 +109,7 @@ type
   public
     Properties: TContactProperties;
     Parent: TContactsFile;
+    function FullNameToFileName: string;
     function GetProperty(Field: TContactField): TContactProperty; overload;
     function GetProperty(FieldIndex: TContactFieldIndex): TContactProperty; overload;
     procedure Assign(Source: TContact);
@@ -725,6 +726,17 @@ begin
       end;
     end;
   end else raise Exception.Create(SFieldIndexNotDefined);
+end;
+
+function TContact.FullNameToFileName: string;
+var
+  I: Integer;
+begin
+  Result := Fields[cfFullName];
+  for I := 1 to Length(Result) do begin
+    if Result[I] in [':', '/', '\', '.', '"', '*', '|', '?', '<', '>'] then
+      Result[I] := '_';
+  end;
 end;
 
 function TContact.GetProperty(Field: TContactField): TContactProperty;
