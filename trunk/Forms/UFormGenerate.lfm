@@ -1,7 +1,7 @@
 object FormGenerate: TFormGenerate
-  Left = 464
+  Left = 470
   Height = 562
-  Top = 368
+  Top = 372
   Width = 812
   Caption = 'Generate contacts'
   ClientHeight = 562
@@ -13,16 +13,16 @@ object FormGenerate: TFormGenerate
   LCLVersion = '2.0.12.0'
   object Label1: TLabel
     Left = 19
-    Height = 24
+    Height = 25
     Top = 19
-    Width = 55
+    Width = 52
     Caption = 'Count:'
     ParentColor = False
     ParentFont = False
   end
   object SpinEditCount: TSpinEdit
     Left = 155
-    Height = 42
+    Height = 33
     Top = 18
     Width = 152
     MaxValue = 1000000000

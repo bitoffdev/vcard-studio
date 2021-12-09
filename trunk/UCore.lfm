@@ -474,6 +474,11 @@ object Core: TCore
       Caption = 'Generate contacts'
       OnExecute = AGenerateExecute
     end
+    object AFileSplit: TAction
+      Category = 'File'
+      Caption = 'Split...'
+      OnExecute = AFileSplitExecute
+    end
   end
   object LastOpenedList1: TLastOpenedList
     MaxCount = 10
@@ -500,7 +505,7 @@ object Core: TCore
     EmailContact = 'robie@centrum.cz'
     AppName = 'vCard Studio'
     Description = 'vCard files management tool'
-    ReleaseDate = 44539
+    ReleaseDate = 44524
     RegistryKey = '\Software\Chronosoft\vCard Studio'
     RegistryRoot = rrKeyCurrentUser
     License = 'CC0'
@@ -8729,5 +8734,9 @@ object Core: TCore
     ApplicationInfo = ApplicationInfo1
     Left = 576
     Top = 48
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog
+    Left = 578
+    Top = 376
   end
 end
