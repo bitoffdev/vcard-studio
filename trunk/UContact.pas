@@ -173,6 +173,7 @@ resourcestring
   SFieldIndexNotDefined = 'Field index not defined';
   SContactHasNoParent = 'Contact has no parent';
   SExpectedProperty = 'Expected contact property';
+  SVersion = 'Version';
   SLastName = 'Last Name';
   SFirstName = 'First Name';
   SMiddleName = 'Middle Name';
@@ -977,6 +978,7 @@ end;
 procedure TContactsFile.InitFields;
 begin
   with Fields do begin
+    AddNew('VERSION', [], [], SVersion, cfVersion, dtString);
     AddNew('N', [], [], SLastName, cfLastName, dtString, 0);
     AddNew('N', [], [], SFirstName, cfFirstName, dtString, 1);
     AddNew('N', [], [], SMiddleName, cfMiddleName, dtString, 2);
