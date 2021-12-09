@@ -73,6 +73,7 @@ type
     LoadErrors: string;
     ProfileImage: TImage;
     LastSplitDir: string;
+    ProfilePhotoFileName: string;
     procedure FileModified(Sender: TObject);
     function FindFirstNonOption: string;
     procedure UpdateFile;
@@ -321,13 +322,21 @@ end;
 procedure TCore.DataModuleCreate(Sender: TObject);
 {$IFDEF Linux}
 const
-  LinuxLanguagesDir = '/usr/share/vCardStudio/Languages';
+  LinuxDataFilesDir = '/usr/share/vCardStudio';
+  LinuxLanguagesDir = LinuxDataFilesDir + '/Languages';
+  LinuxImagesDir = LinuxDataFilesDir + '/Images';
 {$ENDIF}
 begin
+  ProfilePhotoFileName := 'Images/Profile.png';
   {$IFDEF Linux}
   // If installed in Linux system then use installation directory for po files
-  if not DirectoryExists(Translator.POFilesFolder) and DirectoryExists(LinuxLanguagesDir) then
+  if not DirectoryExists(Translator.POFilesFolder) and DirectoryExists(LinuxLanguagesDir) then begin
     Translator.POFilesFolder := LinuxLanguagesDir;
+  end;
+  // If installed in Linux system then use installation directory for images files
+  if not DirectoryExists('Images') and DirectoryExists(LinuxImagesDir) then begin
+    ProfilePhotoFileName := LinuxImagesDir + DirectorySeparator + 'Profile.png';
+  end;
   {$ENDIF}
 
   DataFile := nil;
@@ -509,8 +518,6 @@ begin
 end;
 
 function TCore.GetProfileImage: TImage;
-const
-  ProfilePhotoFileName = 'Images/Profile.png';
 begin
   if not Assigned(ProfileImage) then begin
     ProfileImage := TImage.Create(nil);
