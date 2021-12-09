@@ -413,7 +413,7 @@ begin
       TempFile.Free;
     end;
     SaveDialog1.InitialDir := ExtractFileDir(Core.LastContactFileName);
-    SaveDialog1.FileName := TContact(ListView1.Selected.Data).Fields[cfFullName] +
+    SaveDialog1.FileName := TContact(ListView1.Selected.Data).FullNameToFileName +
       VCardFileExt;
     if SaveDialog1.Execute then begin
       TContact(ListView1.Selected.Data).SaveToFile(SaveDialog1.FileName);
