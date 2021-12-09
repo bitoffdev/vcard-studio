@@ -3,7 +3,7 @@
 
 #define MyAppName "vCard Studio"
 #define MyAppNameShort "vCardStudio"
-#define MyAppVersion "1.1.0"
+#define MyAppVersion "1.2.0"
 #define MyAppVersionSuffix "alfa"
 #define MyAppPublisher "Chronosoft"
 #define MyAppPublisherShort "Chronosoft"
@@ -79,7 +79,7 @@ Root: HKCR; Subkey: "{#FileTypeName}\shell\open\command"; ValueType: string; Val
 Source: "{#MyAppSubDir}\lib\x86_64-win64-Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
 Source: "{#MyAppSubDir}\lib\i386-win32-Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "{#MyAppSubDir}\Languages\*.po"; DestDir: "{app}\Languages"; Flags: ignoreversion
-
+Source: "{#MyAppSubDir}\Images\Profile.png"; DestDir: "{app}\Images"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

@@ -1,3 +1,46 @@
+Version 1.1.0 (2021-12-09)
+==========================
+
+* Added: New feature to split multiple contacts into separate files. Accessible from File menu.
+* Added: Show also normal phone and work phone in the contact list.
+* Added: Support for GIF and PNG images for contact photo.
+* Added: Social tab in contact form.
+* Added: Allow to specify alternative property name for contact field definition to support various non-standard properties.
+* Added: Chat contact tab for text chatting applications.
+* Added: Show textual name of contact field in contact field form and prefill field name and attributes. Update that name back according used field name and attributes.
+* Added: Support more file encodings for file open.
+* Added: Show open file dialog on photo click.
+* Added: Allow to load from file or save to file individual selected contacts from the list.
+* Added: Clone context menu action and toolbar button for list of contacts and contact properties.
+* Added: Context menu action to clear profile image.
+* Added: Remember last selected tab index in contact form.
+* Added: Show default profile photo if contact image is not specified.
+* Added: Allow to load photo from file or save it to file.
+* Added: New more general contact properties list and item form.
+* Added: Support for QUOTED-PRINTABLE encoding.
+* Added: Full name, Middle name, title after and title before into contact form.
+* Added: Bottom column filter bar in contacts list.
+* Added: Allow to sort columns in contacts list.
+* Added: Show contact image in contact edit window.
+* Added: In case of loading errors show a list of found errors with line numbers.
+* Added: More standard properties.
+* Added: Support text/vcard mime type by deb and snap packages.
+* Modified: Optimized encoding/decoding of escaped strings.
+* Modified: Optimized select all action.
+* Modified: Optimize loading/saving values in contact form. Load/save only form fields from active tab.
+* Modified: Show Private and Work addresses in separate tab.
+* Modified: Statusbar moved into contacts form and it is now showing total, filtered and selected number of items.
+* Modified: Translated contact fields titles.
+* Modified: Store contact properties in general way to support also user defined properties and unknown attributes.
+* Fixed: Escaping combined values with backslash symbol.
+* Fixed: Long BASE64 encoded lines were not automatically wrapped to limit max line length.
+* Fixed: Autosize cool bar bands.
+* Fixed: Loading of JPEG photo. Image binary data were affected by TStringList. Store them just as a string type.
+* Fixed: Avoid exception if photo data are not valid image data.
+* Fixed: Hints were not shown in contacts toolbar.
+* Fixed: Check if property block started correctly.
+* Fixed: Improved alignment of fields in contact dialog.
+
 Version 1.0.0 (2021-08-19)
 ==========================
 
