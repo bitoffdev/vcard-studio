@@ -499,7 +499,6 @@ object Core: TCore
     VersionMajor = 1
     VersionMinor = 1
     VersionBugFix = 0
-    VersionSuffix = 'alfa'
     HomePage = 'https://app.zdechov.net/vcard-studio'
     AuthorsName = 'Chronos'
     EmailContact = 'robie@centrum.cz'
