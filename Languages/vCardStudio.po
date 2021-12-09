@@ -38,6 +38,10 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
+#: tcore.afilesplit.caption
+msgid "Split..."
+msgstr ""
+
 #: tcore.afindduplicate.caption
 msgctxt "tcore.afindduplicate.caption"
 msgid "Find duplicities"
@@ -1050,6 +1054,14 @@ msgstr ""
 
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
+msgstr ""
+
+#: ucore.sfilesplit
+msgid "Contacts split"
+msgstr ""
+
+#: ucore.sfilesplitfinishedopendirectory
+msgid "Total %d contact files saved. Do you want to open the directory %s?"
 msgstr ""
 
 #: ucore.sline
