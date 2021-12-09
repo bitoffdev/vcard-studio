@@ -979,6 +979,10 @@ msgctxt "ucontact.svcardfile"
 msgid "vCard file"
 msgstr "Soubor vCard"
 
+#: ucontact.sversion
+msgid "Version"
+msgstr "Verze"
+
 #: ucontact.svoipphone
 msgid "VoIP phone"
 msgstr "VoIP telefon"
@@ -1150,4 +1154,3 @@ msgstr "Celkem"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
-

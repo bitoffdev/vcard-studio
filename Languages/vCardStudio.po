@@ -967,6 +967,10 @@ msgctxt "ucontact.svcardfile"
 msgid "vCard file"
 msgstr ""
 
+#: ucontact.sversion
+msgid "Version"
+msgstr ""
+
 #: ucontact.svoipphone
 msgid "VoIP phone"
 msgstr ""
