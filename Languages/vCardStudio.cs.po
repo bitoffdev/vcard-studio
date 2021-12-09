@@ -48,6 +48,10 @@ msgstr "Uložit"
 msgid "Save as..."
 msgstr "Uložit jako..."
 
+#: tcore.afilesplit.caption
+msgid "Split..."
+msgstr "Rozdělit..."
+
 #: tcore.afindduplicate.caption
 msgctxt "tcore.afindduplicate.caption"
 msgid "Find duplicities"
@@ -1063,6 +1067,14 @@ msgstr "Soubor byl upraven. Chcete jej uložit před ukončením?"
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
 msgstr "Soubor '%s' nenalezen."
+
+#: ucore.sfilesplit
+msgid "Contacts split"
+msgstr "Rozdělení kontaktů"
+
+#: ucore.sfilesplitfinishedopendirectory
+msgid "Total %d contact files saved. Do you want to open the directory %s?"
+msgstr "Uloženo celkem %d souborů kontaktů. Chcete otevřít adresář %s?"
 
 #: ucore.sline
 msgid "Line %d: %s"

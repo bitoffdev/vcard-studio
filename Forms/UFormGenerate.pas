@@ -45,6 +45,7 @@ var
 begin
   for I := 1 to SpinEditCount.Value do begin
     Contact := Contacts.AddNew;
+    Contact.Fields[cfVersion] := '2.1';
     Contact.Fields[cfFirstName] := 'First ' + IntToStr(Random(10000));
     Contact.Fields[cfLastName] := 'Last ' + IntToStr(Random(10000));
     Contact.Fields[cfFullName] := 'FullName ' + IntToStr(Random(100));

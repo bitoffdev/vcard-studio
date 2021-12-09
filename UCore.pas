@@ -26,6 +26,7 @@ type
   TCore = class(TDataModule)
     AAbout: TAction;
     AboutDialog1: TAboutDialog;
+    AFileSplit: TAction;
     AGenerate: TAction;
     AFindDuplicate: TAction;
     AFileMerge: TAction;
@@ -40,6 +41,7 @@ type
     AExit: TAction;
     ActionList1: TActionList;
     ApplicationInfo1: TApplicationInfo;
+    SelectDirectoryDialog1: TSelectDirectoryDialog;
     Translator: TTranslator;
     ImageList1: TImageList;
     LastOpenedList1: TLastOpenedList;
@@ -57,6 +59,7 @@ type
     procedure AFileSaveExecute(Sender: TObject);
     procedure AFileSaveAsExecute(Sender: TObject);
     procedure AFileCloseExecute(Sender: TObject);
+    procedure AFileSplitExecute(Sender: TObject);
     procedure AFindDuplicateExecute(Sender: TObject);
     procedure AGenerateExecute(Sender: TObject);
     procedure AHomePageExecute(Sender: TObject);
@@ -69,6 +72,7 @@ type
     InitializeFinished: Boolean;
     LoadErrors: string;
     ProfileImage: TImage;
+    LastSplitDir: string;
     procedure FileModified(Sender: TObject);
     function FindFirstNonOption: string;
     procedure UpdateFile;
@@ -107,6 +111,8 @@ uses
 resourcestring
   SAppExit = 'Application exit';
   SAppExitQuery = 'File was modified. Do you want to save it before exit?';
+  SFileSplit = 'Contacts split';
+  SFileSplitFinishedOpenDirectory = 'Total %d contact files saved. Do you want to open the directory %s?';
   SFileNotFound = 'File ''%s'' not found.';
   SMergedContacts = 'Contacts merged. Loaded: %d, New: %d, Updated: %d';
   SLine = 'Line %d: %s';
@@ -174,6 +180,37 @@ procedure TCore.AFileCloseExecute(Sender: TObject);
 begin
   FileClose;
   UpdateFile;
+end;
+
+procedure TCore.AFileSplitExecute(Sender: TObject);
+var
+  I: Integer;
+  C: Integer;
+  FileName: string;
+  ModalResult: TModalResult;
+begin
+  C := 0;
+  SelectDirectoryDialog1.FileName := LastSplitDir;
+  if SelectDirectoryDialog1.Execute then begin
+    LastSplitDir := SelectDirectoryDialog1.FileName;
+    with TContactsFile(DataFile).Contacts do
+    for I := 0 to Count - 1 do begin
+      if Items[I].Fields[cfFullName] <> '' then begin
+        FileName := SelectDirectoryDialog1.FileName + DirectorySeparator +
+          Items[I].Fields[cfFullName] + VCardFileExt;
+        Items[I].SaveToFile(FileName);
+        Inc(C);
+      end;
+    end;
+    ModalResult := MessageDlg(SFileSplit,
+     Format(SFileSplitFinishedOpenDirectory, [C,
+     SelectDirectoryDialog1.FileName]), mtConfirmation, [mbYes, mbNo], 0);
+    if ModalResult = mrYes then begin
+      {$IFDEF WINDOWS}
+      ExecuteProgram('explorer.exe', ['"' + SelectDirectoryDialog1.FileName + '"']);
+      {$ENDIF}
+    end;
+  end;
 end;
 
 procedure TCore.AFindDuplicateExecute(Sender: TObject);
@@ -433,6 +470,7 @@ begin
     ReopenLastFileOnStart := ReadBoolWithDefault('ReopenLastFileOnStart', True);
     LastContactTabIndex := ReadIntegerWithDefault('LastContactTabIndex', 0);
     LastContactFileName := ReadStringWithDefault('LastContactFileName', '');
+    LastSplitDir := ReadStringWithDefault('LastSplitDir', '');
   finally
     Free;
   end;
@@ -456,6 +494,7 @@ begin
     WriteBool('ReopenLastFileOnStart', ReopenLastFileOnStart);
     WriteInteger('LastContactTabIndex', LastContactTabIndex);
     WriteString('LastContactFileName', LastContactFileName);
+    WriteString('LastSplitDir', LastSplitDir);
   finally
     Free;
   end;
@@ -483,6 +522,8 @@ begin
   AFileSave.Enabled := Assigned(DataFile) and DataFile.Modified;
   AFileSaveAs.Enabled := Assigned(DataFile);
   AFileClose.Enabled := Assigned(DataFile);
+  AFileSplit.Enabled := Assigned(DataFile);
+  AFileMerge.Enabled := Assigned(DataFile);
 end;
 
 procedure TCore.Initialize;
