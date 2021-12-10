@@ -161,7 +161,7 @@ const
 implementation
 
 uses
-  UQuotedPrintable;
+  UQuotedPrintable, UCommon;
 
 const
   VCardBegin = 'BEGIN:VCARD';
@@ -673,10 +673,18 @@ procedure TContactFields.LoadToStrings(AItems: TStrings);
 var
   I: Integer;
 begin
-  while AItems.Count < Count do AItems.Add('');
-  while AItems.Count > Count do AItems.Delete(AItems.Count - 1);
-  for I := 0 to Count - 1 do
-    AItems[I] := Items[I].Title;
+  AItems.BeginUpdate;
+  try
+    while AItems.Count < Count do AItems.Add('');
+    while AItems.Count > Count do AItems.Delete(AItems.Count - 1);
+    for I := 0 to Count - 1 do begin
+      AItems.Objects[I] := Items[I];
+      AItems[I] := Items[I].Title;
+    end;
+    SortStrings(AItems);
+  finally
+    AItems.EndUpdate;
+  end;
 end;
 
 { TContact }
