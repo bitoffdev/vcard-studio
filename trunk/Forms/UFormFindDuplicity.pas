@@ -48,7 +48,7 @@ type
     procedure SetContacts(AValue: TContacts);
   public
     FoundItems: TFoundItems;
-    ContactField: TContactFieldIndex;
+    ContactFieldIndex: TContactFieldIndex;
     procedure Find;
     procedure ReloadList;
     property Contacts: TContacts read FContacts write SetContacts;
@@ -106,12 +106,15 @@ begin
 end;
 
 procedure TFormFindDuplicity.SetContacts(AValue: TContacts);
+var
+  ContactField: TContactField;
 begin
   if FContacts = AValue then Exit;
   FContacts := AValue;
   if Assigned(FContacts) then begin
     Contacts.ContactsFile.Fields.LoadToStrings(ComboBoxField.Items);
-    ComboBoxField.ItemIndex := Integer(ContactField);
+    ContactField := Contacts.ContactsFile.Fields.GetByIndex(ContactFieldIndex);
+    ComboBoxField.ItemIndex := ComboBoxField.Items.IndexOfObject(ContactField);
     if (ComboBoxField.Items.Count > 0) and (ComboBoxField.ItemIndex = -1) then
       ComboBoxField.ItemIndex := 0;
   end else ComboBoxField.Clear;
@@ -132,7 +135,7 @@ var
 begin
   FoundItems.Clear;
   for I := 0 to Contacts.Count - 1 do begin
-    FieldName := TContact(Contacts[I]).Fields[ContactField];
+    FieldName := Contacts[I].Fields[ContactFieldIndex];
     if FieldName <> '' then begin
       Item := FoundItems.SearchByField(FieldName);
       if not Assigned(Item) then begin
@@ -152,12 +155,14 @@ begin
   FoundItems := TFoundItems.Create;
   Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
-  ContactField := cfTelCell;
+  ContactFieldIndex := cfTelCell;
 end;
 
 procedure TFormFindDuplicity.ComboBoxFieldChange(Sender: TObject);
 begin
-  ContactField := TContactFieldIndex(ComboBoxField.ItemIndex);
+  if ComboBoxField.ItemIndex <> -1 then
+    ContactFieldIndex := TContactField(ComboBoxField.Items.Objects[ComboBoxField.ItemIndex]).Index
+    else ContactFieldIndex := cfTelCell;
   Find;
 end;
 

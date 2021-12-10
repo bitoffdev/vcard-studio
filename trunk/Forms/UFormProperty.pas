@@ -63,7 +63,7 @@ var
   I: Integer;
 begin
   if ComboBoxField.ItemIndex <> -1 then begin
-    Field := TContactsFile(Core.DataFile).Fields[ComboBoxField.ItemIndex];
+    Field := TContactField(ComboBoxField.Items.Objects[ComboBoxField.ItemIndex]);
     if Assigned(Field) then begin
       EditName.Text := Field.SysName;
       Attributes := TStringList.Create;
@@ -131,7 +131,7 @@ begin
   Field := TContactsFile(Core.DataFile).Fields.GetBySysNameGroups(EditName.Text,
     GroupsArray);
   if Assigned(Field) then
-    ComboBoxField.ItemIndex := TContactsFile(Core.DataFile).Fields.IndexOf(Field);
+    ComboBoxField.ItemIndex := ComboBoxField.Items.IndexOfObject(Field);
 end;
 
 procedure TFormProperty.SetContactProperty(AValue: TContactProperty);
