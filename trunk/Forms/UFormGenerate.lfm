@@ -13,16 +13,16 @@ object FormGenerate: TFormGenerate
   LCLVersion = '2.0.12.0'
   object Label1: TLabel
     Left = 19
-    Height = 25
+    Height = 24
     Top = 19
-    Width = 52
+    Width = 55
     Caption = 'Count:'
     ParentColor = False
     ParentFont = False
   end
   object SpinEditCount: TSpinEdit
     Left = 155
-    Height = 33
+    Height = 42
     Top = 18
     Width = 152
     MaxValue = 1000000000

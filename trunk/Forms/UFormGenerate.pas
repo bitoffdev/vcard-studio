@@ -58,6 +58,7 @@ end;
 procedure TFormGenerate.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
+  Core.GenerateCount := SpinEditCount.Value;
   Core.PersistentForm1.Save(Self);
 end;
 
@@ -70,6 +71,7 @@ end;
 procedure TFormGenerate.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
+  SpinEditCount.Value := Core.GenerateCount;
   UpdateInterface;
 end;
 
