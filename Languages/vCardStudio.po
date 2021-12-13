@@ -902,6 +902,10 @@ msgstr ""
 msgid "LinkedIn"
 msgstr ""
 
+#: ucontact.slogo
+msgid "Logo"
+msgstr ""
+
 #: ucontact.smainphone
 msgid "Main phone"
 msgstr ""

@@ -914,6 +914,10 @@ msgstr "Naposledy kontaktováno"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
+#: ucontact.slogo
+msgid "Logo"
+msgstr "Logo"
+
 #: ucontact.smainphone
 msgid "Main phone"
 msgstr "Hlavní telefon"

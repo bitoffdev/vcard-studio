@@ -354,6 +354,7 @@ begin
   Text := '';
   for I := 0 to ListView1.Items.Count - 1 do
     if ListView1.Items[I].Selected then begin
+      Strings.Clear;
       TContact(ListView1.Items[I].Data).SaveToStrings(Strings);
       Text := Text + Strings.Text;
     end;
@@ -374,6 +375,7 @@ begin
     Text := '';
     for I := 0 to ListView1.Items.Count - 1 do
       if ListView1.Items[I].Selected then begin
+        Strings.Clear;
         TContact(ListView1.Items[I].Data).SaveToStrings(Strings);
         Text := Text + Strings.Text;
       end;
@@ -561,6 +563,9 @@ begin
   ASelectAll.Enabled := ListView1.Items.Count > 0;
   ALoadFromFile.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
   ASaveToFile.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  ACopy.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  ACut.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  APaste.Enabled := Assigned(Contacts) and (Clipboard.AsText <> '');
 end;
 
 end.
