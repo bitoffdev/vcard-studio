@@ -73,6 +73,22 @@ object FormProperties: TFormProperties
       Top = 2
       Action = AClone
     end
+    object ToolButton5: TToolButton
+      Left = 141
+      Height = 33
+      Top = 2
+      Style = tbsSeparator
+    end
+    object ToolButton6: TToolButton
+      Left = 149
+      Top = 2
+      Action = ALoadValueFromFile
+    end
+    object ToolButton7: TToolButton
+      Left = 184
+      Top = 2
+      Action = ASaveValueToFile
+    end
   end
   object ListViewFilter1: TListViewFilter
     Left = 0
@@ -112,6 +128,15 @@ object FormProperties: TFormProperties
     object MenuItem4: TMenuItem
       Action = ASelectAll
     end
+    object MenuItem6: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem7: TMenuItem
+      Action = ALoadValueFromFile
+    end
+    object MenuItem8: TMenuItem
+      Action = ASaveValueToFile
+    end
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
@@ -145,6 +170,16 @@ object FormProperties: TFormProperties
       ImageIndex = 11
       OnExecute = ACloneExecute
     end
+    object ASaveValueToFile: TAction
+      Caption = 'Save value to file...'
+      ImageIndex = 7
+      OnExecute = ASaveValueToFileExecute
+    end
+    object ALoadValueFromFile: TAction
+      Caption = 'Load value from file...'
+      ImageIndex = 5
+      OnExecute = ALoadValueFromFileExecute
+    end
   end
   object ListViewSort1: TListViewSort
     ListView = ListView1
@@ -155,5 +190,13 @@ object FormProperties: TFormProperties
     Order = soNone
     Left = 528
     Top = 428
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 760
+    Top = 448
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 760
+    Top = 520
   end
 end
