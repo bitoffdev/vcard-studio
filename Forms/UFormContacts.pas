@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, Menus, ActnList, UContact, UListViewSort, fgl, LazUTF8;
+  ComCtrls, Menus, ActnList, UContact, UListViewSort, fgl, LazUTF8, Clipbrd;
 
 type
 
@@ -15,6 +15,9 @@ type
   TFormContacts = class(TForm)
     AAdd: TAction;
     AClone: TAction;
+    ACopy: TAction;
+    ACut: TAction;
+    APaste: TAction;
     ALoadFromFile: TAction;
     ASaveToFile: TAction;
     ASelectAll: TAction;
@@ -25,6 +28,9 @@ type
     ListViewFilter1: TListViewFilter;
     ListViewSort1: TListViewSort;
     MenuItem1: TMenuItem;
+    MenuItem10: TMenuItem;
+    MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -32,6 +38,7 @@ type
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
     MenuItem8: TMenuItem;
+    MenuItem9: TMenuItem;
     OpenDialog1: TOpenDialog;
     PopupMenuContact: TPopupMenu;
     SaveDialog1: TSaveDialog;
@@ -46,8 +53,11 @@ type
     ToolButton7: TToolButton;
     procedure AAddExecute(Sender: TObject);
     procedure ACloneExecute(Sender: TObject);
+    procedure ACopyExecute(Sender: TObject);
+    procedure ACutExecute(Sender: TObject);
     procedure ALoadFromFileExecute(Sender: TObject);
     procedure AModifyExecute(Sender: TObject);
+    procedure APasteExecute(Sender: TObject);
     procedure ARemoveExecute(Sender: TObject);
     procedure ASaveToFileExecute(Sender: TObject);
     procedure ASelectAllExecute(Sender: TObject);
@@ -333,6 +343,53 @@ begin
   end;
 end;
 
+procedure TFormContacts.ACopyExecute(Sender: TObject);
+var
+  Text: string;
+  Strings: TStringList;
+  I: Integer;
+begin
+  Strings := TStringList.Create;
+  try
+  Text := '';
+  for I := 0 to ListView1.Items.Count - 1 do
+    if ListView1.Items[I].Selected then begin
+      TContact(ListView1.Items[I].Data).SaveToStrings(Strings);
+      Text := Text + Strings.Text;
+    end;
+    Clipboard.AsText := Text;
+  finally
+    Strings.Free;
+  end;
+end;
+
+procedure TFormContacts.ACutExecute(Sender: TObject);
+var
+  Text: string;
+  Strings: TStringList;
+  I: Integer;
+begin
+  Strings := TStringList.Create;
+  try
+    Text := '';
+    for I := 0 to ListView1.Items.Count - 1 do
+      if ListView1.Items[I].Selected then begin
+        TContact(ListView1.Items[I].Data).SaveToStrings(Strings);
+        Text := Text + Strings.Text;
+      end;
+    Clipboard.AsText := Text;
+    for I := 0 to ListView1.Items.Count - 1 do
+      if ListView1.Items[I].Selected then begin
+        Contacts.Delete(Contacts.IndexOf(ListView1.Items[I].Data));
+      end;
+    ReloadList;
+    ListView1.ClearSelection;
+    UpdateInterface;
+  finally
+    Strings.Free;
+  end;
+end;
+
 procedure TFormContacts.ALoadFromFileExecute(Sender: TObject);
 var
   TempFile: TContactsFile;
@@ -383,6 +440,31 @@ begin
   end;
 end;
 
+procedure TFormContacts.APasteExecute(Sender: TObject);
+var
+  PasteContacts: TContactsFile;
+  Lines: TStringList;
+begin
+  PasteContacts := TContactsFile.Create;
+  Lines := TStringList.Create;
+  try
+    Lines.Text := Clipboard.AsText;
+    PasteContacts.LoadFromStrings(Lines);
+    if PasteContacts.Contacts.Count > 0 then begin
+      if Assigned(ListView1.Selected) then begin
+        Contacts.InsertContacts(Contacts.IndexOf(ListView1.Selected.Data),
+          PasteContacts.Contacts);
+      end else Contacts.AddContacts(PasteContacts.Contacts);
+      Core.DataFile.Modified := True;
+      ReloadList;
+      UpdateInterface;
+    end;
+  finally
+    Lines.Free;
+    PasteContacts.Free;
+  end;
+end;
+
 procedure TFormContacts.ARemoveExecute(Sender: TObject);
 var
   I: Integer;
@@ -392,7 +474,7 @@ begin
     TMsgDlgType.mtConfirmation, [mbCancel, mbOk], 0) = mrOk then begin
     for I := ListView1.Items.Count - 1 downto 0 do
       if ListView1.Items[I].Selected then begin
-        Contacts.Delete(I);
+        Contacts.Delete(Contacts.IndexOf(ListView1.Items[I].Data));
       end;
     Core.DataFile.Modified := True;
     ReloadList;

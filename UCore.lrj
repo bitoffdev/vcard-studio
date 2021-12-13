@@ -9,7 +9,7 @@
 {"hash":158102910,"name":"tcore.aabout.caption","sourcebytes":[65,98,111,117,116,46,46,46],"value":"About..."},
 {"hash":58140853,"name":"tcore.ahomepage.caption","sourcebytes":[72,111,109,101,32,112,97,103,101],"value":"Home page"},
 {"hash":213582195,"name":"tcore.asettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
-{"hash":210601534,"name":"tcore.afilemerge.caption","sourcebytes":[77,101,114,103,101,46,46,46],"value":"Merge..."},
+{"hash":151054142,"name":"tcore.afilecombine.caption","sourcebytes":[67,111,109,98,105,110,101,46,46,46],"value":"Combine..."},
 {"hash":168802467,"name":"tcore.afindduplicate.caption","sourcebytes":[70,105,110,100,32,100,117,112,108,105,99,105,116,105,101,115],"value":"Find duplicities"},
 {"hash":245221587,"name":"tcore.agenerate.caption","sourcebytes":[71,101,110,101,114,97,116,101,32,99,111,110,116,97,99,116,115],"value":"Generate contacts"},
 {"hash":120616622,"name":"tcore.afilesplit.caption","sourcebytes":[83,112,108,105,116,46,46,46],"value":"Split..."},

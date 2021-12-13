@@ -11,16 +11,6 @@ uses
 
 type
 
-  { TMergeResult }
-
-  TMergeResult = record
-    Loaded: Integer;
-    New: Integer;
-    Updated: Integer;
-    procedure Clear;
-    class operator Add(const A, B: TMergeResult): TMergeResult;
-  end;
-
   { TCore }
 
   TCore = class(TDataModule)
@@ -29,7 +19,7 @@ type
     AFileSplit: TAction;
     AGenerate: TAction;
     AFindDuplicate: TAction;
-    AFileMerge: TAction;
+    AFileCombine: TAction;
     ASettings: TAction;
     AFileOpenRecent: TAction;
     AHomePage: TAction;
@@ -52,7 +42,7 @@ type
     ThemeManager1: TThemeManager;
     procedure AAboutExecute(Sender: TObject);
     procedure AExitExecute(Sender: TObject);
-    procedure AFileMergeExecute(Sender: TObject);
+    procedure AFileCombineExecute(Sender: TObject);
     procedure AFileNewExecute(Sender: TObject);
     procedure AFileOpenExecute(Sender: TObject);
     procedure AFileOpenRecentExecute(Sender: TObject);
@@ -94,7 +84,6 @@ type
     procedure FileNew;
     procedure FileOpen(FileName: string);
     procedure FileClose;
-    function FileMerge(FileName: string): TMergeResult;
     procedure Initialize;
     procedure UpdateInterface;
   end;
@@ -117,24 +106,8 @@ resourcestring
   SFileSplit = 'Contacts split';
   SFileSplitFinishedOpenDirectory = 'Total %d contact files saved. Do you want to open the directory %s?';
   SFileNotFound = 'File ''%s'' not found.';
-  SMergedContacts = 'Contacts merged. Loaded: %d, New: %d, Updated: %d';
+  SCombinedContacts = 'Combined %d contact files.';
   SLine = 'Line %d: %s';
-
-{ TMergeResult }
-
-procedure TMergeResult.Clear;
-begin
-  Loaded := 0;
-  New := 0;
-  Updated := 0;
-end;
-
-class operator TMergeResult.Add(const A, B: TMergeResult): TMergeResult;
-begin
-  Result.Loaded := A.Loaded + B.Loaded;
-  Result.New := A.New + B.New;
-  Result.Updated := A.Updated + B.Updated;
-end;
 
 { TCore }
 
@@ -143,12 +116,11 @@ begin
   FormMain.Close;
 end;
 
-procedure TCore.AFileMergeExecute(Sender: TObject);
+procedure TCore.AFileCombineExecute(Sender: TObject);
 var
   TempFile: TDataFile;
   I: Integer;
-  MergeResult: TMergeResult;
-  TotalMergeResult: TMergeResult;
+  LoadedFiles: Integer;
 begin
   TempFile := DefaultDataFileClass.Create;
   try
@@ -163,13 +135,21 @@ begin
   end;
   OpenDialog1.Options := OpenDialog1.Options + [ofAllowMultiSelect];
   if OpenDialog1.Execute then begin
-    TotalMergeResult.Clear;
+    LoadedFiles := 0;
     for I := 0 to OpenDialog1.Files.Count - 1 do begin
-      MergeResult := FileMerge(OpenDialog1.Files[I]);
-      TotalMergeResult := TotalMergeResult + MergeResult;
+      if FileExists(OpenDialog1.Files[I]) then begin
+        TempFile := TContactsFile.Create;
+        try
+          TempFile.LoadFromFile(OpenDialog1.Files[I]);
+          TContactsFile(DataFile).Contacts.AddContacts(TContactsFile(TempFile).Contacts);
+          Inc(LoadedFiles);
+        finally
+          TempFile.Free;
+        end;
+      end;
     end;
-    ShowMessage(Format(SMergedContacts, [TotalMergeResult.Loaded,
-      TotalMergeResult.New, TotalMergeResult.Updated]));
+    if LoadedFiles > 0 then TContactsFile(DataFile).Modified := True;
+    ShowMessage(Format(SCombinedContacts, [LoadedFiles]));
     UpdateFile;
   end;
 end;
@@ -410,38 +390,6 @@ begin
   end;
 end;
 
-function TCore.FileMerge(FileName: string): TMergeResult;
-var
-  TempFile: TContactsFile;
-  NewContact: TContact;
-  I: Integer;
-begin
-  Result.Clear;
-  if FileExists(FileName) then begin
-    TempFile := TContactsFile.Create;
-    try
-      TempFile.LoadFromFile(FileName);
-      Result.Loaded := TempFile.Contacts.Count;
-      for I := 0 to TempFile.Contacts.Count - 1 do begin
-        NewContact := TContactsFile(DataFile).Contacts.Search(TempFile.Contacts[I].Fields[cfFullName]);
-        if not Assigned(NewContact) then begin
-          NewContact := TContact.Create;
-          NewContact.Assign(TempFile.Contacts[I]);
-          NewContact.Parent := TContactsFile(DataFile);
-          TContactsFile(DataFile).Contacts.Add(NewContact);
-          Inc(Result.New);
-        end else begin
-          if NewContact.UpdateFrom(TempFile.Contacts[I]) then
-            Inc(Result.Updated);
-        end;
-      end;
-      TContactsFile(DataFile).Modified := True;
-    finally
-      TempFile.Free;
-    end;
-  end else ShowMessage(Format(SFileNotFound, [FileName]));
-end;
-
 procedure TCore.FileNew;
 begin
   FileClose;
@@ -539,7 +487,7 @@ begin
   AFileSaveAs.Enabled := Assigned(DataFile);
   AFileClose.Enabled := Assigned(DataFile);
   AFileSplit.Enabled := Assigned(DataFile);
-  AFileMerge.Enabled := Assigned(DataFile);
+  AFileCombine.Enabled := Assigned(DataFile);
   AFindDuplicate.Enabled := Assigned(DataFile);
   AGenerate.Enabled := Assigned(DataFile);
 end;

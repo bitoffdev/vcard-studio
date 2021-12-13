@@ -92,6 +92,7 @@ type
   { TContactProperties }
 
   TContactProperties = class(TFPGObjectList<TContactProperty>)
+    procedure Assign(Source: TContactProperties);
     procedure AssignToList(List: TFPGObjectList<TObject>);
     function GetByName(Name: string): TContactProperty;
     function GetByNameGroups(Name: string; Groups: TStringArray;
@@ -109,6 +110,7 @@ type
   public
     Properties: TContactProperties;
     Parent: TContactsFile;
+    function HasField(FieldIndex: TContactFieldIndex): Boolean;
     function FullNameToFileName: string;
     function GetProperty(Field: TContactField): TContactProperty; overload;
     function GetProperty(FieldIndex: TContactFieldIndex): TContactProperty; overload;
@@ -127,9 +129,14 @@ type
 
   TContacts = class(TFPGObjectList<TContact>)
     ContactsFile: TContactsFile;
+    procedure Assign(Source: TContacts);
+    procedure AddContacts(Contacts: TContacts);
+    procedure InsertContacts(Index: Integer; Contacts: TContacts);
     procedure AssignToList(List: TFPGObjectList<TObject>);
     function AddNew: TContact;
-    function Search(FullName: string): TContact;
+    function Search(Text: string; FieldIndex: TContactFieldIndex): TContact;
+    function CountByField(FieldIndex: TContactFieldIndex): Integer;
+    procedure Merge(Contact: TContact; FieldIndex: TContactFieldIndex);
     function ToString: ansistring; override;
   end;
 
@@ -147,6 +154,8 @@ type
     function GetFileName: string; override;
     function GetFileExt: string; override;
     function GetFileFilter: string; override;
+    procedure SaveToStrings(Output: TStrings);
+    procedure LoadFromStrings(Lines: TStrings);
     procedure SaveToFile(FileName: string); override;
     procedure LoadFromFile(FileName: string); override;
     constructor Create; override;
@@ -387,6 +396,18 @@ end;
 
 { TContactProperties }
 
+procedure TContactProperties.Assign(Source: TContactProperties);
+var
+  I: Integer;
+begin
+  while Count < Source.Count do
+    Add(TContactProperty.Create);
+  while Count > Source.Count do
+    Delete(Count - 1);
+  for I := 0 to Count - 1 do
+    Items[I].Assign(Source.Items[I]);
+end;
+
 procedure TContactProperties.AssignToList(List: TFPGObjectList<TObject>);
 var
   I: Integer;
@@ -578,6 +599,47 @@ end;
 
 { TContacts }
 
+procedure TContacts.Assign(Source: TContacts);
+var
+  I: Integer;
+begin
+  while Count < Source.Count do
+    Add(TContact.Create);
+  while Count > Source.Count do
+    Delete(Count - 1);
+  for I := 0 to Count - 1 do begin
+    Items[I].Assign(Source.Items[I]);
+    Items[I].Parent := ContactsFile;
+  end;
+end;
+
+procedure TContacts.AddContacts(Contacts: TContacts);
+var
+  I: Integer;
+  NewContact: TContact;
+begin
+  for I := 0 to Contacts.Count - 1 do begin
+    NewContact := TContact.Create;
+    NewContact.Assign(Contacts[I]);
+    NewContact.Parent := ContactsFile;
+    Add(NewContact);
+  end;
+end;
+
+procedure TContacts.InsertContacts(Index: Integer; Contacts: TContacts);
+var
+  I: Integer;
+  NewContact: TContact;
+begin
+  for I := 0 to Contacts.Count - 1 do begin
+    NewContact := TContact.Create;
+    NewContact.Assign(Contacts[I]);
+    NewContact.Parent := ContactsFile;
+    Insert(Index, NewContact);
+    Inc(Index);
+  end;
+end;
+
 procedure TContacts.AssignToList(List: TFPGObjectList<TObject>);
 var
   I: Integer;
@@ -595,16 +657,41 @@ begin
   Add(Result);
 end;
 
-function TContacts.Search(FullName: string): TContact;
+function TContacts.Search(Text: string; FieldIndex: TContactFieldIndex): TContact;
 var
-  Contact: TContact;
+  I: Integer;
 begin
   Result := nil;
-  for Contact in Self do
-    if Contact.Fields[cfFullName] = FullName then begin
-      Result := Contact;
+  for I := 0 to Count - 1 do
+    if Items[I].Fields[FieldIndex] = Text then begin
+      Result := Items[I];
       Break;
     end;
+end;
+
+function TContacts.CountByField(FieldIndex: TContactFieldIndex): Integer;
+var
+  I: Integer;
+begin
+  Result := 0;
+  for I := 0 to Count - 1 do
+    if Items[I].HasField(FieldIndex) then
+      Inc(Result);
+end;
+
+procedure TContacts.Merge(Contact: TContact; FieldIndex: TContactFieldIndex);
+var
+  NewContact: TContact;
+begin
+  NewContact := Search(Contact.Fields[FieldIndex], FieldIndex);
+  if Assigned(NewContact) then begin
+    NewContact.UpdateFrom(Contact);
+  end else begin
+    NewContact := TContact.Create;
+    NewContact.Assign(Contact);
+    NewContact.Parent := ContactsFile;
+    Add(NewContact);
+  end;
 end;
 
 function TContacts.ToString: ansistring;
@@ -740,6 +827,17 @@ begin
   end else raise Exception.Create(SFieldIndexNotDefined);
 end;
 
+function TContact.HasField(FieldIndex: TContactFieldIndex): Boolean;
+var
+  Field: TContactField;
+begin
+  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
+  Field := Parent.Fields.GetByIndex(FieldIndex);
+  if Assigned(Field) then begin
+    Result := Assigned(GetProperty(Field));
+  end else raise Exception.Create(SFieldIndexNotDefined);
+end;
+
 function TContact.FullNameToFileName: string;
 var
   I: Integer;
@@ -777,15 +875,8 @@ begin
 end;
 
 procedure TContact.Assign(Source: TContact);
-var
-  I: Integer;
 begin
-  while Properties.Count < Source.Properties.Count do
-    Properties.Add(TContactProperty.Create);
-  while Properties.Count > Source.Properties.Count do
-    Properties.Delete(Properties.Count - 1);
-  for I := 0 to Properties.Count - 1 do
-    Properties[I].Assign(Source.Properties[I]);
+  Properties.Assign(Source.Properties);
 end;
 
 function TContact.UpdateFrom(Source: TContact): Boolean;
@@ -1113,6 +1204,42 @@ begin
   Result := GetFileName + ' (' + GetFileExt + ')|*' + GetFileExt + '|' + inherited;
 end;
 
+procedure TContactsFile.SaveToStrings(Output: TStrings);
+var
+  I: Integer;
+begin
+  for I := 0 to Contacts.Count - 1 do
+    Contacts[I].SaveToStrings(Output);
+end;
+
+procedure TContactsFile.LoadFromStrings(Lines: TStrings);
+var
+  Contact: TContact;
+  I: Integer;
+  NewI: Integer;
+begin
+  Contacts.Clear;
+
+  I := 0;
+  while I < Lines.Count do begin
+    Contact := TContact.Create;
+    Contact.Parent := Self;
+    NewI := Contact.LoadFromStrings(Lines, I);
+    if NewI <= Lines.Count then begin
+      if NewI <> -1 then begin
+        Contacts.Add(Contact);
+        I := NewI;
+      end else begin
+        FreeAndNil(Contact);
+        Inc(I);
+      end;
+    end else begin
+      FreeAndNil(Contact);
+      Break;
+    end;
+  end;
+end;
+
 function TContactsFile.NewItem(Key, Value: string): string;
 var
   Charset: string;
@@ -1124,29 +1251,23 @@ end;
 
 procedure TContactsFile.SaveToFile(FileName: string);
 var
-  Output: TStringList;
-  I: Integer;
+  Lines: TStringList;
 begin
   inherited;
-  Output := TStringList.Create;
+  Lines := TStringList.Create;
   try
-    for I := 0 to Contacts.Count - 1 do
-      Contacts[I].SaveToStrings(Output);
-    Output.SaveToFile(FileName);
+    SaveToStrings(Lines);
+    Lines.SaveToFile(FileName);
   finally
-    Output.Free;
+    Lines.Free;
   end
 end;
 
 procedure TContactsFile.LoadFromFile(FileName: string);
 var
   Lines: TStringList;
-  Contact: TContact;
-  I: Integer;
-  NewI: Integer;
 begin
   inherited;
-  Contacts.Clear;
   Lines := TStringList.Create;
   Lines.LoadFromFile(FileName);
   {$IF FPC_FULLVERSION>=30200}
@@ -1158,24 +1279,7 @@ begin
   end;
   {$ENDIF}
   try
-    I := 0;
-    while I < Lines.Count do begin
-      Contact := TContact.Create;
-      Contact.Parent := Self;
-      NewI := Contact.LoadFromStrings(Lines, I);
-      if NewI <= Lines.Count then begin
-        if NewI <> -1 then begin
-          Contacts.Add(Contact);
-          I := NewI;
-        end else begin
-          FreeAndNil(Contact);
-          Inc(I);
-        end;
-      end else begin
-        FreeAndNil(Contact);
-        Break;
-      end;
-    end;
+    LoadFromStrings(Lines);
   finally
     Lines.Free;
   end;

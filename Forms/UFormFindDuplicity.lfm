@@ -1,11 +1,11 @@
 object FormFindDuplicity: TFormFindDuplicity
   Left = 455
-  Height = 481
-  Top = 397
-  Width = 701
+  Height = 523
+  Top = 355
+  Width = 807
   Caption = 'Find duplicities'
-  ClientHeight = 481
-  ClientWidth = 701
+  ClientHeight = 523
+  ClientWidth = 807
   DesignTimePPI = 144
   OnClose = FormClose
   OnCreate = FormCreate
@@ -14,9 +14,9 @@ object FormFindDuplicity: TFormFindDuplicity
   LCLVersion = '2.0.12.0'
   object ListView1: TListView
     Left = 5
-    Height = 413
+    Height = 455
     Top = 63
-    Width = 691
+    Width = 797
     Align = alClient
     BorderSpacing.Around = 5
     Columns = <    
@@ -46,19 +46,19 @@ object FormFindDuplicity: TFormFindDuplicity
     Left = 0
     Height = 58
     Top = 0
-    Width = 701
+    Width = 807
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 58
-    ClientWidth = 701
+    ClientWidth = 807
     ParentFont = False
     TabOrder = 1
     object ComboBoxField: TComboBox
-      Left = 173
-      Height = 41
-      Top = 14
+      Left = 160
+      Height = 33
+      Top = 16
       Width = 326
-      ItemHeight = 0
+      ItemHeight = 25
       OnChange = ComboBoxFieldChange
       ParentFont = False
       Style = csDropDownList
@@ -66,12 +66,21 @@ object FormFindDuplicity: TFormFindDuplicity
     end
     object Label1: TLabel
       Left = 13
-      Height = 24
+      Height = 25
       Top = 19
-      Width = 111
-      Caption = 'Contact field:'
+      Width = 125
+      Caption = 'By contact field:'
       ParentColor = False
       ParentFont = False
+    end
+    object ButtonMerge: TButton
+      Left = 496
+      Height = 38
+      Top = 14
+      Width = 113
+      Caption = 'Merge'
+      OnClick = ButtonMergeClick
+      TabOrder = 1
     end
   end
   object ActionList1: TActionList

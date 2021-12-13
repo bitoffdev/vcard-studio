@@ -14,5 +14,8 @@
 {"hash":195296268,"name":"tformcontacts.aselectall.caption","sourcebytes":[83,101,108,101,99,116,32,97,108,108],"value":"Select all"},
 {"hash":4863557,"name":"tformcontacts.aclone.caption","sourcebytes":[67,108,111,110,101],"value":"Clone"},
 {"hash":177113358,"name":"tformcontacts.aloadfromfile.caption","sourcebytes":[76,111,97,100,32,102,114,111,109,32,102,105,108,101,46,46,46],"value":"Load from file..."},
-{"hash":10127854,"name":"tformcontacts.asavetofile.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101,46,46,46],"value":"Save to file..."}
+{"hash":10127854,"name":"tformcontacts.asavetofile.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101,46,46,46],"value":"Save to file..."},
+{"hash":304761,"name":"tformcontacts.acopy.caption","sourcebytes":[67,111,112,121],"value":"Copy"},
+{"hash":19140,"name":"tformcontacts.acut.caption","sourcebytes":[67,117,116],"value":"Cut"},
+{"hash":5671589,"name":"tformcontacts.apaste.caption","sourcebytes":[80,97,115,116,101],"value":"Paste"}
 ]}
