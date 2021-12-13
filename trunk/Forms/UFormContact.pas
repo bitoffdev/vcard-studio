@@ -22,7 +22,10 @@ type
     ButtonOk: TButton;
     ButtonPrevious: TButton;
     EditAim: TEdit;
+    EditCategories: TEdit;
     EditMatrix: TEdit;
+    EditGaduGadu: TEdit;
+    EditGroupWise: TEdit;
     EditYouTube: TEdit;
     EditGender: TEdit;
     EditLinkedIn: TEdit;
@@ -141,6 +144,8 @@ type
     Label53: TLabel;
     Label54: TLabel;
     Label55: TLabel;
+    Label56: TLabel;
+    Label57: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
@@ -149,6 +154,7 @@ type
     LabelOrganization1: TLabel;
     LabelOrganization10: TLabel;
     LabelOrganization11: TLabel;
+    LabelOrganization12: TLabel;
     LabelOrganization2: TLabel;
     LabelOrganization3: TLabel;
     LabelOrganization4: TLabel;
@@ -262,6 +268,8 @@ begin
   Contact.Fields[cfYahoo] := EditYahoo.Text;
   Contact.Fields[cfAim] := EditAim.Text;
   Contact.Fields[cfIrc] := EditIrc.Text;
+  Contact.Fields[cfGroupWise] := EditGroupWise.Text;
+  Contact.Fields[cfGaduGadu] := EditGaduGadu.Text;
 
   ReloadAllPropertiesTab;
 end;
@@ -279,6 +287,8 @@ begin
   EditYahoo.Text := Contact.Fields[cfYahoo];
   EditAim.Text := Contact.Fields[cfAim];
   EditIrc.Text := Contact.Fields[cfIrc];
+  EditGroupWise.Text := Contact.Fields[cfGroupWise];
+  EditGaduGadu.Text := Contact.Fields[cfGaduGadu];
 end;
 
 procedure TFormContact.TabSheetGeneralHide(Sender: TObject);
@@ -306,6 +316,7 @@ begin
   Contact.Fields[cfAnniversary] := EditAniversary.Text;
   Contact.Fields[cfUrl] := EditWeb.Text;
   Contact.Fields[cfGender] := EditGender.Text;
+  Contact.Fields[cfCategories] := EditCategories.Text;
 
   // Photo
   if ProfilePhotoActive then begin
@@ -405,6 +416,7 @@ begin
   EditAniversary.Text := Contact.Fields[cfAnniversary];
   EditWeb.Text := Contact.Fields[cfUrl];
   EditGender.Text := Contact.Fields[cfGender];
+  EditCategories.Text := Contact.Fields[cfCategories];
 
   // Photo
   PhotoProperty := Contact.GetProperty(cfPhoto);

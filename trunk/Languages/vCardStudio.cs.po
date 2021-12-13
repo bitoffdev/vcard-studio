@@ -354,6 +354,14 @@ msgstr "Snapchat:"
 msgid "Matrix:"
 msgstr "Matrix:"
 
+#: tformcontact.label56.caption
+msgid "Categories:"
+msgstr "Kategories:"
+
+#: tformcontact.label57.caption
+msgid "GroupWise:"
+msgstr "GroupWise:"
+
 #: tformcontact.label6.caption
 msgid "Notes:"
 msgstr "Poznámky:"
@@ -388,6 +396,10 @@ msgstr "Reddit:"
 #: tformcontact.labelorganization11.caption
 msgid "Facebook:"
 msgstr "Facebook:"
+
+#: tformcontact.labelorganization12.caption
+msgid "GaduGadu:"
+msgstr "GaduGadu:"
 
 #: tformcontact.labelorganization2.caption
 msgid "Skype:"
@@ -776,6 +788,10 @@ msgctxt "ucontact.sfullname"
 msgid "Full Name"
 msgstr "Celé jméno"
 
+#: ucontact.sgadugadu
+msgid "GaduGadu"
+msgstr "GaduGadu"
+
 #: ucontact.sgender
 msgid "Gender"
 msgstr "Pohlaví"
@@ -783,6 +799,10 @@ msgstr "Pohlaví"
 #: ucontact.sgoogletalk
 msgid "Google Talk"
 msgstr "Google Talk"
+
+#: ucontact.sgroupwise
+msgid "GroupWise"
+msgstr "GroupWise"
 
 #: ucontact.shomeaddresscity
 msgid "Home address city"
