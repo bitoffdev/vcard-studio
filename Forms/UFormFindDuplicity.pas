@@ -30,6 +30,7 @@ type
   TFormFindDuplicity = class(TForm)
     AShowContacts: TAction;
     ActionList1: TActionList;
+    ButtonMerge: TButton;
     ComboBoxField: TComboBox;
     Label1: TLabel;
     ListView1: TListView;
@@ -37,6 +38,7 @@ type
     Panel1: TPanel;
     PopupMenu1: TPopupMenu;
     procedure AShowContactsExecute(Sender: TObject);
+    procedure ButtonMergeClick(Sender: TObject);
     procedure ComboBoxFieldChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -108,11 +110,25 @@ end;
 procedure TFormFindDuplicity.SetContacts(AValue: TContacts);
 var
   ContactField: TContactField;
+  Items: TStringList;
+  I: Integer;
 begin
   if FContacts = AValue then Exit;
   FContacts := AValue;
   if Assigned(FContacts) then begin
-    Contacts.ContactsFile.Fields.LoadToStrings(ComboBoxField.Items);
+    Items := TStringList.Create;
+    try
+      Contacts.ContactsFile.Fields.LoadToStrings(Items);
+
+      // Remove fields which are not used in contacts
+      for I := Items.Count - 1 downto 0 do
+        if Contacts.CountByField(TContactField(Items.Objects[I]).Index) = 0 then
+          Items.Delete(I);
+
+      ComboBoxField.Items.Assign(Items);
+    finally
+      Items.Free;
+    end;
     ContactField := Contacts.ContactsFile.Fields.GetByIndex(ContactFieldIndex);
     ComboBoxField.ItemIndex := ComboBoxField.Items.IndexOfObject(ContactField);
     if (ComboBoxField.Items.Count > 0) and (ComboBoxField.ItemIndex = -1) then
@@ -155,7 +171,7 @@ begin
   FoundItems := TFoundItems.Create;
   Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
-  ContactFieldIndex := cfTelCell;
+  ContactFieldIndex := cfFullName;
 end;
 
 procedure TFormFindDuplicity.ComboBoxFieldChange(Sender: TObject);
@@ -199,6 +215,22 @@ begin
     Form.Contacts.Free;
     Form.Free;
     Find;
+  end;
+end;
+
+procedure TFormFindDuplicity.ButtonMergeClick(Sender: TObject);
+var
+  TempContacts: TContactsFile;
+  I: Integer;
+begin
+  TempContacts := TContactsFile.Create;
+  try
+    for I := 0 to Contacts.Count - 1 do
+      TempContacts.Contacts.Merge(Contacts[I], TContactField(ComboBoxField.Items.Objects[ComboBoxField.ItemIndex]).Index);
+    Contacts.Assign(TempContacts.Contacts);
+    Find;
+  finally
+    TempContacts.Free;
   end;
 end;
 

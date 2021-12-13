@@ -23,8 +23,8 @@ msgstr "Ukončit"
 msgid "Close"
 msgstr "Zavřít"
 
-#: tcore.afilemerge.caption
-msgid "Merge..."
+#: tcore.afilecombine.caption
+msgid "Combine..."
 msgstr "Sloučit..."
 
 #: tcore.afilenew.caption
@@ -471,6 +471,14 @@ msgctxt "tformcontacts.aclone.caption"
 msgid "Clone"
 msgstr "Klonovat"
 
+#: tformcontacts.acopy.caption
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: tformcontacts.acut.caption
+msgid "Cut"
+msgstr "Vyříznout"
+
 #: tformcontacts.aloadfromfile.caption
 msgctxt "tformcontacts.aloadfromfile.caption"
 msgid "Load from file..."
@@ -480,6 +488,10 @@ msgstr "Načíst ze souboru..."
 msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
 msgstr "Upravit"
+
+#: tformcontacts.apaste.caption
+msgid "Paste"
+msgstr "Vložit"
 
 #: tformcontacts.aremove.caption
 msgctxt "tformcontacts.aremove.caption"
@@ -549,14 +561,18 @@ msgstr "Chyby načítání"
 msgid "Show contacts"
 msgstr "Ukázat kontakty"
 
+#: tformfindduplicity.buttonmerge.caption
+msgid "Merge"
+msgstr "Sloučit"
+
 #: tformfindduplicity.caption
 msgctxt "tformfindduplicity.caption"
 msgid "Find duplicities"
 msgstr "Najít duplikáty"
 
 #: tformfindduplicity.label1.caption
-msgid "Contact field:"
-msgstr "Pole kontaktu:"
+msgid "By contact field:"
+msgstr "Podle pole kontaktu:"
 
 #: tformfindduplicity.listview1.columns[0].caption
 msgctxt "tformfindduplicity.listview1.columns[0].caption"
@@ -1096,6 +1112,11 @@ msgstr "Ukončení aplikace"
 msgid "File was modified. Do you want to save it before exit?"
 msgstr "Soubor byl upraven. Chcete jej uložit před ukončením?"
 
+#: ucore.scombinedcontacts
+msgctxt "ucore.scombinedcontacts"
+msgid "Combined %d contact files."
+msgstr "Sloučeno %d souborů kontaktů."
+
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
 msgstr "Soubor '%s' nenalezen."
@@ -1111,10 +1132,6 @@ msgstr "Uloženo celkem %d souborů kontaktů. Chcete otevřít adresář %s?"
 #: ucore.sline
 msgid "Line %d: %s"
 msgstr "Řádek %d: %s"
-
-#: ucore.smergedcontacts
-msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
-msgstr "Kontakty sloučeny. Načteno: %d, Nových: %d, Aktualizovaných: %d"
 
 #: udatafile.sallfiles
 msgctxt "udatafile.sallfiles"
@@ -1196,4 +1213,3 @@ msgstr "Hodnota"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
-

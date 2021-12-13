@@ -135,7 +135,7 @@ object FormMain: TFormMain
         Caption = '-'
       end
       object MenuItem3: TMenuItem
-        Action = Core.AFileMerge
+        Action = Core.AFileCombine
       end
       object MenuItem6: TMenuItem
         Action = Core.AFileSplit

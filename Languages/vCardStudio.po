@@ -13,8 +13,8 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: tcore.afilemerge.caption
-msgid "Merge..."
+#: tcore.afilecombine.caption
+msgid "Combine..."
 msgstr ""
 
 #: tcore.afilenew.caption
@@ -461,6 +461,14 @@ msgctxt "tformcontacts.aclone.caption"
 msgid "Clone"
 msgstr ""
 
+#: tformcontacts.acopy.caption
+msgid "Copy"
+msgstr ""
+
+#: tformcontacts.acut.caption
+msgid "Cut"
+msgstr ""
+
 #: tformcontacts.aloadfromfile.caption
 msgctxt "tformcontacts.aloadfromfile.caption"
 msgid "Load from file..."
@@ -469,6 +477,10 @@ msgstr ""
 #: tformcontacts.amodify.caption
 msgctxt "tformcontacts.amodify.caption"
 msgid "Modify"
+msgstr ""
+
+#: tformcontacts.apaste.caption
+msgid "Paste"
 msgstr ""
 
 #: tformcontacts.aremove.caption
@@ -539,13 +551,17 @@ msgstr ""
 msgid "Show contacts"
 msgstr ""
 
+#: tformfindduplicity.buttonmerge.caption
+msgid "Merge"
+msgstr ""
+
 #: tformfindduplicity.caption
 msgctxt "tformfindduplicity.caption"
 msgid "Find duplicities"
 msgstr ""
 
 #: tformfindduplicity.label1.caption
-msgid "Contact field:"
+msgid "By contact field:"
 msgstr ""
 
 #: tformfindduplicity.listview1.columns[0].caption
@@ -1084,6 +1100,11 @@ msgstr ""
 msgid "File was modified. Do you want to save it before exit?"
 msgstr ""
 
+#: ucore.scombinedcontacts
+msgctxt "ucore.scombinedcontacts"
+msgid "Combined %d contact files."
+msgstr ""
+
 #: ucore.sfilenotfound
 msgid "File '%s' not found."
 msgstr ""
@@ -1098,10 +1119,6 @@ msgstr ""
 
 #: ucore.sline
 msgid "Line %d: %s"
-msgstr ""
-
-#: ucore.smergedcontacts
-msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
 msgstr ""
 
 #: udatafile.sallfiles
