@@ -27,7 +27,7 @@ type
     cfWorkAddressStreet, cfWorkAddressStreetExtended, cfWorkAddressCity, cfWorkAddressCountry,
     cfWorkAddressPostalCode, cfWorkAddressRegion, cfWorkAddressPostOfficeBox,
     cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfDayOfBirth, cfRevision,
-    cfVersion, cfAnniversary, cfGender,
+    cfVersion, cfAnniversary, cfGender, cfLogo,
     cfJabber, cfIcq, cfWindowsLive, cfGoogleTalk, cfAim, cfQq, cfYahoo, cfIrc,
     cfSkype, cfMsn, cfGroupWise, cfGaduGadu,
     cfTwitter, cfFacebook, cfInstagram, cfSnapchat, cfMatrix, cfYoutube,
@@ -232,6 +232,7 @@ resourcestring
   STimesContacted = 'Times Contacted';
   SLastTimeContacted = 'Last Time Contacted';
   SPhoto = 'Photo';
+  SLogo = 'Logo';
   SJabber = 'Jabber';
   SDayOfBirth = 'Day of birth';
   SAnniversary = 'Anniversary';
@@ -1131,6 +1132,7 @@ begin
     AddNew('X-TIMES_CONTACTED', [], [], STimesContacted, cfXTimesContacted, dtString);
     AddNew('X-LAST_TIME_CONTACTED', [], [], SLastTimeContacted, cfXLastTimeContacted, dtString);
     AddNew('PHOTO', [], [], SPhoto, cfPhoto, dtImage);
+    AddNew('LOGO', [], [], SLogo, cfLogo, dtImage);
     AddNew('BDAY', [], [], SDayOfBirth, cfDayOfBirth, dtDate);
     with AddNew('ANNIVERSARY', [], [], SAnniversary, cfAnniversary, dtDate) do
       AddAlternative('X-EVOLUTION-ANNIVERSARY', [], []);
