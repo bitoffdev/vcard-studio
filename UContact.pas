@@ -480,9 +480,10 @@ procedure TContactProperty.EvaluateAttributes;
 var
   I: Integer;
 begin
-  if Attributes.IndexOf('BASE64') <> -1 then
-    Encoding := 'BASE64'
-  else
+  if Attributes.IndexOf('BASE64') <> -1 then begin
+    Encoding := 'BASE64';
+    Value := GetDecodedValue;
+  end else
   if Attributes.IndexOfName('ENCODING') <> -1 then begin
     Encoding := Attributes.Values['ENCODING'];
     if (Encoding = 'B') or (Encoding = 'b') then Encoding := 'BASE64';

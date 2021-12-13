@@ -15,6 +15,8 @@ type
   TFormProperties = class(TForm)
     AAdd: TAction;
     AClone: TAction;
+    ASaveValueToFile: TAction;
+    ALoadValueFromFile: TAction;
     ASelectAll: TAction;
     ARemove: TAction;
     AModify: TAction;
@@ -27,17 +29,27 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    OpenDialog1: TOpenDialog;
     PopupMenuField: TPopupMenu;
+    SaveDialog1: TSaveDialog;
     StatusBar1: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
     procedure AAddExecute(Sender: TObject);
     procedure ACloneExecute(Sender: TObject);
+    procedure ALoadValueFromFileExecute(Sender: TObject);
     procedure AModifyExecute(Sender: TObject);
     procedure ARemoveExecute(Sender: TObject);
+    procedure ASaveValueToFileExecute(Sender: TObject);
     procedure ASelectAllExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -69,7 +81,7 @@ implementation
 {$R *.lfm}
 
 uses
-  UFormProperty, UCore;
+  UFormProperty, UCore, UCommon;
 
 resourcestring
   SRemovePropertites = 'Remove fields';
@@ -77,6 +89,12 @@ resourcestring
   STotal = 'Total';
   SFiltered = 'Filtered';
   SSelected = 'Selected';
+  SAllFiles = 'All files';
+  STextFiles = 'Text files';
+  SValue = 'Value';
+
+const
+  TextFileExt = '.txt';
 
 { TFormProperties }
 
@@ -246,6 +264,21 @@ begin
   end;
 end;
 
+procedure TFormProperties.ALoadValueFromFileExecute(Sender: TObject);
+begin
+  if Assigned(ListView1.Selected) then begin
+    OpenDialog1.Filter := STextFiles + '|*' + TextFileExt + '|' + SAllFiles + '|*.*';
+    OpenDialog1.DefaultExt := TextFileExt;
+    OpenDialog1.InitialDir := ExtractFileDir(Core.LastPropertyValueFileName);
+    OpenDialog1.FileName := ExtractFileName(Core.LastPropertyValueFileName);
+    if OpenDialog1.Execute then begin
+      TContactProperty(ListView1.Selected.Data).Value := LoadFileToStr(OpenDialog1.FileName);
+      Core.LastPropertyValueFileName := OpenDialog1.FileName;
+      ReloadList;
+    end;
+  end;
+end;
+
 procedure TFormProperties.AModifyExecute(Sender: TObject);
 var
   FormProperty: TFormProperty;
@@ -288,6 +321,20 @@ begin
   end;
 end;
 
+procedure TFormProperties.ASaveValueToFileExecute(Sender: TObject);
+begin
+  if Assigned(ListView1.Selected) then begin
+    SaveDialog1.Filter := STextFiles + '|*' + TextFileExt + '|' + SAllFiles + '|*.*';
+    SaveDialog1.DefaultExt := TextFileExt;
+    SaveDialog1.InitialDir := ExtractFileDir(Core.LastPropertyValueFileName);
+    SaveDialog1.FileName := SValue + TextFileExt;
+    if SaveDialog1.Execute then begin
+      SaveStringToFile(TContactProperty(ListView1.Selected.Data).Value, SaveDialog1.FileName);
+      Core.LastPropertyValueFileName := SaveDialog1.FileName;
+    end;
+  end;
+end;
+
 procedure TFormProperties.ASelectAllExecute(Sender: TObject);
 begin
   ListView1.SelectAll;
@@ -323,7 +370,11 @@ var
 begin
   AAdd.Enabled := Assigned(Properties);
   AModify.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
+  AClone.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);;
   ARemove.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
+  ALoadValueFromFile.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
+  ASaveValueToFile.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
+  ASelectAll.Enabled := ListView1.Items.Count > 0;
 
   Text := '';
   if Assigned(Properties) then begin

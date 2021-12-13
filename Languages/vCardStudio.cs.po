@@ -628,6 +628,10 @@ msgctxt "tformproperties.aclone.caption"
 msgid "Clone"
 msgstr "Klonovat"
 
+#: tformproperties.aloadvaluefromfile.caption
+msgid "Load value from file..."
+msgstr "Načíst hodnotu ze souboru..."
+
 #: tformproperties.amodify.caption
 msgctxt "tformproperties.amodify.caption"
 msgid "Modify"
@@ -637,6 +641,10 @@ msgstr "Upravit"
 msgctxt "tformproperties.aremove.caption"
 msgid "Remove"
 msgstr "Odstranit"
+
+#: tformproperties.asavevaluetofile.caption
+msgid "Save value to file..."
+msgstr "Uložit hodnotu do souboru..."
 
 #: tformproperties.aselectall.caption
 msgctxt "tformproperties.aselectall.caption"
@@ -1109,6 +1117,7 @@ msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
 msgstr "Kontakty sloučeny. Načteno: %d, Nových: %d, Aktualizovaných: %d"
 
 #: udatafile.sallfiles
+msgctxt "udatafile.sallfiles"
 msgid "All files"
 msgstr "Všechny soubory"
 
@@ -1148,6 +1157,11 @@ msgstr "Celkem"
 msgid "Modified"
 msgstr "Upraveno"
 
+#: uformproperties.sallfiles
+msgctxt "uformproperties.sallfiles"
+msgid "All files"
+msgstr "Všechny soubory"
+
 #: uformproperties.sfiltered
 msgctxt "uformproperties.sfiltered"
 msgid "Filtered"
@@ -1166,11 +1180,20 @@ msgctxt "uformproperties.sselected"
 msgid "Selected"
 msgstr "Vybraných"
 
+#: uformproperties.stextfiles
+msgid "Text files"
+msgstr "Textové soubory"
+
 #: uformproperties.stotal
 msgctxt "uformproperties.stotal"
 msgid "Total"
 msgstr "Celkem"
 
+#: uformproperties.svalue
+msgid "Value"
+msgstr "Hodnota"
+
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
+

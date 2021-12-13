@@ -472,12 +472,13 @@ end;
 procedure TFormContacts.UpdateInterface;
 begin
   if FUpdateCount = 0 then DoUpdateInterface;
-  ALoadFromFile.Enabled := Assigned(ListView1.Selected);
-  ASaveToFile.Enabled := Assigned(ListView1.Selected);
-  AModify.Enabled := Assigned(ListView1.Selected);
-  AClone.Enabled := Assigned(ListView1.Selected);
-  ARemove.Enabled := Assigned(ListView1.Selected);
+  AAdd.Enabled := Assigned(Contacts);
+  AModify.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  AClone.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  ARemove.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
   ASelectAll.Enabled := ListView1.Items.Count > 0;
+  ALoadFromFile.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  ASaveToFile.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
 end;
 
 end.
