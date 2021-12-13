@@ -29,7 +29,7 @@ type
     cfXTimesContacted, cfXLastTimeContacted, cfPhoto, cfDayOfBirth, cfRevision,
     cfVersion, cfAnniversary, cfGender,
     cfJabber, cfIcq, cfWindowsLive, cfGoogleTalk, cfAim, cfQq, cfYahoo, cfIrc,
-    cfSkype, cfMsn,
+    cfSkype, cfMsn, cfGroupWise, cfGaduGadu,
     cfTwitter, cfFacebook, cfInstagram, cfSnapchat, cfMatrix, cfYoutube,
     cfPeerTube, cfLinkedIn, cfMastodon, cfMySpace, cfReddit);
 
@@ -243,6 +243,8 @@ resourcestring
   SYahoo = 'Yahoo!';
   SSkype = 'Skype';
   SMatrix = 'Matrix';
+  SGroupWise = 'GroupWise';
+  SGaduGadu = 'GaduGadu';
   // Social
   STwitter = 'Twitter';
   SFacebook = 'Facebook';
@@ -1038,7 +1040,8 @@ begin
     AddNew('X-LAST_TIME_CONTACTED', [], [], SLastTimeContacted, cfXLastTimeContacted, dtString);
     AddNew('PHOTO', [], [], SPhoto, cfPhoto, dtImage);
     AddNew('BDAY', [], [], SDayOfBirth, cfDayOfBirth, dtDate);
-    AddNew('ANNIVERSARY', [], [], SAnniversary, cfAnniversary, dtDate);
+    with AddNew('ANNIVERSARY', [], [], SAnniversary, cfAnniversary, dtDate) do
+      AddAlternative('X-EVOLUTION-ANNIVERSARY', [], []);
     AddNew('REV', [], [], SRevision, cfRevision, dtString);
     AddNew('UID', [], [], SUniqueIdentifier, cfUid, dtString);
     AddNew('URL', [], ['HOME', 'WORK'], SWebAddress, cfUrl, dtString);
@@ -1063,6 +1066,8 @@ begin
     AddNew('X-IRC', [], [], SIrc, cfIrc, dtString);
     with AddNew('X-MSN', [], [], SMsn, cfMsn, dtString) do
       AddAlternative('X-CENTRUM-CZ-MSN', [], []);
+    AddNew('X-GROUPWISE', [], [], SGroupWise, cfGroupWise, dtString);
+    AddNew('X-GADUGADU', [], [], SGaduGadu, cfGaduGadu, dtString);
     // Social
     with AddNew('X-TWITTER', [], [], STwitter, cfTwitter, dtString) do
       AddAlternative('X-SOCIALPROFILE', ['TWITTER'], []);
