@@ -313,7 +313,7 @@ begin
     TMsgDlgType.mtConfirmation, [mbCancel, mbOk], 0) = mrOk then begin
     for I := ListView1.Items.Count - 1 downto 0 do
       if ListView1.Items[I].Selected then begin
-        Properties.Delete(I);
+        Properties.Delete(Properties.IndexOf(ListView1.Items[I].Data));
       end;
     Core.DataFile.Modified := True;
     ReloadList;

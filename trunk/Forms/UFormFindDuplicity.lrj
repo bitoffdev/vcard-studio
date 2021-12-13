@@ -3,6 +3,7 @@
 {"hash":5045284,"name":"tformfindduplicity.listview1.columns[0].caption","sourcebytes":[70,105,101,108,100],"value":"Field"},
 {"hash":106593811,"name":"tformfindduplicity.listview1.columns[1].caption","sourcebytes":[67,111,110,116,97,99,116,115],"value":"Contacts"},
 {"hash":4877396,"name":"tformfindduplicity.listview1.columns[2].caption","sourcebytes":[67,111,117,110,116],"value":"Count"},
-{"hash":9821370,"name":"tformfindduplicity.label1.caption","sourcebytes":[67,111,110,116,97,99,116,32,102,105,101,108,100,58],"value":"Contact field:"},
+{"hash":14454458,"name":"tformfindduplicity.label1.caption","sourcebytes":[66,121,32,99,111,110,116,97,99,116,32,102,105,101,108,100,58],"value":"By contact field:"},
+{"hash":5490901,"name":"tformfindduplicity.buttonmerge.caption","sourcebytes":[77,101,114,103,101],"value":"Merge"},
 {"hash":229436515,"name":"tformfindduplicity.ashowcontacts.caption","sourcebytes":[83,104,111,119,32,99,111,110,116,97,99,116,115],"value":"Show contacts"}
 ]}
