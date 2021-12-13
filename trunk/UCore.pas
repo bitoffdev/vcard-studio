@@ -87,6 +87,7 @@ type
     ReopenLastFileOnStart: Boolean;
     LastContactTabIndex: Integer;
     LastContactFileName: string;
+    LastPropertyValueFileName: string;
     GenerateCount: Integer;
     ToolbarVisible: Boolean;
     function GetProfileImage: TImage;
@@ -484,6 +485,7 @@ begin
     LastContactTabIndex := ReadIntegerWithDefault('LastContactTabIndex', 0);
     LastContactFileName := ReadStringWithDefault('LastContactFileName', '');
     LastSplitDir := ReadStringWithDefault('LastSplitDir', '');
+    LastPropertyValueFileName := ReadStringWithDefault('LastPropertyValueFileName', '');
     GenerateCount := ReadIntegerWithDefault('GenerateCount', 1);
   finally
     Free;
@@ -509,6 +511,7 @@ begin
     WriteInteger('LastContactTabIndex', LastContactTabIndex);
     WriteString('LastContactFileName', LastContactFileName);
     WriteString('LastSplitDir', LastSplitDir);
+    WriteString('LastPropertyValueFileName', LastPropertyValueFileName);
     WriteInteger('GenerateCount', GenerateCount);
   finally
     Free;

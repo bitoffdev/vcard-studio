@@ -616,6 +616,10 @@ msgctxt "tformproperties.aclone.caption"
 msgid "Clone"
 msgstr ""
 
+#: tformproperties.aloadvaluefromfile.caption
+msgid "Load value from file..."
+msgstr ""
+
 #: tformproperties.amodify.caption
 msgctxt "tformproperties.amodify.caption"
 msgid "Modify"
@@ -624,6 +628,10 @@ msgstr ""
 #: tformproperties.aremove.caption
 msgctxt "tformproperties.aremove.caption"
 msgid "Remove"
+msgstr ""
+
+#: tformproperties.asavevaluetofile.caption
+msgid "Save value to file..."
 msgstr ""
 
 #: tformproperties.aselectall.caption
@@ -1097,6 +1105,7 @@ msgid "Contacts merged. Loaded: %d, New: %d, Updated: %d"
 msgstr ""
 
 #: udatafile.sallfiles
+msgctxt "udatafile.sallfiles"
 msgid "All files"
 msgstr ""
 
@@ -1136,6 +1145,11 @@ msgstr ""
 msgid "Modified"
 msgstr ""
 
+#: uformproperties.sallfiles
+msgctxt "uformproperties.sallfiles"
+msgid "All files"
+msgstr ""
+
 #: uformproperties.sfiltered
 msgctxt "uformproperties.sfiltered"
 msgid "Filtered"
@@ -1154,9 +1168,17 @@ msgctxt "uformproperties.sselected"
 msgid "Selected"
 msgstr ""
 
+#: uformproperties.stextfiles
+msgid "Text files"
+msgstr ""
+
 #: uformproperties.stotal
 msgctxt "uformproperties.stotal"
 msgid "Total"
+msgstr ""
+
+#: uformproperties.svalue
+msgid "Value"
 msgstr ""
 
 #: uquotedprintable.slinelengtherr
