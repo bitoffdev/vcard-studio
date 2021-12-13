@@ -344,6 +344,14 @@ msgstr ""
 msgid "Matrix:"
 msgstr ""
 
+#: tformcontact.label56.caption
+msgid "Categories:"
+msgstr ""
+
+#: tformcontact.label57.caption
+msgid "GroupWise:"
+msgstr ""
+
 #: tformcontact.label6.caption
 msgid "Notes:"
 msgstr ""
@@ -377,6 +385,10 @@ msgstr ""
 
 #: tformcontact.labelorganization11.caption
 msgid "Facebook:"
+msgstr ""
+
+#: tformcontact.labelorganization12.caption
+msgid "GaduGadu:"
 msgstr ""
 
 #: tformcontact.labelorganization2.caption
@@ -764,12 +776,20 @@ msgctxt "ucontact.sfullname"
 msgid "Full Name"
 msgstr ""
 
+#: ucontact.sgadugadu
+msgid "GaduGadu"
+msgstr ""
+
 #: ucontact.sgender
 msgid "Gender"
 msgstr ""
 
 #: ucontact.sgoogletalk
 msgid "Google Talk"
+msgstr ""
+
+#: ucontact.sgroupwise
+msgid "GroupWise"
 msgstr ""
 
 #: ucontact.shomeaddresscity

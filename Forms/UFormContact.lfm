@@ -17,10 +17,10 @@ object FormContact: TFormContact
     Height = 668
     Top = 8
     Width = 969
-    ActivePage = TabSheetSocial
+    ActivePage = TabSheetWork
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 4
+    TabIndex = 2
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -311,6 +311,23 @@ object FormContact: TFormContact
         Width = 254
         ParentFont = False
         TabOrder = 15
+      end
+      object Label56: TLabel
+        Left = 16
+        Height = 24
+        Top = 480
+        Width = 95
+        Caption = 'Categories:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditCategories: TEdit
+        Left = 144
+        Height = 42
+        Top = 472
+        Width = 254
+        ParentFont = False
+        TabOrder = 16
       end
     end
     object TabSheetHome: TTabSheet
@@ -1034,6 +1051,40 @@ object FormContact: TFormContact
         Width = 254
         ParentFont = False
         TabOrder = 10
+      end
+      object Label57: TLabel
+        Left = 10
+        Height = 24
+        Top = 308
+        Width = 99
+        Caption = 'GroupWise:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditGroupWise: TEdit
+        Left = 173
+        Height = 42
+        Top = 304
+        Width = 254
+        ParentFont = False
+        TabOrder = 11
+      end
+      object LabelOrganization12: TLabel
+        Left = 451
+        Height = 24
+        Top = 312
+        Width = 95
+        Caption = 'GaduGadu:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object EditGaduGadu: TEdit
+        Left = 608
+        Height = 42
+        Top = 308
+        Width = 254
+        ParentFont = False
+        TabOrder = 12
       end
     end
     object TabSheetSocial: TTabSheet
