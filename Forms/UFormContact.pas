@@ -415,7 +415,8 @@ begin
       try
         Stream.Write(Photo[1], Length(Photo));
         Stream.Position := 0;
-        if PhotoProperty.Attributes.IndexOf('JPEG') <> -1 then begin
+        if (PhotoProperty.Attributes.IndexOf('JPEG') <> -1) or
+        (PhotoProperty.Attributes.IndexOf('jpeg') <> -1) then begin
           JpegImage := TJPEGImage.Create;
           try
             try
@@ -433,7 +434,8 @@ begin
             JpegImage.Free;
           end;
         end else
-        if PhotoProperty.Attributes.IndexOf('PNG') <> -1 then begin
+        if (PhotoProperty.Attributes.IndexOf('PNG') <> -1) or
+        (PhotoProperty.Attributes.IndexOf('png') <> -1) then begin
           PngImage := TPortableNetworkGraphic.Create;
           try
             try
@@ -451,7 +453,8 @@ begin
             PngImage.Free;
           end;
         end else
-        if PhotoProperty.Attributes.IndexOf('GIF') <> -1 then begin
+        if (PhotoProperty.Attributes.IndexOf('GIF') <> -1) or
+        (PhotoProperty.Attributes.IndexOf('gif') <> -1) then begin
           GifImage := TGIFImage.Create;
           try
             try
