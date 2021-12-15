@@ -13,5 +13,6 @@
 {"hash":168802467,"name":"tcore.afindduplicate.caption","sourcebytes":[70,105,110,100,32,100,117,112,108,105,99,105,116,105,101,115],"value":"Find duplicities"},
 {"hash":245221587,"name":"tcore.agenerate.caption","sourcebytes":[71,101,110,101,114,97,116,101,32,99,111,110,116,97,99,116,115],"value":"Generate contacts"},
 {"hash":120616622,"name":"tcore.afilesplit.caption","sourcebytes":[83,112,108,105,116,46,46,46],"value":"Split..."},
+{"hash":218394958,"name":"tcore.afind.caption","sourcebytes":[70,105,110,100,46,46,46],"value":"Find..."},
 {"hash":190444780,"name":"tcore.applicationinfo1.description","sourcebytes":[118,67,97,114,100,32,102,105,108,101,115,32,109,97,110,97,103,101,109,101,110,116,32,116,111,111,108],"value":"vCard files management tool"}
 ]}

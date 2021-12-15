@@ -16,10 +16,13 @@ type
     CoolBar1: TCoolBar;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
+    MenuItem10: TMenuItem;
     MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    MenuItem9: TMenuItem;
     MenuItemToolbar: TMenuItem;
     MenuItemView: TMenuItem;
     MenuItemExit: TMenuItem;
@@ -89,11 +92,12 @@ end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
+  FormContacts := TFormContacts.Create(nil);
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
 begin
-  FormContacts.Free;
+  FreeAndNil(FormContacts);
 end;
 
 procedure TFormMain.FormResize(Sender: TObject);
@@ -110,7 +114,6 @@ begin
   Core.ScaleDPI1.ScaleControl(CoolBar1, Core.ScaleDPI1.DesignDPI);
   CoolBar1.AutosizeBands;
 
-  FormContacts := TFormContacts.Create(nil);
   FormContacts.Contacts := TContactsFile(Core.DataFile).Contacts;
   FormContacts.ManualDock(Self, nil, alClient);
   FormContacts.Align := alClient;

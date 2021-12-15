@@ -52,6 +52,10 @@ msgstr "Uložit jako..."
 msgid "Split..."
 msgstr "Rozdělit..."
 
+#: tcore.afind.caption
+msgid "Find..."
+msgstr "Hledat..."
+
 #: tcore.afindduplicate.caption
 msgctxt "tcore.afindduplicate.caption"
 msgid "Find duplicities"
@@ -557,7 +561,23 @@ msgstr "Pracovní telefon"
 msgid "Load errors"
 msgstr "Chyby načítání"
 
+#: tformfind.buttonfind.caption
+msgctxt "tformfind.buttonfind.caption"
+msgid "Find"
+msgstr "Hledat"
+
+#: tformfind.caption
+msgctxt "tformfind.caption"
+msgid "Find"
+msgstr "Hledat"
+
+#: tformfind.label1.caption
+msgctxt "tformfind.label1.caption"
+msgid "By contact field:"
+msgstr "Podle pole kontaktu:"
+
 #: tformfindduplicity.ashowcontacts.caption
+msgctxt "tformfindduplicity.ashowcontacts.caption"
 msgid "Show contacts"
 msgstr "Ukázat kontakty"
 
@@ -571,6 +591,7 @@ msgid "Find duplicities"
 msgstr "Najít duplikáty"
 
 #: tformfindduplicity.label1.caption
+msgctxt "tformfindduplicity.label1.caption"
 msgid "By contact field:"
 msgstr "Podle pole kontaktu:"
 
@@ -585,6 +606,7 @@ msgid "Contacts"
 msgstr "Kontakty"
 
 #: tformfindduplicity.listview1.columns[2].caption
+msgctxt "tformfindduplicity.listview1.columns[2].caption"
 msgid "Count"
 msgstr "Počet"
 
@@ -605,6 +627,11 @@ msgstr "Počet:"
 #: tformmain.caption
 msgid "vCard Studio"
 msgstr "vCard Studio"
+
+#: tformmain.menuitem7.caption
+msgctxt "tformmain.menuitem7.caption"
+msgid "Find"
+msgstr "Hledat"
 
 #: tformmain.menuitemfile.caption
 msgctxt "tformmain.menuitemfile.caption"
@@ -1173,6 +1200,10 @@ msgstr "Vybraných"
 msgctxt "uformcontacts.stotal"
 msgid "Total"
 msgstr "Celkem"
+
+#: uformfind.sany
+msgid "Any"
+msgstr "Jakékoliv"
 
 #: uformmain.smodified
 msgid "Modified"

@@ -42,6 +42,10 @@ msgstr ""
 msgid "Split..."
 msgstr ""
 
+#: tcore.afind.caption
+msgid "Find..."
+msgstr ""
+
 #: tcore.afindduplicate.caption
 msgctxt "tcore.afindduplicate.caption"
 msgid "Find duplicities"
@@ -547,7 +551,23 @@ msgstr ""
 msgid "Load errors"
 msgstr ""
 
+#: tformfind.buttonfind.caption
+msgctxt "tformfind.buttonfind.caption"
+msgid "Find"
+msgstr ""
+
+#: tformfind.caption
+msgctxt "tformfind.caption"
+msgid "Find"
+msgstr ""
+
+#: tformfind.label1.caption
+msgctxt "tformfind.label1.caption"
+msgid "By contact field:"
+msgstr ""
+
 #: tformfindduplicity.ashowcontacts.caption
+msgctxt "tformfindduplicity.ashowcontacts.caption"
 msgid "Show contacts"
 msgstr ""
 
@@ -561,6 +581,7 @@ msgid "Find duplicities"
 msgstr ""
 
 #: tformfindduplicity.label1.caption
+msgctxt "tformfindduplicity.label1.caption"
 msgid "By contact field:"
 msgstr ""
 
@@ -575,6 +596,7 @@ msgid "Contacts"
 msgstr ""
 
 #: tformfindduplicity.listview1.columns[2].caption
+msgctxt "tformfindduplicity.listview1.columns[2].caption"
 msgid "Count"
 msgstr ""
 
@@ -594,6 +616,11 @@ msgstr ""
 
 #: tformmain.caption
 msgid "vCard Studio"
+msgstr ""
+
+#: tformmain.menuitem7.caption
+msgctxt "tformmain.menuitem7.caption"
+msgid "Find"
 msgstr ""
 
 #: tformmain.menuitemfile.caption
@@ -1160,6 +1187,10 @@ msgstr ""
 #: uformcontacts.stotal
 msgctxt "uformcontacts.stotal"
 msgid "Total"
+msgstr ""
+
+#: uformfind.sany
+msgid "Any"
 msgstr ""
 
 #: uformmain.smodified

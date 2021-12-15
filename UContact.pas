@@ -14,7 +14,7 @@ type
 
   TDataType = (dtNone, dtString, dtInteger, dtDate, dtDateTime, dtImage, dtStringList);
 
-  TContactFieldIndex = (cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
+  TContactFieldIndex = (cfNone, cfFirstName, cfMiddleName, cfLastName, cfTitleBefore,
     cfTitleAfter, cfFullName,
     cfTel, cfTelCell, cfTelFax, cfTelPager, cfTelHome2, cfTelVoip, cfTelMain,
     cfTelHome, cfTelCellHome, cfTelFaxHome, cfTelPagerHome,
@@ -32,6 +32,19 @@ type
     cfSkype, cfMsn, cfGroupWise, cfGaduGadu,
     cfTwitter, cfFacebook, cfInstagram, cfSnapchat, cfMatrix, cfYoutube,
     cfPeerTube, cfLinkedIn, cfMastodon, cfMySpace, cfReddit);
+
+  TContactFieldIndexes = TFPGList<TContactFieldIndex>;
+
+  TContactFilterItem = class
+    FieldIndex: TContactFieldIndex;
+    Value: string;
+  end;
+
+  { TContactFilterItems }
+
+  TContactFilterItems = class(TFPGObjectList<TContactFilterItem>)
+    function AddNew(FieldIndex: TContactFieldIndex; Value: string): TContactFilterItem;
+  end;
 
   TContactFields = class;
 
@@ -347,6 +360,17 @@ begin
     Inc(I);
   end;
   SetLength(Result, O - 1);
+end;
+
+{ TContactFilterItems }
+
+function TContactFilterItems.AddNew(FieldIndex: TContactFieldIndex;
+  Value: string): TContactFilterItem;
+begin
+  Result := TContactFilterItem.Create;
+  Result.FieldIndex := FieldIndex;
+  Result.Value := Value;
+  Add(Result);
 end;
 
 { TContactField }

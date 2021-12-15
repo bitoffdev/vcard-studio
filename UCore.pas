@@ -16,6 +16,7 @@ type
   TCore = class(TDataModule)
     AAbout: TAction;
     AboutDialog1: TAboutDialog;
+    AFind: TAction;
     AFileSplit: TAction;
     AGenerate: TAction;
     AFindDuplicate: TAction;
@@ -51,6 +52,7 @@ type
     procedure AFileCloseExecute(Sender: TObject);
     procedure AFileSplitExecute(Sender: TObject);
     procedure AFindDuplicateExecute(Sender: TObject);
+    procedure AFindExecute(Sender: TObject);
     procedure AGenerateExecute(Sender: TObject);
     procedure AHomePageExecute(Sender: TObject);
     procedure ASettingsExecute(Sender: TObject);
@@ -98,7 +100,7 @@ implementation
 
 uses
   UFormMain, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
-  UFormGenerate, UFormError;
+  UFormGenerate, UFormError, UFormFind;
 
 resourcestring
   SAppExit = 'Application exit';
@@ -201,26 +203,41 @@ end;
 
 procedure TCore.AFindDuplicateExecute(Sender: TObject);
 begin
-  FormFindDuplicity := TFormFindDuplicity.Create(nil);
-  with FormFindDuplicity do begin
+  with TFormFindDuplicity.Create(nil) do
+  try
     Contacts := TContactsFile(DataFile).Contacts;
     ShowModal;
     FormContacts.ReloadList;
     FormMain.UpdateInterface;
+  finally
+    Free;
+  end;
+end;
+
+procedure TCore.AFindExecute(Sender: TObject);
+begin
+  with TFormFind.Create(nil) do
+  try
+    Contacts := TContactsFile(DataFile).Contacts;
+    ShowModal;
+    FormContacts.ReloadList;
+    FormMain.UpdateInterface;
+  finally
     Free;
   end;
 end;
 
 procedure TCore.AGenerateExecute(Sender: TObject);
 begin
-  FormGenerate := TFormGenerate.Create(nil);
-  with FormGenerate do begin
+  with TFormGenerate.Create(nil) do
+  try
     Contacts := TContactsFile(DataFile).Contacts;
     ShowModal;
     FormContacts.ReloadList;
     FormContacts.UpdateInterface;
     DataFile.Modified := True;
     FormMain.UpdateInterface;
+  finally
     Free;
   end;
 end;
@@ -232,16 +249,16 @@ end;
 
 procedure TCore.ASettingsExecute(Sender: TObject);
 begin
-  FormSettings := TFormSettings.Create(nil);
+  with TFormSettings.Create(nil) do
   try
-    FormSettings.LoadData;
-    if FormSettings.ShowModal = mrOK then begin
-      FormSettings.SaveData;
+    LoadData;
+    if ShowModal = mrOK then begin
+      SaveData;
       ThemeManager1.UseTheme(FormMain);
       ThemeManager1.UseTheme(FormContacts);
     end;
   finally
-    FormSettings.Free;
+    Free;
   end;
 end;
 
