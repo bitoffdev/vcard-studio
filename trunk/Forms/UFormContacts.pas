@@ -79,8 +79,8 @@ type
     FUpdateCount: Integer;
     procedure FilterList(List: TFPGObjectList<TObject>);
     procedure SetContacts(AValue: TContacts);
-    procedure FormContactPrevious(Sender: TObject);
-    procedure FormContactNext(Sender: TObject);
+    function GetPreviousContact(Contact: TContact): TContact;
+    function GetNextContact(Contact: TContact): TContact;
     procedure DoUpdateInterface;
     procedure UpdateColumns;
   public
@@ -233,22 +233,24 @@ begin
   ListViewFilter1.Reset;
 end;
 
-procedure TFormContacts.FormContactPrevious(Sender: TObject);
+function TFormContacts.GetPreviousContact(Contact: TContact): TContact;
 var
   I: Integer;
 begin
-  I := ListViewSort1.List.IndexOf(TFormContact(Sender).Contact);
+  I := ListViewSort1.List.IndexOf(Contact);
   if (I <> -1) and (I > 0) then
-    TFormContact(Sender).Contact := TContact(ListViewSort1.List[I - 1]);
+    Result := TContact(ListViewSort1.List[I - 1])
+    else Result := nil;
 end;
 
-procedure TFormContacts.FormContactNext(Sender: TObject);
+function TFormContacts.GetNextContact(Contact: TContact): TContact;
 var
   I: Integer;
 begin
-  I := ListViewSort1.List.IndexOf(TFormContact(Sender).Contact);
+  I := ListViewSort1.List.IndexOf(Contact);
   if (I <> -1) and (I < ListViewSort1.List.Count - 1) then
-    TFormContact(Sender).Contact := TContact(ListViewSort1.List[I + 1]);
+    Result := TContact(ListViewSort1.List[I + 1])
+    else Result := nil;
 end;
 
 procedure TFormContacts.DoUpdateInterface;
@@ -311,8 +313,8 @@ begin
     try
       Contact.Parent := Contacts.ContactsFile;
       FormContact.Contact := Contact;
-      FormContact.OnPrevious := FormContactPrevious;
-      FormContact.OnNext := FormContactNext;
+      FormContact.OnGetPrevious := GetPreviousContact;
+      FormContact.OnGetNext := GetNextContact;
       if FormContact.ShowModal = mrOK then begin
         Contacts.Add(Contact);
         Core.DataFile.Modified := True;
@@ -341,8 +343,8 @@ begin
       Contact.Parent := Contacts.ContactsFile;
       Contact.Assign(TContact(ListView1.Selected.Data));
       FormContact.Contact := Contact;
-      FormContact.OnPrevious := FormContactPrevious;
-      FormContact.OnNext := FormContactNext;
+      FormContact.OnGetPrevious := GetPreviousContact;
+      FormContact.OnGetNext := GetNextContact;
       if FormContact.ShowModal = mrOK then begin
         Contacts.Add(Contact);
         Contact := nil;
@@ -442,8 +444,8 @@ begin
       Contact.Parent := Contacts.ContactsFile;
       Contact.Assign(TContact(ListView1.Selected.Data));
       FormContact.Contact := Contact;
-      FormContact.OnPrevious := FormContactPrevious;
-      FormContact.OnNext := FormContactNext;
+      FormContact.OnGetPrevious := GetPreviousContact;
+      FormContact.OnGetNext := GetNextContact;
       if FormContact.ShowModal = mrOK then begin
         TContact(ListView1.Selected.Data).Assign(Contact);
         Core.DataFile.Modified := True;
