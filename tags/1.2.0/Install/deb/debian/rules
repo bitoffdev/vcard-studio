@@ -1,0 +1,29 @@
+#!/usr/bin/make -f
+
+# Set temporary HOME for lazarus primary config directory
+export HOME=$(CURDIR)/tmphome
+
+ROOT = $(CURDIR)/debian/vcard-studio
+
+override_dh_auto_clean:
+	$(RM) -r lib
+	$(RM) lib *.res vCardStudio
+
+override_dh_auto_build:
+	lazbuild --build-mode=Release vCardStudio.lpi
+
+override_dh_auto_install:
+	install -d -m 755 $(ROOT)/usr/bin
+	install -s -m 755 vCardStudio $(ROOT)/usr/bin
+	install -d -m 755 $(ROOT)/usr/share/vCardStudio/Languages
+	install -m 755 Languages/vCardStudio.po $(ROOT)/usr/share/vCardStudio/Languages
+	install -m 755 Languages/vCardStudio.cs.po $(ROOT)/usr/share/vCardStudio/Languages
+	install -d -m 755 $(ROOT)/usr/share/vCardStudio/Images
+	install -m 755 Images/Profile.png $(ROOT)/usr/share/vCardStudio/Images
+	install -d -m 755 $(ROOT)/usr/share/applications
+	install -m 755 Install/deb/vCardStudio.desktop $(ROOT)/usr/share/applications
+	install -d -m 755 $(ROOT)/usr/share/pixmaps
+	install -m 755 Install/deb/vCardStudio.png $(ROOT)/usr/share/pixmaps
+
+%:
+	dh $@

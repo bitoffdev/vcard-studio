@@ -1,0 +1,25 @@
+object FormError: TFormError
+  Left = 648
+  Height = 595
+  Top = 435
+  Width = 956
+  Caption = 'Load errors'
+  ClientHeight = 595
+  ClientWidth = 956
+  DesignTimePPI = 144
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.0.12.0'
+  object MemoErrors: TMemo
+    Left = 8
+    Height = 579
+    Top = 8
+    Width = 940
+    Align = alClient
+    BorderSpacing.Around = 8
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+  end
+end

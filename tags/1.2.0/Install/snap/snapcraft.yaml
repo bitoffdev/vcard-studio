@@ -1,0 +1,95 @@
+name: vcard-studio
+title: vCard Studio
+version: '1.2.0'
+summary: A contact management application with support for vCard file format.
+description: |
+  A tool for work with contacts stored in vCard format (.vcf).
+  
+  Features:
+  * Add, Edit, Clone, Remove contacts
+  * Merge files together
+  * Find duplicate contacts
+confinement: strict
+base: core20
+grade: stable
+icon: "Images/vCard Studio.png"
+license: NLPL
+
+parts:
+  vcard-studio:
+    plugin: nil
+    source: .
+    source-type: local
+    build-packages:
+    - fpc
+    - lazarus
+    - lcl
+    - lcl-utils
+    override-build: |
+      snapcraftctl build
+      lazbuild --build-mode=Release vCardStudio.lpi
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/bin
+      install -s -m 755 vCardStudio $SNAPCRAFT_PART_INSTALL/usr/bin/vCardStudio
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/vCardStudio.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/vCardStudio.cs.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/UFormAbout.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/UFormAbout.cs.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Images
+      install -m 755 Images/Profile.png $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Images
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/applications
+      install -m 755 Install/snap/local/vCardStudio.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
+      install -m 755 Images/vCard\ Studio.png $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
+    stage:
+      - etc
+      - usr
+      - usr/bin
+      - usr/share/vCardStudio
+      - usr/share/applications/vCardStudio.desktop
+      - usr/share/pixmaps
+    stage-packages:
+      - libatk1.0-0
+      - libcairo2
+      - libdatrie1
+      - libfontconfig1
+      - libfreetype6
+      - libfribidi0
+      - libgdk-pixbuf2.0-0
+      - libgraphite2-3
+      - libgtk2.0-0
+      - libharfbuzz0b
+      - libpango-1.0-0
+      - libpangocairo-1.0-0
+      - libpangoft2-1.0-0
+      - libpixman-1-0
+      - libpng16-16
+      - libthai0
+      - libx11-6
+      - libxau6
+      - libxcb-render0
+      - libxcb-shm0
+      - libxcb1
+      - libxcomposite1
+      - libxcursor1
+      - libxdamage1
+      - libxdmcp6
+      - libxext6
+      - libxfixes3
+      - libxi6
+      - libxinerama1
+      - libxrandr2
+      - libxrender1
+
+apps:
+  vcard-studio:
+    command: usr/bin/vCardStudio
+    desktop: usr/share/applications/vCardStudio.desktop    
+    plugs:
+      - desktop
+      - x11
+      - home
+
+layout:
+  /usr/share/vCardStudio:
+    bind: $SNAP/usr/share/vCardStudio
