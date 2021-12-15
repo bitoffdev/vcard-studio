@@ -2,6 +2,7 @@
 {"hash":33698463,"name":"tformmain.caption","sourcebytes":[118,67,97,114,100,32,83,116,117,100,105,111],"value":"vCard Studio"},
 {"hash":315429,"name":"tformmain.menuitemfile.caption","sourcebytes":[70,105,108,101],"value":"File"},
 {"hash":131987540,"name":"tformmain.menuitemfileopenrecent.caption","sourcebytes":[79,112,101,110,32,114,101,99,101,110,116],"value":"Open recent"},
+{"hash":315460,"name":"tformmain.menuitem7.caption","sourcebytes":[70,105,110,100],"value":"Find"},
 {"hash":380871,"name":"tformmain.menuitemview.caption","sourcebytes":[86,105,101,119],"value":"View"},
 {"hash":8267778,"name":"tformmain.menuitemtoolbar.caption","sourcebytes":[77,97,105,110,32,116,111,111,108,98,97,114],"value":"Main toolbar"},
 {"hash":5989939,"name":"tformmain.menuitemtools.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},

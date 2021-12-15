@@ -147,6 +147,15 @@ object FormMain: TFormMain
         Action = Core.AExit
       end
     end
+    object MenuItem7: TMenuItem
+      Caption = 'Find'
+      object MenuItem8: TMenuItem
+        Action = Core.AFind
+      end
+      object MenuItem9: TMenuItem
+        Action = Core.AFindDuplicate
+      end
+    end
     object MenuItemView: TMenuItem
       Caption = 'View'
       object MenuItemToolbar: TMenuItem
@@ -160,8 +169,8 @@ object FormMain: TFormMain
       object MenuItemSettings: TMenuItem
         Action = Core.ASettings
       end
-      object MenuItem4: TMenuItem
-        Action = Core.AFindDuplicate
+      object MenuItem10: TMenuItem
+        Caption = '-'
       end
       object MenuItem5: TMenuItem
         Action = Core.AGenerate

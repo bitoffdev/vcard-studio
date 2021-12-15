@@ -1,0 +1,5 @@
+{"version":1,"strings":[
+{"hash":315460,"name":"tformfind.caption","sourcebytes":[70,105,110,100],"value":"Find"},
+{"hash":14454458,"name":"tformfind.label1.caption","sourcebytes":[66,121,32,99,111,110,116,97,99,116,32,102,105,101,108,100,58],"value":"By contact field:"},
+{"hash":315460,"name":"tformfind.buttonfind.caption","sourcebytes":[70,105,110,100],"value":"Find"}
+]}
