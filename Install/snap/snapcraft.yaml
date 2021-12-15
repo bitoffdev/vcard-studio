@@ -20,7 +20,7 @@ parts:
     plugin: nil
     source: .
     source-type: local
-    build-packages: 
+    build-packages:
     - fpc
     - lazarus
     - lcl
@@ -28,20 +28,19 @@ parts:
     override-build: |
       snapcraftctl build
       lazbuild --build-mode=Release vCardStudio.lpi
-      ROOT=/root/parts/vcard-studio/install
-      install -d -m 755 $ROOT/usr/bin
-      install -s -m 755 vCardStudio $ROOT/usr/bin/vCardStudio
-      install -d -m 755 $ROOT/usr/share/vCardStudio/Languages
-      install -m 755 Languages/vCardStudio.po $ROOT/usr/share/vCardStudio/Languages
-      install -m 755 Languages/vCardStudio.cs.po $ROOT/usr/share/vCardStudio/Languages
-      install -m 755 Languages/UFormAbout.po $ROOT/usr/share/vCardStudio/Languages
-      install -m 755 Languages/UFormAbout.cs.po $ROOT/usr/share/vCardStudio/Languages
-      install -d -m 755 $ROOT/usr/share/vCardStudio/Images
-      install -m 755 Images/Profile.png $ROOT/usr/share/vCardStudio/Images
-      install -d -m 755 $ROOT/usr/share/applications
-      install -m 755 Install/snap/local/vCardStudio.desktop $ROOT/usr/share/applications
-      install -d -m 755 $ROOT/usr/share/pixmaps
-      install -m 755 Images/vCard\ Studio.png $ROOT/usr/share/pixmaps
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/bin
+      install -s -m 755 vCardStudio $SNAPCRAFT_PART_INSTALL/usr/bin/vCardStudio
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/vCardStudio.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/vCardStudio.cs.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/UFormAbout.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/UFormAbout.cs.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Images
+      install -m 755 Images/Profile.png $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Images
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/applications
+      install -m 755 Install/snap/local/vCardStudio.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications
+      install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
+      install -m 755 Images/vCard\ Studio.png $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
     stage:
       - etc
       - usr
