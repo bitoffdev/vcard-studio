@@ -63,6 +63,8 @@ type
     procedure ASelectAllExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ListView1Data(Sender: TObject; Item: TListItem);
     procedure ListView1DblClick(Sender: TObject);
@@ -80,7 +82,10 @@ type
     procedure FormContactPrevious(Sender: TObject);
     procedure FormContactNext(Sender: TObject);
     procedure DoUpdateInterface;
+    procedure UpdateColumns;
   public
+    ListViewColumns: TContactFieldIndexes;
+    FilterItems: TContactFilterItems;
     property Contacts: TContacts read FContacts write SetContacts;
     procedure ReloadList;
     procedure BeginUpdate;
@@ -122,17 +127,14 @@ procedure TFormContacts.ListView1Data(Sender: TObject; Item: TListItem);
     end;
   end;
 
+var
+  I: Integer;
 begin
   if Item.Index < ListViewSort1.List.Count then
   with TContact(ListViewSort1.List[Item.Index]) do begin
-    AddItem(Fields[cfFullName], True);
-    AddItem(Fields[cfFirstName]);
-    AddItem(Fields[cfMiddleName]);
-    AddItem(Fields[cfLastName]);
-    AddItem(Fields[cfTel]);
-    AddItem(Fields[cfTelCell]);
-    AddItem(Fields[cfTelHome]);
-    AddItem(Fields[cfTelWork]);
+    for I := 0 to ListViewColumns.Count - 1 do begin
+      AddItem(Fields[ListViewColumns[I]], I = 0);
+    end;
     Item.Data := ListViewSort1.List[Item.Index];
   end;
 end;
@@ -149,7 +151,16 @@ begin
 end;
 
 procedure TFormContacts.ListViewFilter1Change(Sender: TObject);
+var
+  I: Integer;
 begin
+  // Load filter StringGrid cells into filter
+  FilterItems.Clear;
+  for I := 0 to ListViewColumns.Count - 1 do
+    if I < ListViewFilter1.StringGrid.ColCount then
+      if ListViewFilter1.StringGrid.Cells[I, 0] <> '' then
+        FilterItems.AddNew(ListViewColumns[I], ListViewFilter1.StringGrid.Cells[I, 0]);
+
   ReloadList;
   UpdateInterface;
 end;
@@ -164,16 +175,7 @@ begin
   Result := 0;
   if Assigned(Item1) and Assigned(Item2) and (ListViewSort1.Order <> soNone) then begin
     with ListViewSort1 do
-    case Column of
-      0: Result := CompareString(TContact(Item1).Fields[cfFullName], TContact(Item2).Fields[cfFullName]);
-      1: Result := CompareString(TContact(Item1).Fields[cfFirstName], TContact(Item2).Fields[cfFirstName]);
-      2: Result := CompareString(TContact(Item1).Fields[cfMiddleName], TContact(Item2).Fields[cfMiddleName]);
-      3: Result := CompareString(TContact(Item1).Fields[cfLastName], TContact(Item2).Fields[cfLastName]);
-      4: Result := CompareString(TContact(Item1).Fields[cfTel], TContact(Item2).Fields[cfTel]);
-      5: Result := CompareString(TContact(Item1).Fields[cfTelCell], TContact(Item2).Fields[cfTelCell]);
-      6: Result := CompareString(TContact(Item1).Fields[cfTelHome], TContact(Item2).Fields[cfTelHome]);
-      7: Result := CompareString(TContact(Item1).Fields[cfTelWork], TContact(Item2).Fields[cfTelWork]);
-    end;
+    Result := CompareString(TContact(Item1).Fields[ListViewColumns[Column]], TContact(Item2).Fields[ListViewColumns[Column]]);
     if ListViewSort1.Order = soDown then Result := -Result;
   end else Result := 0;
 end;
@@ -190,34 +192,30 @@ end;
 procedure TFormContacts.FilterList(List: TFPGObjectList<TObject>);
 var
   I: Integer;
+  J: Integer;
+  K: Integer;
   FoundCount: Integer;
-  EnteredCount: Integer;
 begin
-  EnteredCount := ListViewFilter1.TextEnteredCount;
   for I := List.Count - 1 downto 0 do begin
     if List.Items[I] is TContact then begin
       with TContact(List.Items[I]) do begin
-         with ListViewFilter1 do
-         if Visible and (EnteredCount > 0) then begin
-           FoundCount := 0;
-           if Pos(UTF8LowerCase(StringGrid.Cells[0, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfFullName])) > 0 then Inc(FoundCount);
-           if Pos(UTF8LowerCase(StringGrid.Cells[1, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfFirstName])) > 0 then Inc(FoundCount);
-           if Pos(UTF8LowerCase(StringGrid.Cells[2, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfMiddleName])) > 0 then Inc(FoundCount);
-           if Pos(UTF8LowerCase(StringGrid.Cells[3, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfLastName])) > 0 then Inc(FoundCount);
-           if Pos(UTF8LowerCase(StringGrid.Cells[4, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTel])) > 0 then Inc(FoundCount);
-           if Pos(UTF8LowerCase(StringGrid.Cells[5, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTelCell])) > 0 then Inc(FoundCount);
-           if Pos(UTF8LowerCase(StringGrid.Cells[6, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTelHome])) > 0 then Inc(FoundCount);
-           if Pos(UTF8LowerCase(StringGrid.Cells[7, 0]),
-             UTF8LowerCase(TContact(List.Items[I]).Fields[cfTelWork])) > 0 then Inc(FoundCount);
-           if FoundCount <> EnteredCount then List.Delete(I);
-         end;
+        FoundCount := 0;
+        for J := 0 to FilterItems.Count - 1 do begin
+          if FilterItems[J].FieldIndex = cfNone then begin
+            for K := 0 to TContact(List.Items[I]).Parent.Fields.Count - 1 do begin
+              if Pos(UTF8LowerCase(FilterItems[J].Value),
+                UTF8LowerCase(TContact(List.Items[I]).Fields[TContact(List.Items[I]).Parent.Fields[K].Index])) > 0 then begin
+                  Inc(FoundCount);
+                  Break;
+                end;
+            end;
+          end else begin
+            if Pos(UTF8LowerCase(FilterItems[J].Value),
+              UTF8LowerCase(TContact(List.Items[I]).Fields[FilterItems[J].FieldIndex])) > 0 then
+                Inc(FoundCount);
+          end;
+        end;
+        if FoundCount <> FilterItems.Count then List.Delete(I);
       end;
     end else
     if TContact(List.Items[I]) is TContact then begin
@@ -272,6 +270,24 @@ begin
       Text := Text + ', ' + SSelected + ': ' + IntToStr(SelectedCount);
   end;
   StatusBar1.Panels[0].Text := Text;
+end;
+
+procedure TFormContacts.UpdateColumns;
+var
+  I: Integer;
+  Field: TContactField;
+begin
+  while ListView1.Columns.Count < ListViewColumns.Count do
+    ListView1.Columns.Add;
+  while ListView1.Columns.Count > ListViewColumns.Count do
+    ListView1.Columns.Delete(ListView1.Columns.Count - 1);
+  for I := 0 to ListView1.Columns.Count - 1 do begin
+    if Assigned(Contacts) and Assigned(Contacts.ContactsFile) then begin
+      Field := Contacts.ContactsFile.Fields.GetByIndex(ListViewColumns[I]);
+      if Assigned(Field) then
+        ListView1.Columns[I].Caption := Field.Title;
+    end;
+  end;
 end;
 
 procedure TFormContacts.FormShow(Sender: TObject);
@@ -511,12 +527,18 @@ var
   I: Integer;
 begin
   BeginUpdate;
-  ListView1.BeginUpdate;
-  for I := 0 to ListView1.Items.Count - 1 do
-    ListView1.Items[I].Selected := True;
-  //ListView1.SelectAll;
-  ListView1.EndUpdate;
-  EndUpdate;
+  try
+    ListView1.BeginUpdate;
+    try
+      for I := 0 to ListView1.Items.Count - 1 do
+        ListView1.Items[I].Selected := True;
+      //ListView1.SelectAll;
+    finally
+      ListView1.EndUpdate;
+    end;
+  finally
+    EndUpdate;
+  end;
 end;
 
 procedure TFormContacts.FormClose(Sender: TObject; var CloseAction: TCloseAction
@@ -529,11 +551,35 @@ procedure TFormContacts.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
+  FilterItems := TContactFilterItems.Create;
+
+  ListViewColumns := TContactFieldIndexes.Create;
+  ListViewColumns.Add(cfFullName);
+  ListViewColumns.Add(cfFirstName);
+  ListViewColumns.Add(cfMiddleName);
+  ListViewColumns.Add(cfLastName);
+  ListViewColumns.Add(cfTel);
+  ListViewColumns.Add(cfTelCell);
+  ListViewColumns.Add(cfTelHome);
+  ListViewColumns.Add(cfTelWork);
+  ListViewColumns.Add(cfEmailWork);
+
   FContacts := nil;
   for I := 0 to ToolBar1.ButtonCount - 1 do begin
     ToolBar1.Buttons[I].ShowHint := True;
     ToolBar1.Buttons[I].Hint := ToolBar1.Buttons[I].Caption;
   end;
+end;
+
+procedure TFormContacts.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(ListViewColumns);
+  FreeAndNil(FilterItems);
+end;
+
+procedure TFormContacts.FormResize(Sender: TObject);
+begin
+  ListViewFilter1.UpdateFromListView(ListView1);
 end;
 
 procedure TFormContacts.ReloadList;
@@ -566,6 +612,8 @@ begin
   ACopy.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
   ACut.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
   APaste.Enabled := Assigned(Contacts) and (Clipboard.AsText <> '');
+
+  UpdateColumns;
 end;
 
 end.
