@@ -118,8 +118,12 @@ type
 
   TContact = class
   private
+    FModified: Boolean;
+    FOnModify: TNotifyEvent;
     function GetField(Index: TContactFieldIndex): string;
     procedure SetField(Index: TContactFieldIndex; AValue: string);
+    procedure SetModified(AValue: Boolean);
+    procedure DoOnModify;
   public
     Properties: TContactProperties;
     Parent: TContactsFile;
@@ -136,7 +140,11 @@ type
     procedure SaveToFile(FileName: string);
     procedure LoadFromFile(FileName: string);
     property Fields[Index: TContactFieldIndex]: string read GetField write SetField;
+    property Modified: Boolean read FModified write SetModified;
+    property OnModify: TNotifyEvent read FOnModify write FOnModify;
   end;
+
+  TGetContactEvent = function (Contact: TContact): TContact of object;
 
   { TContacts }
 
@@ -849,7 +857,20 @@ begin
         Properties.Remove(Prop);
       end;
     end;
+    Modified := True;
   end else raise Exception.Create(SFieldIndexNotDefined);
+end;
+
+procedure TContact.SetModified(AValue: Boolean);
+begin
+  if FModified = AValue then Exit;
+  FModified := AValue;
+  DoOnModify;
+end;
+
+procedure TContact.DoOnModify;
+begin
+  if Assigned(FOnModify) then FOnModify(Self);
 end;
 
 function TContact.HasField(FieldIndex: TContactFieldIndex): Boolean;
@@ -902,6 +923,7 @@ end;
 procedure TContact.Assign(Source: TContact);
 begin
   Properties.Assign(Source.Properties);
+  FModified := Source.FModified;
 end;
 
 function TContact.UpdateFrom(Source: TContact): Boolean;

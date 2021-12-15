@@ -205,8 +205,8 @@ type
     procedure SetProfilePhotoActive(AValue: Boolean);
   private
     FContact: TContact;
-    FOnNext: TNotifyEvent;
-    FOnPrevious: TNotifyEvent;
+    FOnGetNext: TGetContactEvent;
+    FOnGetPrevious: TGetContactEvent;
     FormProperties: TFormProperties;
     procedure SetContact(AValue: TContact);
     procedure ReloadAllPropertiesTab;
@@ -215,8 +215,8 @@ type
   public
     procedure UpdateInterface;
     property Contact: TContact read FContact write SetContact;
-    property OnPrevious: TNotifyEvent read FOnPrevious write FOnPrevious;
-    property OnNext: TNotifyEvent read FOnNext write FOnNext;
+    property OnGetPrevious: TGetContactEvent read FOnGetPrevious write FOnGetPrevious;
+    property OnGetNext: TGetContactEvent read FOnGetNext write FOnGetNext;
   end;
 
 var
@@ -653,7 +653,8 @@ end;
 
 procedure TFormContact.ButtonNextClick(Sender: TObject);
 begin
-  if Assigned(FOnNext) then FOnNext(Self);
+  if Assigned(FOnGetNext) then
+     Contact := FOnGetNext(Contact);
 end;
 
 procedure TFormContact.APhotoLoadExecute(Sender: TObject);
@@ -678,7 +679,8 @@ end;
 
 procedure TFormContact.ButtonPreviousClick(Sender: TObject);
 begin
-  if Assigned(FOnPrevious) then FOnPrevious(Self);
+  if Assigned(FOnGetPrevious) then
+    Contact := FOnGetPrevious(Contact);
 end;
 
 procedure TFormContact.FormCreate(Sender: TObject);
@@ -698,6 +700,8 @@ procedure TFormContact.UpdateInterface;
 begin
   APhotoSave.Enabled := ProfilePhotoActive;
   APhotoClear.Enabled := ProfilePhotoActive;
+  //ButtonNext.Enabled := Assigned(FOnGetNext) and Assigned(FOnGetNext(Contact));
+  //ButtonPrevious.Enabled := Assigned(FOnGetPrevious) and Assigned(FOnGetPrevious(Contact));
 end;
 
 end.
