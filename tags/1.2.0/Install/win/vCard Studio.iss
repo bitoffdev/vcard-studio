@@ -4,7 +4,7 @@
 #define MyAppName "vCard Studio"
 #define MyAppNameShort "vCardStudio"
 #define MyAppVersion "1.2.0"
-#define MyAppVersionSuffix "alfa"
+;#define MyAppVersionSuffix "alfa"
 #define MyAppPublisher "Chronosoft"
 #define MyAppPublisherShort "Chronosoft"
 #define MyAppURL "https://app.zdechov.net/vcard-studio"

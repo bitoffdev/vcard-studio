@@ -1,3 +1,23 @@
+Version 1.2.0 (2021-12-15)
+==========================
+
+* Added: Find dialog to search text value by given contact field or by any field.
+* Added: Logo contact field.
+* Added: Copy, cut and paste context menu action in contacts list.
+* Added: Allow to save from file and load to file contact property values in All fields tab.
+* Added: Support for GaduGadu, GroupWise and Categories fields.
+* Added: Remember last count value used in Generate contact form.
+* Added: Sort list of contact fields in Find duplicates and Field windows.
+* Modified: Merge multiple files action replaced by Combine action. During Combine action files are simply added into final contacts list even with duplicate contacts.
+* Modified: Added Merge button into Find duplicate window to merge contacts by selected contact field.
+* Modified: Show only used contact fields in Find duplicates window.
+* Fixed: Wrong items were removed if contacts and properties lists were in filtered state.
+* Fixed: Properties with just BASE64 instead of ENCODING=BASE64 was not decoded using Base64 and so contact photos were not loaded correctly.
+* Fixed: Also load contact photos with format in lower case.
+* Fixed: Wrong field selected for duplicates find from field combobox selection in Find duplicates window.
+* Fixed: Missing Version field definition causing error in contacts generation form.
+* Fixed: Default profile image location detection under Linux.
+
 Version 1.1.0 (2021-12-09)
 ==========================
 

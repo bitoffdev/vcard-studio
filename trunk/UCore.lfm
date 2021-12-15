@@ -599,7 +599,7 @@ object Core: TCore
   object ApplicationInfo1: TApplicationInfo
     Identification = 1
     VersionMajor = 1
-    VersionMinor = 1
+    VersionMinor = 3
     VersionBugFix = 0
     VersionSuffix = 'alfa'
     HomePage = 'https://app.zdechov.net/vcard-studio'
@@ -607,7 +607,7 @@ object Core: TCore
     EmailContact = 'robie@centrum.cz'
     AppName = 'vCard Studio'
     Description = 'vCard files management tool'
-    ReleaseDate = 44539
+    ReleaseDate = 44545
     RegistryKey = '\Software\Chronosoft\vCard Studio'
     RegistryRoot = rrKeyCurrentUser
     License = 'CC0'
