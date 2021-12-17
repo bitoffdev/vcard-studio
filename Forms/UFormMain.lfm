@@ -4,7 +4,7 @@ object FormMain: TFormMain
   Top = 447
   Width = 1178
   Caption = 'vCard Studio'
-  ClientHeight = 766
+  ClientHeight = 762
   ClientWidth = 1178
   DesignTimePPI = 144
   Menu = MainMenu1
@@ -82,7 +82,7 @@ object FormMain: TFormMain
       Left = 188
       Height = 33
       Top = 5
-      Width = 71
+      Width = 106
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 186
@@ -96,14 +96,19 @@ object FormMain: TFormMain
       TabOrder = 1
       Transparent = True
       object ToolButton5: TToolButton
-        Left = 36
+        Left = 71
         Top = 0
         Action = Core.ASettings
       end
       object ToolButton6: TToolButton
-        Left = 1
+        Left = 36
         Top = 0
         Action = Core.AFindDuplicate
+      end
+      object ToolButton7: TToolButton
+        Left = 1
+        Top = 0
+        Action = Core.AFind
       end
     end
   end
