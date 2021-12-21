@@ -8831,7 +8831,7 @@ object Core: TCore
     Top = 125
   end
   object AboutDialog1: TAboutDialog
-    CoolTranslator = Translator
+    Translator = Translator
     ThemeManager = ThemeManager1
     ApplicationInfo = ApplicationInfo1
     Left = 576

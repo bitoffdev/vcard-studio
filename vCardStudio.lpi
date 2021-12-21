@@ -71,8 +71,8 @@
         </CompilerOptions>
       </Item2>
       <SharedMatrixOptions Count="2">
-        <Item1 ID="186308868222" Targets="Common,CoolTranslator" Modes="Debug" Value="-g -gl -gh -CirotR -O1"/>
-        <Item2 ID="035947176865" Targets="Common,CoolTranslator" Modes="Release" Value="-CX -XX -O3"/>
+        <Item1 ID="186308868222" Targets="Common" Modes="Debug" Value="-g -gl -gh -CirotR -O1"/>
+        <Item2 ID="035947176865" Targets="Common" Modes="Release" Value="-CX -XX -O3"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
