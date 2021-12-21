@@ -202,9 +202,9 @@ begin
         FoundCount := 0;
         for J := 0 to FilterItems.Count - 1 do begin
           if FilterItems[J].FieldIndex = cfNone then begin
-            for K := 0 to TContact(List.Items[I]).Parent.Fields.Count - 1 do begin
+            for K := 0 to TContact(List.Items[I]).GetFields.Count - 1 do begin
               if Pos(UTF8LowerCase(FilterItems[J].Value),
-                UTF8LowerCase(TContact(List.Items[I]).Fields[TContact(List.Items[I]).Parent.Fields[K].Index])) > 0 then begin
+                UTF8LowerCase(TContact(List.Items[I]).Fields[TContact(List.Items[I]).GetFields[K].Index])) > 0 then begin
                   Inc(FoundCount);
                   Break;
                 end;
@@ -285,7 +285,7 @@ begin
     ListView1.Columns.Delete(ListView1.Columns.Count - 1);
   for I := 0 to ListView1.Columns.Count - 1 do begin
     if Assigned(Contacts) and Assigned(Contacts.ContactsFile) then begin
-      Field := Contacts.ContactsFile.Fields.GetByIndex(ListViewColumns[I]);
+      Field := TContact.GetFields.GetByIndex(ListViewColumns[I]);
       if Assigned(Field) then
         ListView1.Columns[I].Caption := Field.Title;
     end;
@@ -311,10 +311,11 @@ begin
   try
     Contact := TContact.Create;
     try
-      Contact.Parent := Contacts.ContactsFile;
+      Contact.ContactsFile := Contacts.ContactsFile;
       FormContact.Contact := Contact;
       FormContact.OnGetPrevious := GetPreviousContact;
       FormContact.OnGetNext := GetNextContact;
+      Contact.Properties.AddNew('VERSION', Core.DefaultVcardVersion);
       if FormContact.ShowModal = mrOK then begin
         Contacts.Add(Contact);
         Core.DataFile.Modified := True;
@@ -340,7 +341,7 @@ begin
   try
     Contact := TContact.Create;
     try
-      Contact.Parent := Contacts.ContactsFile;
+      Contact.ContactsFile := Contacts.ContactsFile;
       Contact.Assign(TContact(ListView1.Selected.Data));
       FormContact.Contact := Contact;
       FormContact.OnGetPrevious := GetPreviousContact;
@@ -441,7 +442,7 @@ begin
   try
     Contact := TContact.Create;
     try
-      Contact.Parent := Contacts.ContactsFile;
+      Contact.ContactsFile := Contacts.ContactsFile;
       Contact.Assign(TContact(ListView1.Selected.Data));
       FormContact.Contact := Contact;
       FormContact.OnGetPrevious := GetPreviousContact;

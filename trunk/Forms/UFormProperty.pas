@@ -101,7 +101,7 @@ begin
   Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
   FContactProperty := nil;
-  TContactsFile(Core.DataFile).Fields.LoadToStrings(ComboBoxField.Items);
+  TContact.GetFields.LoadToStrings(ComboBoxField.Items);
 end;
 
 procedure TFormProperty.FormShow(Sender: TObject);
@@ -128,7 +128,7 @@ begin
   finally
     Groups.Free;
   end;
-  Field := TContactsFile(Core.DataFile).Fields.GetBySysNameGroups(EditName.Text,
+  Field := TContact.GetFields.GetBySysNameGroups(EditName.Text,
     GroupsArray);
   if Assigned(Field) then
     ComboBoxField.ItemIndex := ComboBoxField.Items.IndexOfObject(Field);

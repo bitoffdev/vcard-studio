@@ -778,6 +778,10 @@ msgstr "Jazyk:"
 msgid "Theme:"
 msgstr "Téma:"
 
+#: tformsettings.label3.caption
+msgid "Default vCard version:"
+msgstr "Výchozí verze vCard:"
+
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
 msgstr "DPI:"
@@ -1248,4 +1252,3 @@ msgstr "Hodnota"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
-
