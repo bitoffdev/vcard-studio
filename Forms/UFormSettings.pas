@@ -20,8 +20,10 @@ type
     CheckBoxAutomaticDPI: TCheckBox;
     ComboBoxLanguage: TComboBox;
     ComboBoxTheme: TComboBox;
+    EditDefaultVcardVersion: TEdit;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     LabelDPI: TLabel;
     SpinEditDPI: TSpinEdit;
     procedure ButtonOkClick(Sender: TObject);
@@ -99,6 +101,7 @@ begin
   CheckBoxAutomaticDPI.Checked := Core.ScaleDPI1.AutoDetect;
   SpinEditDPI.Value := Core.ScaleDPI1.DPI.X;
   CheckBoxReopenLastFileOnStart.Checked := Core.ReopenLastFileOnStart;
+  EditDefaultVcardVersion.Text := Core.DefaultVcardVersion;
   UpdateInterface;
 end;
 
@@ -107,6 +110,7 @@ begin
   Core.ScaleDPI1.AutoDetect := CheckBoxAutomaticDPI.Checked;
   Core.ScaleDPI1.DPI := Point(SpinEditDPI.Value, SpinEditDPI.Value);
   Core.ReopenLastFileOnStart := CheckBoxReopenLastFileOnStart.Checked;
+  Core.DefaultVcardVersion := EditDefaultVcardVersion.Text;
 end;
 
 procedure TFormSettings.UpdateInterface;

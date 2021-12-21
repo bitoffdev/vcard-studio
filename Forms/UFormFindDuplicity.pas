@@ -118,7 +118,7 @@ begin
   if Assigned(FContacts) then begin
     Items := TStringList.Create;
     try
-      Contacts.ContactsFile.Fields.LoadToStrings(Items);
+      TContact.GetFields.LoadToStrings(Items);
 
       // Remove fields which are not used in contacts
       for I := Items.Count - 1 downto 0 do
@@ -129,7 +129,7 @@ begin
     finally
       Items.Free;
     end;
-    ContactField := Contacts.ContactsFile.Fields.GetByIndex(ContactFieldIndex);
+    ContactField := TContact.GetFields.GetByIndex(ContactFieldIndex);
     ComboBoxField.ItemIndex := ComboBoxField.Items.IndexOfObject(ContactField);
     if (ComboBoxField.Items.Count > 0) and (ComboBoxField.ItemIndex = -1) then
       ComboBoxField.ItemIndex := 0;

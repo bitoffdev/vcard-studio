@@ -105,6 +105,7 @@ type
   { TContactProperties }
 
   TContactProperties = class(TFPGObjectList<TContactProperty>)
+    function AddNew(Name, Value: string): TContactProperty;
     procedure Assign(Source: TContactProperties);
     procedure AssignToList(List: TFPGObjectList<TObject>);
     function GetByName(Name: string): TContactProperty;
@@ -120,13 +121,15 @@ type
   private
     FModified: Boolean;
     FOnModify: TNotifyEvent;
+    class var FFields: TContactFields;
     function GetField(Index: TContactFieldIndex): string;
     procedure SetField(Index: TContactFieldIndex; AValue: string);
     procedure SetModified(AValue: Boolean);
     procedure DoOnModify;
   public
     Properties: TContactProperties;
-    Parent: TContactsFile;
+    ContactsFile: TContactsFile;
+    class function GetFields: TContactFields;
     function HasField(FieldIndex: TContactFieldIndex): Boolean;
     function FullNameToFileName: string;
     function GetProperty(Field: TContactField): TContactProperty; overload;
@@ -135,6 +138,7 @@ type
     function UpdateFrom(Source: TContact): Boolean;
     constructor Create;
     destructor Destroy; override;
+    class destructor Destroy;
     procedure SaveToStrings(Output: TStrings);
     function LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
     procedure SaveToFile(FileName: string);
@@ -166,11 +170,9 @@ type
   TContactsFile = class(TDataFile)
   private
     FOnError: TErrorEvent;
-    procedure InitFields;
     procedure Error(Text: string; Line: Integer);
     function NewItem(Key, Value: string): string;
   public
-    Fields: TContactFields;
     Contacts: TContacts;
     function GetFileName: string; override;
     function GetFileExt: string; override;
@@ -429,6 +431,14 @@ end;
 
 { TContactProperties }
 
+function TContactProperties.AddNew(Name, Value: string): TContactProperty;
+begin
+  Result := TContactProperty.Create;
+  Result.Name := Name;
+  Result.Value := Value;
+  Add(Result);
+end;
+
 procedure TContactProperties.Assign(Source: TContactProperties);
 var
   I: Integer;
@@ -642,7 +652,7 @@ begin
     Delete(Count - 1);
   for I := 0 to Count - 1 do begin
     Items[I].Assign(Source.Items[I]);
-    Items[I].Parent := ContactsFile;
+    Items[I].ContactsFile := ContactsFile;
   end;
 end;
 
@@ -654,7 +664,7 @@ begin
   for I := 0 to Contacts.Count - 1 do begin
     NewContact := TContact.Create;
     NewContact.Assign(Contacts[I]);
-    NewContact.Parent := ContactsFile;
+    NewContact.ContactsFile := ContactsFile;
     Add(NewContact);
   end;
 end;
@@ -667,7 +677,7 @@ begin
   for I := 0 to Contacts.Count - 1 do begin
     NewContact := TContact.Create;
     NewContact.Assign(Contacts[I]);
-    NewContact.Parent := ContactsFile;
+    NewContact.ContactsFile := ContactsFile;
     Insert(Index, NewContact);
     Inc(Index);
   end;
@@ -686,7 +696,7 @@ end;
 function TContacts.AddNew: TContact;
 begin
   Result := TContact.Create;
-  Result.Parent := ContactsFile;
+  Result.ContactsFile := ContactsFile;
   Add(Result);
 end;
 
@@ -722,7 +732,7 @@ begin
   end else begin
     NewContact := TContact.Create;
     NewContact.Assign(Contact);
-    NewContact.Parent := ContactsFile;
+    NewContact.ContactsFile := ContactsFile;
     Add(NewContact);
   end;
 end;
@@ -812,321 +822,11 @@ end;
 
 { TContact }
 
-function TContact.GetField(Index: TContactFieldIndex): string;
-var
-  Prop: TContactProperty;
-  Field: TContactField;
+class function TContact.GetFields: TContactFields;
 begin
-  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
-  Field := Parent.Fields.GetByIndex(Index);
-  if Assigned(Field) then begin
-    Prop := GetProperty(Field);
-    if Assigned(Prop) then begin
-      Field := Parent.Fields.GetByIndex(Index);
-      if Field.ValueIndex <> -1 then begin
-        Result := DecodeEscaped(Prop.ValueItem[Field.ValueIndex])
-      end else Result := Prop.Value;
-    end else Result := '';
-  end else raise Exception.Create(SFieldIndexNotDefined);
-end;
-
-procedure TContact.SetField(Index: TContactFieldIndex; AValue: string);
-var
-  Prop: TContactProperty;
-  Field: TContactField;
-  I: Integer;
-begin
-  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
-  Field := Parent.Fields.GetByIndex(Index);
-  if Assigned(Field) then begin
-    Prop := GetProperty(Field);
-    if (not Assigned(Prop)) and (AValue <> '') then begin
-      Prop := TContactProperty.Create;
-      Prop.Name := Field.SysName;
-      for I := 0 to Length(Field.Groups) - 1 do
-        Prop.Attributes.Add(Field.Groups[I]);
-      Properties.Add(Prop);
-    end;
-    if Assigned(Prop) then begin
-      if Field.ValueIndex <> -1 then begin
-        Prop.ValueItem[Field.ValueIndex] := EncodeEscaped(AValue);
-      end else Prop.Value := AValue;
-
-      // Remove if empty
-      if Prop.Value = '' then begin
-        Properties.Remove(Prop);
-      end;
-    end;
-    Modified := True;
-  end else raise Exception.Create(SFieldIndexNotDefined);
-end;
-
-procedure TContact.SetModified(AValue: Boolean);
-begin
-  if FModified = AValue then Exit;
-  FModified := AValue;
-  DoOnModify;
-end;
-
-procedure TContact.DoOnModify;
-begin
-  if Assigned(FOnModify) then FOnModify(Self);
-end;
-
-function TContact.HasField(FieldIndex: TContactFieldIndex): Boolean;
-var
-  Field: TContactField;
-begin
-  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
-  Field := Parent.Fields.GetByIndex(FieldIndex);
-  if Assigned(Field) then begin
-    Result := Assigned(GetProperty(Field));
-  end else raise Exception.Create(SFieldIndexNotDefined);
-end;
-
-function TContact.FullNameToFileName: string;
-var
-  I: Integer;
-begin
-  Result := Fields[cfFullName];
-  for I := 1 to Length(Result) do begin
-    if Result[I] in [':', '/', '\', '.', '"', '*', '|', '?', '<', '>'] then
-      Result[I] := '_';
-  end;
-end;
-
-function TContact.GetProperty(Field: TContactField): TContactProperty;
-var
-  I: Integer;
-begin
-  Result := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
-  I := 0;
-  while (not Assigned(Result)) and (I < Field.Alternatives.Count) do begin
-    Result := Properties.GetByNameGroups(Field.Alternatives[I].SysName,
-      Field.Alternatives[I].Groups, Field.Alternatives[I].NoGroups);
-    if Assigned(Result) then Break;
-    Inc(I);
-  end;
-end;
-
-function TContact.GetProperty(FieldIndex: TContactFieldIndex): TContactProperty;
-var
-  Field: TContactField;
-begin
-  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
-  Field := Parent.Fields.GetByIndex(FieldIndex);
-  if Assigned(Field) then begin
-    Result := GetProperty(Field);
-  end else Result := nil;
-end;
-
-procedure TContact.Assign(Source: TContact);
-begin
-  Properties.Assign(Source.Properties);
-  FModified := Source.FModified;
-end;
-
-function TContact.UpdateFrom(Source: TContact): Boolean;
-var
-  I: Integer;
-begin
-  if not Assigned(Parent) then raise Exception.Create(SContactHasNoParent);
-  Result := False;
-  for I := 0 to Parent.Fields.Count - 1 do begin
-    if (Source.Fields[Parent.Fields[I].Index] <> '') and
-      (Source.Fields[Parent.Fields[I].Index] <>
-      Fields[Parent.Fields[I].Index]) then begin
-        Result := True;
-        Fields[Parent.Fields[I].Index] := Source.Fields[Parent.Fields[I].Index];
-      end;
-  end;
-end;
-
-constructor TContact.Create;
-begin
-  Properties := TContactProperties.Create;
-end;
-
-destructor TContact.Destroy;
-begin
-  FreeAndNil(Properties);
-  inherited;
-end;
-
-procedure TContact.SaveToStrings(Output: TStrings);
-var
-  I: Integer;
-  NameText: string;
-  Value2: string;
-  LineIndex: Integer;
-  OutText: string;
-  LinePrefix: string;
-  CutLength: Integer;
-const
-  MaxLineLength = 73;
-begin
-    with Output do begin
-      Add(VCardBegin);
-      for I := 0 to Properties.Count - 1 do
-      with Properties[I] do begin
-        NameText := Name;
-        if Attributes.Count > 0 then
-          NameText := NameText + ';' + Attributes.DelimitedText;
-        if Encoding <> '' then begin
-          Value2 := GetEncodedValue;
-          NameText := NameText + ';ENCODING=' + Encoding;
-        end else Value2 := Value;
-        if Pos(LineEnding, Value2) > 0 then begin
-          Add(NameText + ':' + GetNext(Value2, LineEnding));
-          while Pos(LineEnding, Value2) > 0 do begin
-            Add(' ' + GetNext(Value2, LineEnding));
-          end;
-          Add(' ' + GetNext(Value2, LineEnding));
-          Add('');
-        end else begin
-          OutText := NameText + ':' + Value2;
-          LineIndex := 0;
-          LinePrefix := '';
-          while True do begin
-            if Length(OutText) > MaxLineLength then begin
-              CutLength := MaxLineLength;
-              if Encoding = 'QUOTED-PRINTABLE' then begin
-                // Do not cut encoded items
-                if ((CutLength - 2) >= 1) and (OutText[CutLength - 2] = '=') then
-                  Dec(CutLength, 2)
-                else if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = '=') then
-                  Dec(CutLength, 1);
-              end;
-              Add(LinePrefix + Copy(OutText, 1, CutLength));
-              LinePrefix := ' ';
-              System.Delete(OutText, 1, CutLength);
-              Inc(LineIndex);
-              Continue;
-            end else begin
-              Add(LinePrefix + OutText);
-              Break;
-            end;
-          end;
-          if LinePrefix <> '' then Add('');
-        end;
-      end;
-      Add(VCardEnd);
-    end;
-end;
-
-function TContact.LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
-type
-  TParseState = (psNone, psInside, psFinished);
-var
-  ParseState: TParseState;
-  Line: string;
-  Value: string;
-  I: Integer;
-  NewProperty: TContactProperty;
-  CommandPart: string;
-  Names: string;
-begin
-  ParseState := psNone;
-  I := StartLine;
-  while I < Lines.Count do begin
-    Line := Trim(Lines[I]);
-    if Line = '' then begin
-      // Skip empty lines
-    end else
-    if ParseState = psNone then begin
-      if Line = VCardBegin then begin
-        ParseState := psInside;
-      end else begin
-        Parent.Error(SExpectedVCardBegin, I + 1);
-        I := -1;
-        Break;
-      end;
-    end else
-    if ParseState = psInside then begin
-      if Line = VCardEnd then begin
-        ParseState := psFinished;
-        Inc(I);
-        Break;
-      end else
-      if Pos(':', Line) > 0 then begin
-        CommandPart := GetNext(Line, ':');
-        Names := CommandPart;
-        Value := Line;
-        while True do begin
-          Inc(I);
-          if (Length(Lines[I]) > 0) and (Lines[I][1] = ' ') then begin
-            Value := Value + Trim(Lines[I]);
-          end else
-          if (Length(Lines[I]) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
-            (Lines[I][1] = '=') then begin
-            Value := Value + Copy(Trim(Lines[I]), 2, MaxInt);
-          end else begin
-            Dec(I);
-            Break;
-          end;
-        end;
-        NewProperty := Properties.GetByName(Names);
-        if not Assigned(NewProperty) then begin
-          NewProperty := TContactProperty.Create;
-          Properties.Add(NewProperty);
-        end;
-        NewProperty.Attributes.DelimitedText := Names;
-        if NewProperty.Attributes.Count > 0 then begin
-          NewProperty.Name := NewProperty.Attributes[0];
-          NewProperty.Attributes.Delete(0);
-        end;
-        NewProperty.Value := Value;
-        NewProperty.EvaluateAttributes;
-      end else begin
-        Parent.Error(SExpectedProperty, I + 1);
-        I := -1;
-        Break;
-      end;
-    end;
-    Inc(I);
-  end;
-  Result := I;
-end;
-
-procedure TContact.SaveToFile(FileName: string);
-var
-  Lines: TStringList;
-begin
-  Lines := TStringList.Create;
-  try
-    SaveToStrings(Lines);
-    Lines.SaveToFile(FileName);
-  finally
-    Lines.Free;
-  end;
-end;
-
-procedure TContact.LoadFromFile(FileName: string);
-var
-  Lines: TStringList;
-begin
-  Lines := TStringList.Create;
-  try
-    Lines.LoadFromFile(FileName);
-    {$IF FPC_FULLVERSION>=30200}
-    if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
-      Lines.LoadFromFile(FileName, TEncoding.Unicode);
-      if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
-        Lines.LoadFromFile(FileName, TEncoding.BigEndianUnicode);
-      end;
-    end;
-    {$ENDIF}
-    LoadFromStrings(Lines);
-  finally
-    Lines.Free;
-  end;
-end;
-
-{ TContactsFile }
-
-procedure TContactsFile.InitFields;
-begin
-  with Fields do begin
+  if not Assigned(FFields) then begin
+    FFields := TContactFields.Create;
+    with FFields do begin
     AddNew('VERSION', [], [], SVersion, cfVersion, dtString);
     AddNew('N', [], [], SLastName, cfLastName, dtString, 0);
     AddNew('N', [], [], SFirstName, cfFirstName, dtString, 1);
@@ -1229,8 +929,327 @@ begin
       AddAlternative('X-SOCIALPROFILE', ['REDDIT'], []);
     with AddNew('X-MYSPACE', [], [], SMySpace, cfMySpace, dtString) do
       AddAlternative('X-SOCIALPROFILE', ['MYSPACE'], []);
+    end;
+  end;
+  Result := FFields;
+end;
+
+function TContact.GetField(Index: TContactFieldIndex): string;
+var
+  Prop: TContactProperty;
+  Field: TContactField;
+begin
+  if not Assigned(ContactsFile) then raise Exception.Create(SContactHasNoParent);
+  Field := GetFields.GetByIndex(Index);
+  if Assigned(Field) then begin
+    Prop := GetProperty(Field);
+    if Assigned(Prop) then begin
+      Field := GetFields.GetByIndex(Index);
+      if Field.ValueIndex <> -1 then begin
+        Result := DecodeEscaped(Prop.ValueItem[Field.ValueIndex])
+      end else Result := Prop.Value;
+    end else Result := '';
+  end else raise Exception.Create(SFieldIndexNotDefined);
+end;
+
+procedure TContact.SetField(Index: TContactFieldIndex; AValue: string);
+var
+  Prop: TContactProperty;
+  Field: TContactField;
+  I: Integer;
+begin
+  if not Assigned(ContactsFile) then raise Exception.Create(SContactHasNoParent);
+  Field := GetFields.GetByIndex(Index);
+  if Assigned(Field) then begin
+    Prop := GetProperty(Field);
+    if (not Assigned(Prop)) and (AValue <> '') then begin
+      Prop := TContactProperty.Create;
+      Prop.Name := Field.SysName;
+      for I := 0 to Length(Field.Groups) - 1 do
+        Prop.Attributes.Add(Field.Groups[I]);
+      Properties.Add(Prop);
+    end;
+    if Assigned(Prop) then begin
+      if Field.ValueIndex <> -1 then begin
+        Prop.ValueItem[Field.ValueIndex] := EncodeEscaped(AValue);
+      end else Prop.Value := AValue;
+
+      // Remove if empty
+      if Prop.Value = '' then begin
+        Properties.Remove(Prop);
+      end;
+    end;
+    Modified := True;
+  end else raise Exception.Create(SFieldIndexNotDefined);
+end;
+
+procedure TContact.SetModified(AValue: Boolean);
+begin
+  if FModified = AValue then Exit;
+  FModified := AValue;
+  DoOnModify;
+end;
+
+procedure TContact.DoOnModify;
+begin
+  if Assigned(FOnModify) then FOnModify(Self);
+end;
+
+function TContact.HasField(FieldIndex: TContactFieldIndex): Boolean;
+var
+  Field: TContactField;
+begin
+  if not Assigned(ContactsFile) then raise Exception.Create(SContactHasNoParent);
+  Field := GetFields.GetByIndex(FieldIndex);
+  if Assigned(Field) then begin
+    Result := Assigned(GetProperty(Field));
+  end else raise Exception.Create(SFieldIndexNotDefined);
+end;
+
+function TContact.FullNameToFileName: string;
+var
+  I: Integer;
+begin
+  Result := Fields[cfFullName];
+  for I := 1 to Length(Result) do begin
+    if Result[I] in [':', '/', '\', '.', '"', '*', '|', '?', '<', '>'] then
+      Result[I] := '_';
   end;
 end;
+
+function TContact.GetProperty(Field: TContactField): TContactProperty;
+var
+  I: Integer;
+begin
+  Result := Properties.GetByNameGroups(Field.SysName, Field.Groups, Field.NoGroups);
+  I := 0;
+  while (not Assigned(Result)) and (I < Field.Alternatives.Count) do begin
+    Result := Properties.GetByNameGroups(Field.Alternatives[I].SysName,
+      Field.Alternatives[I].Groups, Field.Alternatives[I].NoGroups);
+    if Assigned(Result) then Break;
+    Inc(I);
+  end;
+end;
+
+function TContact.GetProperty(FieldIndex: TContactFieldIndex): TContactProperty;
+var
+  Field: TContactField;
+begin
+  if not Assigned(ContactsFile) then raise Exception.Create(SContactHasNoParent);
+  Field := GetFields.GetByIndex(FieldIndex);
+  if Assigned(Field) then begin
+    Result := GetProperty(Field);
+  end else Result := nil;
+end;
+
+procedure TContact.Assign(Source: TContact);
+begin
+  Properties.Assign(Source.Properties);
+  FModified := Source.FModified;
+end;
+
+function TContact.UpdateFrom(Source: TContact): Boolean;
+var
+  I: Integer;
+begin
+  if not Assigned(ContactsFile) then raise Exception.Create(SContactHasNoParent);
+  Result := False;
+  for I := 0 to GetFields.Count - 1 do begin
+    if (Source.Fields[GetFields[I].Index] <> '') and
+      (Source.Fields[GetFields[I].Index] <>
+      Fields[GetFields[I].Index]) then begin
+        Result := True;
+        Fields[GetFields[I].Index] := Source.Fields[GetFields[I].Index];
+      end;
+  end;
+end;
+
+constructor TContact.Create;
+begin
+  Properties := TContactProperties.Create;
+end;
+
+destructor TContact.Destroy;
+begin
+  FreeAndNil(Properties);
+  inherited;
+end;
+
+class destructor TContact.Destroy;
+begin
+  FreeAndNil(FFields);
+end;
+
+procedure TContact.SaveToStrings(Output: TStrings);
+var
+  I: Integer;
+  NameText: string;
+  Value2: string;
+  LineIndex: Integer;
+  OutText: string;
+  LinePrefix: string;
+  CutLength: Integer;
+const
+  MaxLineLength = 73;
+begin
+    with Output do begin
+      Add(VCardBegin);
+      for I := 0 to Properties.Count - 1 do
+      with Properties[I] do begin
+        NameText := Name;
+        if Attributes.Count > 0 then
+          NameText := NameText + ';' + Attributes.DelimitedText;
+        if Encoding <> '' then begin
+          Value2 := GetEncodedValue;
+          NameText := NameText + ';ENCODING=' + Encoding;
+        end else Value2 := Value;
+        if Pos(LineEnding, Value2) > 0 then begin
+          Add(NameText + ':' + GetNext(Value2, LineEnding));
+          while Pos(LineEnding, Value2) > 0 do begin
+            Add(' ' + GetNext(Value2, LineEnding));
+          end;
+          Add(' ' + GetNext(Value2, LineEnding));
+          Add('');
+        end else begin
+          OutText := NameText + ':' + Value2;
+          LineIndex := 0;
+          LinePrefix := '';
+          while True do begin
+            if Length(OutText) > MaxLineLength then begin
+              CutLength := MaxLineLength;
+              if Encoding = 'QUOTED-PRINTABLE' then begin
+                // Do not cut encoded items
+                if ((CutLength - 2) >= 1) and (OutText[CutLength - 2] = '=') then
+                  Dec(CutLength, 2)
+                else if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = '=') then
+                  Dec(CutLength, 1);
+              end;
+              Add(LinePrefix + Copy(OutText, 1, CutLength));
+              LinePrefix := ' ';
+              System.Delete(OutText, 1, CutLength);
+              Inc(LineIndex);
+              Continue;
+            end else begin
+              Add(LinePrefix + OutText);
+              Break;
+            end;
+          end;
+          if LinePrefix <> '' then Add('');
+        end;
+      end;
+      Add(VCardEnd);
+    end;
+end;
+
+function TContact.LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
+type
+  TParseState = (psNone, psInside, psFinished);
+var
+  ParseState: TParseState;
+  Line: string;
+  Value: string;
+  I: Integer;
+  NewProperty: TContactProperty;
+  CommandPart: string;
+  Names: string;
+begin
+  ParseState := psNone;
+  I := StartLine;
+  while I < Lines.Count do begin
+    Line := Trim(Lines[I]);
+    if Line = '' then begin
+      // Skip empty lines
+    end else
+    if ParseState = psNone then begin
+      if Line = VCardBegin then begin
+        ParseState := psInside;
+      end else begin
+        ContactsFile.Error(SExpectedVCardBegin, I + 1);
+        I := -1;
+        Break;
+      end;
+    end else
+    if ParseState = psInside then begin
+      if Line = VCardEnd then begin
+        ParseState := psFinished;
+        Inc(I);
+        Break;
+      end else
+      if Pos(':', Line) > 0 then begin
+        CommandPart := GetNext(Line, ':');
+        Names := CommandPart;
+        Value := Line;
+        while True do begin
+          Inc(I);
+          if (Length(Lines[I]) > 0) and (Lines[I][1] = ' ') then begin
+            Value := Value + Trim(Lines[I]);
+          end else
+          if (Length(Lines[I]) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
+            (Lines[I][1] = '=') then begin
+            Value := Value + Copy(Trim(Lines[I]), 2, MaxInt);
+          end else begin
+            Dec(I);
+            Break;
+          end;
+        end;
+        NewProperty := Properties.GetByName(Names);
+        if not Assigned(NewProperty) then begin
+          NewProperty := TContactProperty.Create;
+          Properties.Add(NewProperty);
+        end;
+        NewProperty.Attributes.DelimitedText := Names;
+        if NewProperty.Attributes.Count > 0 then begin
+          NewProperty.Name := NewProperty.Attributes[0];
+          NewProperty.Attributes.Delete(0);
+        end;
+        NewProperty.Value := Value;
+        NewProperty.EvaluateAttributes;
+      end else begin
+        ContactsFile.Error(SExpectedProperty, I + 1);
+        I := -1;
+        Break;
+      end;
+    end;
+    Inc(I);
+  end;
+  Result := I;
+end;
+
+procedure TContact.SaveToFile(FileName: string);
+var
+  Lines: TStringList;
+begin
+  Lines := TStringList.Create;
+  try
+    SaveToStrings(Lines);
+    Lines.SaveToFile(FileName);
+  finally
+    Lines.Free;
+  end;
+end;
+
+procedure TContact.LoadFromFile(FileName: string);
+var
+  Lines: TStringList;
+begin
+  Lines := TStringList.Create;
+  try
+    Lines.LoadFromFile(FileName);
+    {$IF FPC_FULLVERSION>=30200}
+    if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
+      Lines.LoadFromFile(FileName, TEncoding.Unicode);
+      if (Length(Lines.Text) > 0) and (Pos(VCardBegin, Lines.Text) = 0) then begin
+        Lines.LoadFromFile(FileName, TEncoding.BigEndianUnicode);
+      end;
+    end;
+    {$ENDIF}
+    LoadFromStrings(Lines);
+  finally
+    Lines.Free;
+  end;
+end;
+
+{ TContactsFile }
 
 procedure TContactsFile.Error(Text: string; Line: Integer);
 begin
@@ -1271,7 +1290,7 @@ begin
   I := 0;
   while I < Lines.Count do begin
     Contact := TContact.Create;
-    Contact.Parent := Self;
+    Contact.ContactsFile := Self;
     NewI := Contact.LoadFromStrings(Lines, I);
     if NewI <= Lines.Count then begin
       if NewI <> -1 then begin
@@ -1338,13 +1357,10 @@ begin
   inherited;
   Contacts := TContacts.Create;
   Contacts.ContactsFile := Self;
-  Fields := TContactFields.Create;
-  InitFields;
 end;
 
 destructor TContactsFile.Destroy;
 begin
-  FreeAndNil(Fields);
   FreeAndNil(Contacts);
   inherited;
 end;

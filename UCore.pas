@@ -82,6 +82,7 @@ type
     LastPropertyValueFileName: string;
     GenerateCount: Integer;
     ToolbarVisible: Boolean;
+    DefaultVcardVersion: string;
     function GetProfileImage: TImage;
     procedure FileNew;
     procedure FileOpen(FileName: string);
@@ -452,6 +453,7 @@ begin
     LastSplitDir := ReadStringWithDefault('LastSplitDir', '');
     LastPropertyValueFileName := ReadStringWithDefault('LastPropertyValueFileName', '');
     GenerateCount := ReadIntegerWithDefault('GenerateCount', 1);
+    DefaultVcardVersion := ReadStringWithDefault('DefaultVcardVersion', '2.1');
   finally
     Free;
   end;
@@ -478,6 +480,7 @@ begin
     WriteString('LastSplitDir', LastSplitDir);
     WriteString('LastPropertyValueFileName', LastPropertyValueFileName);
     WriteInteger('GenerateCount', GenerateCount);
+    WriteString('DefaultVcardVersion', DefaultVcardVersion);
   finally
     Free;
   end;
@@ -505,6 +508,7 @@ begin
   AFileClose.Enabled := Assigned(DataFile);
   AFileSplit.Enabled := Assigned(DataFile);
   AFileCombine.Enabled := Assigned(DataFile);
+  AFind.Enabled := Assigned(DataFile);
   AFindDuplicate.Enabled := Assigned(DataFile);
   AGenerate.Enabled := Assigned(DataFile);
 end;
@@ -524,7 +528,7 @@ begin
       DataFile.LoadFromFile(FileNameOption);
       LastOpenedList1.AddItem(FileNameOption);
     end else
-    if (LastOpenedList1.Items.Count > 0) and FileExists(LastOpenedList1.Items[0]) then begin
+    if ReopenLastFileOnStart and (LastOpenedList1.Items.Count > 0) and FileExists(LastOpenedList1.Items[0]) then begin
       // Open last opened file
       AFileNew.Execute;
       DataFile.LoadFromFile(LastOpenedList1.Items[0])
