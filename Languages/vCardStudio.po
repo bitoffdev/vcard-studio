@@ -766,6 +766,10 @@ msgstr ""
 msgid "Theme:"
 msgstr ""
 
+#: tformsettings.label3.caption
+msgid "Default vCard version:"
+msgstr ""
+
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
 msgstr ""

@@ -2,10 +2,10 @@ object FormSettings: TFormSettings
   Left = 798
   Height = 360
   Top = 367
-  Width = 577
+  Width = 564
   Caption = 'Settings'
   ClientHeight = 360
-  ClientWidth = 577
+  ClientWidth = 564
   Constraints.MinHeight = 360
   Constraints.MinWidth = 480
   DesignTimePPI = 144
@@ -15,10 +15,10 @@ object FormSettings: TFormSettings
   Position = poScreenCenter
   LCLVersion = '2.0.12.0'
   object ComboBoxLanguage: TComboBox
-    Left = 192
+    Left = 240
     Height = 41
-    Top = 36
-    Width = 312
+    Top = 16
+    Width = 264
     ItemHeight = 0
     ParentFont = False
     Style = csDropDownList
@@ -27,14 +27,14 @@ object FormSettings: TFormSettings
   object Label1: TLabel
     Left = 24
     Height = 24
-    Top = 36
+    Top = 24
     Width = 88
     Caption = 'Language:'
     ParentColor = False
     ParentFont = False
   end
   object ButtonOk: TButton
-    Left = 451
+    Left = 438
     Height = 37
     Top = 307
     Width = 113
@@ -46,7 +46,7 @@ object FormSettings: TFormSettings
     TabOrder = 2
   end
   object ButtonCancel: TButton
-    Left = 307
+    Left = 294
     Height = 37
     Top = 307
     Width = 113
@@ -57,9 +57,9 @@ object FormSettings: TFormSettings
     TabOrder = 1
   end
   object CheckBoxAutomaticDPI: TCheckBox
-    Left = 19
+    Left = 24
     Height = 30
-    Top = 125
+    Top = 200
     Width = 148
     Caption = 'Automatic DPI'
     OnChange = CheckBoxAutomaticDPIChange
@@ -68,9 +68,9 @@ object FormSettings: TFormSettings
     Visible = False
   end
   object SpinEditDPI: TSpinEdit
-    Left = 192
+    Left = 240
     Height = 42
-    Top = 173
+    Top = 232
     Width = 145
     MaxValue = 300
     MinValue = 96
@@ -80,9 +80,9 @@ object FormSettings: TFormSettings
     Visible = False
   end
   object LabelDPI: TLabel
-    Left = 96
+    Left = 56
     Height = 24
-    Top = 182
+    Top = 240
     Width = 35
     Caption = 'DPI:'
     ParentColor = False
@@ -90,9 +90,9 @@ object FormSettings: TFormSettings
     Visible = False
   end
   object CheckBoxReopenLastFileOnStart: TCheckBox
-    Left = 19
+    Left = 24
     Height = 30
-    Top = 86
+    Top = 160
     Width = 226
     Caption = 'Reopen last file on start'
     ParentFont = False
@@ -102,26 +102,41 @@ object FormSettings: TFormSettings
     Left = 12
     Height = 2
     Top = 288
-    Width = 547
+    Width = 534
     Anchors = [akLeft, akRight, akBottom]
   end
   object Label2: TLabel
     Left = 24
     Height = 24
-    Top = 221
+    Top = 72
     Width = 63
     Caption = 'Theme:'
     ParentColor = False
     ParentFont = False
   end
   object ComboBoxTheme: TComboBox
-    Left = 192
+    Left = 240
     Height = 41
-    Top = 221
-    Width = 312
+    Top = 64
+    Width = 264
     ItemHeight = 0
     ParentFont = False
     Style = csDropDownList
     TabOrder = 6
+  end
+  object Label3: TLabel
+    Left = 24
+    Height = 24
+    Top = 120
+    Width = 186
+    Caption = 'Default vCard version:'
+    ParentColor = False
+  end
+  object EditDefaultVcardVersion: TEdit
+    Left = 240
+    Height = 42
+    Top = 112
+    Width = 144
+    TabOrder = 7
   end
 end

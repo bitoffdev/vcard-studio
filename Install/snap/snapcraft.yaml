@@ -41,6 +41,8 @@ parts:
       install -m 755 Install/snap/local/vCardStudio.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications
       install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
       install -m 755 Images/vCard\ Studio.png $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
+    after:
+      - desktop-gtk2
     stage:
       - etc
       - usr
@@ -81,9 +83,61 @@ parts:
       - libxrandr2
       - libxrender1
 
+  desktop-gtk2:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: gtk
+    plugin: make
+    make-parameters: ["FLAVOR=gtk2"]
+    build-packages:
+      - build-essential
+      - libgtk2.0-dev
+    stage-packages:
+      - libxkbcommon0  # XKB_CONFIG_ROOT
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
+      - libgtk2.0-0
+      - libgdk-pixbuf2.0-0
+      - libglib2.0-bin
+      - libgtk2.0-bin
+      - unity-gtk2-module
+      - locales-all
+      - libappindicator1
+      - xdg-user-dirs
+      - ibus-gtk
+      - libibus-1.0-5
+      
+# additional plugs to pick up the GTK theme and icons from the system
+plugs: 
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes
+  gtk-2-engines:
+    interface: content
+    target: $SNAP/lib/gtk-2.0
+    default-provider: gtk2-common-themes:gtk-2-engines
+  gtk-2-themes:
+    interface: content
+    target: $SNAP/usr/share/themes
+    default-provider: gtk2-common-themes:gtk-2-themes
+
+environment:
+  XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS
+  GTK_PATH: $SNAP/lib/gtk-2.0
+  
 apps:
   vcard-studio:
     command: usr/bin/vCardStudio
+    command-chain:
+      - bin/desktop-launch
     desktop: usr/share/applications/vCardStudio.desktop    
     plugs:
       - desktop

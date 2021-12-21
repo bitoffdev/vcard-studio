@@ -497,7 +497,7 @@ object Core: TCore
   object ActionList1: TActionList
     Images = ImageList1
     Left = 384
-    Top = 202
+    Top = 200
     object AExit: TAction
       Caption = 'Exit'
       ImageIndex = 2
