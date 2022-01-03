@@ -3,12 +3,19 @@ title: vCard Studio
 version: '1.3.0'
 summary: A contact management application with support for vCard file format.
 description: |
-  A tool for work with contacts stored in vCard format (.vcf).
+  A contact management application with support for vCard file format (.vcf).
   
   Features:
-  * Add, Edit, Clone, Remove contacts
-  * Merge files together
-  * Find duplicate contacts
+  * Add, Edit, Clone or Remove contacts and contact properties
+  * Shows contact fields in multiple tabs General, Home, Work, Social, Chat and Others
+  * Contact photo displayed and can be changed (supported image types JPEG, PNG, GIF and BMP) 
+  * Quick filter by table columns in contacts list
+  * Combine multiple contact files together
+  * Split contacts to separate files
+  * Find any value in contacts
+  * Find duplicate contacts to merge
+  * Copy, Cut and Paste contacts from/to clipboard
+  * Multilingual interface (English, Czech)
 confinement: strict
 base: core20
 grade: stable
@@ -42,46 +49,46 @@ parts:
       install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
       install -m 755 Images/vCard\ Studio.png $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
     after:
-      - desktop-gtk2
+    - desktop-gtk2
     stage:
-      - etc
-      - usr
-      - usr/bin
-      - usr/share/vCardStudio
-      - usr/share/applications/vCardStudio.desktop
-      - usr/share/pixmaps
+    - etc
+    - usr
+    - usr/bin
+    - usr/share/vCardStudio
+    - usr/share/applications/vCardStudio.desktop
+    - usr/share/pixmaps
     stage-packages:
-      - libatk1.0-0
-      - libcairo2
-      - libdatrie1
-      - libfontconfig1
-      - libfreetype6
-      - libfribidi0
-      - libgdk-pixbuf2.0-0
-      - libgraphite2-3
-      - libgtk2.0-0
-      - libharfbuzz0b
-      - libpango-1.0-0
-      - libpangocairo-1.0-0
-      - libpangoft2-1.0-0
-      - libpixman-1-0
-      - libpng16-16
-      - libthai0
-      - libx11-6
-      - libxau6
-      - libxcb-render0
-      - libxcb-shm0
-      - libxcb1
-      - libxcomposite1
-      - libxcursor1
-      - libxdamage1
-      - libxdmcp6
-      - libxext6
-      - libxfixes3
-      - libxi6
-      - libxinerama1
-      - libxrandr2
-      - libxrender1
+    - libatk1.0-0
+    - libcairo2
+    - libdatrie1
+    - libfontconfig1
+    - libfreetype6
+    - libfribidi0
+    - libgdk-pixbuf2.0-0
+    - libgraphite2-3
+    - libgtk2.0-0
+    - libharfbuzz0b
+    - libpango-1.0-0
+    - libpangocairo-1.0-0
+    - libpangoft2-1.0-0
+    - libpixman-1-0
+    - libpng16-16
+    - libthai0
+    - libx11-6
+    - libxau6
+    - libxcb-render0
+    - libxcb-shm0
+    - libxcb1
+    - libxcomposite1
+    - libxcursor1
+    - libxdamage1
+    - libxdmcp6
+    - libxext6
+    - libxfixes3
+    - libxi6
+    - libxinerama1
+    - libxrandr2
+    - libxrender1
 
   desktop-gtk2:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
@@ -89,28 +96,28 @@ parts:
     plugin: make
     make-parameters: ["FLAVOR=gtk2"]
     build-packages:
-      - build-essential
-      - libgtk2.0-dev
+    - build-essential
+    - libgtk2.0-dev
     stage-packages:
-      - libxkbcommon0  # XKB_CONFIG_ROOT
-      - ttf-ubuntu-font-family
-      - dmz-cursor-theme
-      - light-themes
-      - adwaita-icon-theme
-      - gnome-themes-standard
-      - shared-mime-info
-      - libgtk2.0-0
-      - libgdk-pixbuf2.0-0
-      - libglib2.0-bin
-      - libgtk2.0-bin
-      - unity-gtk2-module
-      - locales-all
-      - libappindicator1
-      - xdg-user-dirs
-      - ibus-gtk
-      - libibus-1.0-5
+    - libxkbcommon0  # XKB_CONFIG_ROOT
+    - ttf-ubuntu-font-family
+    - dmz-cursor-theme
+    - light-themes
+    - adwaita-icon-theme
+    - gnome-themes-standard
+    - shared-mime-info
+    - libgtk2.0-0
+    - libgdk-pixbuf2.0-0
+    - libglib2.0-bin
+    - libgtk2.0-bin
+    - unity-gtk2-module
+    - locales-all
+    - libappindicator1
+    - xdg-user-dirs
+    - ibus-gtk
+    - libibus-1.0-5
       
-# additional plugs to pick up the GTK theme and icons from the system
+# Additional plugs to pick up the GTK theme and icons from the system
 plugs: 
   icon-themes:
     interface: content
@@ -137,12 +144,12 @@ apps:
   vcard-studio:
     command: usr/bin/vCardStudio
     command-chain:
-      - bin/desktop-launch
+    - bin/desktop-launch
     desktop: usr/share/applications/vCardStudio.desktop    
     plugs:
-      - desktop
-      - x11
-      - home
+    - desktop
+    - x11
+    - home
 
 layout:
   /usr/share/vCardStudio:
