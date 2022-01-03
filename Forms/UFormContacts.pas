@@ -200,26 +200,22 @@ begin
     if List.Items[I] is TContact then begin
       with TContact(List.Items[I]) do begin
         FoundCount := 0;
-        for J := 0 to FilterItems.Count - 1 do begin
-          if FilterItems[J].FieldIndex = cfNone then begin
-            for K := 0 to TContact(List.Items[I]).GetFields.Count - 1 do begin
-              if Pos(UTF8LowerCase(FilterItems[J].Value),
-                UTF8LowerCase(TContact(List.Items[I]).Fields[TContact(List.Items[I]).GetFields[K].Index])) > 0 then begin
-                  Inc(FoundCount);
-                  Break;
-                end;
-            end;
-          end else begin
+        for J := 0 to FilterItems.Count - 1 do
+        if FilterItems[J].FieldIndex = cfNone then begin
+          for K := 0 to TContact(List.Items[I]).GetFields.Count - 1 do begin
             if Pos(UTF8LowerCase(FilterItems[J].Value),
-              UTF8LowerCase(TContact(List.Items[I]).Fields[FilterItems[J].FieldIndex])) > 0 then
+              UTF8LowerCase(TContact(List.Items[I]).Fields[TContact.GetFields[K].Index])) > 0 then begin
                 Inc(FoundCount);
+                Break;
+              end;
           end;
+        end else begin
+          if Pos(UTF8LowerCase(FilterItems[J].Value),
+            UTF8LowerCase(TContact(List.Items[I]).Fields[FilterItems[J].FieldIndex])) > 0 then
+              Inc(FoundCount);
         end;
-        if FoundCount <> FilterItems.Count then List.Delete(I);
       end;
-    end else
-    if TContact(List.Items[I]) is TContact then begin
-      List.Delete(I);
+      if FoundCount <> FilterItems.Count then List.Delete(I);
     end;
   end;
 end;
@@ -229,8 +225,12 @@ begin
   if FContacts = AValue then Exit;
   FContacts := AValue;
   ReloadList;
-  UpdateInterface;
-  ListViewFilter1.Reset;
+  BeginUpdate;
+  try
+    ListViewFilter1.Reset;
+  finally
+    EndUpdate;
+  end;
 end;
 
 function TFormContacts.GetPreviousContact(Contact: TContact): TContact;
@@ -279,16 +279,21 @@ var
   I: Integer;
   Field: TContactField;
 begin
-  while ListView1.Columns.Count < ListViewColumns.Count do
-    ListView1.Columns.Add;
-  while ListView1.Columns.Count > ListViewColumns.Count do
-    ListView1.Columns.Delete(ListView1.Columns.Count - 1);
-  for I := 0 to ListView1.Columns.Count - 1 do begin
-    if Assigned(Contacts) and Assigned(Contacts.ContactsFile) then begin
-      Field := TContact.GetFields.GetByIndex(ListViewColumns[I]);
-      if Assigned(Field) then
-        ListView1.Columns[I].Caption := Field.Title;
+  ListView1.Columns.BeginUpdate;
+  try
+    while ListView1.Columns.Count < ListViewColumns.Count do
+      ListView1.Columns.Add;
+    while ListView1.Columns.Count > ListViewColumns.Count do
+      ListView1.Columns.Delete(ListView1.Columns.Count - 1);
+    for I := 0 to ListView1.Columns.Count - 1 do begin
+      if Assigned(Contacts) and Assigned(Contacts.ContactsFile) then begin
+        Field := TContact.GetFields.GetByIndex(ListViewColumns[I]);
+        if Assigned(Field) then
+          ListView1.Columns[I].Caption := Field.Title;
+      end;
     end;
+  finally
+    ListView1.Columns.EndUpdate;
   end;
 end;
 
@@ -557,15 +562,17 @@ begin
   FilterItems := TContactFilterItems.Create;
 
   ListViewColumns := TContactFieldIndexes.Create;
-  ListViewColumns.Add(cfFullName);
-  ListViewColumns.Add(cfFirstName);
-  ListViewColumns.Add(cfMiddleName);
-  ListViewColumns.Add(cfLastName);
-  ListViewColumns.Add(cfTel);
-  ListViewColumns.Add(cfTelCell);
-  ListViewColumns.Add(cfTelHome);
-  ListViewColumns.Add(cfTelWork);
-  ListViewColumns.Add(cfEmailWork);
+  with ListViewColumns do begin
+    Add(cfFullName);
+    Add(cfFirstName);
+    Add(cfMiddleName);
+    Add(cfLastName);
+    Add(cfTel);
+    Add(cfTelCell);
+    Add(cfTelHome);
+    Add(cfTelWork);
+    Add(cfEmailWork);
+  end;
 
   FContacts := nil;
   for I := 0 to ToolBar1.ButtonCount - 1 do begin

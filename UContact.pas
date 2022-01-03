@@ -944,7 +944,6 @@ begin
   if Assigned(Field) then begin
     Prop := GetProperty(Field);
     if Assigned(Prop) then begin
-      Field := GetFields.GetByIndex(Index);
       if Field.ValueIndex <> -1 then begin
         Result := DecodeEscaped(Prop.ValueItem[Field.ValueIndex])
       end else Result := Prop.Value;
