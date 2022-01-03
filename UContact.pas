@@ -129,7 +129,7 @@ type
   public
     Properties: TContactProperties;
     ContactsFile: TContactsFile;
-    class function GetFields: TContactFields;
+    class function GetFields: TContactFields; static;
     function HasField(FieldIndex: TContactFieldIndex): Boolean;
     function FullNameToFileName: string;
     function GetProperty(Field: TContactField): TContactProperty; overload;
@@ -138,7 +138,7 @@ type
     function UpdateFrom(Source: TContact): Boolean;
     constructor Create;
     destructor Destroy; override;
-    class destructor Destroy;
+    class destructor Destroy2;
     procedure SaveToStrings(Output: TStrings);
     function LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
     procedure SaveToFile(FileName: string);
@@ -1075,7 +1075,7 @@ begin
   inherited;
 end;
 
-class destructor TContact.Destroy;
+class destructor TContact.Destroy2;
 begin
   FreeAndNil(FFields);
 end;
