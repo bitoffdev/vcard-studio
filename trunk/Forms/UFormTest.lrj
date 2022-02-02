@@ -2,5 +2,7 @@
 {"hash":371876,"name":"tformtest.caption","sourcebytes":[84,101,115,116],"value":"Test"},
 {"hash":346165,"name":"tformtest.listviewtestcases.columns[0].caption","sourcebytes":[78,97,109,101],"value":"Name"},
 {"hash":93105204,"name":"tformtest.listviewtestcases.columns[1].caption","sourcebytes":[82,101,115,117,108,116],"value":"Result"},
-{"hash":22974,"name":"tformtest.buttonrun.caption","sourcebytes":[82,117,110],"value":"Run"}
+{"hash":22974,"name":"tformtest.buttonrun.caption","sourcebytes":[82,117,110],"value":"Run"},
+{"hash":368487,"name":"tformtest.ashow.caption","sourcebytes":[83,104,111,119],"value":"Show"},
+{"hash":22974,"name":"tformtest.arun.caption","sourcebytes":[82,117,110],"value":"Run"}
 ]}

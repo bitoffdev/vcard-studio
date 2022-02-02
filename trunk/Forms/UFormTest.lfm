@@ -21,18 +21,21 @@ object FormTest: TFormTest
     Columns = <    
       item
         Caption = 'Name'
-        Width = 200
+        Width = 300
       end    
       item
         Caption = 'Result'
-        Width = 869
+        Width = 769
       end>
     OwnerData = True
+    PopupMenu = PopupMenuTest
     ReadOnly = True
     RowSelect = True
     TabOrder = 0
     ViewStyle = vsReport
     OnData = ListViewTestCasesData
+    OnDblClick = AShowExecute
+    OnSelectItem = ListViewTestCasesSelectItem
   end
   object ButtonRun: TButton
     Left = 984
@@ -43,5 +46,27 @@ object FormTest: TFormTest
     Caption = 'Run'
     OnClick = ButtonRunClick
     TabOrder = 1
+  end
+  object ActionList1: TActionList
+    Left = 537
+    Top = 115
+    object AShow: TAction
+      Caption = 'Show'
+      OnExecute = AShowExecute
+    end
+    object ARun: TAction
+      Caption = 'Run'
+      OnExecute = ARunExecute
+    end
+  end
+  object PopupMenuTest: TPopupMenu
+    Left = 539
+    Top = 244
+    object MenuItem1: TMenuItem
+      Action = AShow
+    end
+    object MenuItem2: TMenuItem
+      Action = ARun
+    end
   end
 end
