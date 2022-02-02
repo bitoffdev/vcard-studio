@@ -1,12 +1,12 @@
 object FormMain: TFormMain
   Left = 601
-  Height = 796
+  Height = 829
   Top = 447
-  Width = 1178
+  Width = 1227
   Caption = 'vCard Studio'
-  ClientHeight = 762
-  ClientWidth = 1178
-  DesignTimePPI = 144
+  ClientHeight = 794
+  ClientWidth = 1227
+  DesignTimePPI = 150
   Menu = MainMenu1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -14,12 +14,12 @@ object FormMain: TFormMain
   OnDestroy = FormDestroy
   OnResize = FormResize
   OnShow = FormShow
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object CoolBar1: TCoolBar
     Left = 0
-    Height = 43
+    Height = 44
     Top = 0
-    Width = 1178
+    Width = 1227
     AutoSize = True
     Bands = <    
       item
@@ -38,9 +38,9 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 24
-      Height = 33
+      Height = 34
       Top = 5
-      Width = 159
+      Width = 164
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 22
@@ -59,19 +59,19 @@ object FormMain: TFormMain
         Action = Core.AFileNew
       end
       object ToolButton2: TToolButton
-        Left = 36
+        Left = 37
         Top = 0
         Action = Core.AFileOpen
         DropdownMenu = PopupMenuOpenRecent
         Style = tbsDropDown
       end
       object ToolButton3: TToolButton
-        Left = 89
+        Left = 92
         Top = 0
         Action = Core.AFileSave
       end
       object ToolButton4: TToolButton
-        Left = 124
+        Left = 128
         Top = 0
         Action = Core.AFileClose
       end
@@ -80,9 +80,9 @@ object FormMain: TFormMain
       AnchorSideLeft.Control = CoolBar1
       AnchorSideTop.Control = CoolBar1
       Left = 188
-      Height = 33
+      Height = 34
       Top = 5
-      Width = 106
+      Width = 109
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 186
@@ -96,12 +96,12 @@ object FormMain: TFormMain
       TabOrder = 1
       Transparent = True
       object ToolButton5: TToolButton
-        Left = 71
+        Left = 73
         Top = 0
         Action = Core.ASettings
       end
       object ToolButton6: TToolButton
-        Left = 36
+        Left = 37
         Top = 0
         Action = Core.AFindDuplicate
       end
@@ -114,8 +114,8 @@ object FormMain: TFormMain
   end
   object MainMenu1: TMainMenu
     Images = Core.ImageList1
-    Left = 192
-    Top = 120
+    Left = 200
+    Top = 125
     object MenuItemFile: TMenuItem
       Caption = 'File'
       object MenuItemFileNew: TMenuItem
@@ -180,6 +180,9 @@ object FormMain: TFormMain
       object MenuItem5: TMenuItem
         Action = Core.AGenerate
       end
+      object MenuItem4: TMenuItem
+        Action = Core.ATest
+      end
     end
     object MenuItemHelp: TMenuItem
       Caption = 'Help'
@@ -192,7 +195,7 @@ object FormMain: TFormMain
     end
   end
   object PopupMenuOpenRecent: TPopupMenu
-    Left = 420
-    Top = 120
+    Left = 438
+    Top = 125
   end
 end

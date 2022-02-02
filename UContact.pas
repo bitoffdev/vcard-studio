@@ -1146,6 +1146,7 @@ type
 var
   ParseState: TParseState;
   Line: string;
+  Line2: string;
   Value: string;
   I: Integer;
   NewProperty: TContactProperty;
@@ -1180,7 +1181,8 @@ begin
         Value := Line;
         while True do begin
           Inc(I);
-          if (Length(Lines[I]) > 0) and (Lines[I][1] = ' ') then begin
+          Line2 := Lines[I];
+          if (Length(Lines[I]) > 0) and (Line2[1] = ' ') then begin
             Value := Value + Trim(Lines[I]);
           end else
           if (Length(Lines[I]) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and

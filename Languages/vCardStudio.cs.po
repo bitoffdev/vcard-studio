@@ -79,6 +79,11 @@ msgctxt "tcore.asettings.caption"
 msgid "Settings"
 msgstr "Nastavení"
 
+#: tcore.atest.caption
+msgctxt "tcore.atest.caption"
+msgid "Test"
+msgstr ""
+
 #: tformcontact.aphotoclear.caption
 msgid "Clear"
 msgstr "Vyčistit"
@@ -786,6 +791,25 @@ msgstr "Výchozí verze vCard:"
 msgid "DPI:"
 msgstr "DPI:"
 
+#: tformtest.buttonrun.caption
+msgid "Run"
+msgstr ""
+
+#: tformtest.caption
+msgctxt "tformtest.caption"
+msgid "Test"
+msgstr ""
+
+#: tformtest.listviewtestcases.columns[0].caption
+#, fuzzy
+msgctxt "tformtest.listviewtestcases.columns[0].caption"
+msgid "Name"
+msgstr "Jméno"
+
+#: tformtest.listviewtestcases.columns[1].caption
+msgid "Result"
+msgstr ""
+
 #: ucontact.saim
 msgid "AIM"
 msgstr "AIM"
@@ -1148,11 +1172,13 @@ msgid "File was modified. Do you want to save it before exit?"
 msgstr "Soubor byl upraven. Chcete jej uložit před ukončením?"
 
 #: ucore.scombinedcontacts
+#, object-pascal-format
 msgctxt "ucore.scombinedcontacts"
 msgid "Combined %d contact files."
 msgstr "Sloučeno %d souborů kontaktů."
 
 #: ucore.sfilenotfound
+#, object-pascal-format
 msgid "File '%s' not found."
 msgstr "Soubor '%s' nenalezen."
 
@@ -1161,10 +1187,12 @@ msgid "Contacts split"
 msgstr "Rozdělení kontaktů"
 
 #: ucore.sfilesplitfinishedopendirectory
+#, object-pascal-format
 msgid "Total %d contact files saved. Do you want to open the directory %s?"
 msgstr "Uloženo celkem %d souborů kontaktů. Chcete otevřít adresář %s?"
 
 #: ucore.sline
+#, object-pascal-format
 msgid "Line %d: %s"
 msgstr "Řádek %d: %s"
 
@@ -1252,3 +1280,4 @@ msgstr "Hodnota"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
+
