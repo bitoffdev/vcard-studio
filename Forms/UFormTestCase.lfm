@@ -1,0 +1,24 @@
+object FormTestCase: TFormTestCase
+  Left = 579
+  Height = 543
+  Top = 468
+  Width = 901
+  Caption = 'Test case'
+  ClientHeight = 543
+  ClientWidth = 901
+  DesignTimePPI = 150
+  OnClose = FormClose
+  OnShow = FormShow
+  LCLVersion = '2.2.0.4'
+  object MemoLog: TMemo
+    Left = 8
+    Height = 527
+    Top = 8
+    Width = 885
+    Align = alClient
+    BorderSpacing.Around = 8
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+  end
+end

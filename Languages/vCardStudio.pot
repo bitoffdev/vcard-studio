@@ -763,7 +763,18 @@ msgstr ""
 msgid "DPI:"
 msgstr ""
 
+#: tformtest.arun.caption
+msgctxt "tformtest.arun.caption"
+msgid "Run"
+msgstr ""
+
+#: tformtest.ashow.caption
+msgctxt "tformtest.ashow.caption"
+msgid "Show"
+msgstr ""
+
 #: tformtest.buttonrun.caption
+msgctxt "tformtest.buttonrun.caption"
 msgid "Run"
 msgstr ""
 
@@ -779,6 +790,10 @@ msgstr ""
 
 #: tformtest.listviewtestcases.columns[1].caption
 msgid "Result"
+msgstr ""
+
+#: tformtestcase.caption
+msgid "Test case"
 msgstr ""
 
 #: ucontact.saim

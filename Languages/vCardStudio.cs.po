@@ -82,7 +82,7 @@ msgstr "Nastavení"
 #: tcore.atest.caption
 msgctxt "tcore.atest.caption"
 msgid "Test"
-msgstr ""
+msgstr "Testování"
 
 #: tformcontact.aphotoclear.caption
 msgid "Clear"
@@ -791,14 +791,25 @@ msgstr "Výchozí verze vCard:"
 msgid "DPI:"
 msgstr "DPI:"
 
-#: tformtest.buttonrun.caption
+#: tformtest.arun.caption
+msgctxt "tformtest.arun.caption"
 msgid "Run"
-msgstr ""
+msgstr "Spustit"
+
+#: tformtest.ashow.caption
+msgctxt "tformtest.ashow.caption"
+msgid "Show"
+msgstr "Ukázat"
+
+#: tformtest.buttonrun.caption
+msgctxt "tformtest.buttonrun.caption"
+msgid "Run"
+msgstr "Spustit"
 
 #: tformtest.caption
 msgctxt "tformtest.caption"
 msgid "Test"
-msgstr ""
+msgstr "Testování"
 
 #: tformtest.listviewtestcases.columns[0].caption
 #, fuzzy
@@ -808,7 +819,11 @@ msgstr "Jméno"
 
 #: tformtest.listviewtestcases.columns[1].caption
 msgid "Result"
-msgstr ""
+msgstr "Výsledek"
+
+#: tformtestcase.caption
+msgid "Test case"
+msgstr "Testový případ"
 
 #: ucontact.saim
 msgid "AIM"
@@ -1280,4 +1295,3 @@ msgstr "Hodnota"
 #: uquotedprintable.slinelengtherr
 msgid "Invalid line length for encoded text"
 msgstr "Neplatná délka řádky kódovaného textu"
-
