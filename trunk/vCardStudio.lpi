@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <PathDelim Value="\"/>
     <General>
+      <Flags>
+        <CompatibilityMode Value="True"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <MainUnit Value="0"/>
       <Title Value="vCard Studio"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
@@ -55,6 +57,7 @@
           <Linking>
             <Debugging>
               <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf2Set"/>
             </Debugging>
             <LinkSmart Value="True"/>
             <Options>
@@ -65,7 +68,7 @@
           </Linking>
           <Other>
             <CompilerMessages>
-              <IgnoredMessages idx5024="True"/>
+              <IgnoredMessages idx6058="True" idx5024="True" idx3124="True" idx3123="True"/>
             </CompilerMessages>
           </Other>
         </CompilerOptions>
@@ -100,7 +103,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="17">
       <Unit0>
         <Filename Value="vCardStudio.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -194,6 +197,16 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit14>
+      <Unit15>
+        <Filename Value="Forms\UFormTest.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormTest"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="UTest.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit16>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -227,6 +240,7 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <DebugInfoType Value="dsDwarf2Set"/>
         <UseHeaptrc Value="True"/>
         <UseExternalDbgSyms Value="True"/>
       </Debugging>
@@ -238,7 +252,7 @@
     </Linking>
     <Other>
       <CompilerMessages>
-        <IgnoredMessages idx5024="True"/>
+        <IgnoredMessages idx6058="True" idx5024="True" idx3124="True" idx3123="True"/>
       </CompilerMessages>
     </Other>
   </CompilerOptions>

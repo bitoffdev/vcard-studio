@@ -7,8 +7,7 @@ uses
   cthreads, clocale,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, UFormMain, UCore, Common, UDataFile, SysUtils
-  { you can add units after this };
+  Forms, UFormMain, UCore, Common, UDataFile, SysUtils, UFormTest, UTest;
 
 {$R *.res}
 
@@ -19,7 +18,7 @@ const
 
 begin
   Application.Scaled:=True;
-  Application.Title := 'vCard Studio';
+  Application.Title:='vCard Studio';
   {$if declared(UseHeapTrace)}
   DeleteFile(ExtractFilePath(ParamStr(0)) + HeapTraceLog);
   SetHeapTraceOutput(ExtractFilePath(ParamStr(0)) + HeapTraceLog);

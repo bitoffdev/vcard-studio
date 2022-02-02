@@ -5,7 +5,7 @@ summary: A contact management application with support for vCard file format.
 description: |
   A contact management application with support for vCard file format (.vcf).
   
-  Features:
+  **Features**:
   * Add, Edit, Clone or Remove contacts and contact properties
   * Shows contact fields in multiple tabs General, Home, Work, Social, Chat and Others
   * Contact photo displayed and can be changed (supported image types JPEG, PNG, GIF and BMP) 
@@ -145,7 +145,7 @@ apps:
     command: usr/bin/vCardStudio
     command-chain:
     - bin/desktop-launch
-    desktop: usr/share/applications/vCardStudio.desktop    
+    desktop: usr/share/applications/vCardStudio.desktop
     plugs:
     - desktop
     - x11
