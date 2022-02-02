@@ -103,7 +103,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="17">
+    <Units Count="18">
       <Unit0>
         <Filename Value="vCardStudio.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -207,6 +207,12 @@
         <Filename Value="UTest.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit16>
+      <Unit17>
+        <Filename Value="Forms\UFormTestCase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormTestCase"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit17>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

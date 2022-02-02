@@ -140,7 +140,7 @@ type
     destructor Destroy; override;
     class destructor Destroy2;
     procedure SaveToStrings(Output: TStrings);
-    function LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
+    function LoadFromStrings(Lines: TStrings; var StartLine: Integer): Boolean;
     procedure SaveToFile(FileName: string);
     procedure LoadFromFile(FileName: string);
     property Fields[Index: TContactFieldIndex]: string read GetField write SetField;
@@ -1133,14 +1133,13 @@ begin
               Break;
             end;
           end;
-          if LinePrefix <> '' then Add('');
         end;
       end;
       Add(VCardEnd);
     end;
 end;
 
-function TContact.LoadFromStrings(Lines: TStrings; StartLine: Integer = 0): Integer;
+function TContact.LoadFromStrings(Lines: TStrings; var StartLine: Integer): Boolean;
 type
   TParseState = (psNone, psInside, psFinished);
 var
@@ -1153,6 +1152,7 @@ var
   CommandPart: string;
   Names: string;
 begin
+  Result := False;
   ParseState := psNone;
   I := StartLine;
   while I < Lines.Count do begin
@@ -1165,7 +1165,6 @@ begin
         ParseState := psInside;
       end else begin
         ContactsFile.Error(SExpectedVCardBegin, I + 1);
-        I := -1;
         Break;
       end;
     end else
@@ -1173,6 +1172,7 @@ begin
       if Line = VCardEnd then begin
         ParseState := psFinished;
         Inc(I);
+        Result := True;
         Break;
       end else
       if Pos(':', Line) > 0 then begin
@@ -1181,13 +1181,14 @@ begin
         Value := Line;
         while True do begin
           Inc(I);
+          if I >= Lines.Count then Break;
           Line2 := Lines[I];
-          if (Length(Lines[I]) > 0) and (Line2[1] = ' ') then begin
-            Value := Value + Trim(Lines[I]);
+          if (Length(Line2) > 0) and (Line2[1] = ' ') then begin
+            Value := Value + Trim(Line2);
           end else
-          if (Length(Lines[I]) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
-            (Lines[I][1] = '=') then begin
-            Value := Value + Copy(Trim(Lines[I]), 2, MaxInt);
+          if (Length(Line2) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
+            (Line2[1] = '=') then begin
+            Value := Value + Copy(Trim(Line2), 2, MaxInt);
           end else begin
             Dec(I);
             Break;
@@ -1207,13 +1208,12 @@ begin
         NewProperty.EvaluateAttributes;
       end else begin
         ContactsFile.Error(SExpectedProperty, I + 1);
-        I := -1;
         Break;
       end;
     end;
     Inc(I);
   end;
-  Result := I;
+  if Result then StartLine := I;
 end;
 
 procedure TContact.SaveToFile(FileName: string);
@@ -1232,6 +1232,7 @@ end;
 procedure TContact.LoadFromFile(FileName: string);
 var
   Lines: TStringList;
+  StartLine: Integer;
 begin
   Lines := TStringList.Create;
   try
@@ -1244,7 +1245,8 @@ begin
       end;
     end;
     {$ENDIF}
-    LoadFromStrings(Lines);
+    StartLine := 0;
+    LoadFromStrings(Lines, StartLine);
   finally
     Lines.Free;
   end;
@@ -1284,7 +1286,6 @@ procedure TContactsFile.LoadFromStrings(Lines: TStrings);
 var
   Contact: TContact;
   I: Integer;
-  NewI: Integer;
 begin
   Contacts.Clear;
 
@@ -1292,18 +1293,11 @@ begin
   while I < Lines.Count do begin
     Contact := TContact.Create;
     Contact.ContactsFile := Self;
-    NewI := Contact.LoadFromStrings(Lines, I);
-    if NewI <= Lines.Count then begin
-      if NewI <> -1 then begin
-        Contacts.Add(Contact);
-        I := NewI;
-      end else begin
-        FreeAndNil(Contact);
-        Inc(I);
-      end;
+    if Contact.LoadFromStrings(Lines, I) then begin
+      Contacts.Add(Contact);
     end else begin
       FreeAndNil(Contact);
-      Break;
+      Inc(I);
     end;
   end;
 end;
