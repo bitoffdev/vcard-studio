@@ -16,6 +16,7 @@ type
   TCore = class(TDataModule)
     AAbout: TAction;
     AboutDialog1: TAboutDialog;
+    ATest: TAction;
     AFind: TAction;
     AFileSplit: TAction;
     AGenerate: TAction;
@@ -56,6 +57,7 @@ type
     procedure AGenerateExecute(Sender: TObject);
     procedure AHomePageExecute(Sender: TObject);
     procedure ASettingsExecute(Sender: TObject);
+    procedure ATestExecute(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure LastOpenedList1Change(Sender: TObject);
@@ -101,7 +103,7 @@ implementation
 
 uses
   UFormMain, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
-  UFormGenerate, UFormError, UFormFind;
+  UFormGenerate, UFormError, UFormFind, UFormTest;
 
 resourcestring
   SAppExit = 'Application exit';
@@ -258,6 +260,16 @@ begin
       ThemeManager1.UseTheme(FormMain);
       ThemeManager1.UseTheme(FormContacts);
     end;
+  finally
+    Free;
+  end;
+end;
+
+procedure TCore.ATestExecute(Sender: TObject);
+begin
+  with TFormTest.Create(nil) do
+  try
+    ShowModal;
   finally
     Free;
   end;
@@ -511,6 +523,13 @@ begin
   AFind.Enabled := Assigned(DataFile);
   AFindDuplicate.Enabled := Assigned(DataFile);
   AGenerate.Enabled := Assigned(DataFile);
+  {$IFOPT D+}
+  ATest.Enabled := True;
+  {$ENDIF}
+  {$IFOPT D-}
+  ATest.Enabled := False;
+  {$ENDIF}
+  ATest.Visible := ATest.Enabled;
 end;
 
 procedure TCore.Initialize;

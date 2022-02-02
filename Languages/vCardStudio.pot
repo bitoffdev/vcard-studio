@@ -69,17 +69,20 @@ msgctxt "tcore.asettings.caption"
 msgid "Settings"
 msgstr ""
 
+#: tcore.atest.caption
+msgctxt "tcore.atest.caption"
+msgid "Test"
+msgstr ""
+
 #: tformcontact.aphotoclear.caption
 msgid "Clear"
 msgstr ""
 
 #: tformcontact.aphotoload.caption
-msgctxt "tformcontact.aphotoload.caption"
 msgid "Load from file"
 msgstr ""
 
 #: tformcontact.aphotosave.caption
-msgctxt "tformcontact.aphotosave.caption"
 msgid "Save to file"
 msgstr ""
 
@@ -474,7 +477,6 @@ msgid "Cut"
 msgstr ""
 
 #: tformcontacts.aloadfromfile.caption
-msgctxt "tformcontacts.aloadfromfile.caption"
 msgid "Load from file..."
 msgstr ""
 
@@ -493,7 +495,6 @@ msgid "Remove"
 msgstr ""
 
 #: tformcontacts.asavetofile.caption
-msgctxt "tformcontacts.asavetofile.caption"
 msgid "Save to file..."
 msgstr ""
 
@@ -513,12 +514,10 @@ msgid "Full Name"
 msgstr ""
 
 #: tformcontacts.listview1.columns[1].caption
-msgctxt "tformcontacts.listview1.columns[1].caption"
 msgid "First name"
 msgstr ""
 
 #: tformcontacts.listview1.columns[2].caption
-msgctxt "tformcontacts.listview1.columns[2].caption"
 msgid "Middle name"
 msgstr ""
 
@@ -528,12 +527,10 @@ msgid "Last Name"
 msgstr ""
 
 #: tformcontacts.listview1.columns[4].caption
-msgctxt "tformcontacts.listview1.columns[4].caption"
 msgid "Phone"
 msgstr ""
 
 #: tformcontacts.listview1.columns[5].caption
-msgctxt "tformcontacts.listview1.columns[5].caption"
 msgid "Mobile"
 msgstr ""
 
@@ -567,7 +564,6 @@ msgid "By contact field:"
 msgstr ""
 
 #: tformfindduplicity.ashowcontacts.caption
-msgctxt "tformfindduplicity.ashowcontacts.caption"
 msgid "Show contacts"
 msgstr ""
 
@@ -596,7 +592,6 @@ msgid "Contacts"
 msgstr ""
 
 #: tformfindduplicity.listview1.columns[2].caption
-msgctxt "tformfindduplicity.listview1.columns[2].caption"
 msgid "Count"
 msgstr ""
 
@@ -610,7 +605,6 @@ msgid "Generate contacts"
 msgstr ""
 
 #: tformgenerate.label1.caption
-msgctxt "tformgenerate.label1.caption"
 msgid "Count:"
 msgstr ""
 
@@ -693,12 +687,10 @@ msgid "Name"
 msgstr ""
 
 #: tformproperties.listview1.columns[1].caption
-msgctxt "tformproperties.listview1.columns[1].caption"
 msgid "Attributes"
 msgstr ""
 
 #: tformproperties.listview1.columns[2].caption
-msgctxt "tformproperties.listview1.columns[2].caption"
 msgid "Values"
 msgstr ""
 
@@ -718,17 +710,14 @@ msgid "Field"
 msgstr ""
 
 #: tformproperty.label1.caption
-msgctxt "tformproperty.label1.caption"
 msgid "Name:"
 msgstr ""
 
 #: tformproperty.label2.caption
-msgctxt "tformproperty.label2.caption"
 msgid "Attributes:"
 msgstr ""
 
 #: tformproperty.label3.caption
-msgctxt "tformproperty.label3.caption"
 msgid "Values:"
 msgstr ""
 
@@ -772,6 +761,24 @@ msgstr ""
 
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
+msgstr ""
+
+#: tformtest.buttonrun.caption
+msgid "Run"
+msgstr ""
+
+#: tformtest.caption
+msgctxt "tformtest.caption"
+msgid "Test"
+msgstr ""
+
+#: tformtest.listviewtestcases.columns[0].caption
+msgctxt "tformtest.listviewtestcases.columns[0].caption"
+msgid "Name"
+msgstr ""
+
+#: tformtest.listviewtestcases.columns[1].caption
+msgid "Result"
 msgstr ""
 
 #: ucontact.saim
@@ -1042,7 +1049,6 @@ msgid "Unique identifier"
 msgstr ""
 
 #: ucontact.svcardfile
-msgctxt "ucontact.svcardfile"
 msgid "vCard file"
 msgstr ""
 
@@ -1136,11 +1142,12 @@ msgid "File was modified. Do you want to save it before exit?"
 msgstr ""
 
 #: ucore.scombinedcontacts
-msgctxt "ucore.scombinedcontacts"
+#, object-pascal-format
 msgid "Combined %d contact files."
 msgstr ""
 
 #: ucore.sfilenotfound
+#, object-pascal-format
 msgid "File '%s' not found."
 msgstr ""
 
@@ -1149,10 +1156,12 @@ msgid "Contacts split"
 msgstr ""
 
 #: ucore.sfilesplitfinishedopendirectory
+#, object-pascal-format
 msgid "Total %d contact files saved. Do you want to open the directory %s?"
 msgstr ""
 
 #: ucore.sline
+#, object-pascal-format
 msgid "Line %d: %s"
 msgstr ""
 
