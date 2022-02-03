@@ -114,12 +114,14 @@ begin
 end;
 
 procedure TFormTest.FormCreate(Sender: TObject);
+const
+  VCardVersion = 'VERSION:2.1';
 begin
   TestCases := TTestCases.Create;
   with TestCases do begin
     with TTestCaseLoadSave(AddNew('Load and save', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
-        'VERSION:2.1' + LineEnding +
+        VCardVersion + LineEnding +
         'N:Surname;Name' + LineEnding +
         'FN:Name Surname' + LineEnding +
         VCardEnd + LineEnding;
@@ -127,7 +129,7 @@ begin
     end;
     with TTestCaseLoadSave(AddNew('Long text', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
-        'VERSION:2.1' + LineEnding +
+        VCardVersion + LineEnding +
         'NOTE:This is some long test which is really multi-lined each line is on d' + LineEnding +
         ' ifferent line so it is on multiple lines.' + LineEnding +
         VCardEnd + LineEnding;
@@ -135,14 +137,14 @@ begin
     end;
     with TTestCaseLoadSave(AddNew('Multi-line', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
-        'VERSION:2.1' + LineEnding +
+        VCardVersion + LineEnding +
         'NOTE:First line\nsecond line\nempty line\n\nlast line' + LineEnding +
         VCardEnd + LineEnding;
       Output := Input;
     end;
-    AddNew('Encoding base64', TTestCaseLoadSave);
-    AddNew('Encoding quoted-printable', TTestCaseLoadSave);
-    AddNew('Image format', TTestCaseLoadSave);
+    //AddNew('Encoding base64', TTestCaseLoadSave);
+    //AddNew('Encoding quoted-printable', TTestCaseLoadSave);
+    //AddNew('Image format', TTestCaseLoadSave);
     with TTestCaseLoadSave(AddNew('Empty', TTestCaseLoadSave)) do begin
       Input := '';
       Output := '';
@@ -153,17 +155,41 @@ begin
     end;
     with TTestCaseLoadSave(AddNew('Missing end', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
-        'VERSION:2.1' + LineEnding +
+        VCardVersion + LineEnding +
         'N:Surname;Name' + LineEnding +
         'FN:Name Surname' + LineEnding;
       Output := '';
     end;
     with TTestCaseLoadSave(AddNew('Missing start', TTestCaseLoadSave)) do begin
-      Input := 'VERSION:2.1' + LineEnding +
+      Input := VCardVersion + LineEnding +
         'N:Surname;Name' + LineEnding +
         'FN:Name Surname' + LineEnding +
         VCardEnd + LineEnding;
       Output := '';
+    end;
+    with TTestCaseCheckProperty(AddNew('Propery FN', TTestCaseCheckProperty)) do begin
+      Index := cfFullName;
+      Value := 'Name Surname';
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'FN:' + Value + LineEnding +
+        VCardEnd + LineEnding;
+    end;
+    with TTestCaseCheckProperty(AddNew('Escaped new lines in text', TTestCaseCheckProperty)) do begin
+      Index := cfNote;
+      Value := 'Line' + #13#10 + 'Line';
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'NOTE:Line\nLine' + LineEnding +
+        VCardEnd + LineEnding;
+    end;
+    with TTestCaseCheckProperty(AddNew('Compound value', TTestCaseCheckProperty)) do begin
+      Index := cfFirstName;
+      Value := 'FirstName';
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'N:Surname;FirstName;;;' + LineEnding +
+        VCardEnd + LineEnding;
     end;
   end;
 end;
