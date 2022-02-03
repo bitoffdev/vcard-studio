@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, ActnList, Menus, ExtCtrls, ExtDlgs, UContact, UFormProperties;
+  ComCtrls, ActnList, Menus, ExtCtrls, ExtDlgs, Buttons, UContact, LCLIntf,
+  UFormProperties;
 
 type
 
@@ -171,6 +172,12 @@ type
     PageControlContact: TPageControl;
     PopupMenuPhoto: TPopupMenu;
     SavePictureDialog1: TSavePictureDialog;
+    SpeedButtonHomeEmail: TSpeedButton;
+    SpeedButtonEmail: TSpeedButton;
+    SpeedButtonWorkEmail: TSpeedButton;
+    SpeedButtonWorkWeb: TSpeedButton;
+    SpeedButtonWeb: TSpeedButton;
+    SpeedButtonHomeWeb: TSpeedButton;
     TabSheetSocial: TTabSheet;
     TabSheetChat: TTabSheet;
     TabSheetOthers: TTabSheet;
@@ -187,6 +194,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure peedButtonHomeWebClick(Sender: TObject);
+    procedure SpeedButtonEmailClick(Sender: TObject);
+    procedure SpeedButtonHomeEmailClick(Sender: TObject);
+    procedure SpeedButtonWebClick(Sender: TObject);
+    procedure SpeedButtonWorkEmailClick(Sender: TObject);
+    procedure SpeedButtonWorkWebClick(Sender: TObject);
     procedure TabSheetAllShow(Sender: TObject);
     procedure TabSheetChatHide(Sender: TObject);
     procedure TabSheetChatShow(Sender: TObject);
@@ -230,7 +243,7 @@ implementation
 {$R *.lfm}
 
 uses
-  UCore;
+  UCore, UCommon;
 
 { TFormContact }
 
@@ -250,6 +263,36 @@ begin
 
   PageControlContact.TabIndex := Core.LastContactTabIndex;
   UpdateInterface;
+end;
+
+procedure TFormContact.peedButtonHomeWebClick(Sender: TObject);
+begin
+  if EditHomeWeb.Text <> '' then OpenURL(EditHomeWeb.Text);
+end;
+
+procedure TFormContact.SpeedButtonEmailClick(Sender: TObject);
+begin
+  if EditEmail.Text <> '' then OpenEmail(EditEmail.Text);
+end;
+
+procedure TFormContact.SpeedButtonHomeEmailClick(Sender: TObject);
+begin
+  if EditHomeEmail.Text <> '' then OpenEmail(EditHomeEmail.Text);
+end;
+
+procedure TFormContact.SpeedButtonWebClick(Sender: TObject);
+begin
+  if EditWeb.Text <> '' then OpenURL(EditWeb.Text);
+end;
+
+procedure TFormContact.SpeedButtonWorkEmailClick(Sender: TObject);
+begin
+  if EditWorkEmail.Text <> '' then OpenEmail(EditWorkEmail.Text);
+end;
+
+procedure TFormContact.SpeedButtonWorkWebClick(Sender: TObject);
+begin
+  if EditWorkWeb.Text <> '' then OpenURL(EditWorkWeb.Text);
 end;
 
 procedure TFormContact.TabSheetAllShow(Sender: TObject);

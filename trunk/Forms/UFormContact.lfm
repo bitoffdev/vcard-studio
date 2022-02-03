@@ -17,10 +17,10 @@ object FormContact: TFormContact
     Height = 696
     Top = 8
     Width = 1009
-    ActivePage = TabSheetAll
+    ActivePage = TabSheetWork
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 6
+    TabIndex = 2
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -81,7 +81,7 @@ object FormContact: TFormContact
         Left = 150
         Height = 43
         Top = 342
-        Width = 265
+        Width = 216
         ParentFont = False
         TabOrder = 11
       end
@@ -276,7 +276,7 @@ object FormContact: TFormContact
         Left = 150
         Height = 43
         Top = 392
-        Width = 711
+        Width = 666
         ParentFont = False
         TabOrder = 13
       end
@@ -312,6 +312,30 @@ object FormContact: TFormContact
         ParentFont = False
         TabOrder = 16
       end
+      object SpeedButtonWeb: TSpeedButton
+        Left = 821
+        Height = 43
+        Hint = 'Open in web browser'
+        Top = 392
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 15
+        OnClick = SpeedButtonWebClick
+        ShowHint = True
+        ParentShowHint = False
+      end
+      object SpeedButtonEmail: TSpeedButton
+        Left = 372
+        Height = 43
+        Hint = 'Open in email client'
+        Top = 342
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 16
+        OnClick = SpeedButtonEmailClick
+        ShowHint = True
+        ParentShowHint = False
+      end
     end
     object TabSheetHome: TTabSheet
       Caption = 'Home'
@@ -332,7 +356,7 @@ object FormContact: TFormContact
         Left = 180
         Height = 43
         Top = 117
-        Width = 265
+        Width = 216
         ParentFont = False
         TabOrder = 4
       end
@@ -395,8 +419,8 @@ object FormContact: TFormContact
       object EditHomeWeb: TEdit
         Left = 180
         Height = 43
-        Top = 167
-        Width = 711
+        Top = 168
+        Width = 668
         ParentFont = False
         TabOrder = 5
       end
@@ -407,7 +431,7 @@ object FormContact: TFormContact
         Width = 961
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Address'
-        ClientHeight = 250
+        ClientHeight = 224
         ClientWidth = 959
         TabOrder = 6
         object Label36: TLabel
@@ -539,6 +563,30 @@ object FormContact: TFormContact
         Caption = 'Phone:'
         ParentFont = False
       end
+      object SpeedButtonHomeWeb: TSpeedButton
+        Left = 852
+        Height = 43
+        Hint = 'Open in web browser'
+        Top = 167
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 15
+        OnClick = peedButtonHomeWebClick
+        ShowHint = True
+        ParentShowHint = False
+      end
+      object SpeedButtonHomeEmail: TSpeedButton
+        Left = 402
+        Height = 43
+        Hint = 'Open in email client'
+        Top = 117
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 16
+        OnClick = SpeedButtonHomeEmailClick
+        ShowHint = True
+        ParentShowHint = False
+      end
     end
     object TabSheetWork: TTabSheet
       Caption = 'Work'
@@ -598,7 +646,7 @@ object FormContact: TFormContact
         Left = 180
         Height = 43
         Top = 267
-        Width = 711
+        Width = 668
         ParentFont = False
         TabOrder = 8
       end
@@ -616,7 +664,7 @@ object FormContact: TFormContact
         Top = 325
         Width = 949
         Caption = 'Address'
-        ClientHeight = 255
+        ClientHeight = 229
         ClientWidth = 947
         TabOrder = 9
         object Label31: TLabel
@@ -808,9 +856,33 @@ object FormContact: TFormContact
         Left = 180
         Height = 43
         Top = 219
-        Width = 265
+        Width = 218
         ParentFont = False
         TabOrder = 7
+      end
+      object SpeedButtonWorkWeb: TSpeedButton
+        Left = 855
+        Height = 43
+        Hint = 'Open in web browser'
+        Top = 267
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 15
+        OnClick = SpeedButtonWorkWebClick
+        ShowHint = True
+        ParentShowHint = False
+      end
+      object SpeedButtonWorkEmail: TSpeedButton
+        Left = 402
+        Height = 43
+        Hint = 'Open in email client'
+        Top = 219
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 16
+        OnClick = SpeedButtonWorkEmailClick
+        ShowHint = True
+        ParentShowHint = False
       end
     end
     object TabSheetChat: TTabSheet
@@ -1252,7 +1324,7 @@ object FormContact: TFormContact
   object ButtonPrevious: TButton
     Left = 8
     Height = 39
-    Top = 714
+    Top = 720
     Width = 124
     Anchors = [akLeft, akBottom]
     Caption = 'Previous'
@@ -1264,7 +1336,7 @@ object FormContact: TFormContact
   object ButtonNext: TButton
     Left = 150
     Height = 39
-    Top = 716
+    Top = 720
     Width = 120
     Anchors = [akLeft, akBottom]
     Caption = 'Next'
@@ -1309,7 +1381,7 @@ object FormContact: TFormContact
     Top = 575
   end
   object SavePictureDialog1: TSavePictureDialog
-    Left = 205
-    Top = 643
+    Left = 176
+    Top = 488
   end
 end
