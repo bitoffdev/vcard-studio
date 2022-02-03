@@ -1,22 +1,22 @@
 object FormContact: TFormContact
   Left = 604
-  Height = 742
+  Height = 773
   Top = 484
-  Width = 991
+  Width = 1032
   Caption = 'Contact'
-  ClientHeight = 742
-  ClientWidth = 991
-  DesignTimePPI = 144
+  ClientHeight = 773
+  ClientWidth = 1032
+  DesignTimePPI = 150
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object PageControlContact: TPageControl
     Left = 8
-    Height = 668
+    Height = 696
     Top = 8
-    Width = 969
+    Width = 1009
     ActivePage = TabSheetAll
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
@@ -24,118 +24,112 @@ object FormContact: TFormContact
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
-      ClientHeight = 628
-      ClientWidth = 959
+      ClientHeight = 655
+      ClientWidth = 999
       OnHide = TabSheetGeneralHide
       OnShow = TabSheetGeneralShow
       ParentFont = False
       object Label1: TLabel
-        Left = 240
-        Height = 24
-        Top = 80
-        Width = 94
+        Left = 250
+        Height = 27
+        Top = 83
+        Width = 101
         Caption = 'First name:'
-        ParentColor = False
         ParentFont = False
       end
       object EditFirstName: TEdit
-        Left = 360
-        Height = 42
-        Top = 72
-        Width = 155
+        Left = 375
+        Height = 43
+        Top = 75
+        Width = 161
         ParentFont = False
         TabOrder = 1
       end
       object Label2: TLabel
-        Left = 16
-        Height = 24
-        Top = 250
-        Width = 63
+        Left = 17
+        Height = 27
+        Top = 260
+        Width = 66
         Caption = 'Mobile:'
-        ParentColor = False
         ParentFont = False
       end
       object EditMobile: TEdit
-        Left = 144
-        Height = 42
-        Top = 240
-        Width = 254
+        Left = 150
+        Height = 43
+        Top = 250
+        Width = 265
         ParentFont = False
         TabOrder = 7
       end
       object EditPhone: TEdit
-        Left = 144
-        Height = 42
-        Top = 286
-        Width = 254
+        Left = 150
+        Height = 43
+        Top = 298
+        Width = 265
         ParentFont = False
         TabOrder = 9
       end
       object Label3: TLabel
-        Left = 16
-        Height = 24
-        Top = 290
-        Width = 59
+        Left = 17
+        Height = 27
+        Top = 302
+        Width = 62
         Caption = 'Phone:'
-        ParentColor = False
         ParentFont = False
       end
       object EditEmail: TEdit
-        Left = 144
-        Height = 42
-        Top = 328
-        Width = 254
+        Left = 150
+        Height = 43
+        Top = 342
+        Width = 265
         ParentFont = False
         TabOrder = 11
       end
       object Label4: TLabel
-        Left = 16
-        Height = 24
-        Top = 336
-        Width = 58
+        Left = 17
+        Height = 27
+        Top = 350
+        Width = 60
         Caption = 'E-mail:'
-        ParentColor = False
         ParentFont = False
       end
       object EditLastName: TEdit
-        Left = 671
-        Height = 42
-        Top = 72
-        Width = 155
+        Left = 699
+        Height = 43
+        Top = 75
+        Width = 161
         ParentFont = False
         TabOrder = 2
       end
       object Label5: TLabel
-        Left = 536
-        Height = 24
-        Top = 80
-        Width = 87
+        Left = 558
+        Height = 27
+        Top = 83
+        Width = 94
         Caption = 'Last name'
-        ParentColor = False
         ParentFont = False
       end
       object EditBirthday: TEdit
-        Left = 144
-        Height = 42
-        Top = 424
-        Width = 254
+        Left = 150
+        Height = 43
+        Top = 442
+        Width = 265
         ParentFont = False
         TabOrder = 14
       end
       object Label22: TLabel
-        Left = 16
-        Height = 24
-        Top = 432
-        Width = 76
+        Left = 17
+        Height = 27
+        Top = 450
+        Width = 82
         Caption = 'Birthday:'
-        ParentColor = False
         ParentFont = False
       end
       object ImagePhoto: TImage
-        Left = 16
-        Height = 210
-        Top = 16
-        Width = 207
+        Left = 17
+        Height = 219
+        Top = 17
+        Width = 216
         Center = True
         OnClick = APhotoLoadExecute
         PopupMenu = PopupMenuPhoto
@@ -143,1138 +137,1075 @@ object FormContact: TFormContact
         Stretch = True
       end
       object Label24: TLabel
-        Left = 240
-        Height = 24
-        Top = 32
-        Width = 88
+        Left = 250
+        Height = 27
+        Top = 33
+        Width = 94
         Caption = 'Full name:'
-        ParentColor = False
         ParentFont = False
       end
       object EditFullName: TEdit
-        Left = 360
-        Height = 42
-        Top = 24
-        Width = 467
+        Left = 375
+        Height = 43
+        Top = 25
+        Width = 486
         ParentFont = False
         TabOrder = 0
       end
       object Label25: TLabel
-        Left = 536
-        Height = 24
-        Top = 128
-        Width = 116
+        Left = 558
+        Height = 27
+        Top = 133
+        Width = 124
         Caption = 'Middle name:'
-        ParentColor = False
         ParentFont = False
       end
       object EditMiddleName: TEdit
-        Left = 671
-        Height = 42
-        Top = 120
-        Width = 155
+        Left = 699
+        Height = 43
+        Top = 125
+        Width = 161
         ParentFont = False
         TabOrder = 4
       end
       object Label26: TLabel
-        Left = 240
-        Height = 24
-        Top = 176
-        Width = 101
+        Left = 250
+        Height = 27
+        Top = 183
+        Width = 106
         Caption = 'Title before:'
-        ParentColor = False
         ParentFont = False
       end
       object EditTitleBefore: TEdit
-        Left = 360
-        Height = 42
-        Top = 168
-        Width = 155
+        Left = 375
+        Height = 43
+        Top = 175
+        Width = 161
         ParentFont = False
         TabOrder = 5
       end
       object Label27: TLabel
-        Left = 536
-        Height = 24
-        Top = 176
-        Width = 85
+        Left = 558
+        Height = 27
+        Top = 183
+        Width = 91
         Caption = 'Title after:'
-        ParentColor = False
         ParentFont = False
       end
       object EditTitleAfter: TEdit
-        Left = 671
-        Height = 42
-        Top = 168
-        Width = 155
+        Left = 699
+        Height = 43
+        Top = 175
+        Width = 161
         ParentFont = False
         TabOrder = 6
       end
       object Label44: TLabel
-        Left = 240
-        Height = 24
-        Top = 128
-        Width = 91
+        Left = 250
+        Height = 27
+        Top = 133
+        Width = 95
         Caption = 'Nickname:'
-        ParentColor = False
         ParentFont = False
       end
       object EditNickName: TEdit
-        Left = 360
-        Height = 42
-        Top = 120
-        Width = 155
+        Left = 375
+        Height = 43
+        Top = 125
+        Width = 161
         ParentFont = False
         TabOrder = 3
       end
       object Label45: TLabel
-        Left = 432
-        Height = 24
-        Top = 432
-        Width = 105
+        Left = 450
+        Height = 27
+        Top = 450
+        Width = 113
         Caption = 'Anniversary:'
-        ParentColor = False
         ParentFont = False
       end
       object EditAniversary: TEdit
-        Left = 575
-        Height = 42
-        Top = 424
-        Width = 254
+        Left = 599
+        Height = 43
+        Top = 442
+        Width = 265
         ParentFont = False
         TabOrder = 15
       end
       object Label9: TLabel
-        Left = 432
-        Height = 24
-        Top = 248
-        Width = 34
+        Left = 450
+        Height = 27
+        Top = 258
+        Width = 36
         Caption = 'Fax:'
-        ParentColor = False
         ParentFont = False
       end
       object EditFax: TEdit
-        Left = 575
-        Height = 42
-        Top = 240
-        Width = 254
+        Left = 599
+        Height = 43
+        Top = 250
+        Width = 265
         ParentFont = False
         TabOrder = 8
       end
       object EditPager: TEdit
-        Left = 575
-        Height = 42
-        Top = 286
-        Width = 254
+        Left = 599
+        Height = 43
+        Top = 298
+        Width = 265
         ParentFont = False
         TabOrder = 10
       end
       object Label10: TLabel
-        Left = 432
-        Height = 24
-        Top = 290
-        Width = 54
+        Left = 450
+        Height = 27
+        Top = 302
+        Width = 58
         Caption = 'Pager:'
-        ParentColor = False
         ParentFont = False
       end
       object Label46: TLabel
-        Left = 16
-        Height = 24
-        Top = 384
-        Width = 114
+        Left = 17
+        Height = 27
+        Top = 400
+        Width = 121
         Caption = 'Web address:'
-        ParentColor = False
         ParentFont = False
       end
       object EditWeb: TEdit
-        Left = 144
-        Height = 42
-        Top = 376
-        Width = 683
+        Left = 150
+        Height = 43
+        Top = 392
+        Width = 711
         ParentFont = False
         TabOrder = 13
       end
       object Label49: TLabel
-        Left = 432
-        Height = 24
-        Top = 332
-        Width = 67
+        Left = 450
+        Height = 27
+        Top = 346
+        Width = 73
         Caption = 'Gender:'
-        ParentColor = False
         ParentFont = False
       end
       object EditGender: TEdit
-        Left = 575
-        Height = 42
-        Top = 328
-        Width = 254
+        Left = 599
+        Height = 43
+        Top = 342
+        Width = 265
         ParentFont = False
         TabOrder = 12
       end
       object Label56: TLabel
-        Left = 16
-        Height = 24
-        Top = 480
-        Width = 95
+        Left = 17
+        Height = 27
+        Top = 500
+        Width = 102
         Caption = 'Categories:'
-        ParentColor = False
         ParentFont = False
       end
       object EditCategories: TEdit
-        Left = 144
-        Height = 42
-        Top = 472
-        Width = 254
+        Left = 150
+        Height = 43
+        Top = 492
+        Width = 265
         ParentFont = False
         TabOrder = 16
       end
     end
     object TabSheetHome: TTabSheet
       Caption = 'Home'
-      ClientHeight = 628
-      ClientWidth = 959
+      ClientHeight = 655
+      ClientWidth = 999
       OnHide = TabSheetHomeHide
       OnShow = TabSheetHomeShow
       ParentFont = False
       object Label7: TLabel
-        Left = 16
-        Height = 24
-        Top = 114
-        Width = 58
+        Left = 17
+        Height = 27
+        Top = 119
+        Width = 60
         Caption = 'E-mail:'
-        ParentColor = False
         ParentFont = False
       end
       object EditHomeEmail: TEdit
-        Left = 173
-        Height = 42
-        Top = 112
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 117
+        Width = 265
         ParentFont = False
         TabOrder = 4
       end
       object Label11: TLabel
-        Left = 448
-        Height = 24
-        Top = 18
-        Width = 34
+        Left = 467
+        Height = 27
+        Top = 19
+        Width = 36
         Caption = 'Fax:'
-        ParentColor = False
         ParentFont = False
       end
       object EditHomeFax: TEdit
-        Left = 605
-        Height = 42
-        Top = 16
-        Width = 254
+        Left = 630
+        Height = 43
+        Top = 17
+        Width = 265
         ParentFont = False
         TabOrder = 1
       end
       object EditHomeMobile: TEdit
-        Left = 173
-        Height = 42
-        Top = 60
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 63
+        Width = 265
         ParentFont = False
         TabOrder = 2
       end
       object EditHomePhone: TEdit
-        Left = 173
-        Height = 42
-        Top = 16
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 17
+        Width = 265
         ParentFont = False
         TabOrder = 0
       end
       object Label14: TLabel
-        Left = 448
-        Height = 24
-        Top = 68
-        Width = 54
+        Left = 467
+        Height = 27
+        Top = 71
+        Width = 58
         Caption = 'Pager:'
-        ParentColor = False
         ParentFont = False
       end
       object EditHomePager: TEdit
-        Left = 605
-        Height = 42
-        Top = 60
-        Width = 254
+        Left = 630
+        Height = 43
+        Top = 63
+        Width = 265
         ParentFont = False
         TabOrder = 3
       end
       object Label40: TLabel
-        Left = 16
-        Height = 24
-        Top = 168
-        Width = 114
+        Left = 17
+        Height = 27
+        Top = 175
+        Width = 121
         Caption = 'Web address:'
-        ParentColor = False
         ParentFont = False
       end
       object EditHomeWeb: TEdit
-        Left = 173
-        Height = 42
-        Top = 160
-        Width = 683
+        Left = 180
+        Height = 43
+        Top = 167
+        Width = 711
         ParentFont = False
         TabOrder = 5
       end
       object GroupBox1: TGroupBox
         Left = 10
-        Height = 242
-        Top = 216
-        Width = 922
+        Height = 252
+        Top = 225
+        Width = 961
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Address'
-        ClientHeight = 215
-        ClientWidth = 920
+        ClientHeight = 250
+        ClientWidth = 959
         TabOrder = 6
         object Label36: TLabel
           Left = 8
-          Height = 24
-          Top = 18
-          Width = 54
+          Height = 27
+          Top = 19
+          Width = 58
           Caption = 'Street:'
-          ParentColor = False
           ParentFont = False
         end
         object Label37: TLabel
           Left = 10
-          Height = 24
-          Top = 66
-          Width = 137
+          Height = 27
+          Top = 69
+          Width = 147
           Caption = 'Extended street:'
-          ParentColor = False
           ParentFont = False
         end
         object EditHomeAddressStreetExtended: TEdit
-          Left = 173
-          Height = 42
-          Top = 56
-          Width = 254
+          Left = 180
+          Height = 43
+          Top = 58
+          Width = 265
           ParentFont = False
           TabOrder = 2
         end
         object EditHomeAddressStreet: TEdit
-          Left = 173
-          Height = 42
+          Left = 180
+          Height = 43
           Top = 8
-          Width = 254
+          Width = 265
           ParentFont = False
           TabOrder = 0
         end
         object Label38: TLabel
           Left = 10
-          Height = 24
-          Top = 112
-          Width = 64
+          Height = 27
+          Top = 117
+          Width = 68
           Caption = 'Region:'
-          ParentColor = False
           ParentFont = False
         end
         object EditHomeAddressRegion: TEdit
-          Left = 173
-          Height = 42
-          Top = 104
-          Width = 254
+          Left = 180
+          Height = 43
+          Top = 108
+          Width = 265
           ParentFont = False
           TabOrder = 4
         end
         object EditHomeAddressCountry: TEdit
-          Left = 173
-          Height = 42
-          Top = 152
-          Width = 254
+          Left = 180
+          Height = 43
+          Top = 158
+          Width = 265
           ParentFont = False
           TabOrder = 5
         end
         object Label39: TLabel
           Left = 10
-          Height = 24
-          Top = 160
-          Width = 71
+          Height = 27
+          Top = 167
+          Width = 77
           Caption = 'Country:'
-          ParentColor = False
           ParentFont = False
         end
         object Label41: TLabel
-          Left = 451
-          Height = 24
-          Top = 160
-          Width = 103
+          Left = 470
+          Height = 27
+          Top = 167
+          Width = 107
           Caption = 'Postal code:'
-          ParentColor = False
           ParentFont = False
         end
         object EditHomeAddressPostalCode: TEdit
-          Left = 588
-          Height = 42
-          Top = 152
-          Width = 254
+          Left = 612
+          Height = 43
+          Top = 158
+          Width = 265
           ParentFont = False
           TabOrder = 6
         end
         object EditHomeAddressCity: TEdit
-          Left = 588
-          Height = 42
-          Top = 56
-          Width = 254
+          Left = 612
+          Height = 43
+          Top = 58
+          Width = 265
           ParentFont = False
           TabOrder = 3
         end
         object Label42: TLabel
-          Left = 451
-          Height = 24
-          Top = 64
-          Width = 36
+          Left = 470
+          Height = 27
+          Top = 67
+          Width = 39
           Caption = 'City:'
-          ParentColor = False
           ParentFont = False
         end
         object Label43: TLabel
-          Left = 451
-          Height = 24
-          Top = 16
-          Width = 131
+          Left = 470
+          Height = 27
+          Top = 17
+          Width = 135
           Caption = 'Post office box:'
-          ParentColor = False
           ParentFont = False
         end
         object EditHomeAddressPostOfficeBox: TEdit
-          Left = 588
-          Height = 42
+          Left = 612
+          Height = 43
           Top = 8
-          Width = 254
+          Width = 265
           ParentFont = False
           TabOrder = 1
         end
       end
       object Label12: TLabel
-        Left = 16
-        Height = 24
-        Top = 64
-        Width = 63
+        Left = 17
+        Height = 27
+        Top = 67
+        Width = 66
         Caption = 'Mobile:'
-        ParentColor = False
         ParentFont = False
       end
       object Label13: TLabel
-        Left = 16
-        Height = 24
-        Top = 20
-        Width = 59
+        Left = 17
+        Height = 27
+        Top = 21
+        Width = 62
         Caption = 'Phone:'
-        ParentColor = False
         ParentFont = False
       end
     end
     object TabSheetWork: TTabSheet
       Caption = 'Work'
-      ClientHeight = 628
-      ClientWidth = 959
+      ClientHeight = 655
+      ClientWidth = 999
       OnHide = TabSheetWorkHide
       OnShow = TabSheetWorkShow
       object EditOrganization: TEdit
-        Left = 173
-        Height = 42
-        Top = 64
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 67
+        Width = 265
         ParentFont = False
         TabOrder = 2
       end
       object LabelOrganization: TLabel
         Left = 10
-        Height = 24
-        Top = 70
-        Width = 114
+        Height = 27
+        Top = 73
+        Width = 123
         Caption = 'Organization:'
-        ParentColor = False
         ParentFont = False
       end
       object LabelOrganization1: TLabel
-        Left = 451
-        Height = 24
-        Top = 24
-        Width = 106
+        Left = 470
+        Height = 27
+        Top = 25
+        Width = 116
         Caption = 'Department:'
-        ParentColor = False
         ParentFont = False
       end
       object EditDepartment: TEdit
-        Left = 608
-        Height = 42
-        Top = 20
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 21
+        Width = 265
         ParentFont = False
         TabOrder = 1
       end
       object Label18: TLabel
         Left = 10
-        Height = 24
-        Top = 20
-        Width = 41
+        Height = 27
+        Top = 21
+        Width = 43
         Caption = 'Title:'
-        ParentColor = False
         ParentFont = False
       end
       object EditTitle: TEdit
-        Left = 173
-        Height = 42
-        Top = 16
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 17
+        Width = 265
         ParentFont = False
         TabOrder = 0
       end
       object EditWorkWeb: TEdit
-        Left = 173
-        Height = 42
-        Top = 256
-        Width = 683
+        Left = 180
+        Height = 43
+        Top = 267
+        Width = 711
         ParentFont = False
         TabOrder = 8
       end
       object Label32: TLabel
         Left = 10
-        Height = 24
-        Top = 264
-        Width = 114
+        Height = 27
+        Top = 275
+        Width = 121
         Caption = 'Web address:'
-        ParentColor = False
         ParentFont = False
       end
       object GroupBox2: TGroupBox
         Left = 8
-        Height = 247
-        Top = 312
-        Width = 911
+        Height = 257
+        Top = 325
+        Width = 949
         Caption = 'Address'
-        ClientHeight = 220
-        ClientWidth = 909
+        ClientHeight = 255
+        ClientWidth = 947
         TabOrder = 9
         object Label31: TLabel
           Left = 10
-          Height = 24
-          Top = 160
-          Width = 71
+          Height = 27
+          Top = 167
+          Width = 77
           Caption = 'Country:'
-          ParentColor = False
           ParentFont = False
         end
         object EditAddressWorkCountry: TEdit
-          Left = 173
-          Height = 42
-          Top = 152
-          Width = 254
+          Left = 180
+          Height = 43
+          Top = 158
+          Width = 265
           ParentFont = False
           TabOrder = 5
         end
         object EditAddressWorkRegion: TEdit
-          Left = 173
-          Height = 42
-          Top = 104
-          Width = 254
+          Left = 180
+          Height = 43
+          Top = 108
+          Width = 265
           ParentFont = False
           TabOrder = 4
         end
         object Label30: TLabel
           Left = 10
-          Height = 24
-          Top = 112
-          Width = 64
+          Height = 27
+          Top = 117
+          Width = 68
           Caption = 'Region:'
-          ParentColor = False
           ParentFont = False
         end
         object Label35: TLabel
           Left = 10
-          Height = 24
-          Top = 64
-          Width = 137
+          Height = 27
+          Top = 67
+          Width = 147
           Caption = 'Extended street:'
-          ParentColor = False
           ParentFont = False
         end
         object EditAddressWorkStreetExtended: TEdit
-          Left = 173
-          Height = 42
-          Top = 56
-          Width = 254
+          Left = 180
+          Height = 43
+          Top = 58
+          Width = 265
           ParentFont = False
           TabOrder = 2
         end
         object Label28: TLabel
           Left = 10
-          Height = 24
-          Top = 18
-          Width = 54
+          Height = 27
+          Top = 19
+          Width = 58
           Caption = 'Street:'
-          ParentColor = False
           ParentFont = False
         end
         object EditAddressWorkStreet: TEdit
-          Left = 173
-          Height = 42
+          Left = 180
+          Height = 43
           Top = 8
-          Width = 254
+          Width = 265
           ParentFont = False
           TabOrder = 0
         end
         object Label34: TLabel
-          Left = 451
-          Height = 24
-          Top = 18
-          Width = 131
+          Left = 470
+          Height = 27
+          Top = 19
+          Width = 135
           Caption = 'Post office box:'
-          ParentColor = False
           ParentFont = False
         end
         object EditAddressWorkPostOfficeBox: TEdit
-          Left = 608
-          Height = 42
+          Left = 633
+          Height = 43
           Top = 8
-          Width = 254
+          Width = 265
           ParentFont = False
           TabOrder = 1
         end
         object EditAddressWorkCity: TEdit
-          Left = 608
-          Height = 42
-          Top = 56
-          Width = 254
+          Left = 633
+          Height = 43
+          Top = 58
+          Width = 265
           ParentFont = False
           TabOrder = 3
         end
         object Label29: TLabel
-          Left = 451
-          Height = 24
-          Top = 64
-          Width = 36
+          Left = 470
+          Height = 27
+          Top = 67
+          Width = 39
           Caption = 'City:'
-          ParentColor = False
           ParentFont = False
         end
         object EditAddressWorkPostalCode: TEdit
-          Left = 608
-          Height = 42
-          Top = 142
-          Width = 254
+          Left = 633
+          Height = 43
+          Top = 148
+          Width = 265
           ParentFont = False
           TabOrder = 6
         end
         object Label33: TLabel
-          Left = 451
-          Height = 24
-          Top = 150
-          Width = 103
+          Left = 470
+          Height = 27
+          Top = 156
+          Width = 107
           Caption = 'Postal code:'
-          ParentColor = False
           ParentFont = False
         end
       end
       object Label15: TLabel
         Left = 10
-        Height = 24
-        Top = 116
-        Width = 59
+        Height = 27
+        Top = 121
+        Width = 62
         Caption = 'Phone:'
-        ParentColor = False
         ParentFont = False
       end
       object EditWorkPhone: TEdit
-        Left = 173
-        Height = 42
-        Top = 112
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 117
+        Width = 265
         ParentFont = False
         TabOrder = 3
       end
       object Label16: TLabel
-        Left = 451
-        Height = 24
-        Top = 112
-        Width = 34
+        Left = 470
+        Height = 27
+        Top = 117
+        Width = 36
         Caption = 'Fax:'
-        ParentColor = False
         ParentFont = False
       end
       object EditWorkFax: TEdit
-        Left = 608
-        Height = 42
-        Top = 112
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 117
+        Width = 265
         ParentFont = False
         TabOrder = 4
       end
       object EditWorkPager: TEdit
-        Left = 608
-        Height = 42
-        Top = 156
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 162
+        Width = 265
         ParentFont = False
         TabOrder = 6
       end
       object Label17: TLabel
-        Left = 448
-        Height = 24
-        Top = 160
-        Width = 54
+        Left = 467
+        Height = 27
+        Top = 167
+        Width = 58
         Caption = 'Pager:'
-        ParentColor = False
         ParentFont = False
       end
       object EditWorkMobile: TEdit
-        Left = 173
-        Height = 42
-        Top = 160
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 167
+        Width = 265
         ParentFont = False
         TabOrder = 5
       end
       object Label19: TLabel
         Left = 10
-        Height = 24
-        Top = 160
-        Width = 63
+        Height = 27
+        Top = 167
+        Width = 66
         Caption = 'Mobile:'
-        ParentColor = False
         ParentFont = False
       end
       object Label8: TLabel
         Left = 10
-        Height = 24
-        Top = 210
-        Width = 58
+        Height = 27
+        Top = 219
+        Width = 60
         Caption = 'E-mail:'
-        ParentColor = False
         ParentFont = False
       end
       object EditWorkEmail: TEdit
-        Left = 173
-        Height = 42
-        Top = 210
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 219
+        Width = 265
         ParentFont = False
         TabOrder = 7
       end
     end
     object TabSheetChat: TTabSheet
       Caption = 'Chat'
-      ClientHeight = 628
-      ClientWidth = 959
+      ClientHeight = 655
+      ClientWidth = 999
       OnHide = TabSheetChatHide
       OnShow = TabSheetChatShow
       object Label20: TLabel
         Left = 10
-        Height = 24
-        Top = 24
-        Width = 59
+        Height = 27
+        Top = 25
+        Width = 64
         Caption = 'Jabber:'
-        ParentColor = False
         ParentFont = False
       end
       object EditJabber: TEdit
-        Left = 173
-        Height = 42
-        Top = 16
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 17
+        Width = 265
         ParentFont = False
         TabOrder = 0
       end
       object LabelOrganization2: TLabel
         Left = 10
-        Height = 24
-        Top = 264
-        Width = 55
+        Height = 27
+        Top = 275
+        Width = 58
         Caption = 'Skype:'
-        ParentColor = False
         ParentFont = False
       end
       object EditSkype: TEdit
-        Left = 173
-        Height = 42
-        Top = 256
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 267
+        Width = 265
         ParentFont = False
         TabOrder = 10
       end
       object Label21: TLabel
         Left = 10
-        Height = 24
-        Top = 72
-        Width = 45
+        Height = 27
+        Top = 75
+        Width = 46
         Caption = 'MSN:'
-        ParentColor = False
         ParentFont = False
       end
       object EditMsn: TEdit
-        Left = 173
-        Height = 42
-        Top = 64
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 67
+        Width = 265
         ParentFont = False
         TabOrder = 2
       end
       object LabelOrganization3: TLabel
-        Left = 451
-        Height = 24
-        Top = 72
-        Width = 36
+        Left = 470
+        Height = 27
+        Top = 75
+        Width = 37
         Caption = 'ICQ:'
-        ParentColor = False
         ParentFont = False
       end
       object EditIcq: TEdit
-        Left = 608
-        Height = 42
-        Top = 68
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 71
+        Width = 265
         ParentFont = False
         TabOrder = 3
       end
       object Label23: TLabel
         Left = 10
-        Height = 24
-        Top = 120
-        Width = 33
+        Height = 27
+        Top = 125
+        Width = 35
         Caption = 'IRC:'
-        ParentColor = False
         ParentFont = False
       end
       object EditIrc: TEdit
-        Left = 173
-        Height = 42
-        Top = 112
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 117
+        Width = 265
         ParentFont = False
         TabOrder = 4
       end
       object LabelOrganization4: TLabel
-        Left = 451
-        Height = 24
-        Top = 120
-        Width = 39
+        Left = 470
+        Height = 27
+        Top = 125
+        Width = 40
         Caption = 'AIM:'
-        ParentColor = False
         ParentFont = False
       end
       object EditAim: TEdit
-        Left = 608
-        Height = 42
-        Top = 116
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 121
+        Width = 265
         ParentFont = False
         TabOrder = 5
       end
       object Label47: TLabel
         Left = 10
-        Height = 24
-        Top = 168
-        Width = 105
+        Height = 27
+        Top = 175
+        Width = 109
         Caption = 'Google Talk:'
-        ParentColor = False
         ParentFont = False
       end
       object EditGoogleTalk: TEdit
-        Left = 173
-        Height = 42
-        Top = 160
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 167
+        Width = 265
         ParentFont = False
         TabOrder = 6
       end
       object LabelOrganization5: TLabel
-        Left = 451
-        Height = 24
-        Top = 168
-        Width = 62
+        Left = 470
+        Height = 27
+        Top = 175
+        Width = 65
         Caption = 'Yahoo!:'
-        ParentColor = False
         ParentFont = False
       end
       object EditYahoo: TEdit
-        Left = 608
-        Height = 42
-        Top = 164
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 171
+        Width = 265
         ParentFont = False
         TabOrder = 7
       end
       object Label48: TLabel
         Left = 10
-        Height = 24
-        Top = 216
-        Width = 121
+        Height = 27
+        Top = 225
+        Width = 127
         Caption = 'Windows Live:'
-        ParentColor = False
         ParentFont = False
       end
       object EditWindowsLive: TEdit
-        Left = 173
-        Height = 42
-        Top = 208
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 217
+        Width = 265
         ParentFont = False
         TabOrder = 8
       end
       object LabelOrganization6: TLabel
-        Left = 451
-        Height = 24
-        Top = 216
-        Width = 33
+        Left = 470
+        Height = 27
+        Top = 225
+        Width = 35
         Caption = 'QQ:'
-        ParentColor = False
         ParentFont = False
       end
       object EditQq: TEdit
-        Left = 608
-        Height = 42
-        Top = 212
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 221
+        Width = 265
         ParentFont = False
         TabOrder = 9
       end
       object Label55: TLabel
-        Left = 451
-        Height = 24
-        Top = 24
-        Width = 59
+        Left = 470
+        Height = 27
+        Top = 25
+        Width = 63
         Caption = 'Matrix:'
-        ParentColor = False
         ParentFont = False
       end
       object EditMatrix: TEdit
-        Left = 608
-        Height = 42
-        Top = 20
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 21
+        Width = 265
         ParentFont = False
         TabOrder = 1
       end
       object Label57: TLabel
         Left = 10
-        Height = 24
-        Top = 312
-        Width = 99
+        Height = 27
+        Top = 325
+        Width = 103
         Caption = 'GroupWise:'
-        ParentColor = False
         ParentFont = False
       end
       object EditGroupWise: TEdit
-        Left = 173
-        Height = 42
-        Top = 304
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 317
+        Width = 265
         ParentFont = False
         TabOrder = 11
       end
       object LabelOrganization12: TLabel
-        Left = 451
-        Height = 24
-        Top = 312
-        Width = 95
+        Left = 470
+        Height = 27
+        Top = 325
+        Width = 103
         Caption = 'GaduGadu:'
-        ParentColor = False
         ParentFont = False
       end
       object EditGaduGadu: TEdit
-        Left = 608
-        Height = 42
-        Top = 308
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 321
+        Width = 265
         ParentFont = False
         TabOrder = 12
       end
     end
     object TabSheetSocial: TTabSheet
       Caption = 'Social'
-      ClientHeight = 628
-      ClientWidth = 959
+      ClientHeight = 655
+      ClientWidth = 999
       OnHide = TabSheetSocialHide
       OnShow = TabSheetSocialShow
       object Label50: TLabel
-        Left = 451
-        Height = 24
-        Top = 164
-        Width = 79
+        Left = 470
+        Height = 27
+        Top = 171
+        Width = 84
         Caption = 'Myspace:'
-        ParentColor = False
         ParentFont = False
       end
       object EditMySpace: TEdit
-        Left = 608
-        Height = 42
-        Top = 160
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 167
+        Width = 265
         ParentFont = False
         TabOrder = 7
       end
       object EditTwitter: TEdit
-        Left = 173
-        Height = 42
-        Top = 64
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 67
+        Width = 265
         ParentFont = False
         TabOrder = 2
       end
       object Label51: TLabel
         Left = 10
-        Height = 24
-        Top = 68
-        Width = 63
+        Height = 27
+        Top = 71
+        Width = 68
         Caption = 'Twitter:'
-        ParentColor = False
         ParentFont = False
       end
       object Label52: TLabel
         Left = 10
-        Height = 24
-        Top = 116
-        Width = 92
+        Height = 27
+        Top = 121
+        Width = 98
         Caption = 'Instagram:'
-        ParentColor = False
         ParentFont = False
       end
       object Label53: TLabel
         Left = 10
-        Height = 24
-        Top = 164
-        Width = 78
+        Height = 27
+        Top = 171
+        Width = 83
         Caption = 'LinkedIn:'
-        ParentColor = False
         ParentFont = False
       end
       object Label54: TLabel
         Left = 10
-        Height = 24
-        Top = 212
-        Width = 83
+        Height = 27
+        Top = 221
+        Width = 89
         Caption = 'Snapchat:'
-        ParentColor = False
         ParentFont = False
       end
       object EditSnapchat: TEdit
-        Left = 173
-        Height = 42
-        Top = 208
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 217
+        Width = 265
         ParentFont = False
         TabOrder = 8
       end
       object EditLinkedIn: TEdit
-        Left = 173
-        Height = 42
-        Top = 160
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 167
+        Width = 265
         ParentFont = False
         TabOrder = 6
       end
       object EditInstagram: TEdit
-        Left = 173
-        Height = 42
-        Top = 112
-        Width = 254
+        Left = 180
+        Height = 43
+        Top = 117
+        Width = 265
         ParentFont = False
         TabOrder = 4
       end
       object LabelOrganization7: TLabel
-        Left = 451
-        Height = 24
-        Top = 24
-        Width = 84
+        Left = 470
+        Height = 27
+        Top = 25
+        Width = 90
         Caption = 'PeerTube:'
-        ParentColor = False
         ParentFont = False
       end
       object LabelOrganization8: TLabel
-        Left = 451
-        Height = 24
-        Top = 116
-        Width = 77
+        Left = 470
+        Height = 27
+        Top = 121
+        Width = 82
         Caption = 'YouTube:'
-        ParentColor = False
         ParentFont = False
       end
       object EditMastodon: TEdit
-        Left = 171
-        Height = 42
-        Top = 16
-        Width = 254
+        Left = 178
+        Height = 43
+        Top = 17
+        Width = 265
         ParentFont = False
         TabOrder = 0
       end
       object LabelOrganization9: TLabel
         Left = 10
-        Height = 24
-        Top = 24
-        Width = 90
+        Height = 27
+        Top = 25
+        Width = 95
         Caption = 'Mastodon:'
-        ParentColor = False
         ParentFont = False
       end
       object LabelOrganization10: TLabel
-        Left = 451
-        Height = 24
-        Top = 212
-        Width = 59
+        Left = 470
+        Height = 27
+        Top = 221
+        Width = 64
         Caption = 'Reddit:'
-        ParentColor = False
         ParentFont = False
       end
       object EditReddit: TEdit
-        Left = 608
-        Height = 42
-        Top = 208
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 217
+        Width = 265
         ParentFont = False
         TabOrder = 9
       end
       object EditPeerTube: TEdit
-        Left = 608
-        Height = 42
-        Top = 16
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 17
+        Width = 265
         ParentFont = False
         TabOrder = 1
       end
       object EditYouTube: TEdit
-        Left = 608
-        Height = 42
-        Top = 112
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 117
+        Width = 265
         ParentFont = False
         TabOrder = 5
       end
       object EditFacebook: TEdit
-        Left = 608
-        Height = 42
-        Top = 64
-        Width = 254
+        Left = 633
+        Height = 43
+        Top = 67
+        Width = 265
         ParentFont = False
         TabOrder = 3
       end
       object LabelOrganization11: TLabel
-        Left = 451
-        Height = 24
-        Top = 68
-        Width = 86
+        Left = 470
+        Height = 27
+        Top = 71
+        Width = 90
         Caption = 'Facebook:'
-        ParentColor = False
         ParentFont = False
       end
     end
     object TabSheetOthers: TTabSheet
       Caption = 'Others'
-      ClientHeight = 628
-      ClientWidth = 959
+      ClientHeight = 655
+      ClientWidth = 999
       OnHide = TabSheetOthersHide
       OnShow = TabSheetOthersShow
       object MemoNotes: TMemo
-        Left = 16
-        Height = 280
-        Top = 48
-        Width = 925
+        Left = 17
+        Height = 293
+        Top = 50
+        Width = 963
         Anchors = [akTop, akLeft, akRight, akBottom]
         ParentFont = False
         ParentShowHint = False
@@ -1282,12 +1213,11 @@ object FormContact: TFormContact
         TabOrder = 0
       end
       object Label6: TLabel
-        Left = 16
-        Height = 24
-        Top = 16
-        Width = 55
+        Left = 17
+        Height = 27
+        Top = 17
+        Width = 57
         Caption = 'Notes:'
-        ParentColor = False
         ParentFont = False
       end
     end
@@ -1298,10 +1228,10 @@ object FormContact: TFormContact
     end
   end
   object ButtonCancel: TButton
-    Left = 864
-    Height = 37
-    Top = 692
-    Width = 115
+    Left = 900
+    Height = 39
+    Top = 720
+    Width = 120
     Anchors = [akRight, akBottom]
     Caption = 'Cancel'
     ModalResult = 2
@@ -1309,10 +1239,10 @@ object FormContact: TFormContact
     TabOrder = 1
   end
   object ButtonOk: TButton
-    Left = 729
-    Height = 37
-    Top = 692
-    Width = 119
+    Left = 759
+    Height = 39
+    Top = 720
+    Width = 124
     Anchors = [akRight, akBottom]
     Caption = 'OK'
     ModalResult = 1
@@ -1321,9 +1251,9 @@ object FormContact: TFormContact
   end
   object ButtonPrevious: TButton
     Left = 8
-    Height = 37
-    Top = 686
-    Width = 119
+    Height = 39
+    Top = 714
+    Width = 124
     Anchors = [akLeft, akBottom]
     Caption = 'Previous'
     OnClick = ButtonPreviousClick
@@ -1332,10 +1262,10 @@ object FormContact: TFormContact
     Visible = False
   end
   object ButtonNext: TButton
-    Left = 144
-    Height = 37
-    Top = 688
-    Width = 115
+    Left = 150
+    Height = 39
+    Top = 716
+    Width = 120
     Anchors = [akLeft, akBottom]
     Caption = 'Next'
     OnClick = ButtonNextClick
@@ -1345,8 +1275,8 @@ object FormContact: TFormContact
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
-    Left = 592
-    Top = 528
+    Left = 617
+    Top = 550
     object APhotoLoad: TAction
       Caption = 'Load from file'
       OnExecute = APhotoLoadExecute
@@ -1362,8 +1292,8 @@ object FormContact: TFormContact
   end
   object PopupMenuPhoto: TPopupMenu
     Images = Core.ImageList1
-    Left = 464
-    Top = 488
+    Left = 483
+    Top = 508
     object MenuItem1: TMenuItem
       Action = APhotoLoad
     end
@@ -1375,11 +1305,11 @@ object FormContact: TFormContact
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog
-    Left = 168
-    Top = 552
+    Left = 175
+    Top = 575
   end
   object SavePictureDialog1: TSavePictureDialog
-    Left = 197
-    Top = 617
+    Left = 205
+    Top = 643
   end
 end
