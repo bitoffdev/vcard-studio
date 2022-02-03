@@ -38,9 +38,9 @@ parts:
       install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/bin
       install -s -m 755 vCardStudio $SNAPCRAFT_PART_INSTALL/usr/bin/vCardStudio
       install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
-      install -m 755 Languages/vCardStudio.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/vCardStudio.pot $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
       install -m 755 Languages/vCardStudio.cs.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
-      install -m 755 Languages/UFormAbout.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
+      install -m 755 Languages/UFormAbout.pot $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
       install -m 755 Languages/UFormAbout.cs.po $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Languages
       install -d -m 755 $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Images
       install -m 755 Images/Profile.png $SNAPCRAFT_PART_INSTALL/usr/share/vCardStudio/Images
