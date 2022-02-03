@@ -47,7 +47,7 @@ implementation
 {$R *.lfm}
 
 uses
-  UCore, UFormTestCase;
+  UCore, UFormTestCase, UContact;
 
 { TFormTest }
 
@@ -118,19 +118,26 @@ begin
   TestCases := TTestCases.Create;
   with TestCases do begin
     with TTestCaseLoadSave(AddNew('Load and save', TTestCaseLoadSave)) do begin
-      Input := 'BEGIN:VCARD' + LineEnding +
+      Input := VCardBegin + LineEnding +
         'VERSION:2.1' + LineEnding +
         'N:Surname;Name' + LineEnding +
         'FN:Name Surname' + LineEnding +
-        'END:VCARD' + LineEnding;
+        VCardEnd + LineEnding;
+      Output := Input;
+    end;
+    with TTestCaseLoadSave(AddNew('Long text', TTestCaseLoadSave)) do begin
+      Input := VCardBegin + LineEnding +
+        'VERSION:2.1' + LineEnding +
+        'NOTE:This is some long test which is really multi-lined each line is on d' + LineEnding +
+        ' ifferent line so it is on multiple lines.' + LineEnding +
+        VCardEnd + LineEnding;
       Output := Input;
     end;
     with TTestCaseLoadSave(AddNew('Multi-line', TTestCaseLoadSave)) do begin
-      Input := 'BEGIN:VCARD' + LineEnding +
+      Input := VCardBegin + LineEnding +
         'VERSION:2.1' + LineEnding +
-        'NOTE:This is some long test which is really multi-lined\neach line\nis on' + LineEnding +
-        ' different\nline so it is on multiple\nlines.'  + LineEnding +
-        'END:VCARD' + LineEnding;
+        'NOTE:First line\nsecond line\nempty line\n\nlast line' + LineEnding +
+        VCardEnd + LineEnding;
       Output := Input;
     end;
     AddNew('Encoding base64', TTestCaseLoadSave);
@@ -141,14 +148,21 @@ begin
       Output := '';
     end;
     with TTestCaseLoadSave(AddNew('Begin only', TTestCaseLoadSave)) do begin
-      Input := 'BEGIN:VCARD';
+      Input := VCardBegin;
       Output := '';
     end;
     with TTestCaseLoadSave(AddNew('Missing end', TTestCaseLoadSave)) do begin
-      Input := 'BEGIN:VCARD' + LineEnding +
+      Input := VCardBegin + LineEnding +
         'VERSION:2.1' + LineEnding +
         'N:Surname;Name' + LineEnding +
         'FN:Name Surname' + LineEnding;
+      Output := '';
+    end;
+    with TTestCaseLoadSave(AddNew('Missing start', TTestCaseLoadSave)) do begin
+      Input := 'VERSION:2.1' + LineEnding +
+        'N:Surname;Name' + LineEnding +
+        'FN:Name Surname' + LineEnding +
+        VCardEnd + LineEnding;
       Output := '';
     end;
   end;
