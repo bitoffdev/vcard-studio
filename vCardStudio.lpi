@@ -201,6 +201,7 @@
         <Filename Value="Forms\UFormTest.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormTest"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit15>
       <Unit16>
@@ -211,6 +212,7 @@
         <Filename Value="Forms\UFormTestCase.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormTestCase"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit17>
     </Units>

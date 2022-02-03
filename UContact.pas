@@ -126,6 +126,7 @@ type
     procedure SetField(Index: TContactFieldIndex; AValue: string);
     procedure SetModified(AValue: Boolean);
     procedure DoOnModify;
+    procedure DetectMaxLineLength(Text: string);
   public
     Properties: TContactProperties;
     ContactsFile: TContactsFile;
@@ -169,6 +170,7 @@ type
 
   TContactsFile = class(TDataFile)
   private
+    FMaxLineLength: Integer;
     FOnError: TErrorEvent;
     procedure Error(Text: string; Line: Integer);
     function NewItem(Key, Value: string): string;
@@ -183,11 +185,15 @@ type
     procedure LoadFromFile(FileName: string); override;
     constructor Create; override;
     destructor Destroy; override;
+  published
     property OnError: TErrorEvent read FOnError write FOnError;
+    property MaxLineLength: Integer read FMaxLineLength write FMaxLineLength;
   end;
 
 const
   VCardFileExt = '.vcf';
+  VCardBegin = 'BEGIN:VCARD';
+  VCardEnd = 'END:VCARD';
 
 
 implementation
@@ -196,8 +202,7 @@ uses
   UQuotedPrintable, UCommon;
 
 const
-  VCardBegin = 'BEGIN:VCARD';
-  VCardEnd = 'END:VCARD';
+  DefaultMaxLineLength = 75;
 
 resourcestring
   SVCardFile = 'vCard file';
@@ -322,6 +327,7 @@ function EncodeEscaped(Text: string): string;
 var
   I: Integer;
   O: Integer;
+  InNewLine: Boolean;
 begin
   Result := '';
   I := 1;
@@ -329,15 +335,27 @@ begin
   SetLength(Result, Length(Text)); // Preallocate string
   while I <= Length(Text) do begin
     if Text[I] in [',', '\', ';'] then begin
+      InNewLine := False;
+      Result[O] := '\';
+      SetLength(Result, Length(Result) + 1);
+      Inc(O);
+      Result[O] := Text[I];
+      Inc(O);
+    end else
+    if Text[I] in [#13, #10] then begin
+      if not InNewLine then begin
         Result[O] := '\';
         Inc(O);
-        Result[O] := Text[I];
         SetLength(Result, Length(Result) + 1);
+        Result[O] := 'n';
         Inc(O);
-      end else begin
-        Result[O] := Text[I];
-        Inc(O);
+        InNewLine := True;
       end;
+    end else begin
+      InNewLine := False;
+      Result[O] := Text[I];
+      Inc(O);
+    end;
     Inc(I);
   end;
   SetLength(Result, O - 1);
@@ -356,8 +374,15 @@ begin
   SetLength(Result, Length(Text)); // Preallocate string
   while I <= Length(Text) do begin
     if Escaped then begin
-      Result[O] := Text[I];
-      Inc(O);
+      if Text[I] = 'n' then begin
+        Result[O] := #13;
+        Inc(O);
+        Result[O] := #10;
+        Inc(O);
+      end else begin
+        Result[O] := Text[I];
+        Inc(O);
+      end;
       Escaped := False;
     end else begin
       if Text[I] = '\' then begin
@@ -939,14 +964,18 @@ var
   Prop: TContactProperty;
   Field: TContactField;
 begin
-  if not Assigned(ContactsFile) then raise Exception.Create(SContactHasNoParent);
+  if not Assigned(ContactsFile) then
+    raise Exception.Create(SContactHasNoParent);
   Field := GetFields.GetByIndex(Index);
   if Assigned(Field) then begin
     Prop := GetProperty(Field);
     if Assigned(Prop) then begin
       if Field.ValueIndex <> -1 then begin
         Result := DecodeEscaped(Prop.ValueItem[Field.ValueIndex])
-      end else Result := Prop.Value;
+      end else begin
+        if Field.DataType = dtString then Result := DecodeEscaped(Prop.Value)
+          else Result := Prop.Value;
+      end;
     end else Result := '';
   end else raise Exception.Create(SFieldIndexNotDefined);
 end;
@@ -957,7 +986,8 @@ var
   Field: TContactField;
   I: Integer;
 begin
-  if not Assigned(ContactsFile) then raise Exception.Create(SContactHasNoParent);
+  if not Assigned(ContactsFile) then
+    raise Exception.Create(SContactHasNoParent);
   Field := GetFields.GetByIndex(Index);
   if Assigned(Field) then begin
     Prop := GetProperty(Field);
@@ -971,7 +1001,10 @@ begin
     if Assigned(Prop) then begin
       if Field.ValueIndex <> -1 then begin
         Prop.ValueItem[Field.ValueIndex] := EncodeEscaped(AValue);
-      end else Prop.Value := AValue;
+      end else begin
+        if Field.DataType = dtString then Prop.Value := EncodeEscaped(AValue)
+          else Prop.Value := EncodeEscaped(AValue);
+      end;
 
       // Remove if empty
       if Prop.Value = '' then begin
@@ -992,6 +1025,20 @@ end;
 procedure TContact.DoOnModify;
 begin
   if Assigned(FOnModify) then FOnModify(Self);
+end;
+
+procedure TContact.DetectMaxLineLength(Text: string);
+var
+  LineLength: Integer;
+begin
+  LineLength := UTF8Length(Text);
+  if LineLength > 1 then begin
+    // Count one character less for folded line
+    if Text[1] = ' ' then
+      Dec(LineLength);
+  end;
+  if LineLength > ContactsFile.MaxLineLength then
+    ContactsFile.MaxLineLength := LineLength;
 end;
 
 function TContact.HasField(FieldIndex: TContactFieldIndex): Boolean;
@@ -1086,10 +1133,9 @@ var
   Value2: string;
   LineIndex: Integer;
   OutText: string;
+  CutText: string;
   LinePrefix: string;
   CutLength: Integer;
-const
-  MaxLineLength = 73;
 begin
     with Output do begin
       Add(VCardBegin);
@@ -1114,8 +1160,8 @@ begin
           LineIndex := 0;
           LinePrefix := '';
           while True do begin
-            if Length(OutText) > MaxLineLength then begin
-              CutLength := MaxLineLength;
+            if UTF8Length(OutText) > ContactsFile.MaxLineLength then begin
+              CutLength := ContactsFile.MaxLineLength;
               if Encoding = 'QUOTED-PRINTABLE' then begin
                 // Do not cut encoded items
                 if ((CutLength - 2) >= 1) and (OutText[CutLength - 2] = '=') then
@@ -1123,9 +1169,10 @@ begin
                 else if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = '=') then
                   Dec(CutLength, 1);
               end;
-              Add(LinePrefix + Copy(OutText, 1, CutLength));
+              CutText := UTF8Copy(OutText, 1, CutLength);
+              Add(LinePrefix + CutText);
               LinePrefix := ' ';
-              System.Delete(OutText, 1, CutLength);
+              System.Delete(OutText, 1, Length(CutText));
               Inc(LineIndex);
               Continue;
             end else begin
@@ -1156,7 +1203,9 @@ begin
   ParseState := psNone;
   I := StartLine;
   while I < Lines.Count do begin
-    Line := Trim(Lines[I]);
+    Line := Lines[I];
+    DetectMaxLineLength(Line);
+
     if Line = '' then begin
       // Skip empty lines
     end else
@@ -1183,12 +1232,13 @@ begin
           Inc(I);
           if I >= Lines.Count then Break;
           Line2 := Lines[I];
+          DetectMaxLineLength(Line2);
           if (Length(Line2) > 0) and (Line2[1] = ' ') then begin
-            Value := Value + Trim(Line2);
+            Value := Value + Copy(Line2, 2, MaxInt);
           end else
           if (Length(Line2) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
             (Line2[1] = '=') then begin
-            Value := Value + Copy(Trim(Line2), 2, MaxInt);
+            Value := Value + Copy(Line2, 2, MaxInt);
           end else begin
             Dec(I);
             Break;
@@ -1288,6 +1338,7 @@ var
   I: Integer;
 begin
   Contacts.Clear;
+  MaxLineLength := 10;
 
   I := 0;
   while I < Lines.Count do begin
@@ -1352,6 +1403,7 @@ begin
   inherited;
   Contacts := TContacts.Create;
   Contacts.ContactsFile := Self;
+  MaxLineLength := DefaultMaxLineLength;
 end;
 
 destructor TContactsFile.Destroy;
