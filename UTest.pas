@@ -5,7 +5,7 @@ unit UTest;
 interface
 
 uses
-  Classes, SysUtils, fgl;
+  Classes, SysUtils, fgl, UContact;
 
 type
   TTestResult = (trNone, trPassed, trFailed);
@@ -18,6 +18,9 @@ type
     Result: TTestResult;
     Log: string;
     procedure Run; virtual;
+    procedure Evaluate(Passed: Boolean);
+    procedure Pass;
+    procedure Fail;
   end;
 
   TTestCaseClass = class of TTestCase;
@@ -34,7 +37,16 @@ type
     Input: string;
     Output: string;
     procedure Run; override;
-    procedure Evaluate(Passed: Boolean);
+  end;
+
+  { TTestCaseCheckProperty }
+
+  TTestCaseCheckProperty = class(TTestCase)
+    Input: string;
+    ContactIndex: Integer;
+    Index: TContactFieldIndex;
+    Value: string;
+    procedure Run; override;
   end;
 
 const
@@ -43,8 +55,34 @@ const
 
 implementation
 
-uses
-  UContact;
+{ TTestCaseCheckProperty }
+
+procedure TTestCaseCheckProperty.Run;
+var
+  Lines: TStringList;
+  PropertyValue: string;
+begin
+  Lines := TStringList.Create;
+  try
+    with TContactsFile.Create do
+    try
+      Lines.Text := Input;
+      LoadFromStrings(Lines);
+      if ContactIndex < Contacts.Count then begin
+        PropertyValue := Contacts[ContactIndex].Fields[Index];
+        Evaluate(PropertyValue = Value);
+      end else Fail;
+      Log := 'Expected:' + LineEnding +
+        '"' + Value + '"' + LineEnding + LineEnding +
+        'Output:' + LineEnding +
+        '"' + PropertyValue + '"';
+    finally
+      Free;
+    end;
+  finally
+    Lines.Free;
+  end;
+end;
 
 { TTestCaseLoadSave }
 
@@ -61,12 +99,10 @@ begin
       Lines.Text := '';
       SaveToStrings(Lines);
       Evaluate(Lines.Text = Output);
-      if Result <> trPassed then begin
-        Log := 'Expected:' + LineEnding +
-          '"' + Output + '"' + LineEnding + LineEnding +
-          'Output:' + LineEnding +
-          '"' + Lines.Text + '"';
-      end;
+      Log := 'Expected:' + LineEnding +
+        '"' + Output + '"' + LineEnding + LineEnding +
+        'Output:' + LineEnding +
+        '"' + Lines.Text + '"';
     finally
       Free;
     end;
@@ -75,17 +111,26 @@ begin
   end;
 end;
 
-procedure TTestCaseLoadSave.Evaluate(Passed: Boolean);
+{ TTestCase }
+
+procedure TTestCase.Run;
+begin
+end;
+
+procedure TTestCase.Evaluate(Passed: Boolean);
 begin
   if Passed then Result := trPassed
     else Result := trFailed;
 end;
 
-{ TTestCase }
-
-procedure TTestCase.Run;
+procedure TTestCase.Pass;
 begin
+  Result := trPassed;
+end;
 
+procedure TTestCase.Fail;
+begin
+  Result := trFailed;
 end;
 
 { TTestCases }
