@@ -1003,7 +1003,7 @@ begin
         Prop.ValueItem[Field.ValueIndex] := EncodeEscaped(AValue);
       end else begin
         if Field.DataType = dtString then Prop.Value := EncodeEscaped(AValue)
-          else Prop.Value := EncodeEscaped(AValue);
+          else Prop.Value := AValue;
       end;
 
       // Remove if empty
