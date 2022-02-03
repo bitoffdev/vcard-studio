@@ -202,6 +202,8 @@ type
     procedure TabSheetWorkShow(Sender: TObject);
   private
     FProfilePhotoActive: Boolean;
+    FProfilePhotoLoaded: Boolean;
+    FProfilePhotoModified: Boolean;
     procedure SetProfilePhotoActive(AValue: Boolean);
   private
     FContact: TContact;
@@ -239,6 +241,8 @@ begin
   FormProperties.ManualDock(TabSheetAll, nil, alClient);
   FormProperties.Align := alClient;
   FormProperties.Show;
+
+  FProfilePhotoLoaded := False;
 
   // Force to load default profile image
   ProfilePhotoActive := True;
@@ -319,6 +323,7 @@ begin
   Contact.Fields[cfCategories] := EditCategories.Text;
 
   // Photo
+  if FProfilePhotoModified then begin
   if ProfilePhotoActive then begin
     PhotoProperty := Contact.GetProperty(cfPhoto);
     if not Assigned(PhotoProperty) then begin
@@ -387,6 +392,8 @@ begin
     if Assigned(PhotoProperty) then
        Contact.Properties.Remove(PhotoProperty);
   end;
+    FProfilePhotoModified := False;
+  end;
 
   ReloadAllPropertiesTab;
 end;
@@ -420,7 +427,10 @@ begin
 
   // Photo
   PhotoProperty := Contact.GetProperty(cfPhoto);
+  if not FProfilePhotoLoaded then begin
   if Assigned(PhotoProperty) then begin
+    FProfilePhotoLoaded := True;
+    FProfilePhotoModified := True;
     Photo := Contact.Fields[cfPhoto];
     if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
       Stream := TMemoryStream.Create;
@@ -496,6 +506,7 @@ begin
       end;
     end else ProfilePhotoActive := False;
   end else ProfilePhotoActive := False;
+  end;
 end;
 
 procedure TFormContact.TabSheetHomeHide(Sender: TObject);
@@ -661,12 +672,15 @@ procedure TFormContact.APhotoLoadExecute(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then begin
     ImagePhoto.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+    FProfilePhotoModified := True;
+    FProfilePhotoLoaded := True;
     ProfilePhotoActive := True;
   end;
 end;
 
 procedure TFormContact.APhotoClearExecute(Sender: TObject);
 begin
+  FProfilePhotoModified := True;
   ProfilePhotoActive := False;
 end;
 
