@@ -67,6 +67,7 @@ function LoggedOnUserNameEx(Format: TUserNameFormat): string;
 function MergeArray(A, B: array of string): TArrayOfString;
 function OccurenceOfChar(What: Char; Where: string): Integer;
 procedure OpenWebPage(URL: string);
+procedure OpenEmail(Email: string);
 procedure OpenFileInShell(FileName: string);
 function PosFromIndex(SubStr: string; Text: string;
   StartIndex: Integer): Integer;
@@ -472,6 +473,11 @@ end;
 procedure OpenWebPage(URL: string);
 begin
   OpenURL(URL);
+end;
+
+procedure OpenEmail(Email: string);
+begin
+  OpenURL('mailto:' + Email);
 end;
 
 procedure OpenFileInShell(FileName: string);

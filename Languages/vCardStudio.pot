@@ -430,6 +430,36 @@ msgstr ""
 msgid "Mastodon:"
 msgstr ""
 
+#: tformcontact.speedbuttonemail.hint
+msgctxt "tformcontact.speedbuttonemail.hint"
+msgid "Open in email client"
+msgstr ""
+
+#: tformcontact.speedbuttonhomeemail.hint
+msgctxt "tformcontact.speedbuttonhomeemail.hint"
+msgid "Open in email client"
+msgstr ""
+
+#: tformcontact.speedbuttonhomeweb.hint
+msgctxt "tformcontact.speedbuttonhomeweb.hint"
+msgid "Open in web browser"
+msgstr ""
+
+#: tformcontact.speedbuttonweb.hint
+msgctxt "tformcontact.speedbuttonweb.hint"
+msgid "Open in web browser"
+msgstr ""
+
+#: tformcontact.speedbuttonworkemail.hint
+msgctxt "tformcontact.speedbuttonworkemail.hint"
+msgid "Open in email client"
+msgstr ""
+
+#: tformcontact.speedbuttonworkweb.hint
+msgctxt "tformcontact.speedbuttonworkweb.hint"
+msgid "Open in web browser"
+msgstr ""
+
 #: tformcontact.tabsheetall.caption
 msgid "All fields"
 msgstr ""

@@ -1,34 +1,34 @@
 object FormProperties: TFormProperties
   Left = 400
-  Height = 908
+  Height = 946
   Top = 212
-  Width = 1210
+  Width = 1260
   Caption = 'Contacts'
-  ClientHeight = 908
-  ClientWidth = 1210
-  DesignTimePPI = 144
+  ClientHeight = 946
+  ClientWidth = 1260
+  DesignTimePPI = 150
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object ListView1: TListView
     Left = 0
-    Height = 801
+    Height = 844
     Top = 0
-    Width = 1210
+    Width = 1260
     Align = alClient
     Columns = <    
       item
         Caption = 'Name'
-        Width = 300
+        Width = 312
       end    
       item
         Caption = 'Attributes'
-        Width = 150
+        Width = 156
       end    
       item
         Caption = 'Values'
-        Width = 745
+        Width = 777
       end>
     MultiSelect = True
     OwnerData = True
@@ -44,9 +44,9 @@ object FormProperties: TFormProperties
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 39
-    Top = 833
-    Width = 1210
+    Height = 41
+    Top = 877
+    Width = 1260
     Align = alBottom
     Images = Core.ImageList1
     ParentFont = False
@@ -59,60 +59,60 @@ object FormProperties: TFormProperties
       Action = AAdd
     end
     object ToolButton2: TToolButton
-      Left = 36
+      Left = 37
       Top = 2
       Action = AModify
     end
     object ToolButton3: TToolButton
-      Left = 106
+      Left = 109
       Top = 2
       Action = ARemove
     end
     object ToolButton4: TToolButton
-      Left = 71
+      Left = 73
       Top = 2
       Action = AClone
     end
     object ToolButton5: TToolButton
-      Left = 141
-      Height = 33
+      Left = 145
+      Height = 34
       Top = 2
       Style = tbsSeparator
     end
     object ToolButton6: TToolButton
-      Left = 149
+      Left = 153
       Top = 2
       Action = ALoadValueFromFile
     end
     object ToolButton7: TToolButton
-      Left = 184
+      Left = 189
       Top = 2
       Action = ASaveValueToFile
     end
   end
   object ListViewFilter1: TListViewFilter
     Left = 0
-    Height = 32
-    Top = 801
-    Width = 1210
+    Height = 33
+    Top = 844
+    Width = 1260
     OnChange = ListViewFilter1Change
     Align = alBottom
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 36
-    Top = 872
-    Width = 1210
+    Height = 28
+    Top = 918
+    Width = 1260
     Panels = <    
       item
-        Width = 50
+        Width = 52
       end>
     SimplePanel = False
   end
   object PopupMenuField: TPopupMenu
     Images = Core.ImageList1
-    Left = 435
-    Top = 263
+    Left = 453
+    Top = 274
     object MenuItem1: TMenuItem
       Action = AAdd
     end
@@ -140,8 +140,8 @@ object FormProperties: TFormProperties
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
-    Left = 732
-    Top = 257
+    Left = 763
+    Top = 268
     object AAdd: TAction
       Caption = 'Add'
       ImageIndex = 9
@@ -188,15 +188,15 @@ object FormProperties: TFormProperties
     OnColumnWidthChanged = ListViewSort1ColumnWidthChanged
     Column = 0
     Order = soNone
-    Left = 528
-    Top = 428
+    Left = 550
+    Top = 446
   end
   object SaveDialog1: TSaveDialog
-    Left = 760
-    Top = 448
+    Left = 792
+    Top = 467
   end
   object OpenDialog1: TOpenDialog
-    Left = 760
-    Top = 520
+    Left = 792
+    Top = 542
   end
 end
