@@ -332,6 +332,7 @@ begin
   Result := '';
   I := 1;
   O := 1;
+  InNewLine := False;
   SetLength(Result, Length(Text)); // Preallocate string
   while I <= Length(Text) do begin
     if Text[I] in [',', '\', ';'] then begin

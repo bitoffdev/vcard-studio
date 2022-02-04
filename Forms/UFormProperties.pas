@@ -5,7 +5,7 @@ unit UFormProperties;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
   ComCtrls, Menus, ActnList, UContact, UListViewSort, fgl, LazUTF8;
 
 type
