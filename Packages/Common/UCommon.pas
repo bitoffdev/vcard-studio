@@ -83,8 +83,8 @@ procedure SearchFiles(AList: TStrings; Dir: string;
   FilterMethod: TFilterMethod = nil; FileNameMethod: TFileNameMethod = nil);
 function SplitString(var Text: string; Count: Word): string;
 function StripTags(const S: string): string;
-function TryHexToInt(Data: string; var Value: Integer): Boolean;
-function TryBinToInt(Data: string; var Value: Integer): Boolean;
+function TryHexToInt(Data: string; out Value: Integer): Boolean;
+function TryBinToInt(Data: string; out Value: Integer): Boolean;
 procedure SortStrings(Strings: TStrings);
 
 
@@ -246,7 +246,7 @@ begin
     Result := Result + Chars[(Data shr (I * 4)) and 15];
 end;
 
-function TryHexToInt(Data: string; var Value: Integer): Boolean;
+function TryHexToInt(Data: string; out Value: Integer): Boolean;
 var
   I: Integer;
 begin
@@ -262,7 +262,7 @@ begin
   end;
 end;
 
-function TryBinToInt(Data: string; var Value: Integer): Boolean;
+function TryBinToInt(Data: string; out Value: Integer): Boolean;
 var
   I: Integer;
 begin
