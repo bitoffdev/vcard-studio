@@ -1291,7 +1291,7 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: uquotedprintable.slinelengtherr
-msgid "Invalid line length for encoded text"
+#: uquotedprintable.sdecodeerror
+msgid "Decode error"
 msgstr ""
 
