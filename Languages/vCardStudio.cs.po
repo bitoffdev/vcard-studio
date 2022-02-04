@@ -1322,6 +1322,6 @@ msgstr "Celkem"
 msgid "Value"
 msgstr "Hodnota"
 
-#: uquotedprintable.slinelengtherr
-msgid "Invalid line length for encoded text"
-msgstr "Neplatná délka řádky kódovaného textu"
+#: uquotedprintable.sdecodeerror
+msgid "Decode error"
+msgstr "Chyba dekódování"

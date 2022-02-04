@@ -145,7 +145,15 @@ begin
     with TTestCaseLoadSave(AddNew('Quoted-printable load-save', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
         VCardVersion + LineEnding +
-        'FN;ENCODING=QUOTED-PRINTABLE:Jm=C3=A9no P=C5=99=C3=ADjmen=C3=AD' + LineEnding +
+        'FN;ENCODING=QUOTED-PRINTABLE:Jm=C3=A9no=20P=C5=99=C3=ADjmen=C3=AD' + LineEnding +
+        VCardEnd + LineEnding;
+      Output := Input;
+    end;
+    with TTestCaseLoadSave(AddNew('Quoted-printable load-save multi-line', TTestCaseLoadSave)) do begin
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'FN;ENCODING=QUOTED-PRINTABLE:Jm=C3=A9no=20P=C5=99=C3=ADjmen=C3=AD=' + LineEnding +
+        'Jm=C3=A9no=20P=C5=99=C3=ADjmen=C3=AD' + LineEnding +
         VCardEnd + LineEnding;
       Output := Input;
     end;

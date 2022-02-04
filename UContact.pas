@@ -602,7 +602,7 @@ begin
     Result := DecodeStringBase64(Value);
   end else
   if Encoding = 'QUOTED-PRINTABLE' then begin
-    Result := DecodeQuotedPrintable(Value);
+    Result := DecodeQuotedPrintable(Value, True);
   end
   else Result := '';
 end;
@@ -613,7 +613,7 @@ begin
     Result := EncodeStringBase64(Value);
   end else
   if Encoding = 'QUOTED-PRINTABLE' then begin
-    Result := EncodeQuotedPrintable(Value);
+    Result := EncodeQuotedPrintable(Value, True);
   end
   else Result := '';
 end;
@@ -1163,16 +1163,21 @@ begin
             if UTF8Length(OutText) > ContactsFile.MaxLineLength then begin
               CutLength := ContactsFile.MaxLineLength;
               if Encoding = 'QUOTED-PRINTABLE' then begin
-                // Do not cut encoded items
-                if ((CutLength - 2) >= 1) and (OutText[CutLength - 2] = '=') then
+                Dec(CutLength); // There will be softline break at the end
+                // Do not cut encoded items at the end of line
+                if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = QuotedPrintableEscapeCharacter) then
                   Dec(CutLength, 2)
-                else if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = '=') then
+                else if OutText[CutLength] = QuotedPrintableEscapeCharacter then
                   Dec(CutLength, 1);
               end;
+
               CutText := UTF8Copy(OutText, 1, CutLength);
-              Add(LinePrefix + CutText);
-              LinePrefix := ' ';
               System.Delete(OutText, 1, Length(CutText));
+              if Encoding = 'QUOTED-PRINTABLE' then
+                CutText := CutText + QuotedPrintableEscapeCharacter; // Add soft line break
+              Add(LinePrefix + CutText);
+              if Encoding <> 'QUOTED-PRINTABLE' then
+                LinePrefix := ' ';
               Inc(LineIndex);
               Continue;
             end else begin
@@ -1198,6 +1203,7 @@ var
   NewProperty: TContactProperty;
   CommandPart: string;
   Names: string;
+  QuotedPrintableMultiLine: Boolean;
 begin
   Result := False;
   ParseState := psNone;
@@ -1227,6 +1233,7 @@ begin
       if Pos(':', Line) > 0 then begin
         CommandPart := GetNext(Line, ':');
         Names := CommandPart;
+        QuotedPrintableMultiLine := Pos('encoding=quoted-printable', LowerCase(CommandPart)) > 0;
         Value := Line;
         while True do begin
           Inc(I);
@@ -1236,9 +1243,10 @@ begin
           if (Length(Line2) > 0) and (Line2[1] = ' ') then begin
             Value := Value + Copy(Line2, 2, MaxInt);
           end else
-          if (Length(Line2) > 0) and (Length(Value) > 0) and (Value[Length(Value)] = '=') and
-            (Line2[1] = '=') then begin
-            Value := Value + Copy(Line2, 2, MaxInt);
+          if QuotedPrintableMultiLine and (Length(Value) > 0) and
+          (Value[Length(Value)] = QuotedPrintableEscapeCharacter) then begin
+            SetLength(Value, Length(Value) - 1);
+            Value := Value + Line2;
           end else begin
             Dec(I);
             Break;
