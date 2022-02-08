@@ -455,7 +455,7 @@ object FormContact: TFormContact
         Width = 897
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Address'
-        ClientHeight = 259
+        ClientHeight = 285
         ClientWidth = 895
         TabOrder = 6
         object Label36: TLabel
