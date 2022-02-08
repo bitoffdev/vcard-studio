@@ -17,10 +17,10 @@ object FormContact: TFormContact
     Height = 696
     Top = 8
     Width = 1009
-    ActivePage = TabSheetWork
+    ActivePage = TabSheetGeneral
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -113,7 +113,7 @@ object FormContact: TFormContact
         Left = 150
         Height = 43
         Top = 442
-        Width = 265
+        Width = 216
         ParentFont = False
         TabOrder = 14
       end
@@ -228,7 +228,7 @@ object FormContact: TFormContact
         Left = 599
         Height = 43
         Top = 442
-        Width = 265
+        Width = 217
         ParentFont = False
         TabOrder = 15
       end
@@ -336,6 +336,30 @@ object FormContact: TFormContact
         ShowHint = True
         ParentShowHint = False
       end
+      object SpeedButtonBirthDay: TSpeedButton
+        Left = 372
+        Height = 43
+        Hint = 'Select date'
+        Top = 442
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 17
+        OnClick = SpeedButtonBirthDayClick
+        ShowHint = True
+        ParentShowHint = False
+      end
+      object SpeedButtonAniversary: TSpeedButton
+        Left = 821
+        Height = 43
+        Hint = 'Select date'
+        Top = 442
+        Width = 43
+        Images = Core.ImageList1
+        ImageIndex = 17
+        OnClick = SpeedButtonAniversaryClick
+        ShowHint = True
+        ParentShowHint = False
+      end
     end
     object TabSheetHome: TTabSheet
       Caption = 'Home'
@@ -435,7 +459,7 @@ object FormContact: TFormContact
         ClientWidth = 959
         TabOrder = 6
         object Label36: TLabel
-          Left = 8
+          Left = 10
           Height = 27
           Top = 19
           Width = 58
@@ -571,7 +595,7 @@ object FormContact: TFormContact
         Width = 43
         Images = Core.ImageList1
         ImageIndex = 15
-        OnClick = peedButtonHomeWebClick
+        OnClick = SpeedButtonHomeWebClick
         ShowHint = True
         ParentShowHint = False
       end
@@ -1364,8 +1388,8 @@ object FormContact: TFormContact
   end
   object PopupMenuPhoto: TPopupMenu
     Images = Core.ImageList1
-    Left = 483
-    Top = 508
+    Left = 872
+    Top = 592
     object MenuItem1: TMenuItem
       Action = APhotoLoad
     end
@@ -1377,11 +1401,21 @@ object FormContact: TFormContact
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog
+    Title = 'Open existing file'
     Left = 175
     Top = 575
   end
   object SavePictureDialog1: TSavePictureDialog
+    Title = 'Save file as'
     Left = 176
     Top = 488
+  end
+  object CalendarDialog1: TCalendarDialog
+    Title = 'Select date'
+    Date = 44600
+    OKCaption = '&OK'
+    CancelCaption = 'Cancel'
+    Left = 448
+    Top = 608
   end
 end

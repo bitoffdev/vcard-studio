@@ -74,6 +74,20 @@ msgctxt "tcore.atest.caption"
 msgid "Test"
 msgstr ""
 
+#: tcore.opendialog1.title
+msgctxt "tcore.opendialog1.title"
+msgid "Open existing file"
+msgstr ""
+
+#: tcore.savedialog1.title
+msgctxt "tcore.savedialog1.title"
+msgid "Save file as"
+msgstr ""
+
+#: tcore.selectdirectorydialog1.title
+msgid "Select directory"
+msgstr ""
+
 #: tformcontact.aphotoclear.caption
 msgid "Clear"
 msgstr ""
@@ -102,6 +116,20 @@ msgstr ""
 
 #: tformcontact.buttonprevious.caption
 msgid "Previous"
+msgstr ""
+
+#: tformcontact.calendardialog1.cancelcaption
+msgctxt "tformcontact.calendardialog1.cancelcaption"
+msgid "Cancel"
+msgstr ""
+
+#: tformcontact.calendardialog1.okcaption
+msgid "&OK"
+msgstr ""
+
+#: tformcontact.calendardialog1.title
+msgctxt "tformcontact.calendardialog1.title"
+msgid "Select date"
 msgstr ""
 
 #: tformcontact.caption
@@ -428,6 +456,26 @@ msgstr ""
 
 #: tformcontact.labelorganization9.caption
 msgid "Mastodon:"
+msgstr ""
+
+#: tformcontact.openpicturedialog1.title
+msgctxt "tformcontact.openpicturedialog1.title"
+msgid "Open existing file"
+msgstr ""
+
+#: tformcontact.savepicturedialog1.title
+msgctxt "tformcontact.savepicturedialog1.title"
+msgid "Save file as"
+msgstr ""
+
+#: tformcontact.speedbuttonaniversary.hint
+msgctxt "tformcontact.speedbuttonaniversary.hint"
+msgid "Select date"
+msgstr ""
+
+#: tformcontact.speedbuttonbirthday.hint
+msgctxt "tformcontact.speedbuttonbirthday.hint"
+msgid "Select date"
 msgstr ""
 
 #: tformcontact.speedbuttonemail.hint

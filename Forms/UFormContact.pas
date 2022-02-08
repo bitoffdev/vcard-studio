@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ComCtrls, ActnList, Menus, ExtCtrls, ExtDlgs, Buttons, UContact, LCLIntf,
-  UFormProperties;
+  UFormProperties, DateUtils{$IFDEF LCLGTK2}, Gtk2Globals{$ENDIF};
 
 type
 
@@ -22,6 +22,7 @@ type
     ButtonNext: TButton;
     ButtonOk: TButton;
     ButtonPrevious: TButton;
+    CalendarDialog1: TCalendarDialog;
     EditAim: TEdit;
     EditCategories: TEdit;
     EditMatrix: TEdit;
@@ -172,6 +173,8 @@ type
     PageControlContact: TPageControl;
     PopupMenuPhoto: TPopupMenu;
     SavePictureDialog1: TSavePictureDialog;
+    SpeedButtonBirthDay: TSpeedButton;
+    SpeedButtonAniversary: TSpeedButton;
     SpeedButtonHomeEmail: TSpeedButton;
     SpeedButtonEmail: TSpeedButton;
     SpeedButtonWorkEmail: TSpeedButton;
@@ -194,7 +197,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure peedButtonHomeWebClick(Sender: TObject);
+    procedure SpeedButtonHomeWebClick(Sender: TObject);
+    procedure SpeedButtonAniversaryClick(Sender: TObject);
+    procedure SpeedButtonBirthDayClick(Sender: TObject);
     procedure SpeedButtonEmailClick(Sender: TObject);
     procedure SpeedButtonHomeEmailClick(Sender: TObject);
     procedure SpeedButtonWebClick(Sender: TObject);
@@ -245,10 +250,19 @@ implementation
 uses
   UCore, UCommon;
 
+function DateToISO(Date: TDateTime): string;
+begin
+  Result := FormatDateTime('yyyy-mm-dd', Date);
+end;
+
 { TFormContact }
 
 procedure TFormContact.FormShow(Sender: TObject);
 begin
+  {$IFDEF LCLGTK2}
+  // GTK2 bug workaround https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/35720
+  if Visible then LastMouse.WinControl := PageControlContact.ActivePage;
+  {$ENDIF}
   Core.PersistentForm1.Load(Self);
 
   FormProperties.ManualDock(TabSheetAll, nil, alClient);
@@ -265,9 +279,31 @@ begin
   UpdateInterface;
 end;
 
-procedure TFormContact.peedButtonHomeWebClick(Sender: TObject);
+procedure TFormContact.SpeedButtonHomeWebClick(Sender: TObject);
 begin
   if EditHomeWeb.Text <> '' then OpenURL(EditHomeWeb.Text);
+end;
+
+procedure TFormContact.SpeedButtonAniversaryClick(Sender: TObject);
+var
+  Date: TDateTime;
+begin
+  if TryISOStrToDate(EditAniversary.Text, Date) then
+    CalendarDialog1.Date := Date
+    else CalendarDialog1.Date := Now;
+  if CalendarDialog1.Execute then
+    EditAniversary.Text := DateToISO(CalendarDialog1.Date);
+end;
+
+procedure TFormContact.SpeedButtonBirthDayClick(Sender: TObject);
+var
+  Date: TDateTime;
+begin
+  if TryISOStrToDate(EditBirthday.Text, Date) then
+    CalendarDialog1.Date := Date
+    else CalendarDialog1.Date := Now;
+  if CalendarDialog1.Execute then
+    EditBirthday.Text := DateToISO(CalendarDialog1.Date);
 end;
 
 procedure TFormContact.SpeedButtonEmailClick(Sender: TObject);
