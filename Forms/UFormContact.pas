@@ -272,6 +272,30 @@ begin
   end;
 end;
 
+{$IF FPC_FULLVERSION<30200}
+function TryISOStrToDate(const aString: string; out outDate: TDateTime): Boolean;
+var
+  xYear, xMonth, xDay: LongInt;
+begin
+  case Length(aString) of
+    8: Result :=
+          TryStrToInt(Copy(aString, 1, 4), xYear) and
+          TryStrToInt(Copy(aString, 5, 2), xMonth) and
+          TryStrToInt(Copy(aString, 7, 2), xDay) and
+          TryEncodeDate(xYear, xMonth, xDay, outDate);
+    10: Result :=
+          TryStrToInt(Copy(aString, 1, 4), xYear) and
+          TryStrToInt(Copy(aString, 6, 2), xMonth) and
+          TryStrToInt(Copy(aString, 9, 2), xDay) and
+          TryEncodeDate(xYear, xMonth, xDay, outDate);
+  else
+    Result := False;
+  end;
+  if not Result then
+    outDate := 0;
+end;
+{$ENDIF}
+
 { TFormContact }
 
 procedure TFormContact.FormShow(Sender: TObject);
