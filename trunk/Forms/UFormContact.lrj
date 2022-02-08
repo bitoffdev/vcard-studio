@@ -20,6 +20,8 @@
 {"hash":237074138,"name":"tformcontact.label56.caption","sourcebytes":[67,97,116,101,103,111,114,105,101,115,58],"value":"Categories:"},
 {"hash":262626066,"name":"tformcontact.speedbuttonweb.hint","sourcebytes":[79,112,101,110,32,105,110,32,119,101,98,32,98,114,111,119,115,101,114],"value":"Open in web browser"},
 {"hash":102887636,"name":"tformcontact.speedbuttonemail.hint","sourcebytes":[79,112,101,110,32,105,110,32,101,109,97,105,108,32,99,108,105,101,110,116],"value":"Open in email client"},
+{"hash":171928085,"name":"tformcontact.speedbuttonbirthday.hint","sourcebytes":[83,101,108,101,99,116,32,100,97,116,101],"value":"Select date"},
+{"hash":171928085,"name":"tformcontact.speedbuttonaniversary.hint","sourcebytes":[83,101,108,101,99,116,32,100,97,116,101],"value":"Select date"},
 {"hash":325173,"name":"tformcontact.tabsheethome.caption","sourcebytes":[72,111,109,101],"value":"Home"},
 {"hash":138641338,"name":"tformcontact.label7.caption","sourcebytes":[69,45,109,97,105,108,58],"value":"E-mail:"},
 {"hash":313530,"name":"tformcontact.label11.caption","sourcebytes":[70,97,120,58],"value":"Fax:"},
@@ -91,5 +93,10 @@
 {"hash":347380,"name":"tformcontact.buttonnext.caption","sourcebytes":[78,101,120,116],"value":"Next"},
 {"hash":8431845,"name":"tformcontact.aphotoload.caption","sourcebytes":[76,111,97,100,32,102,114,111,109,32,102,105,108,101],"value":"Load from file"},
 {"hash":9308581,"name":"tformcontact.aphotosave.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101],"value":"Save to file"},
-{"hash":4860802,"name":"tformcontact.aphotoclear.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"}
+{"hash":4860802,"name":"tformcontact.aphotoclear.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"},
+{"hash":218146437,"name":"tformcontact.openpicturedialog1.title","sourcebytes":[79,112,101,110,32,101,120,105,115,116,105,110,103,32,102,105,108,101],"value":"Open existing file"},
+{"hash":159035875,"name":"tformcontact.savepicturedialog1.title","sourcebytes":[83,97,118,101,32,102,105,108,101,32,97,115],"value":"Save file as"},
+{"hash":171928085,"name":"tformcontact.calendardialog1.title","sourcebytes":[83,101,108,101,99,116,32,100,97,116,101],"value":"Select date"},
+{"hash":11067,"name":"tformcontact.calendardialog1.okcaption","sourcebytes":[38,79,75],"value":"&OK"},
+{"hash":77089212,"name":"tformcontact.calendardialog1.cancelcaption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
 ]}

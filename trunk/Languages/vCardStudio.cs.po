@@ -84,6 +84,20 @@ msgctxt "tcore.atest.caption"
 msgid "Test"
 msgstr "Testování"
 
+#: tcore.opendialog1.title
+msgctxt "tcore.opendialog1.title"
+msgid "Open existing file"
+msgstr "Otevřít existující soubor"
+
+#: tcore.savedialog1.title
+msgctxt "tcore.savedialog1.title"
+msgid "Save file as"
+msgstr "Uložit soubor jako"
+
+#: tcore.selectdirectorydialog1.title
+msgid "Select directory"
+msgstr "Vybrat adresář"
+
 #: tformcontact.aphotoclear.caption
 msgid "Clear"
 msgstr "Vyčistit"
@@ -115,6 +129,22 @@ msgstr "OK"
 #: tformcontact.buttonprevious.caption
 msgid "Previous"
 msgstr "Předchozí"
+
+#: tformcontact.calendardialog1.cancelcaption
+#, fuzzy
+msgctxt "tformcontact.calendardialog1.cancelcaption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformcontact.calendardialog1.okcaption
+msgid "&OK"
+msgstr "&OK"
+
+#: tformcontact.calendardialog1.title
+#, fuzzy
+msgctxt "tformcontact.calendardialog1.title"
+msgid "Select date"
+msgstr "Vybrat datum"
 
 #: tformcontact.caption
 msgid "Contact"
@@ -365,7 +395,7 @@ msgstr "Matrix:"
 
 #: tformcontact.label56.caption
 msgid "Categories:"
-msgstr "Kategories:"
+msgstr "Kategorie:"
 
 #: tformcontact.label57.caption
 msgid "GroupWise:"
@@ -441,6 +471,26 @@ msgstr "YouTube:"
 #: tformcontact.labelorganization9.caption
 msgid "Mastodon:"
 msgstr "Mastodon:"
+
+#: tformcontact.openpicturedialog1.title
+msgctxt "tformcontact.openpicturedialog1.title"
+msgid "Open existing file"
+msgstr "Otevřít existující soubor"
+
+#: tformcontact.savepicturedialog1.title
+msgctxt "tformcontact.savepicturedialog1.title"
+msgid "Save file as"
+msgstr "Uložit soubor jako"
+
+#: tformcontact.speedbuttonaniversary.hint
+msgctxt "tformcontact.speedbuttonaniversary.hint"
+msgid "Select date"
+msgstr "Vybrat datum"
+
+#: tformcontact.speedbuttonbirthday.hint
+msgctxt "tformcontact.speedbuttonbirthday.hint"
+msgid "Select date"
+msgstr "Vybrat datum"
 
 #: tformcontact.speedbuttonemail.hint
 msgctxt "tformcontact.speedbuttonemail.hint"
