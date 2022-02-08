@@ -117,6 +117,11 @@ msgctxt "tformcontact.buttoncancel.caption"
 msgid "Cancel"
 msgstr "Zrušit"
 
+#: tformcontact.buttonhomeaddressshow.caption
+msgctxt "tformcontact.buttonhomeaddressshow.caption"
+msgid "Show on map"
+msgstr "Ukázat na mapě"
+
 #: tformcontact.buttonnext.caption
 msgid "Next"
 msgstr "Další"
@@ -130,6 +135,11 @@ msgstr "OK"
 msgid "Previous"
 msgstr "Předchozí"
 
+#: tformcontact.buttonworkaddressshow.caption
+msgctxt "tformcontact.buttonworkaddressshow.caption"
+msgid "Show on map"
+msgstr "Ukázat na mapět"
+
 #: tformcontact.calendardialog1.cancelcaption
 #, fuzzy
 msgctxt "tformcontact.calendardialog1.cancelcaption"
@@ -141,7 +151,6 @@ msgid "&OK"
 msgstr "&OK"
 
 #: tformcontact.calendardialog1.title
-#, fuzzy
 msgctxt "tformcontact.calendardialog1.title"
 msgid "Select date"
 msgstr "Vybrat datum"
@@ -866,6 +875,10 @@ msgstr "Téma:"
 #: tformsettings.label3.caption
 msgid "Default vCard version:"
 msgstr "Výchozí verze vCard:"
+
+#: tformsettings.label4.caption
+msgid "Map query URL:"
+msgstr "URL dotazu mapy:"
 
 #: tformsettings.labeldpi.caption
 msgid "DPI:"

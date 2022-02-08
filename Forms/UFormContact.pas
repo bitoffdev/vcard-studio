@@ -18,7 +18,9 @@ type
     APhotoSave: TAction;
     APhotoLoad: TAction;
     ActionList1: TActionList;
+    ButtonHomeAddressShow: TButton;
     ButtonCancel: TButton;
+    ButtonWorkAddressShow: TButton;
     ButtonNext: TButton;
     ButtonOk: TButton;
     ButtonPrevious: TButton;
@@ -51,13 +53,13 @@ type
     EditHomeAddressRegion: TEdit;
     EditHomeAddressStreet: TEdit;
     EditHomeAddressStreetExtended: TEdit;
-    EditAddressWorkCity: TEdit;
-    EditAddressWorkCountry: TEdit;
-    EditAddressWorkPostalCode: TEdit;
-    EditAddressWorkPostOfficeBox: TEdit;
-    EditAddressWorkRegion: TEdit;
-    EditAddressWorkStreet: TEdit;
-    EditAddressWorkStreetExtended: TEdit;
+    EditWorkAddressCity: TEdit;
+    EditWorkAddressCountry: TEdit;
+    EditWorkAddressPostalCode: TEdit;
+    EditWorkAddressPostOfficeBox: TEdit;
+    EditWorkAddressRegion: TEdit;
+    EditWorkAddressStreet: TEdit;
+    EditWorkAddressStreetExtended: TEdit;
     EditAniversary: TEdit;
     EditJabber: TEdit;
     EditIcq: TEdit;
@@ -191,8 +193,10 @@ type
     procedure APhotoClearExecute(Sender: TObject);
     procedure APhotoLoadExecute(Sender: TObject);
     procedure APhotoSaveExecute(Sender: TObject);
+    procedure ButtonHomeAddressShowClick(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
     procedure ButtonPreviousClick(Sender: TObject);
+    procedure ButtonWorkAddressShowClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -253,6 +257,19 @@ uses
 function DateToISO(Date: TDateTime): string;
 begin
   Result := FormatDateTime('yyyy-mm-dd', Date);
+end;
+
+function URLEncode(Text: string): string;
+var
+  I: Integer;
+begin
+  Result := '';
+  for I := 1 to Length(Text) do begin
+    if not (Text[I] in ['A'..'Z', 'a'..'z', '0'..'9', '-', '_', '~', '.', ':', '/']) then
+      Result := Result + '%' + IntToHex(Ord(Text[I]), 2)
+    else
+      Result := Result + Text[I];
+  end;
 end;
 
 { TFormContact }
@@ -676,13 +693,13 @@ begin
   Contact.Fields[cfTitle] := EditTitle.Text;
   Contact.Fields[cfOrganization] := EditOrganization.Text;
   Contact.Fields[cfDepartment] := EditDepartment.Text;
-  Contact.Fields[cfWorkAddressPostOfficeBox] := EditAddressWorkPostOfficeBox.Text;
-  Contact.Fields[cfWorkAddressStreet] := EditAddressWorkStreet.Text;
-  Contact.Fields[cfWorkAddressStreetExtended] := EditAddressWorkStreetExtended.Text;
-  Contact.Fields[cfWorkAddressCity] := EditAddressWorkCity.Text;
-  Contact.Fields[cfWorkAddressRegion] := EditAddressWorkRegion.Text;
-  Contact.Fields[cfWorkAddressCountry] := EditAddressWorkCountry.Text;
-  Contact.Fields[cfWorkAddressPostalCode] := EditAddressWorkPostalCode.Text;
+  Contact.Fields[cfWorkAddressPostOfficeBox] := EditWorkAddressPostOfficeBox.Text;
+  Contact.Fields[cfWorkAddressStreet] := EditWorkAddressStreet.Text;
+  Contact.Fields[cfWorkAddressStreetExtended] := EditWorkAddressStreetExtended.Text;
+  Contact.Fields[cfWorkAddressCity] := EditWorkAddressCity.Text;
+  Contact.Fields[cfWorkAddressRegion] := EditWorkAddressRegion.Text;
+  Contact.Fields[cfWorkAddressCountry] := EditWorkAddressCountry.Text;
+  Contact.Fields[cfWorkAddressPostalCode] := EditWorkAddressPostalCode.Text;
   Contact.Fields[cfUrlWork] := EditWorkWeb.Text;
 
   ReloadAllPropertiesTab;
@@ -698,13 +715,13 @@ begin
   EditTitle.Text := Contact.Fields[cfTitle];
   EditOrganization.Text := Contact.Fields[cfOrganization];
   EditDepartment.Text := Contact.Fields[cfDepartment];
-  EditAddressWorkPostOfficeBox.Text := Contact.Fields[cfWorkAddressPostOfficeBox];
-  EditAddressWorkStreet.Text := Contact.Fields[cfWorkAddressStreet];
-  EditAddressWorkStreetExtended.Text := Contact.Fields[cfWorkAddressStreetExtended];
-  EditAddressWorkCity.Text := Contact.Fields[cfWorkAddressCity];
-  EditAddressWorkRegion.Text := Contact.Fields[cfWorkAddressRegion];
-  EditAddressWorkCountry.Text := Contact.Fields[cfWorkAddressCountry];
-  EditAddressWorkPostalCode.Text := Contact.Fields[cfWorkAddressPostalCode];
+  EditWorkAddressPostOfficeBox.Text := Contact.Fields[cfWorkAddressPostOfficeBox];
+  EditWorkAddressStreet.Text := Contact.Fields[cfWorkAddressStreet];
+  EditWorkAddressStreetExtended.Text := Contact.Fields[cfWorkAddressStreetExtended];
+  EditWorkAddressCity.Text := Contact.Fields[cfWorkAddressCity];
+  EditWorkAddressRegion.Text := Contact.Fields[cfWorkAddressRegion];
+  EditWorkAddressCountry.Text := Contact.Fields[cfWorkAddressCountry];
+  EditWorkAddressPostalCode.Text := Contact.Fields[cfWorkAddressPostalCode];
   EditWorkWeb.Text := Contact.Fields[cfUrlWork];
 end;
 
@@ -770,10 +787,36 @@ begin
   end;
 end;
 
+procedure TFormContact.ButtonHomeAddressShowClick(Sender: TObject);
+var
+  Address: string;
+begin
+  Address := '';
+  if EditHomeAddressStreet.Text <> '' then Address := Address + ' ' + EditHomeAddressStreet.Text;
+  if EditHomeAddressStreetExtended.Text <> '' then Address := Address + ' ' + EditHomeAddressStreetExtended.Text;
+  if EditHomeAddressPostOfficeBox.Text <> '' then Address := Address + ' ' + EditHomeAddressPostOfficeBox.Text;
+  if EditHomeAddressCity.Text <> '' then Address := Address + ' ' + EditHomeAddressCity.Text;
+  if EditHomeAddressCountry.Text <> '' then Address := Address + ' ' + EditHomeAddressCountry.Text;
+  OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
+end;
+
 procedure TFormContact.ButtonPreviousClick(Sender: TObject);
 begin
   if Assigned(FOnGetPrevious) then
     Contact := FOnGetPrevious(Contact);
+end;
+
+procedure TFormContact.ButtonWorkAddressShowClick(Sender: TObject);
+var
+  Address: string;
+begin
+  Address := '';
+  if EditWorkAddressStreet.Text <> '' then Address := Address + ' ' + EditWorkAddressStreet.Text;
+  if EditWorkAddressStreetExtended.Text <> '' then Address := Address + ' ' + EditWorkAddressStreetExtended.Text;
+  if EditWorkAddressPostOfficeBox.Text <> '' then Address := Address + ' ' + EditWorkAddressPostOfficeBox.Text;
+  if EditWorkAddressCity.Text <> '' then Address := Address + ' ' + EditWorkAddressCity.Text;
+  if EditWorkAddressCountry.Text <> '' then Address := Address + ' ' + EditWorkAddressCountry.Text;
+  OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
 end;
 
 procedure TFormContact.FormCreate(Sender: TObject);
