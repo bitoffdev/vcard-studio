@@ -21,6 +21,7 @@ type
     ComboBoxLanguage: TComboBox;
     ComboBoxTheme: TComboBox;
     EditDefaultVcardVersion: TEdit;
+    EditMapUrl: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -102,6 +103,7 @@ begin
   SpinEditDPI.Value := Core.ScaleDPI1.DPI.X;
   CheckBoxReopenLastFileOnStart.Checked := Core.ReopenLastFileOnStart;
   EditDefaultVcardVersion.Text := Core.DefaultVcardVersion;
+  EditMapUrl.Text := Core.MapUrl;
   UpdateInterface;
 end;
 
@@ -111,6 +113,7 @@ begin
   Core.ScaleDPI1.DPI := Point(SpinEditDPI.Value, SpinEditDPI.Value);
   Core.ReopenLastFileOnStart := CheckBoxReopenLastFileOnStart.Checked;
   Core.DefaultVcardVersion := EditDefaultVcardVersion.Text;
+  Core.MapUrl := EditMapUrl.Text;
 end;
 
 procedure TFormSettings.UpdateInterface;

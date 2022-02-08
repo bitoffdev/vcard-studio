@@ -105,6 +105,11 @@ msgctxt "tformcontact.buttoncancel.caption"
 msgid "Cancel"
 msgstr ""
 
+#: tformcontact.buttonhomeaddressshow.caption
+msgctxt "tformcontact.buttonhomeaddressshow.caption"
+msgid "Show on map"
+msgstr ""
+
 #: tformcontact.buttonnext.caption
 msgid "Next"
 msgstr ""
@@ -116,6 +121,11 @@ msgstr ""
 
 #: tformcontact.buttonprevious.caption
 msgid "Previous"
+msgstr ""
+
+#: tformcontact.buttonworkaddressshow.caption
+msgctxt "tformcontact.buttonworkaddressshow.caption"
+msgid "Show on map"
 msgstr ""
 
 #: tformcontact.calendardialog1.cancelcaption
@@ -835,6 +845,10 @@ msgstr ""
 
 #: tformsettings.label3.caption
 msgid "Default vCard version:"
+msgstr ""
+
+#: tformsettings.label4.caption
+msgid "Map query URL:"
 msgstr ""
 
 #: tformsettings.labeldpi.caption

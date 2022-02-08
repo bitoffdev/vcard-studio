@@ -7,5 +7,6 @@
 {"hash":300234,"name":"tformsettings.labeldpi.caption","sourcebytes":[68,80,73,58],"value":"DPI:"},
 {"hash":55973348,"name":"tformsettings.checkboxreopenlastfileonstart.caption","sourcebytes":[82,101,111,112,101,110,32,108,97,115,116,32,102,105,108,101,32,111,110,32,115,116,97,114,116],"value":"Reopen last file on start"},
 {"hash":95339402,"name":"tformsettings.label2.caption","sourcebytes":[84,104,101,109,101,58],"value":"Theme:"},
-{"hash":232157114,"name":"tformsettings.label3.caption","sourcebytes":[68,101,102,97,117,108,116,32,118,67,97,114,100,32,118,101,114,115,105,111,110,58],"value":"Default vCard version:"}
+{"hash":232157114,"name":"tformsettings.label3.caption","sourcebytes":[68,101,102,97,117,108,116,32,118,67,97,114,100,32,118,101,114,115,105,111,110,58],"value":"Default vCard version:"},
+{"hash":26355722,"name":"tformsettings.label4.caption","sourcebytes":[77,97,112,32,113,117,101,114,121,32,85,82,76,58],"value":"Map query URL:"}
 ]}

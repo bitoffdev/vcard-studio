@@ -82,6 +82,7 @@ type
     LastContactTabIndex: Integer;
     LastContactFileName: string;
     LastPropertyValueFileName: string;
+    MapUrl: string;
     GenerateCount: Integer;
     ToolbarVisible: Boolean;
     DefaultVcardVersion: string;
@@ -466,6 +467,7 @@ begin
     LastPropertyValueFileName := ReadStringWithDefault('LastPropertyValueFileName', '');
     GenerateCount := ReadIntegerWithDefault('GenerateCount', 1);
     DefaultVcardVersion := ReadStringWithDefault('DefaultVcardVersion', '2.1');
+    MapUrl := ReadStringWithDefault('MapUrl', 'https://www.openstreetmap.org/search?query=');
   finally
     Free;
   end;
@@ -493,6 +495,7 @@ begin
     WriteString('LastPropertyValueFileName', LastPropertyValueFileName);
     WriteInteger('GenerateCount', GenerateCount);
     WriteString('DefaultVcardVersion', DefaultVcardVersion);
+    WriteString('MapUrl', MapUrl);
   finally
     Free;
   end;
