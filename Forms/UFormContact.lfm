@@ -1,7 +1,7 @@
 object FormContact: TFormContact
-  Left = 604
+  Left = 1121
   Height = 773
-  Top = 484
+  Top = 472
   Width = 1032
   Caption = 'Contact'
   ClientHeight = 773
@@ -17,10 +17,10 @@ object FormContact: TFormContact
     Height = 696
     Top = 8
     Width = 1009
-    ActivePage = TabSheetGeneral
+    ActivePage = TabSheetWork
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -450,13 +450,13 @@ object FormContact: TFormContact
       end
       object GroupBox1: TGroupBox
         Left = 10
-        Height = 252
+        Height = 287
         Top = 225
-        Width = 961
+        Width = 897
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Address'
-        ClientHeight = 224
-        ClientWidth = 959
+        ClientHeight = 259
+        ClientWidth = 895
         TabOrder = 6
         object Label36: TLabel
           Left = 10
@@ -569,6 +569,15 @@ object FormContact: TFormContact
           Width = 265
           ParentFont = False
           TabOrder = 1
+        end
+        object ButtonHomeAddressShow: TButton
+          Left = 10
+          Height = 39
+          Top = 208
+          Width = 182
+          Caption = 'Show on map'
+          OnClick = ButtonHomeAddressShowClick
+          TabOrder = 7
         end
       end
       object Label12: TLabel
@@ -684,12 +693,12 @@ object FormContact: TFormContact
       end
       object GroupBox2: TGroupBox
         Left = 8
-        Height = 257
+        Height = 283
         Top = 325
-        Width = 949
+        Width = 920
         Caption = 'Address'
-        ClientHeight = 229
-        ClientWidth = 947
+        ClientHeight = 255
+        ClientWidth = 918
         TabOrder = 9
         object Label31: TLabel
           Left = 10
@@ -699,7 +708,7 @@ object FormContact: TFormContact
           Caption = 'Country:'
           ParentFont = False
         end
-        object EditAddressWorkCountry: TEdit
+        object EditWorkAddressCountry: TEdit
           Left = 180
           Height = 43
           Top = 158
@@ -707,7 +716,7 @@ object FormContact: TFormContact
           ParentFont = False
           TabOrder = 5
         end
-        object EditAddressWorkRegion: TEdit
+        object EditWorkAddressRegion: TEdit
           Left = 180
           Height = 43
           Top = 108
@@ -731,7 +740,7 @@ object FormContact: TFormContact
           Caption = 'Extended street:'
           ParentFont = False
         end
-        object EditAddressWorkStreetExtended: TEdit
+        object EditWorkAddressStreetExtended: TEdit
           Left = 180
           Height = 43
           Top = 58
@@ -747,7 +756,7 @@ object FormContact: TFormContact
           Caption = 'Street:'
           ParentFont = False
         end
-        object EditAddressWorkStreet: TEdit
+        object EditWorkAddressStreet: TEdit
           Left = 180
           Height = 43
           Top = 8
@@ -763,7 +772,7 @@ object FormContact: TFormContact
           Caption = 'Post office box:'
           ParentFont = False
         end
-        object EditAddressWorkPostOfficeBox: TEdit
+        object EditWorkAddressPostOfficeBox: TEdit
           Left = 633
           Height = 43
           Top = 8
@@ -771,7 +780,7 @@ object FormContact: TFormContact
           ParentFont = False
           TabOrder = 1
         end
-        object EditAddressWorkCity: TEdit
+        object EditWorkAddressCity: TEdit
           Left = 633
           Height = 43
           Top = 58
@@ -787,7 +796,7 @@ object FormContact: TFormContact
           Caption = 'City:'
           ParentFont = False
         end
-        object EditAddressWorkPostalCode: TEdit
+        object EditWorkAddressPostalCode: TEdit
           Left = 633
           Height = 43
           Top = 148
@@ -802,6 +811,15 @@ object FormContact: TFormContact
           Width = 107
           Caption = 'Postal code:'
           ParentFont = False
+        end
+        object ButtonWorkAddressShow: TButton
+          Left = 10
+          Height = 39
+          Top = 208
+          Width = 182
+          Caption = 'Show on map'
+          OnClick = ButtonWorkAddressShowClick
+          TabOrder = 7
         end
       end
       object Label15: TLabel

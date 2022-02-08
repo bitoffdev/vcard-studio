@@ -1,43 +1,42 @@
 object FormSettings: TFormSettings
   Left = 798
-  Height = 360
-  Top = 367
-  Width = 564
+  Height = 421
+  Top = 321
+  Width = 548
   Caption = 'Settings'
-  ClientHeight = 360
-  ClientWidth = 564
-  Constraints.MinHeight = 360
-  Constraints.MinWidth = 480
-  DesignTimePPI = 144
+  ClientHeight = 421
+  ClientWidth = 548
+  Constraints.MinHeight = 421
+  Constraints.MinWidth = 548
+  DesignTimePPI = 150
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object ComboBoxLanguage: TComboBox
-    Left = 240
-    Height = 41
-    Top = 16
-    Width = 264
+    Left = 250
+    Height = 42
+    Top = 17
+    Width = 275
     ItemHeight = 0
     ParentFont = False
     Style = csDropDownList
     TabOrder = 0
   end
   object Label1: TLabel
-    Left = 24
-    Height = 24
-    Top = 24
-    Width = 88
+    Left = 25
+    Height = 27
+    Top = 25
+    Width = 96
     Caption = 'Language:'
-    ParentColor = False
     ParentFont = False
   end
   object ButtonOk: TButton
-    Left = 438
-    Height = 37
-    Top = 307
-    Width = 113
+    Left = 416
+    Height = 39
+    Top = 365
+    Width = 118
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
     ModalResult = 1
@@ -46,10 +45,10 @@ object FormSettings: TFormSettings
     TabOrder = 7
   end
   object ButtonCancel: TButton
-    Left = 294
-    Height = 37
-    Top = 307
-    Width = 113
+    Left = 266
+    Height = 39
+    Top = 365
+    Width = 118
     Anchors = [akRight, akBottom]
     Caption = 'Cancel'
     ModalResult = 2
@@ -58,9 +57,9 @@ object FormSettings: TFormSettings
   end
   object CheckBoxAutomaticDPI: TCheckBox
     Left = 24
-    Height = 30
-    Top = 200
-    Width = 148
+    Height = 31
+    Top = 257
+    Width = 154
     Caption = 'Automatic DPI'
     OnChange = CheckBoxAutomaticDPIChange
     ParentFont = False
@@ -68,10 +67,10 @@ object FormSettings: TFormSettings
     Visible = False
   end
   object SpinEditDPI: TSpinEdit
-    Left = 240
-    Height = 42
-    Top = 232
-    Width = 145
+    Left = 249
+    Height = 43
+    Top = 291
+    Width = 151
     MaxValue = 300
     MinValue = 96
     ParentFont = False
@@ -80,20 +79,19 @@ object FormSettings: TFormSettings
     Visible = False
   end
   object LabelDPI: TLabel
-    Left = 56
-    Height = 24
-    Top = 240
-    Width = 35
+    Left = 57
+    Height = 27
+    Top = 299
+    Width = 36
     Caption = 'DPI:'
-    ParentColor = False
     ParentFont = False
     Visible = False
   end
   object CheckBoxReopenLastFileOnStart: TCheckBox
     Left = 24
-    Height = 30
-    Top = 160
-    Width = 226
+    Height = 31
+    Top = 216
+    Width = 239
     Caption = 'Reopen last file on start'
     ParentFont = False
     TabOrder = 3
@@ -101,42 +99,55 @@ object FormSettings: TFormSettings
   object Bevel1: TBevel
     Left = 12
     Height = 2
-    Top = 288
-    Width = 534
+    Top = 346
+    Width = 517
     Anchors = [akLeft, akRight, akBottom]
   end
   object Label2: TLabel
-    Left = 24
-    Height = 24
-    Top = 72
-    Width = 63
+    Left = 25
+    Height = 27
+    Top = 75
+    Width = 67
     Caption = 'Theme:'
-    ParentColor = False
     ParentFont = False
   end
   object ComboBoxTheme: TComboBox
-    Left = 240
-    Height = 41
-    Top = 64
-    Width = 264
+    Left = 250
+    Height = 42
+    Top = 67
+    Width = 275
     ItemHeight = 0
     ParentFont = False
     Style = csDropDownList
     TabOrder = 1
   end
   object Label3: TLabel
-    Left = 24
-    Height = 24
-    Top = 120
-    Width = 186
+    Left = 25
+    Height = 27
+    Top = 125
+    Width = 199
     Caption = 'Default vCard version:'
-    ParentColor = False
   end
   object EditDefaultVcardVersion: TEdit
-    Left = 240
-    Height = 42
-    Top = 112
-    Width = 144
+    Left = 250
+    Height = 43
+    Top = 117
+    Width = 150
     TabOrder = 2
+  end
+  object Label4: TLabel
+    Left = 25
+    Height = 27
+    Top = 172
+    Width = 144
+    Caption = 'Map query URL:'
+  end
+  object EditMapUrl: TEdit
+    Left = 250
+    Height = 43
+    Top = 168
+    Width = 278
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 8
   end
 end
