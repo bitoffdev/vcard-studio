@@ -257,10 +257,22 @@ procedure TFormContacts.DoUpdateInterface;
 var
   Text: string;
   SelectedCount: Integer;
+  Selected: Boolean;
 begin
+  Selected := Assigned(ListView1.Selected);
   AAdd.Enabled := Assigned(Contacts);
-  AModify.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  ARemove.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
+  AModify.Enabled := Assigned(Contacts) and Selected;
+  ARemove.Enabled := Assigned(Contacts) and Selected;
+  AAdd.Enabled := Assigned(Contacts);
+  AModify.Enabled := Assigned(Contacts) and Selected;
+  AClone.Enabled := Assigned(Contacts) and Selected;
+  ARemove.Enabled := Assigned(Contacts) and Selected;
+  ASelectAll.Enabled := ListView1.Items.Count > 0;
+  ALoadFromFile.Enabled := Assigned(Contacts) and Selected;
+  ASaveToFile.Enabled := Assigned(Contacts) and Selected;
+  ACopy.Enabled := Assigned(Contacts) and Selected;
+  ACut.Enabled := Assigned(Contacts) and Selected;
+  APaste.Enabled := Assigned(Contacts) and (Clipboard.AsText <> '');
 
   Text := '';
   if Assigned(Contacts) then begin
@@ -272,6 +284,8 @@ begin
       Text := Text + ', ' + SSelected + ': ' + IntToStr(SelectedCount);
   end;
   StatusBar1.Panels[0].Text := Text;
+
+  UpdateColumns;
 end;
 
 procedure TFormContacts.UpdateColumns;
@@ -612,18 +626,6 @@ end;
 procedure TFormContacts.UpdateInterface;
 begin
   if FUpdateCount = 0 then DoUpdateInterface;
-  AAdd.Enabled := Assigned(Contacts);
-  AModify.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  AClone.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  ARemove.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  ASelectAll.Enabled := ListView1.Items.Count > 0;
-  ALoadFromFile.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  ASaveToFile.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  ACopy.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  ACut.Enabled := Assigned(Contacts) and Assigned(ListView1.Selected);
-  APaste.Enabled := Assigned(Contacts) and (Clipboard.AsText <> '');
-
-  UpdateColumns;
 end;
 
 end.

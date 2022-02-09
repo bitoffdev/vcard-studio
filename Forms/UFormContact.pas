@@ -684,7 +684,8 @@ begin
   if EditHomeAddressPostOfficeBox.Text <> '' then Address := Address + ' ' + EditHomeAddressPostOfficeBox.Text;
   if EditHomeAddressCity.Text <> '' then Address := Address + ' ' + EditHomeAddressCity.Text;
   if EditHomeAddressCountry.Text <> '' then Address := Address + ' ' + EditHomeAddressCountry.Text;
-  OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
+  if Trim(Address) <> '' then
+    OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
 end;
 
 procedure TFormContact.ButtonPreviousClick(Sender: TObject);
@@ -703,7 +704,8 @@ begin
   if EditWorkAddressPostOfficeBox.Text <> '' then Address := Address + ' ' + EditWorkAddressPostOfficeBox.Text;
   if EditWorkAddressCity.Text <> '' then Address := Address + ' ' + EditWorkAddressCity.Text;
   if EditWorkAddressCountry.Text <> '' then Address := Address + ' ' + EditWorkAddressCountry.Text;
-  OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
+  if Trim(Address) <> '' then
+    OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
 end;
 
 procedure TFormContact.EditFullNameChange(Sender: TObject);

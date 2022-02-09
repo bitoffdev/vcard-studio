@@ -75,9 +75,12 @@ begin
 end;
 
 procedure TFormTest.UpdateInterface;
+var
+  Selected: Boolean;
 begin
-  ARun.Enabled := Assigned(ListViewTestCases.Selected);
-  AShow.Enabled := Assigned(ListViewTestCases.Selected);
+  Selected := Assigned(ListViewTestCases.Selected);
+  ARun.Enabled := Selected;
+  AShow.Enabled := Selected;
 end;
 
 procedure TFormTest.InitTestCases;

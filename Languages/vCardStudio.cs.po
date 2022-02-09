@@ -1010,6 +1010,11 @@ msgstr "Fax"
 msgid "Field index not defined"
 msgstr "Index pole nenalezen"
 
+#: ucontact.sfieldindexredefined
+#, object-pascal-format
+msgid "Field index %d redefined"
+msgstr "Index pole %d předefinován"
+
 #: ucontact.sfirstname
 msgid "First Name"
 msgstr "Křestní jméno"
