@@ -984,6 +984,11 @@ msgstr ""
 msgid "Field index not defined"
 msgstr ""
 
+#: ucontact.sfieldindexredefined
+#, object-pascal-format
+msgid "Field index %d redefined"
+msgstr ""
+
 #: ucontact.sfirstname
 msgid "First Name"
 msgstr ""

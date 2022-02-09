@@ -368,13 +368,15 @@ procedure TFormProperties.UpdateInterface;
 var
   Text: string;
   SelectedCount: Integer;
+  Selected: Boolean;
 begin
+  Selected := Assigned(ListView1.Selected);
   AAdd.Enabled := Assigned(Properties);
-  AModify.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
-  AClone.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);;
-  ARemove.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
-  ALoadValueFromFile.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
-  ASaveValueToFile.Enabled := Assigned(Properties) and Assigned(ListView1.Selected);
+  AModify.Enabled := Assigned(Properties) and Selected;
+  AClone.Enabled := Assigned(Properties) and Selected;
+  ARemove.Enabled := Assigned(Properties) and Selected;
+  ALoadValueFromFile.Enabled := Assigned(Properties) and Selected;
+  ASaveValueToFile.Enabled := Assigned(Properties) and Selected;
   ASelectAll.Enabled := ListView1.Items.Count > 0;
 
   Text := '';

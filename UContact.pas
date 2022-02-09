@@ -70,6 +70,11 @@ type
   { TContactFields }
 
   TContactFields = class(TFPGObjectList<TContactField>)
+  private
+    Indexes: array[TContactFieldIndex] of TContactField;
+    IndexesUpdated: Boolean;
+  public
+    procedure UpdateIndexes;
     function AddNew(Name: string; Groups: array of string; NoGroups: array of string;
       Title: string; Index: TContactFieldIndex; DataType:
       TDataType = dtNone; ValueIndex: Integer = -1): TContactField;
@@ -208,6 +213,7 @@ const
 
 resourcestring
   SVCardFile = 'vCard file';
+  SFieldIndexRedefined = 'Field index %d redefined';
   SExpectedVCardBegin = 'Expected vCard begin';
   SFieldIndexNotDefined = 'Field index not defined';
   SContactHasNoParent = 'Contact has no parent';
@@ -778,6 +784,19 @@ end;
 
 { TContactFields }
 
+procedure TContactFields.UpdateIndexes;
+var
+  I: Integer;
+  Index: TContactFieldIndex;
+begin
+  for Index := Low(TContactFieldIndex) to High(TContactFieldIndex) do
+    Indexes[Index] := nil;
+  for I := 0 to Count - 1 do
+    if not Assigned(Indexes[Items[I].Index]) then Indexes[Items[I].Index] := Items[I]
+      else raise Exception.Create(Format(SFieldIndexRedefined, [Integer(Items[I].Index)]));
+  IndexesUpdated := True;
+end;
+
 function TContactFields.AddNew(Name: string; Groups: array of string;
   NoGroups: array of string; Title: string; Index: TContactFieldIndex;
   DataType: TDataType = dtNone; ValueIndex: Integer = -1): TContactField;
@@ -797,6 +816,7 @@ begin
   Result.ValueIndex := ValueIndex;
   Result.DataType := DataType;
   Add(Result);
+  IndexesUpdated := False;
 end;
 
 function TContactFields.GetBySysName(SysName: string): TContactField;
@@ -824,10 +844,13 @@ function TContactFields.GetByIndex(Index: TContactFieldIndex): TContactField;
 var
   I: Integer;
 begin
-  I := 0;
-  while (I < Count) and (Items[I].Index <> Index) do Inc(I);
-  if I < Count then Result := Items[I]
-    else Result := nil;
+  if IndexesUpdated then Result := Indexes[Index]
+  else begin
+    I := 0;
+    while (I < Count) and (Items[I].Index <> Index) do Inc(I);
+    if I < Count then Result := Items[I]
+      else Result := nil;
+  end;
 end;
 
 procedure TContactFields.LoadToStrings(AItems: TStrings);
@@ -957,6 +980,7 @@ begin
       AddAlternative('X-SOCIALPROFILE', ['REDDIT'], []);
     with AddNew('X-MYSPACE', [], [], SMySpace, cfMySpace, dtString) do
       AddAlternative('X-SOCIALPROFILE', ['MYSPACE'], []);
+    UpdateIndexes;
     end;
   end;
   Result := FFields;
