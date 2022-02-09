@@ -5,7 +5,7 @@ unit UContact;
 interface
 
 uses
-  Classes, SysUtils, fgl, Dialogs, UDataFile, LazUTF8, Base64;
+  Classes, SysUtils, fgl, Dialogs, UDataFile, LazUTF8, Base64, Graphics;
 
 type
   TContactsFile = class;
@@ -194,6 +194,8 @@ const
   VCardFileExt = '.vcf';
   VCardBegin = 'BEGIN:VCARD';
   VCardEnd = 'END:VCARD';
+  VCardBase64 = 'BASE64';
+  VCardQuotedPrintable = 'QUOTED-PRINTABLE';
 
 
 implementation
@@ -570,15 +572,15 @@ procedure TContactProperty.EvaluateAttributes;
 var
   I: Integer;
 begin
-  if Attributes.IndexOf('BASE64') <> -1 then begin
-    Encoding := 'BASE64';
+  if Attributes.IndexOf(VCardBase64) <> -1 then begin
+    Encoding := VCardBase64;
     Value := GetDecodedValue;
   end else
   if Attributes.IndexOfName('ENCODING') <> -1 then begin
     Encoding := Attributes.Values['ENCODING'];
-    if (Encoding = 'B') or (Encoding = 'b') then Encoding := 'BASE64';
-    if (Encoding = 'Q') or (Encoding = 'q') then Encoding := 'QUOTED-PRINTABLE';
-    if (Encoding = 'QUOTED-PRINTABLE') or (Encoding = 'BASE64') then begin
+    if (Encoding = 'B') or (Encoding = 'b') then Encoding := VCardBase64;
+    if (Encoding = 'Q') or (Encoding = 'q') then Encoding := VCardQuotedPrintable;
+    if (Encoding = VCardQuotedPrintable) or (Encoding = VCardBase64) then begin
       Value := GetDecodedValue;
       Attributes.Delete(Attributes.IndexOfName('ENCODING'));
     end else
@@ -599,10 +601,10 @@ end;
 
 function TContactProperty.GetDecodedValue: string;
 begin
-  if Encoding = 'BASE64' then begin
+  if Encoding = VCardBase64 then begin
     Result := DecodeStringBase64(Value);
   end else
-  if Encoding = 'QUOTED-PRINTABLE' then begin
+  if Encoding = VCardQuotedPrintable then begin
     Result := DecodeQuotedPrintable(Value, True);
   end
   else Result := '';
@@ -610,10 +612,10 @@ end;
 
 function TContactProperty.GetEncodedValue: string;
 begin
-  if Encoding = 'BASE64' then begin
+  if Encoding = VCardBase64 then begin
     Result := EncodeStringBase64(Value);
   end else
-  if Encoding = 'QUOTED-PRINTABLE' then begin
+  if Encoding = VCardQuotedPrintable then begin
     Result := EncodeQuotedPrintable(Value, True);
   end
   else Result := '';
@@ -1163,7 +1165,7 @@ begin
           while True do begin
             if UTF8Length(OutText) > ContactsFile.MaxLineLength then begin
               CutLength := ContactsFile.MaxLineLength;
-              if Encoding = 'QUOTED-PRINTABLE' then begin
+              if Encoding = VCardQuotedPrintable then begin
                 Dec(CutLength); // There will be softline break at the end
                 // Do not cut encoded items at the end of line
                 if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = QuotedPrintableEscapeCharacter) then
@@ -1174,10 +1176,10 @@ begin
 
               CutText := UTF8Copy(OutText, 1, CutLength);
               System.Delete(OutText, 1, Length(CutText));
-              if Encoding = 'QUOTED-PRINTABLE' then
+              if Encoding = VCardQuotedPrintable then
                 CutText := CutText + QuotedPrintableEscapeCharacter; // Add soft line break
               Add(LinePrefix + CutText);
-              if Encoding <> 'QUOTED-PRINTABLE' then
+              if Encoding <> VCardQuotedPrintable then
                 LinePrefix := ' ';
               Inc(LineIndex);
               Continue;

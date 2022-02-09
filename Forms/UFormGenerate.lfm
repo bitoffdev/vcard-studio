@@ -1,30 +1,29 @@
 object FormGenerate: TFormGenerate
   Left = 470
-  Height = 562
+  Height = 585
   Top = 372
-  Width = 812
+  Width = 846
   Caption = 'Generate contacts'
-  ClientHeight = 562
-  ClientWidth = 812
-  DesignTimePPI = 144
+  ClientHeight = 585
+  ClientWidth = 846
+  DesignTimePPI = 150
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object Label1: TLabel
-    Left = 19
-    Height = 24
-    Top = 19
-    Width = 55
+    Left = 20
+    Height = 27
+    Top = 20
+    Width = 59
     Caption = 'Count:'
-    ParentColor = False
     ParentFont = False
   end
   object SpinEditCount: TSpinEdit
-    Left = 155
-    Height = 42
-    Top = 18
-    Width = 152
+    Left = 161
+    Height = 43
+    Top = 19
+    Width = 158
     MaxValue = 1000000000
     MinValue = 1
     ParentFont = False
@@ -32,10 +31,10 @@ object FormGenerate: TFormGenerate
     Value = 1
   end
   object ButtonGenerate: TButton
-    Left = 19
-    Height = 37
-    Top = 173
-    Width = 113
+    Left = 20
+    Height = 39
+    Top = 180
+    Width = 118
     Caption = 'Generate'
     OnClick = ButtonGenerateClick
     ParentFont = False
