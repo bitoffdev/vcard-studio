@@ -99,6 +99,7 @@ procedure TFormFind.FormCreate(Sender: TObject);
 begin
   Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
+
   ContactFieldIndex := cfNone;
 
   FormContacts := TFormContacts.Create(nil);

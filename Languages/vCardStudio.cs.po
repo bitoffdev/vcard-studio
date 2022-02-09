@@ -99,6 +99,7 @@ msgid "Select directory"
 msgstr "Vybrat adresář"
 
 #: tformcontact.aphotoclear.caption
+msgctxt "tformcontact.aphotoclear.caption"
 msgid "Clear"
 msgstr "Vyčistit"
 
@@ -111,6 +112,15 @@ msgstr "Načíst ze souboru"
 msgctxt "tformcontact.aphotosave.caption"
 msgid "Save to file"
 msgstr "Uložit do souboru"
+
+#: tformcontact.aphotoseturl.caption
+msgid "Set URL"
+msgstr "Nastavit URL"
+
+#: tformcontact.aphotoshow.caption
+msgctxt "tformcontact.aphotoshow.caption"
+msgid "Show"
+msgstr "Ukázat"
 
 #: tformcontact.buttoncancel.caption
 msgctxt "tformcontact.buttoncancel.caption"
@@ -141,7 +151,6 @@ msgid "Show on map"
 msgstr "Ukázat na mapět"
 
 #: tformcontact.calendardialog1.cancelcaption
-#, fuzzy
 msgctxt "tformcontact.calendardialog1.cancelcaption"
 msgid "Cancel"
 msgstr "Zrušit"
@@ -156,6 +165,7 @@ msgid "Select date"
 msgstr "Vybrat datum"
 
 #: tformcontact.caption
+msgctxt "tformcontact.caption"
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -718,6 +728,41 @@ msgctxt "tformgenerate.label1.caption"
 msgid "Count:"
 msgstr "Počet:"
 
+#: tformimage.buttoncancel.caption
+msgctxt "tformimage.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformimage.buttonclear.caption
+msgctxt "tformimage.buttonclear.caption"
+msgid "Clear"
+msgstr "Vyčistit"
+
+#: tformimage.buttonload.caption
+msgctxt "tformimage.buttonload.caption"
+msgid "Load from file"
+msgstr "Načíst ze souboru"
+
+#: tformimage.buttonok.caption
+msgctxt "tformimage.buttonok.caption"
+msgid "OK"
+msgstr "OK"
+
+#: tformimage.buttonsave.caption
+msgctxt "tformimage.buttonsave.caption"
+msgid "Save to file"
+msgstr "Uložit do souboru"
+
+#: tformimage.caption
+msgctxt "tformimage.caption"
+msgid "Photo"
+msgstr "Fotka"
+
+#: tformimage.label1.caption
+msgctxt "tformimage.label1.caption"
+msgid "URL:"
+msgstr "URL:"
+
 #: tformmain.caption
 msgid "vCard Studio"
 msgstr "vCard Studio"
@@ -905,7 +950,6 @@ msgid "Test"
 msgstr "Testování"
 
 #: tformtest.listviewtestcases.columns[0].caption
-#, fuzzy
 msgctxt "tformtest.listviewtestcases.columns[0].caption"
 msgid "Name"
 msgstr "Jméno"
@@ -1130,6 +1174,7 @@ msgid "PeerTube"
 msgstr "PeerTube"
 
 #: ucontact.sphoto
+msgctxt "ucontact.sphoto"
 msgid "Photo"
 msgstr "Fotka"
 
@@ -1313,6 +1358,19 @@ msgstr "Všechny soubory"
 msgctxt "udatafile.sdatafilename"
 msgid "File"
 msgstr "Soubor"
+
+#: uformcontact.scontact
+msgctxt "uformcontact.scontact"
+msgid "Contact"
+msgstr "Kontakt"
+
+#: uformcontact.sphotourl
+msgid "Photo URL"
+msgstr "URL fotky"
+
+#: uformcontact.sphotourlquery
+msgid "Enter URL for profile photo"
+msgstr "Zadejte URL pro profilovou fotku"
 
 #: uformcontacts.sendupdatetoolow
 msgid "Update counter error"

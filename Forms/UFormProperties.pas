@@ -204,8 +204,6 @@ end;
 procedure TFormProperties.FormShow(Sender: TObject);
 begin
   Core.PersistentForm1.Load(Self);
-  Core.ThemeManager1.UseTheme(Self);
-  Core.Translator.TranslateComponentRecursive(Self);
   ReloadList;
   UpdateInterface;
   ListViewFilter1.UpdateFromListView(ListView1);
@@ -351,6 +349,9 @@ procedure TFormProperties.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
+  Core.Translator.TranslateComponentRecursive(Self);
+  Core.ThemeManager1.UseTheme(Self);
+
   FProperties := nil;
   for I := 0 to ToolBar1.ButtonCount - 1 do begin
     ToolBar1.Buttons[I].ShowHint := True;

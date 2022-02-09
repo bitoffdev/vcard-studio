@@ -89,15 +89,27 @@ msgid "Select directory"
 msgstr ""
 
 #: tformcontact.aphotoclear.caption
+msgctxt "tformcontact.aphotoclear.caption"
 msgid "Clear"
 msgstr ""
 
 #: tformcontact.aphotoload.caption
+msgctxt "tformcontact.aphotoload.caption"
 msgid "Load from file"
 msgstr ""
 
 #: tformcontact.aphotosave.caption
+msgctxt "tformcontact.aphotosave.caption"
 msgid "Save to file"
+msgstr ""
+
+#: tformcontact.aphotoseturl.caption
+msgid "Set URL"
+msgstr ""
+
+#: tformcontact.aphotoshow.caption
+msgctxt "tformcontact.aphotoshow.caption"
+msgid "Show"
 msgstr ""
 
 #: tformcontact.buttoncancel.caption
@@ -143,6 +155,7 @@ msgid "Select date"
 msgstr ""
 
 #: tformcontact.caption
+msgctxt "tformcontact.caption"
 msgid "Contact"
 msgstr ""
 
@@ -696,6 +709,41 @@ msgstr ""
 msgid "Count:"
 msgstr ""
 
+#: tformimage.buttoncancel.caption
+msgctxt "tformimage.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformimage.buttonclear.caption
+msgctxt "tformimage.buttonclear.caption"
+msgid "Clear"
+msgstr ""
+
+#: tformimage.buttonload.caption
+msgctxt "tformimage.buttonload.caption"
+msgid "Load from file"
+msgstr ""
+
+#: tformimage.buttonok.caption
+msgctxt "tformimage.buttonok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformimage.buttonsave.caption
+msgctxt "tformimage.buttonsave.caption"
+msgid "Save to file"
+msgstr ""
+
+#: tformimage.caption
+msgctxt "tformimage.caption"
+msgid "Photo"
+msgstr ""
+
+#: tformimage.label1.caption
+msgctxt "tformimage.label1.caption"
+msgid "URL:"
+msgstr ""
+
 #: tformmain.caption
 msgid "vCard Studio"
 msgstr ""
@@ -1100,6 +1148,7 @@ msgid "PeerTube"
 msgstr ""
 
 #: ucontact.sphoto
+msgctxt "ucontact.sphoto"
 msgid "Photo"
 msgstr ""
 
@@ -1280,6 +1329,19 @@ msgstr ""
 #: udatafile.sdatafilename
 msgctxt "udatafile.sdatafilename"
 msgid "File"
+msgstr ""
+
+#: uformcontact.scontact
+msgctxt "uformcontact.scontact"
+msgid "Contact"
+msgstr ""
+
+#: uformcontact.sphotourl
+msgid "Photo URL"
+msgstr ""
+
+#: uformcontact.sphotourlquery
+msgid "Enter URL for profile photo"
 msgstr ""
 
 #: uformcontacts.sendupdatetoolow
