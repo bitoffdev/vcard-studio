@@ -7,13 +7,15 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ComCtrls, ActnList, Menus, ExtCtrls, ExtDlgs, Buttons, UContact, LCLIntf,
-  UFormProperties, DateUtils{$IFDEF LCLGTK2}, Gtk2Globals{$ENDIF};
+  UFormProperties, DateUtils{$IFDEF LCLGTK2}, Gtk2Globals{$ENDIF}, UContactImage;
 
 type
 
   { TFormContact }
 
   TFormContact = class(TForm)
+    APhotoSetUrl: TAction;
+    APhotoShow: TAction;
     APhotoClear: TAction;
     APhotoSave: TAction;
     APhotoLoad: TAction;
@@ -171,6 +173,8 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
     PageControlContact: TPageControl;
     PopupMenuPhoto: TPopupMenu;
@@ -193,14 +197,18 @@ type
     procedure APhotoClearExecute(Sender: TObject);
     procedure APhotoLoadExecute(Sender: TObject);
     procedure APhotoSaveExecute(Sender: TObject);
+    procedure APhotoSetUrlExecute(Sender: TObject);
+    procedure APhotoShowExecute(Sender: TObject);
     procedure ButtonHomeAddressShowClick(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
     procedure ButtonPreviousClick(Sender: TObject);
     procedure ButtonWorkAddressShowClick(Sender: TObject);
+    procedure EditFullNameChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure ImagePhotoClick(Sender: TObject);
     procedure SpeedButtonHomeWebClick(Sender: TObject);
     procedure SpeedButtonAniversaryClick(Sender: TObject);
     procedure SpeedButtonBirthDayClick(Sender: TObject);
@@ -223,10 +231,8 @@ type
     procedure TabSheetWorkHide(Sender: TObject);
     procedure TabSheetWorkShow(Sender: TObject);
   private
-    FProfilePhotoActive: Boolean;
-    FProfilePhotoLoaded: Boolean;
-    FProfilePhotoModified: Boolean;
-    procedure SetProfilePhotoActive(AValue: Boolean);
+    FPhoto: TContactImage;
+    procedure PhotoChange(Sender: TObject);
   private
     FContact: TContact;
     FOnGetNext: TGetContactEvent;
@@ -234,8 +240,6 @@ type
     FormProperties: TFormProperties;
     procedure SetContact(AValue: TContact);
     procedure ReloadAllPropertiesTab;
-    property ProfilePhotoActive: Boolean read FProfilePhotoActive
-      write SetProfilePhotoActive;
   public
     procedure UpdateInterface;
     property Contact: TContact read FContact write SetContact;
@@ -252,7 +256,12 @@ implementation
 {$R *.lfm}
 
 uses
-  UCore, UCommon;
+  UCore, UCommon, UFormImage;
+
+resourcestring
+  SContact = 'Contact';
+  SPhotoUrl = 'Photo URL';
+  SPhotoUrlQuery = 'Enter URL for profile photo';
 
 function DateToISO(Date: TDateTime): string;
 begin
@@ -273,26 +282,26 @@ begin
 end;
 
 {$IF FPC_FULLVERSION<30200}
-function TryISOStrToDate(const aString: string; out outDate: TDateTime): Boolean;
+function TryISOStrToDate(const aString: string; out OutDate: TDateTime): Boolean;
 var
   xYear, xMonth, xDay: LongInt;
 begin
   case Length(aString) of
     8: Result :=
-          TryStrToInt(Copy(aString, 1, 4), xYear) and
-          TryStrToInt(Copy(aString, 5, 2), xMonth) and
-          TryStrToInt(Copy(aString, 7, 2), xDay) and
-          TryEncodeDate(xYear, xMonth, xDay, outDate);
+      TryStrToInt(Copy(aString, 1, 4), xYear) and
+      TryStrToInt(Copy(aString, 5, 2), xMonth) and
+      TryStrToInt(Copy(aString, 7, 2), xDay) and
+      TryEncodeDate(xYear, xMonth, xDay, OutDate);
     10: Result :=
-          TryStrToInt(Copy(aString, 1, 4), xYear) and
-          TryStrToInt(Copy(aString, 6, 2), xMonth) and
-          TryStrToInt(Copy(aString, 9, 2), xDay) and
-          TryEncodeDate(xYear, xMonth, xDay, outDate);
+      TryStrToInt(Copy(aString, 1, 4), xYear) and
+      TryStrToInt(Copy(aString, 6, 2), xMonth) and
+      TryStrToInt(Copy(aString, 9, 2), xDay) and
+      TryEncodeDate(xYear, xMonth, xDay, OutDate);
   else
     Result := False;
   end;
   if not Result then
-    outDate := 0;
+    OutDate := 0;
 end;
 {$ENDIF}
 
@@ -310,14 +319,15 @@ begin
   FormProperties.Align := alClient;
   FormProperties.Show;
 
-  FProfilePhotoLoaded := False;
-
-  // Force to load default profile image
-  ProfilePhotoActive := True;
-  ProfilePhotoActive := False;
+  PhotoChange(nil);
 
   PageControlContact.TabIndex := Core.LastContactTabIndex;
   UpdateInterface;
+end;
+
+procedure TFormContact.ImagePhotoClick(Sender: TObject);
+begin
+  APhotoShow.Execute;
 end;
 
 procedure TFormContact.SpeedButtonHomeWebClick(Sender: TObject);
@@ -416,13 +426,6 @@ begin
 end;
 
 procedure TFormContact.TabSheetGeneralHide(Sender: TObject);
-var
-  Photo: string;
-  PhotoProperty: TContactProperty;
-  Stream: TMemoryStream;
-  JpegImage: TJpegImage;
-  GifImage: TGIFImage;
-  PngImage: TPortableNetworkGraphic;
 begin
   Contact.Fields[cfFullName] := EditFullName.Text;
   Contact.Fields[cfMiddleName] := EditMiddleName.Text;
@@ -442,90 +445,13 @@ begin
   Contact.Fields[cfGender] := EditGender.Text;
   Contact.Fields[cfCategories] := EditCategories.Text;
 
-  // Photo
-  if FProfilePhotoModified then begin
-  if ProfilePhotoActive then begin
-    PhotoProperty := Contact.GetProperty(cfPhoto);
-    if not Assigned(PhotoProperty) then begin
-      PhotoProperty := TContactProperty.Create;
-      PhotoProperty.Name := 'PHOTO';
-      PhotoProperty.Attributes.DelimitedText := 'JPEG';
-      Contact.Properties.Add(PhotoProperty);
-    end;
-    PhotoProperty.Encoding := 'BASE64';
-    Stream := TMemoryStream.Create;
-    try
-      if PhotoProperty.Attributes.IndexOf('JPEG') <> -1 then begin
-        JpegImage := TJPEGImage.Create;
-        try
-          try
-            JpegImage.SetSize(ImagePhoto.Picture.Bitmap.Width, ImagePhoto.Picture.Bitmap.Height);
-            JpegImage.Canvas.Draw(0, 0, ImagePhoto.Picture.Bitmap);
-            JpegImage.SaveToStream(Stream);
-          except
-          end;
-        finally
-          JpegImage.Free;
-        end;
-      end else
-      if PhotoProperty.Attributes.IndexOf('PNG') <> -1 then begin
-        PngImage := TPortableNetworkGraphic.Create;
-        try
-          try
-            PngImage.SetSize(ImagePhoto.Picture.Bitmap.Width, ImagePhoto.Picture.Bitmap.Height);
-            PngImage.Canvas.Draw(0, 0, ImagePhoto.Picture.Bitmap);
-            PngImage.SaveToStream(Stream);
-          except
-          end;
-        finally
-          PngImage.Free;
-        end;
-      end else
-      if PhotoProperty.Attributes.IndexOf('GIF') <> -1 then begin
-        GifImage := TGIFImage.Create;
-        try
-          try
-            GifImage.SetSize(ImagePhoto.Picture.Bitmap.Width, ImagePhoto.Picture.Bitmap.Height);
-            GifImage.Canvas.Draw(0, 0, ImagePhoto.Picture.Bitmap);
-            GifImage.SaveToStream(Stream);
-          except
-          end;
-        finally
-          GifImage.Free;
-        end;
-      end else begin
-        try
-          ImagePhoto.Picture.SaveToStream(Stream);
-        except
-        end;
-      end;
-
-      SetLength(Photo, Stream.Size);
-      Stream.Position := 0;
-      Stream.Read(Photo[1], Length(Photo));
-      Contact.Fields[cfPhoto] := Photo;
-    finally
-      Stream.Free;
-    end;
-  end else begin
-    PhotoProperty := Contact.GetProperty(cfPhoto);
-    if Assigned(PhotoProperty) then
-       Contact.Properties.Remove(PhotoProperty);
-  end;
-    FProfilePhotoModified := False;
-  end;
+  FPhoto.Contact := Contact;
+  FPhoto.Save;
 
   ReloadAllPropertiesTab;
 end;
 
 procedure TFormContact.TabSheetGeneralShow(Sender: TObject);
-var
-  Photo: string;
-  JpegImage: TJpegImage;
-  PngImage: TPortableNetworkGraphic;
-  GifImage: TGIFImage;
-  Stream: TMemoryStream;
-  PhotoProperty: TContactProperty;
 begin
   EditFullName.Text := Contact.Fields[cfFullName];
   EditFirstName.Text := Contact.Fields[cfFirstName];
@@ -545,88 +471,8 @@ begin
   EditGender.Text := Contact.Fields[cfGender];
   EditCategories.Text := Contact.Fields[cfCategories];
 
-  // Photo
-  PhotoProperty := Contact.GetProperty(cfPhoto);
-  if not FProfilePhotoLoaded then begin
-  if Assigned(PhotoProperty) then begin
-    FProfilePhotoLoaded := True;
-    FProfilePhotoModified := True;
-    Photo := Contact.Fields[cfPhoto];
-    if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
-      Stream := TMemoryStream.Create;
-      try
-        Stream.Write(Photo[1], Length(Photo));
-        Stream.Position := 0;
-        if (PhotoProperty.Attributes.IndexOf('JPEG') <> -1) or
-        (PhotoProperty.Attributes.IndexOf('jpeg') <> -1) then begin
-          JpegImage := TJPEGImage.Create;
-          try
-            try
-              JpegImage.LoadFromStream(Stream);
-              with ImagePhoto.Picture.Bitmap do begin
-                PixelFormat := pf24bit;
-                SetSize(JpegImage.Width, JpegImage.Height);
-                Canvas.Draw(0, 0, JpegImage);
-              end;
-              ProfilePhotoActive := True;
-            except
-              ProfilePhotoActive := False;
-            end;
-          finally
-            JpegImage.Free;
-          end;
-        end else
-        if (PhotoProperty.Attributes.IndexOf('PNG') <> -1) or
-        (PhotoProperty.Attributes.IndexOf('png') <> -1) then begin
-          PngImage := TPortableNetworkGraphic.Create;
-          try
-            try
-              PngImage.LoadFromStream(Stream);
-              with ImagePhoto.Picture.Bitmap do begin
-                PixelFormat := pf24bit;
-                SetSize(PngImage.Width, PngImage.Height);
-                Canvas.Draw(0, 0, PngImage);
-              end;
-              ProfilePhotoActive := True;
-            except
-              ProfilePhotoActive := False;
-            end;
-          finally
-            PngImage.Free;
-          end;
-        end else
-        if (PhotoProperty.Attributes.IndexOf('GIF') <> -1) or
-        (PhotoProperty.Attributes.IndexOf('gif') <> -1) then begin
-          GifImage := TGIFImage.Create;
-          try
-            try
-              GifImage.LoadFromStream(Stream);
-              with ImagePhoto.Picture.Bitmap do begin
-                PixelFormat := pf24bit;
-                SetSize(GifImage.Width, GifImage.Height);
-                Canvas.Draw(0, 0, GifImage);
-              end;
-              ProfilePhotoActive := True;
-            except
-              ProfilePhotoActive := False;
-            end;
-          finally
-            GifImage.Free;
-          end;
-        end else begin
-          try
-            ImagePhoto.Picture.LoadFromStream(Stream);
-            ProfilePhotoActive := True;
-          except
-            ProfilePhotoActive := False;
-          end;
-        end;
-      finally
-        Stream.Free;
-      end;
-    end else ProfilePhotoActive := False;
-  end else ProfilePhotoActive := False;
-  end;
+  FPhoto.Contact := Contact;
+  FPhoto.Load;
 end;
 
 procedure TFormContact.TabSheetHomeHide(Sender: TObject);
@@ -749,13 +595,11 @@ begin
   EditWorkWeb.Text := Contact.Fields[cfUrlWork];
 end;
 
-procedure TFormContact.SetProfilePhotoActive(AValue: Boolean);
+procedure TFormContact.PhotoChange(Sender: TObject);
 begin
-  if FProfilePhotoActive = AValue then Exit;
-  FProfilePhotoActive := AValue;
-  if not FProfilePhotoActive then begin
-    ImagePhoto.Picture.Assign(Core.GetProfileImage.Picture);
-  end;
+  if FPhoto.Used and (FPhoto.Url = '') then
+    ImagePhoto.Picture.Bitmap.Assign(FPhoto.Bitmap)
+    else ImagePhoto.Picture.Assign(Core.GetProfileImage.Picture);
   UpdateInterface;
 end;
 
@@ -790,24 +634,43 @@ end;
 
 procedure TFormContact.APhotoLoadExecute(Sender: TObject);
 begin
+  OpenPictureDialog1.FileName := Core.LastPhotoFileName;
   if OpenPictureDialog1.Execute then begin
-    ImagePhoto.Picture.LoadFromFile(OpenPictureDialog1.FileName);
-    FProfilePhotoModified := True;
-    FProfilePhotoLoaded := True;
-    ProfilePhotoActive := True;
+    FPhoto.LoadFromFile(OpenPictureDialog1.FileName);
+    Core.LastPhotoFileName := OpenPictureDialog1.FileName;
   end;
 end;
 
 procedure TFormContact.APhotoClearExecute(Sender: TObject);
 begin
-  FProfilePhotoModified := True;
-  ProfilePhotoActive := False;
+  FPhoto.Clear;
 end;
 
 procedure TFormContact.APhotoSaveExecute(Sender: TObject);
 begin
+  SavePictureDialog1.FileName := Core.LastPhotoFileName;
   if SavePictureDialog1.Execute then begin
     ImagePhoto.Picture.SaveToFile(SavePictureDialog1.FileName);
+    Core.LastPhotoFileName := SavePictureDialog1.FileName;
+  end;
+end;
+
+procedure TFormContact.APhotoSetUrlExecute(Sender: TObject);
+begin
+  FPhoto.Url := InputBox(SPhotoUrl, SPhotoUrlQuery, FPhoto.Url);
+end;
+
+procedure TFormContact.APhotoShowExecute(Sender: TObject);
+begin
+  with TFormImage.Create(nil) do
+  try
+    Image.Assign(FPhoto);
+    if ShowModal = mrOK then begin
+      FPhoto.Assign(Image);
+      UpdateInterface;
+    end;
+  finally
+    Free;
   end;
 end;
 
@@ -843,23 +706,33 @@ begin
   OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
 end;
 
+procedure TFormContact.EditFullNameChange(Sender: TObject);
+begin
+  UpdateInterface;
+end;
+
 procedure TFormContact.FormCreate(Sender: TObject);
 begin
   Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
   FContact := nil;
   FormProperties := TFormProperties.Create(nil);
+  FPhoto := TContactImage.Create;
+  FPhoto.FieldIndex := cfPhoto;
+  FPhoto.OnChange := PhotoChange;
 end;
 
 procedure TFormContact.FormDestroy(Sender: TObject);
 begin
+  FreeAndNil(FPhoto);
   FreeAndNil(FormProperties);
 end;
 
 procedure TFormContact.UpdateInterface;
 begin
-  APhotoSave.Enabled := ProfilePhotoActive;
-  APhotoClear.Enabled := ProfilePhotoActive;
+  Caption := EditFullName.Text + ' - ' + SContact;
+  APhotoSave.Enabled := FPhoto.Used;
+  APhotoClear.Enabled := FPhoto.Used;
   //ButtonNext.Enabled := Assigned(FOnGetNext) and Assigned(FOnGetNext(Contact));
   //ButtonPrevious.Enabled := Assigned(FOnGetPrevious) and Assigned(FOnGetPrevious(Contact));
 end;

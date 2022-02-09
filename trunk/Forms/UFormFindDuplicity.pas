@@ -168,9 +168,10 @@ end;
 
 procedure TFormFindDuplicity.FormCreate(Sender: TObject);
 begin
-  FoundItems := TFoundItems.Create;
   Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
+
+  FoundItems := TFoundItems.Create;
   ContactFieldIndex := cfFullName;
 end;
 

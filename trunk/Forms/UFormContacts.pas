@@ -299,9 +299,9 @@ end;
 
 procedure TFormContacts.FormShow(Sender: TObject);
 begin
-  Core.PersistentForm1.Load(Self);
-  Core.ThemeManager1.UseTheme(Self);
   Core.Translator.TranslateComponentRecursive(Self);
+  Core.ThemeManager1.UseTheme(Self);
+  Core.PersistentForm1.Load(Self);
   ReloadList;
   UpdateInterface;
   ListViewFilter1.UpdateFromListView(ListView1);

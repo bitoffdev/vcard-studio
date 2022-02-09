@@ -81,6 +81,7 @@ type
     ReopenLastFileOnStart: Boolean;
     LastContactTabIndex: Integer;
     LastContactFileName: string;
+    LastPhotoFileName: string;
     LastPropertyValueFileName: string;
     MapUrl: string;
     GenerateCount: Integer;
@@ -236,11 +237,12 @@ begin
   with TFormGenerate.Create(nil) do
   try
     Contacts := TContactsFile(DataFile).Contacts;
-    ShowModal;
-    FormContacts.ReloadList;
-    FormContacts.UpdateInterface;
-    DataFile.Modified := True;
-    FormMain.UpdateInterface;
+    if ShowModal = mrOk then begin
+      FormContacts.ReloadList;
+      FormContacts.UpdateInterface;
+      DataFile.Modified := True;
+      FormMain.UpdateInterface;
+    end;
   finally
     Free;
   end;
@@ -468,6 +470,7 @@ begin
     GenerateCount := ReadIntegerWithDefault('GenerateCount', 1);
     DefaultVcardVersion := ReadStringWithDefault('DefaultVcardVersion', '2.1');
     MapUrl := ReadStringWithDefault('MapUrl', 'https://www.openstreetmap.org/search?query=');
+    LastPhotoFileName := ReadStringWithDefault('LastPhotoFileName', '');
   finally
     Free;
   end;
@@ -496,6 +499,7 @@ begin
     WriteInteger('GenerateCount', GenerateCount);
     WriteString('DefaultVcardVersion', DefaultVcardVersion);
     WriteString('MapUrl', MapUrl);
+    WriteString('LastPhotoFileName', LastPhotoFileName);
   finally
     Free;
   end;

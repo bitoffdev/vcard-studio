@@ -45,7 +45,7 @@ var
 begin
   for I := 1 to SpinEditCount.Value do begin
     Contact := Contacts.AddNew;
-    Contact.Fields[cfVersion] := '2.1';
+    Contact.Fields[cfVersion] := Core.DefaultVcardVersion;
     Contact.Fields[cfFirstName] := 'First ' + IntToStr(Random(10000));
     Contact.Fields[cfLastName] := 'Last ' + IntToStr(Random(10000));
     Contact.Fields[cfFullName] := 'FullName ' + IntToStr(Random(100));
@@ -53,6 +53,7 @@ begin
     Contact.Fields[cfTelHome] := IntToStr(Random(1000000000));
   end;
   Close;
+  ModalResult := mrOk;
 end;
 
 procedure TFormGenerate.FormClose(Sender: TObject; var CloseAction: TCloseAction

@@ -34,6 +34,7 @@ type
   private
     procedure ReloadList;
     procedure UpdateInterface;
+    procedure InitTestCases;
   public
     TestCases: TTestCases;
   end;
@@ -79,41 +80,7 @@ begin
   AShow.Enabled := Assigned(ListViewTestCases.Selected);
 end;
 
-procedure TFormTest.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-  Core.PersistentForm1.Save(Self);
-end;
-
-procedure TFormTest.ButtonRunClick(Sender: TObject);
-var
-  I: Integer;
-begin
-  for I := 0 to TestCases.Count - 1 do
-    TestCases[I].Run;
-  ReloadList;
-end;
-
-procedure TFormTest.AShowExecute(Sender: TObject);
-begin
-  if Assigned(ListViewTestCases.Selected) then
-  with TFormTestCase.Create(nil) do
-  try
-    MemoLog.Text := TTestCase(ListViewTestCases.Selected.Data).Log;
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TFormTest.ARunExecute(Sender: TObject);
-begin
-  if Assigned(ListViewTestCases.Selected) then begin
-    TTestCase(ListViewTestCases.Selected.Data).Run;
-    ReloadList;
-  end;
-end;
-
-procedure TFormTest.FormCreate(Sender: TObject);
+procedure TFormTest.InitTestCases;
 const
   VCardVersion = 'VERSION:2.1';
 begin
@@ -140,7 +107,7 @@ begin
         VCardVersion + LineEnding +
         'NOTE:First line\nsecond line\nempty line\n\nlast line' + LineEnding +
         VCardEnd + LineEnding;
-      Output := Input;
+     Output := Input;
     end;
     with TTestCaseLoadSave(AddNew('Quoted-printable load-save', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
@@ -215,6 +182,48 @@ begin
         VCardEnd + LineEnding;
     end;
   end;
+end;
+
+procedure TFormTest.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  Core.PersistentForm1.Save(Self);
+end;
+
+procedure TFormTest.ButtonRunClick(Sender: TObject);
+var
+  I: Integer;
+begin
+  for I := 0 to TestCases.Count - 1 do
+    TestCases[I].Run;
+  ReloadList;
+end;
+
+procedure TFormTest.AShowExecute(Sender: TObject);
+begin
+  if Assigned(ListViewTestCases.Selected) then
+  with TFormTestCase.Create(nil) do
+  try
+    MemoLog.Text := TTestCase(ListViewTestCases.Selected.Data).Log;
+    ShowModal;
+  finally
+    Free;
+  end;
+end;
+
+procedure TFormTest.ARunExecute(Sender: TObject);
+begin
+  if Assigned(ListViewTestCases.Selected) then begin
+    TTestCase(ListViewTestCases.Selected.Data).Run;
+    ReloadList;
+  end;
+end;
+
+procedure TFormTest.FormCreate(Sender: TObject);
+begin
+  Core.Translator.TranslateComponentRecursive(Self);
+  Core.ThemeManager1.UseTheme(Self);
+
+  InitTestCases;
 end;
 
 procedure TFormTest.FormDestroy(Sender: TObject);

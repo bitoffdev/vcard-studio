@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":5699247,"name":"tformimage.caption","sourcebytes":[80,104,111,116,111],"value":"Photo"},
+{"hash":8431845,"name":"tformimage.buttonload.caption","sourcebytes":[76,111,97,100,32,102,114,111,109,32,102,105,108,101],"value":"Load from file"},
+{"hash":9308581,"name":"tformimage.buttonsave.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101],"value":"Save to file"},
+{"hash":4860802,"name":"tformimage.buttonclear.caption","sourcebytes":[67,108,101,97,114],"value":"Clear"},
+{"hash":77089212,"name":"tformimage.buttoncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":1339,"name":"tformimage.buttonok.caption","sourcebytes":[79,75],"value":"OK"},
+{"hash":370426,"name":"tformimage.label1.caption","sourcebytes":[85,82,76,58],"value":"URL:"}
+]}

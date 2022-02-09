@@ -100,6 +100,7 @@ procedure TFormProperty.FormCreate(Sender: TObject);
 begin
   Core.Translator.TranslateComponentRecursive(Self);
   Core.ThemeManager1.UseTheme(Self);
+
   FContactProperty := nil;
   TContact.GetFields.LoadToStrings(ComboBoxField.Items);
 end;

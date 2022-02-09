@@ -1,7 +1,7 @@
 object FormContact: TFormContact
-  Left = 1121
+  Left = 1063
   Height = 773
-  Top = 472
+  Top = 449
   Width = 1032
   Caption = 'Contact'
   ClientHeight = 773
@@ -17,10 +17,10 @@ object FormContact: TFormContact
     Height = 696
     Top = 8
     Width = 1009
-    ActivePage = TabSheetWork
+    ActivePage = TabSheetGeneral
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
@@ -131,7 +131,7 @@ object FormContact: TFormContact
         Top = 17
         Width = 216
         Center = True
-        OnClick = APhotoLoadExecute
+        OnClick = ImagePhotoClick
         PopupMenu = PopupMenuPhoto
         Proportional = True
         Stretch = True
@@ -149,6 +149,7 @@ object FormContact: TFormContact
         Height = 43
         Top = 25
         Width = 486
+        OnChange = EditFullNameChange
         ParentFont = False
         TabOrder = 0
       end
@@ -1389,8 +1390,8 @@ object FormContact: TFormContact
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
-    Left = 617
-    Top = 550
+    Left = 632
+    Top = 608
     object APhotoLoad: TAction
       Caption = 'Load from file'
       OnExecute = APhotoLoadExecute
@@ -1403,11 +1404,22 @@ object FormContact: TFormContact
       Caption = 'Clear'
       OnExecute = APhotoClearExecute
     end
+    object APhotoShow: TAction
+      Caption = 'Show'
+      OnExecute = APhotoShowExecute
+    end
+    object APhotoSetUrl: TAction
+      Caption = 'Set URL'
+      OnExecute = APhotoSetUrlExecute
+    end
   end
   object PopupMenuPhoto: TPopupMenu
     Images = Core.ImageList1
-    Left = 872
-    Top = 592
+    Left = 864
+    Top = 608
+    object MenuItem4: TMenuItem
+      Action = APhotoShow
+    end
     object MenuItem1: TMenuItem
       Action = APhotoLoad
     end
@@ -1416,6 +1428,9 @@ object FormContact: TFormContact
     end
     object MenuItem3: TMenuItem
       Action = APhotoClear
+    end
+    object MenuItem5: TMenuItem
+      Action = APhotoSetUrl
     end
   end
   object OpenPictureDialog1: TOpenPictureDialog
