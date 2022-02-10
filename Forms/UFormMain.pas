@@ -109,17 +109,22 @@ end;
 
 procedure TFormMain.FormShow(Sender: TObject);
 begin
-  SetToolbarHints;
-  Core.Initialize;
-  Core.ThemeManager1.UseTheme(Self);
-  Core.PersistentForm1.Load(Self);
-  Core.ScaleDPI1.ScaleControl(CoolBar1, Core.ScaleDPI1.DesignDPI);
-  CoolBar1.AutosizeBands;
+  FormContacts.BeginUpdate;
+  try
+    SetToolbarHints;
+    Core.Initialize;
+    Core.ThemeManager1.UseTheme(Self);
+    Core.PersistentForm1.Load(Self);
+    Core.ScaleDPI1.ScaleControl(CoolBar1, Core.ScaleDPI1.DesignDPI);
+    CoolBar1.AutosizeBands;
 
-  FormContacts.Contacts := TContactsFile(Core.DataFile).Contacts;
-  FormContacts.ManualDock(Self, nil, alClient);
-  FormContacts.Align := alClient;
-  FormContacts.Show;
+    FormContacts.Contacts := TContactsFile(Core.DataFile).Contacts;
+    FormContacts.ManualDock(Self, nil, alClient);
+    FormContacts.Align := alClient;
+    FormContacts.Show;
+  finally
+    FormContacts.EndUpdate;
+  end;
 end;
 
 procedure TFormMain.MenuItemToolbarClick(Sender: TObject);
