@@ -31,10 +31,11 @@ object FormGenerate: TFormGenerate
     Value = 1
   end
   object ButtonGenerate: TButton
-    Left = 20
+    Left = 704
     Height = 39
-    Top = 180
+    Top = 528
     Width = 118
+    Anchors = [akRight, akBottom]
     Caption = 'Generate'
     OnClick = ButtonGenerateClick
     ParentFont = False
