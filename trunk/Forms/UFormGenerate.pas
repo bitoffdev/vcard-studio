@@ -45,12 +45,22 @@ var
 begin
   for I := 1 to SpinEditCount.Value do begin
     Contact := Contacts.AddNew;
-    Contact.Fields[cfVersion] := Core.DefaultVcardVersion;
-    Contact.Fields[cfFirstName] := 'First ' + IntToStr(Random(10000));
-    Contact.Fields[cfLastName] := 'Last ' + IntToStr(Random(10000));
-    Contact.Fields[cfFullName] := 'FullName ' + IntToStr(Random(100));
-    Contact.Fields[cfTelCell] := IntToStr(Random(1000000000));
-    Contact.Fields[cfTelHome] := IntToStr(Random(1000000000));
+    with Contact do begin
+      Fields[cfVersion] := Core.DefaultVcardVersion;
+      Fields[cfFirstName] := 'First ' + IntToStr(Random(10000));
+      Fields[cfLastName] := 'Last ' + IntToStr(Random(10000));
+      Fields[cfFullName] := 'FullName ' + IntToStr(Random(100));
+      Fields[cfTelCell] := IntToStr(Random(1000000000));
+      Fields[cfTelHome] := IntToStr(Random(1000000000));
+      Fields[cfTelWork] := IntToStr(Random(1000000000));
+      Fields[cfNote] := 'Some contact notes';
+      Fields[cfEmail] := 'user@email.com';
+      Fields[cfEmailHome] := 'home@email.com';
+      Fields[cfEmailWork] := 'home@email.com';
+      Fields[cfUrl] := 'https://url.com';
+      Fields[cfUrlWork] := 'https://work.com';
+      Fields[cfUrlHome] := 'https://home.com';
+    end;
   end;
   Close;
   ModalResult := mrOk;
