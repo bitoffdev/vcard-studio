@@ -204,6 +204,7 @@ type
     procedure ButtonPreviousClick(Sender: TObject);
     procedure ButtonWorkAddressShowClick(Sender: TObject);
     procedure EditFullNameChange(Sender: TObject);
+    procedure NamePartChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -314,15 +315,20 @@ begin
   if Visible then LastMouse.WinControl := PageControlContact.ActivePage;
   {$ENDIF}
   Core.PersistentForm1.Load(Self);
-
-  FormProperties.ManualDock(TabSheetAll, nil, alClient);
-  FormProperties.Align := alClient;
-  FormProperties.Show;
-
   PhotoChange(nil);
 
-  PageControlContact.TabIndex := Core.LastContactTabIndex;
-  UpdateInterface;
+  FormProperties.BeginUpdate;
+  try
+
+    FormProperties.ManualDock(TabSheetAll, nil, alClient);
+    FormProperties.Align := alClient;
+    FormProperties.Show;
+
+    PageControlContact.TabIndex := Core.LastContactTabIndex;
+    UpdateInterface;
+  finally
+    FormProperties.EndUpdate;
+  end;
 end;
 
 procedure TFormContact.ImagePhotoClick(Sender: TObject);
@@ -384,9 +390,15 @@ end;
 
 procedure TFormContact.TabSheetAllShow(Sender: TObject);
 begin
-  FormProperties.Properties := Contact.Properties;
-  FormProperties.ReloadList;
-  FormProperties.UpdateInterface;
+  FormProperties.BeginUpdate;
+  try
+    FormProperties.Properties := Contact.Properties;
+    FormProperties.ReloadList;
+    FormProperties.UpdateInterface;
+    FormProperties.Show;
+  finally
+    FormProperties.EndUpdate;
+  end;
 end;
 
 procedure TFormContact.TabSheetChatHide(Sender: TObject);
@@ -708,9 +720,37 @@ begin
     OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
 end;
 
-procedure TFormContact.EditFullNameChange(Sender: TObject);
+procedure UpdateEditNoOnChange(Edit: TEdit; Text: string);
+var
+  LastHandler: TNotifyEvent;
 begin
+  LastHandler := Edit.OnChange;
+  Edit.OnChange := nil;
+  try
+    Edit.Text := Text;
+  finally
+    Edit.OnChange := LastHandler;
+  end;
+end;
+
+procedure TFormContact.EditFullNameChange(Sender: TObject);
+var
+
+  Before, First, Middle, Last, After: string;
+begin
+  Contact.FullNameToNameParts(EditFullName.Text, Before, First, Middle, Last, After);
+  UpdateEditNoOnChange(EditTitleBefore, Before);
+  UpdateEditNoOnChange(EditFirstName, First);
+  UpdateEditNoOnChange(EditMiddleName, Middle);
+  UpdateEditNoOnChange(EditLastName, Last);
+  UpdateEditNoOnChange(EditTitleAfter, After);
   UpdateInterface;
+end;
+
+procedure TFormContact.NamePartChange(Sender: TObject);
+begin
+  UpdateEditNoOnChange(EditFullName, Contact.NamePartsToFullName(EditTitleBefore.Text,
+    EditFirstName.Text, EditMiddleName.Text, EditLastName.Text, EditTitleAfter.Text));
 end;
 
 procedure TFormContact.FormCreate(Sender: TObject);
@@ -731,8 +771,14 @@ begin
 end;
 
 procedure TFormContact.UpdateInterface;
+var
+  Title: string;
 begin
-  Caption := EditFullName.Text + ' - ' + SContact;
+  Title := SContact;
+  if EditFullName.Text <> '' then Title := EditFullName.Text + ' - ' + Title
+  else
+  if EditOrganization.Text <> '' then Title := EditOrganization.Text + ' - ' + Title;
+  Caption := Title;
   APhotoSave.Enabled := FPhoto.Used;
   APhotoClear.Enabled := FPhoto.Used;
   //ButtonNext.Enabled := Assigned(FOnGetNext) and Assigned(FOnGetNext(Contact));

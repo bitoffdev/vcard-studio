@@ -140,6 +140,9 @@ type
     function FullNameToFileName: string;
     function GetProperty(Field: TContactField): TContactProperty; overload;
     function GetProperty(FieldIndex: TContactFieldIndex): TContactProperty; overload;
+    procedure FullNameToNameParts(FullName: string; out Before, First, Middle,
+      Last, After: string);
+    function NamePartsToFullName(Before, First, Middle, Last, After: string): string;
     procedure Assign(Source: TContact);
     function UpdateFrom(Source: TContact): Boolean;
     constructor Create;
@@ -1113,6 +1116,83 @@ begin
   if Assigned(Field) then begin
     Result := GetProperty(Field);
   end else Result := nil;
+end;
+
+function IsNumber(Text: string): Boolean;
+var
+  Value: Integer;
+begin
+  Result := TryStrToInt(Text, Value);
+end;
+
+function IsRomanNumber(Text: string): Boolean;
+var
+  I: Integer;
+begin
+  Result := True;
+  for I := 1 to Length(Text) do
+    if not (Text[I] in ['I', 'V', 'X', 'L', 'C', 'D', 'M']) then begin
+      Result := False;
+      Break;
+    end;
+end;
+
+procedure TContact.FullNameToNameParts(FullName: string; out Before, First,
+  Middle, Last, After: string);
+var
+  Parts: TStringArray;
+  I, J: Integer;
+begin
+  Before := '';
+  First := '';
+  Middle := '';
+  Last := '';
+  After := '';
+  while Pos('  ', FullName) > 0 do
+    FullName := StringReplace(FullName, '  ', ' ', [rfReplaceAll]);
+  Parts := Explode(' ', Trim(FullName));
+
+  // Title before
+  while (Length(Parts) > 0) and EndsWith(Parts[0], '.') do begin
+    Before := Trim(Before + ' ' + Parts[0]);
+    Delete(Parts, 0, 1);
+  end;
+
+  // Title after
+  for I := 0 to High(Parts) do
+    if (Pos('.', Parts[I]) > 0) or IsNumber(Parts[I]) or IsRomanNumber(Parts[I]) then begin
+      for J := I to High(Parts) do
+        After := Trim(After + ' ' + Parts[J]);
+      SetLength(Parts, I);
+      Break;
+    end;
+
+  if Length(Parts) = 0 then begin
+  end else
+  if Length(Parts) = 1 then begin
+    First := Parts[0];
+  end else
+  if Length(Parts) = 2 then begin
+    First := Parts[0];
+    Last := Parts[1];
+  end else begin
+    First := Parts[0];
+    for I := 0 to Length(Parts) - 3 do
+      Middle := Trim(Middle + ' ' + Parts[I + 1]);
+    Last := Parts[High(Parts)];
+  end;
+end;
+
+function TContact.NamePartsToFullName(Before, First, Middle, Last, After: string
+  ): string;
+begin
+  Result := '';
+  if Before <> '' then Result := Result + ' ' + Before;
+  if First <> '' then Result := Result + ' ' + First;
+  if Middle <> '' then Result := Result + ' ' + Middle;
+  if Last <> '' then Result := Result + ' ' + Last;
+  if After <> '' then Result := Result + ' ' + After;
+  Result := Trim(Result);
 end;
 
 procedure TContact.Assign(Source: TContact);

@@ -1378,6 +1378,7 @@ msgid "Enter URL for profile photo"
 msgstr "Zadejte URL pro profilovou fotku"
 
 #: uformcontacts.sendupdatetoolow
+msgctxt "uformcontacts.sendupdatetoolow"
 msgid "Update counter error"
 msgstr "Chyba čítače aktualizací"
 
@@ -1416,6 +1417,11 @@ msgstr "Upraveno"
 msgctxt "uformproperties.sallfiles"
 msgid "All files"
 msgstr "Všechny soubory"
+
+#: uformproperties.sendupdatetoolow
+msgctxt "uformproperties.sendupdatetoolow"
+msgid "Update counter error"
+msgstr "Chyba čítače aktualizací"
 
 #: uformproperties.sfiltered
 msgctxt "uformproperties.sfiltered"

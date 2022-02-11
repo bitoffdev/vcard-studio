@@ -64,11 +64,15 @@ type
     procedure ListViewSort1Filter(ListViewSort: TListViewSort);
   private
     FProperties: TContactProperties;
+    FUpdateCount: Integer;
     procedure FilterList(List: TFPGObjectList<TObject>);
     procedure SetProperties(AValue: TContactProperties);
+    procedure DoUpdateInterface;
   public
     property Properties: TContactProperties read FProperties write SetProperties;
     procedure ReloadList;
+    procedure BeginUpdate;
+    procedure EndUpdate;
     procedure UpdateInterface;
   end;
 
@@ -92,6 +96,7 @@ resourcestring
   SAllFiles = 'All files';
   STextFiles = 'Text files';
   SValue = 'Value';
+  SEndUpdateTooLow = 'Update counter error';
 
 const
   TextFileExt = '.txt';
@@ -364,12 +369,26 @@ begin
   ListViewSort1.Refresh;
 end;
 
-procedure TFormProperties.UpdateInterface;
+procedure TFormProperties.BeginUpdate;
+begin
+  Inc(FUpdateCount);
+end;
+
+procedure TFormProperties.EndUpdate;
+begin
+  if FUpdateCount <= 0 then raise Exception(SEndUpdateTooLow);
+  Dec(FUpdateCount);
+  if FUpdateCount = 0 then DoUpdateInterface;
+end;
+
+procedure TFormProperties.DoUpdateInterface;
 var
   Text: string;
   SelectedCount: Integer;
   Selected: Boolean;
 begin
+  if not ListView1.HandleAllocated then Exit;
+
   Selected := Assigned(ListView1.Selected);
   AAdd.Enabled := Assigned(Properties);
   AModify.Enabled := Assigned(Properties) and Selected;
@@ -389,6 +408,11 @@ begin
       Text := Text + ', ' + SSelected + ': ' + IntToStr(SelectedCount);
   end;
   StatusBar1.Panels[0].Text := Text;
+end;
+
+procedure TFormProperties.UpdateInterface;
+begin
+  if FUpdateCount = 0 then DoUpdateInterface;
 end;
 
 end.

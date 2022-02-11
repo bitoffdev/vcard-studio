@@ -42,6 +42,7 @@ object FormContact: TFormContact
         Height = 43
         Top = 75
         Width = 161
+        OnChange = NamePartChange
         ParentFont = False
         TabOrder = 1
       end
@@ -94,10 +95,11 @@ object FormContact: TFormContact
         ParentFont = False
       end
       object EditLastName: TEdit
-        Left = 699
+        Left = 700
         Height = 43
         Top = 75
         Width = 161
+        OnChange = NamePartChange
         ParentFont = False
         TabOrder = 2
       end
@@ -166,6 +168,7 @@ object FormContact: TFormContact
         Height = 43
         Top = 125
         Width = 161
+        OnChange = NamePartChange
         ParentFont = False
         TabOrder = 4
       end
@@ -178,10 +181,11 @@ object FormContact: TFormContact
         ParentFont = False
       end
       object EditTitleBefore: TEdit
-        Left = 375
+        Left = 376
         Height = 43
         Top = 175
         Width = 161
+        OnChange = NamePartChange
         ParentFont = False
         TabOrder = 5
       end
@@ -198,6 +202,7 @@ object FormContact: TFormContact
         Height = 43
         Top = 175
         Width = 161
+        OnChange = NamePartChange
         ParentFont = False
         TabOrder = 6
       end
@@ -698,7 +703,7 @@ object FormContact: TFormContact
         Top = 325
         Width = 920
         Caption = 'Address'
-        ClientHeight = 255
+        ClientHeight = 281
         ClientWidth = 918
         TabOrder = 9
         object Label31: TLabel

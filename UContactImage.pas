@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Graphics, UContact, ExtCtrls;
 
 type
-  TContactImageFormat = (ifBmp, ifJpeg, ifPng, ifGif);
+  TContactImageFormat = (ifNone, ifBmp, ifJpeg, ifPng, ifGif);
 
   { TContactImage }
 
@@ -63,7 +63,10 @@ begin
   if (ContactProperty.Attributes.IndexOf('PNG') <> -1) or
     (ContactProperty.Attributes.IndexOf('png') <> -1) then Result := ifPng
   else
-    Result := ifBmp;
+    if (ContactProperty.Attributes.IndexOf('BMP') <> -1) or
+      (ContactProperty.Attributes.IndexOf('bmp') <> -1) then Result := ifBmp
+  else
+    Result := ifNone;
 end;
 
 procedure TContactImage.SetUrl(AValue: string);
@@ -133,12 +136,15 @@ begin
     finally
       GifImage.Free;
     end;
-  end else begin
-    // Bmp
+  end else
+  if ImageFormat = ifBmp then begin
     try
       Bitmap.SaveToStream(Stream);
     except
     end;
+  end else begin
+    // Use default type
+    SaveImageToStream(ifJpeg, Stream);
   end;
 end;
 
@@ -148,10 +154,11 @@ var
   JpegImage: TJpegImage;
   PngImage: TPortableNetworkGraphic;
   GifImage: TGIFImage;
+  BmpImage: TBitmap;
 begin
   if ImageFormat = ifJpeg then begin
-    JpegImage := TJPEGImage.Create;
     try
+      JpegImage := TJPEGImage.Create;
       try
         JpegImage.LoadFromStream(Stream);
         with Bitmap do begin
@@ -159,17 +166,17 @@ begin
           SetSize(JpegImage.Width, JpegImage.Height);
           Canvas.Draw(0, 0, JpegImage);
         end;
-        Used := True;
-      except
-        Used := False;
+      finally
+        JpegImage.Free;
       end;
-    finally
-      JpegImage.Free;
+      Used := True;
+    except
+      Used := False;
     end;
   end else
   if ImageFormat = ifPng then begin
-    PngImage := TPortableNetworkGraphic.Create;
     try
+      PngImage := TPortableNetworkGraphic.Create;
       try
         PngImage.LoadFromStream(Stream);
         with Bitmap do begin
@@ -177,17 +184,17 @@ begin
           SetSize(PngImage.Width, PngImage.Height);
           Canvas.Draw(0, 0, PngImage);
         end;
-        Used := True;
-      except
-        Used := False;
+      finally
+        PngImage.Free;
       end;
-    finally
-      PngImage.Free;
+      Used := True;
+    except
+      Used := False;
     end;
   end else
   if ImageFormat = ifGif then begin
-    GifImage := TGIFImage.Create;
     try
+      GifImage := TGIFImage.Create;
       try
         GifImage.LoadFromStream(Stream);
         with Bitmap do begin
@@ -195,26 +202,48 @@ begin
           SetSize(GifImage.Width, GifImage.Height);
           Canvas.Draw(0, 0, GifImage);
         end;
-        Used := True;
-      except
-        Used := False;
+      finally
+        GifImage.Free;
       end;
-    finally
-      GifImage.Free;
+      Used := True;
+    except
+      Used := False;
+    end;
+  end else
+  if ImageFormat = ifBmp then begin
+    try
+      BmpImage := TBitmap.Create;
+      try
+        BmpImage.LoadFromStream(Stream);
+        with Bitmap do begin
+          PixelFormat := pf24bit;
+          SetSize(BmpImage.Width, BmpImage.Height);
+          Canvas.Draw(0, 0, BmpImage);
+        end;
+      finally
+        BmpImage.Free;
+      end;
+      Used := True;
+    except
+      Used := False;
     end;
   end else begin
-    // Bmp
-    with TImage.Create(nil) do
+    // Unknown image type, let TPicture guess what it is
     try
+      with TImage.Create(nil) do
       try
         Picture.LoadFromStream(Stream);
-        Canvas.Draw(0, 0, Picture.Bitmap);
-        Used := True;
-      except
-        Used := False;
+        with Bitmap do begin
+          PixelFormat := pf24bit;
+          SetSize(Picture.Bitmap.Width, Picture.Bitmap.Height);
+          Canvas.Draw(0, 0, Picture.Bitmap);
+        end;
+      finally
+        Free;
       end;
-    finally
-      Free;
+      Used := True;
+    except
+      Used := False;
     end;
   end;
 end;
