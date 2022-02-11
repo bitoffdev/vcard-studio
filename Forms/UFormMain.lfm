@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 601
+  Left = 553
   Height = 829
-  Top = 447
+  Top = 401
   Width = 1227
   Caption = 'vCard Studio'
   ClientHeight = 794

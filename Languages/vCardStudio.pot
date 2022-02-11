@@ -1350,6 +1350,7 @@ msgid "Enter URL for profile photo"
 msgstr ""
 
 #: uformcontacts.sendupdatetoolow
+msgctxt "uformcontacts.sendupdatetoolow"
 msgid "Update counter error"
 msgstr ""
 
@@ -1387,6 +1388,11 @@ msgstr ""
 #: uformproperties.sallfiles
 msgctxt "uformproperties.sallfiles"
 msgid "All files"
+msgstr ""
+
+#: uformproperties.sendupdatetoolow
+msgctxt "uformproperties.sendupdatetoolow"
+msgid "Update counter error"
 msgstr ""
 
 #: uformproperties.sfiltered
