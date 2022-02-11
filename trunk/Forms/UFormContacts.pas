@@ -259,6 +259,8 @@ var
   SelectedCount: Integer;
   Selected: Boolean;
 begin
+  if not ListView1.HandleAllocated then Exit;
+
   Selected := Assigned(ListView1.Selected);
   AAdd.Enabled := Assigned(Contacts);
   AModify.Enabled := Assigned(Contacts) and Selected;

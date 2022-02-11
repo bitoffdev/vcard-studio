@@ -12,7 +12,6 @@ uses
 
 type
   TArrayOfByte = array of Byte;
-  TArrayOfString = array of string;
   TExceptionEvent = procedure(Sender: TObject; E: Exception) of object;
 
   TUserNameFormat = (
@@ -50,6 +49,7 @@ procedure CopyStringArray(Dest: TStringArray; Source: array of string);
 function CombinePaths(Path1, Path2: string): string;
 function ComputerName: string;
 procedure DeleteFiles(APath, AFileSpec: string);
+function Explode(Separator: Char; Data: string): TStringArray;
 procedure ExecuteProgram(Executable: string; Parameters: array of string);
 procedure FileDialogUpdateFilterFileType(FileDialog: TOpenDialog);
 procedure FreeThenNil(var Obj);
@@ -64,7 +64,7 @@ function IntToBin(Data: Int64; Count: Byte): string;
 function LastPos(const SubStr: String; const S: String): Integer;
 function LoadFileToStr(const FileName: TFileName): AnsiString;
 function LoggedOnUserNameEx(Format: TUserNameFormat): string;
-function MergeArray(A, B: array of string): TArrayOfString;
+function MergeArray(A, B: array of string): TStringArray;
 function OccurenceOfChar(What: Char; Where: string): Integer;
 procedure OpenWebPage(URL: string);
 procedure OpenEmail(Email: string);
@@ -290,15 +290,19 @@ begin
   end else Result := False;
 end;
 
-function Explode(Separator: char; Data: string): TArrayOfString;
+function Explode(Separator: Char; Data: string): TStringArray;
+var
+  Index: Integer;
 begin
-  Result := nil;
-  SetLength(Result, 0);
-  while Pos(Separator, Data) > 0 do begin
-    SetLength(Result, Length(Result) + 1);
-    Result[High(Result)] := Copy(Data, 1, Pos(Separator, Data) - 1);
-    Delete(Data, 1, Pos(Separator, Data));
-  end;
+  Result := Default(TStringArray);
+  repeat
+    Index := Pos(Separator, Data);
+    if Index > 0 then begin
+      SetLength(Result, Length(Result) + 1);
+      Result[High(Result)] := Copy(Data, 1, Index - 1);
+      Delete(Data, 1, Index);
+    end else Break;
+  until False;
   SetLength(Result, Length(Result) + 1);
   Result[High(Result)] := Data;
 end;
@@ -508,11 +512,11 @@ begin
     Dec(Result);
 end;
 
-function MergeArray(A, B: array of string): TArrayOfString;
+function MergeArray(A, B: array of string): TStringArray;
 var
   I: Integer;
 begin
-  Result := Default(TArrayOfString);
+  Result := Default(TStringArray);
   SetLength(Result, Length(A) + Length(B));
   for I := 0 to Length(A) - 1 do
     Result[I] := A[I];
