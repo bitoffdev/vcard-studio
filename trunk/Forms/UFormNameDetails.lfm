@@ -1,0 +1,121 @@
+object FormNameDetails: TFormNameDetails
+  Left = 670
+  Height = 329
+  Top = 525
+  Width = 604
+  Caption = 'Name details'
+  ClientHeight = 329
+  ClientWidth = 604
+  Constraints.MinHeight = 311
+  Constraints.MinWidth = 281
+  DesignTimePPI = 150
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.2.0.4'
+  object EditFirstName: TEdit
+    Left = 200
+    Height = 43
+    Top = 64
+    Width = 384
+    Anchors = [akTop, akLeft, akRight]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 27
+    Top = 72
+    Width = 44
+    Caption = 'First:'
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 16
+    Height = 27
+    Top = 168
+    Width = 42
+    Caption = 'Last:'
+    ParentFont = False
+  end
+  object EditLastName: TEdit
+    Left = 200
+    Height = 43
+    Top = 160
+    Width = 384
+    Anchors = [akTop, akLeft, akRight]
+    ParentFont = False
+    TabOrder = 1
+  end
+  object EditMiddleName: TEdit
+    Left = 200
+    Height = 43
+    Top = 112
+    Width = 384
+    Anchors = [akTop, akLeft, akRight]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Label25: TLabel
+    Left = 16
+    Height = 27
+    Top = 124
+    Width = 67
+    Caption = 'Middle:'
+    ParentFont = False
+  end
+  object Label26: TLabel
+    Left = 16
+    Height = 27
+    Top = 24
+    Width = 43
+    Caption = 'Title:'
+    ParentFont = False
+  end
+  object EditTitleBefore: TEdit
+    Left = 200
+    Height = 43
+    Top = 16
+    Width = 384
+    Anchors = [akTop, akLeft, akRight]
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Label27: TLabel
+    Left = 16
+    Height = 27
+    Top = 216
+    Width = 55
+    Caption = 'Suffix:'
+    ParentFont = False
+  end
+  object EditTitleAfter: TEdit
+    Left = 200
+    Height = 43
+    Top = 208
+    Width = 384
+    Anchors = [akTop, akLeft, akRight]
+    ParentFont = False
+    TabOrder = 4
+  end
+  object ButtonOk: TButton
+    Left = 467
+    Height = 39
+    Top = 276
+    Width = 117
+    Anchors = [akRight, akBottom]
+    Caption = 'OK'
+    ModalResult = 1
+    TabOrder = 5
+  end
+  object ButtonCancel: TButton
+    Left = 337
+    Height = 39
+    Top = 276
+    Width = 117
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 6
+  end
+end

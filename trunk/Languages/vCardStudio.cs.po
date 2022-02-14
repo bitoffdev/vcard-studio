@@ -132,6 +132,10 @@ msgctxt "tformcontact.buttonhomeaddressshow.caption"
 msgid "Show on map"
 msgstr "Ukázat na mapě"
 
+#: tformcontact.buttonnamedetails.caption
+msgid "Details"
+msgstr "Podrobnosti"
+
 #: tformcontact.buttonnext.caption
 msgid "Next"
 msgstr "Další"
@@ -179,10 +183,6 @@ msgctxt "tformcontact.groupbox2.caption"
 msgid "Address"
 msgstr "Adresa"
 
-#: tformcontact.label1.caption
-msgid "First name:"
-msgstr "První jméno:"
-
 #: tformcontact.label10.caption
 msgctxt "tformcontact.label10.caption"
 msgid "Pager:"
@@ -224,6 +224,7 @@ msgid "Pager:"
 msgstr "Pager:"
 
 #: tformcontact.label18.caption
+msgctxt "tformcontact.label18.caption"
 msgid "Title:"
 msgstr "Titul:"
 
@@ -256,18 +257,6 @@ msgstr "IRC:"
 #: tformcontact.label24.caption
 msgid "Full name:"
 msgstr "Celé jméno:"
-
-#: tformcontact.label25.caption
-msgid "Middle name:"
-msgstr "Prostřední jméno:"
-
-#: tformcontact.label26.caption
-msgid "Title before:"
-msgstr "Titul před:"
-
-#: tformcontact.label27.caption
-msgid "Title after:"
-msgstr "Titul za:"
 
 #: tformcontact.label28.caption
 msgctxt "tformcontact.label28.caption"
@@ -383,10 +372,6 @@ msgstr "Windows Live:"
 #: tformcontact.label49.caption
 msgid "Gender:"
 msgstr "Pohlaví:"
-
-#: tformcontact.label5.caption
-msgid "Last name"
-msgstr "Poslední jméno"
 
 #: tformcontact.label50.caption
 msgid "Myspace:"
@@ -799,6 +784,41 @@ msgstr "Nástroje"
 #: tformmain.menuitemview.caption
 msgid "View"
 msgstr "Zobrazení"
+
+#: tformnamedetails.buttoncancel.caption
+msgctxt "tformnamedetails.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformnamedetails.buttonok.caption
+msgctxt "tformnamedetails.buttonok.caption"
+msgid "OK"
+msgstr "OK"
+
+#: tformnamedetails.caption
+msgid "Name details"
+msgstr "Jméno podrobně"
+
+#: tformnamedetails.label1.caption
+msgid "First:"
+msgstr "První:"
+
+#: tformnamedetails.label25.caption
+msgid "Middle:"
+msgstr "Prostřední:"
+
+#: tformnamedetails.label26.caption
+msgctxt "tformnamedetails.label26.caption"
+msgid "Title:"
+msgstr "Titul:"
+
+#: tformnamedetails.label27.caption
+msgid "Suffix:"
+msgstr "Přípona:"
+
+#: tformnamedetails.label5.caption
+msgid "Last:"
+msgstr "Poslední:"
 
 #: tformproperties.aadd.caption
 msgctxt "tformproperties.aadd.caption"

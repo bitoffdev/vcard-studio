@@ -1,0 +1,10 @@
+{"version":1,"strings":[
+{"hash":260196691,"name":"tformnamedetails.caption","sourcebytes":[78,97,109,101,32,100,101,116,97,105,108,115],"value":"Name details"},
+{"hash":80779898,"name":"tformnamedetails.label1.caption","sourcebytes":[70,105,114,115,116,58],"value":"First:"},
+{"hash":5409402,"name":"tformnamedetails.label5.caption","sourcebytes":[76,97,115,116,58],"value":"Last:"},
+{"hash":66761434,"name":"tformnamedetails.label25.caption","sourcebytes":[77,105,100,100,108,101,58],"value":"Middle:"},
+{"hash":95466122,"name":"tformnamedetails.label26.caption","sourcebytes":[84,105,116,108,101,58],"value":"Title:"},
+{"hash":180146410,"name":"tformnamedetails.label27.caption","sourcebytes":[83,117,102,102,105,120,58],"value":"Suffix:"},
+{"hash":1339,"name":"tformnamedetails.buttonok.caption","sourcebytes":[79,75],"value":"OK"},
+{"hash":77089212,"name":"tformnamedetails.buttoncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
+]}
