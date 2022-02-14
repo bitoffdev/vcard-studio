@@ -20,34 +20,27 @@ type
     APhotoSave: TAction;
     APhotoLoad: TAction;
     ActionList1: TActionList;
-    ButtonHomeAddressShow: TButton;
     ButtonCancel: TButton;
-    ButtonWorkAddressShow: TButton;
+    ButtonHomeAddressShow: TButton;
+    ButtonNameDetails: TButton;
     ButtonNext: TButton;
     ButtonOk: TButton;
     ButtonPrevious: TButton;
+    ButtonWorkAddressShow: TButton;
     CalendarDialog1: TCalendarDialog;
     EditAim: TEdit;
+    EditAniversary: TEdit;
+    EditBirthday: TEdit;
     EditCategories: TEdit;
-    EditMatrix: TEdit;
-    EditGaduGadu: TEdit;
-    EditGroupWise: TEdit;
-    EditYouTube: TEdit;
-    EditGender: TEdit;
-    EditLinkedIn: TEdit;
+    EditDepartment: TEdit;
+    EditEmail: TEdit;
     EditFacebook: TEdit;
-    EditInstagram: TEdit;
-    EditMySpace: TEdit;
-    EditTwitter: TEdit;
-    EditReddit: TEdit;
-    EditMastodon: TEdit;
-    EditWindowsLive: TEdit;
-    EditSnapchat: TEdit;
-    EditYahoo: TEdit;
+    EditFax: TEdit;
+    EditFullName: TEdit;
+    EditGaduGadu: TEdit;
+    EditGender: TEdit;
     EditGoogleTalk: TEdit;
-    EditMsn: TEdit;
-    EditIrc: TEdit;
-    EditSkype: TEdit;
+    EditGroupWise: TEdit;
     EditHomeAddressCity: TEdit;
     EditHomeAddressCountry: TEdit;
     EditHomeAddressPostalCode: TEdit;
@@ -55,6 +48,35 @@ type
     EditHomeAddressRegion: TEdit;
     EditHomeAddressStreet: TEdit;
     EditHomeAddressStreetExtended: TEdit;
+    EditHomeEmail: TEdit;
+    EditHomeFax: TEdit;
+    EditHomeMobile: TEdit;
+    EditHomePager: TEdit;
+    EditHomePhone: TEdit;
+    EditHomeWeb: TEdit;
+    EditIcq: TEdit;
+    EditInstagram: TEdit;
+    EditIrc: TEdit;
+    EditJabber: TEdit;
+    EditLinkedIn: TEdit;
+    EditMastodon: TEdit;
+    EditMatrix: TEdit;
+    EditMobile: TEdit;
+    EditMsn: TEdit;
+    EditMySpace: TEdit;
+    EditNickName: TEdit;
+    EditOrganization: TEdit;
+    EditPager: TEdit;
+    EditPeerTube: TEdit;
+    EditPhone: TEdit;
+    EditQq: TEdit;
+    EditReddit: TEdit;
+    EditSkype: TEdit;
+    EditSnapchat: TEdit;
+    EditTitle: TEdit;
+    EditTwitter: TEdit;
+    EditWeb: TEdit;
+    EditWindowsLive: TEdit;
     EditWorkAddressCity: TEdit;
     EditWorkAddressCountry: TEdit;
     EditWorkAddressPostalCode: TEdit;
@@ -62,44 +84,17 @@ type
     EditWorkAddressRegion: TEdit;
     EditWorkAddressStreet: TEdit;
     EditWorkAddressStreetExtended: TEdit;
-    EditAniversary: TEdit;
-    EditJabber: TEdit;
-    EditIcq: TEdit;
     EditWorkEmail: TEdit;
-    EditPager: TEdit;
-    EditFax: TEdit;
-    EditWeb: TEdit;
-    EditHomeFax: TEdit;
     EditWorkFax: TEdit;
-    EditHomeMobile: TEdit;
     EditWorkMobile: TEdit;
     EditWorkPager: TEdit;
-    EditHomePhone: TEdit;
-    EditNickName: TEdit;
-    EditHomePager: TEdit;
-    EditHomeEmail: TEdit;
-    EditHomeWeb: TEdit;
-    EditWorkWeb: TEdit;
-    EditDepartment: TEdit;
-    EditFullName: TEdit;
-    EditOrganization: TEdit;
-    EditTitle: TEdit;
-    EditTitleBefore: TEdit;
-    EditMiddleName: TEdit;
-    EditTitleAfter: TEdit;
-    EditBirthday: TEdit;
-    EditLastName: TEdit;
-    EditEmail: TEdit;
-    EditPhone: TEdit;
-    EditFirstName: TEdit;
-    EditMobile: TEdit;
     EditWorkPhone: TEdit;
-    EditQq: TEdit;
-    EditPeerTube: TEdit;
+    EditWorkWeb: TEdit;
+    EditYahoo: TEdit;
+    EditYouTube: TEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     ImagePhoto: TImage;
-    Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
@@ -116,9 +111,6 @@ type
     Label22: TLabel;
     Label23: TLabel;
     Label24: TLabel;
-    Label25: TLabel;
-    Label26: TLabel;
-    Label27: TLabel;
     Label28: TLabel;
     Label29: TLabel;
     Label3: TLabel;
@@ -143,7 +135,6 @@ type
     Label47: TLabel;
     Label48: TLabel;
     Label49: TLabel;
-    Label5: TLabel;
     Label50: TLabel;
     Label51: TLabel;
     Label52: TLabel;
@@ -179,32 +170,32 @@ type
     PageControlContact: TPageControl;
     PopupMenuPhoto: TPopupMenu;
     SavePictureDialog1: TSavePictureDialog;
-    SpeedButtonBirthDay: TSpeedButton;
     SpeedButtonAniversary: TSpeedButton;
-    SpeedButtonHomeEmail: TSpeedButton;
+    SpeedButtonBirthDay: TSpeedButton;
     SpeedButtonEmail: TSpeedButton;
+    SpeedButtonHomeEmail: TSpeedButton;
+    SpeedButtonHomeWeb: TSpeedButton;
+    SpeedButtonWeb: TSpeedButton;
     SpeedButtonWorkEmail: TSpeedButton;
     SpeedButtonWorkWeb: TSpeedButton;
-    SpeedButtonWeb: TSpeedButton;
-    SpeedButtonHomeWeb: TSpeedButton;
-    TabSheetSocial: TTabSheet;
-    TabSheetChat: TTabSheet;
-    TabSheetOthers: TTabSheet;
-    TabSheetHome: TTabSheet;
-    TabSheetWork: TTabSheet;
-    TabSheetGeneral: TTabSheet;
     TabSheetAll: TTabSheet;
+    TabSheetChat: TTabSheet;
+    TabSheetGeneral: TTabSheet;
+    TabSheetHome: TTabSheet;
+    TabSheetOthers: TTabSheet;
+    TabSheetSocial: TTabSheet;
+    TabSheetWork: TTabSheet;
     procedure APhotoClearExecute(Sender: TObject);
     procedure APhotoLoadExecute(Sender: TObject);
     procedure APhotoSaveExecute(Sender: TObject);
     procedure APhotoSetUrlExecute(Sender: TObject);
     procedure APhotoShowExecute(Sender: TObject);
     procedure ButtonHomeAddressShowClick(Sender: TObject);
+    procedure ButtonNameDetailsClick(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
     procedure ButtonPreviousClick(Sender: TObject);
     procedure ButtonWorkAddressShowClick(Sender: TObject);
     procedure EditFullNameChange(Sender: TObject);
-    procedure NamePartChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -257,7 +248,7 @@ implementation
 {$R *.lfm}
 
 uses
-  UCore, UCommon, UFormImage;
+  UCore, UCommon, UFormImage, UFormNameDetails;
 
 resourcestring
   SContact = 'Contact';
@@ -279,6 +270,19 @@ begin
       Result := Result + '%' + IntToHex(Ord(Text[I]), 2)
     else
       Result := Result + Text[I];
+  end;
+end;
+
+procedure UpdateEditNoOnChange(Edit: TEdit; Text: string);
+var
+  LastHandler: TNotifyEvent;
+begin
+  LastHandler := Edit.OnChange;
+  Edit.OnChange := nil;
+  try
+    Edit.Text := Text;
+  finally
+    Edit.OnChange := LastHandler;
   end;
 end;
 
@@ -440,11 +444,6 @@ end;
 procedure TFormContact.TabSheetGeneralHide(Sender: TObject);
 begin
   Contact.Fields[cfFullName] := EditFullName.Text;
-  Contact.Fields[cfMiddleName] := EditMiddleName.Text;
-  Contact.Fields[cfFirstName] := EditFirstName.Text;
-  Contact.Fields[cfLastName] := EditLastName.Text;
-  Contact.Fields[cfTitleAfter] := EditTitleAfter.Text;
-  Contact.Fields[cfTitleBefore] := EditTitleBefore.Text;
   Contact.Fields[cfNickName] := EditNickName.Text;
   Contact.Fields[cfEmail] := EditEmail.Text;
   Contact.Fields[cfTel] := EditPhone.Text;
@@ -466,11 +465,6 @@ end;
 procedure TFormContact.TabSheetGeneralShow(Sender: TObject);
 begin
   EditFullName.Text := Contact.Fields[cfFullName];
-  EditFirstName.Text := Contact.Fields[cfFirstName];
-  EditLastName.Text := Contact.Fields[cfLastName];
-  EditMiddleName.Text := Contact.Fields[cfMiddleName];
-  EditTitleAfter.Text := Contact.Fields[cfTitleAfter];
-  EditTitleBefore.Text := Contact.Fields[cfTitleBefore];
   EditNickName.Text := Contact.Fields[cfNickName];
   EditEmail.Text := Contact.Fields[cfEmail];
   EditPhone.Text := Contact.Fields[cfTel];
@@ -700,6 +694,38 @@ begin
     OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
 end;
 
+procedure TFormContact.ButtonNameDetailsClick(Sender: TObject);
+begin
+  with TFormNameDetails.Create(nil) do
+  try
+    EditFirstName.Text := Contact.Fields[cfFirstName];
+    EditLastName.Text := Contact.Fields[cfLastName];
+    EditMiddleName.Text := Contact.Fields[cfMiddleName];
+    EditTitleAfter.Text := Contact.Fields[cfTitleAfter];
+    EditTitleBefore.Text := Contact.Fields[cfTitleBefore];
+    if ShowModal = mrOk then begin
+      Contact.Fields[cfMiddleName] := EditMiddleName.Text;
+      Contact.Fields[cfFirstName] := EditFirstName.Text;
+      Contact.Fields[cfLastName] := EditLastName.Text;
+      Contact.Fields[cfTitleAfter] := EditTitleAfter.Text;
+      Contact.Fields[cfTitleBefore] := EditTitleBefore.Text;
+      with TNameDetails.Create do
+      try
+        Prefix := EditTitleBefore.Text;
+        First := EditFirstName.Text;
+        Middle := EditMiddleName.Text;
+        Last := EditLastName.Text;
+        Suffix := EditTitleAfter.Text;
+        UpdateEditNoOnChange(EditFullName, GetCombined);
+      finally
+        Free;
+      end;
+    end;
+  finally
+    Free;
+  end;
+end;
+
 procedure TFormContact.ButtonPreviousClick(Sender: TObject);
 begin
   if Assigned(FOnGetPrevious) then
@@ -720,50 +746,22 @@ begin
     OpenURL(Core.MapUrl + URLEncode(Trim(Address)));
 end;
 
-procedure UpdateEditNoOnChange(Edit: TEdit; Text: string);
-var
-  LastHandler: TNotifyEvent;
-begin
-  LastHandler := Edit.OnChange;
-  Edit.OnChange := nil;
-  try
-    Edit.Text := Text;
-  finally
-    Edit.OnChange := LastHandler;
-  end;
-end;
-
 procedure TFormContact.EditFullNameChange(Sender: TObject);
 begin
   with TNameDetails.Create do
   try
-    Prefix := EditTitleBefore.Text;
-    First := EditFirstName.Text;
-    Middle := EditMiddleName.Text;
-    Last := EditLastName.Text;
-    Suffix := EditTitleAfter.Text;
+    Prefix := Contact.Fields[cfTitleBefore];
+    First := Contact.Fields[cfFirstName];
+    Middle := Contact.Fields[cfMiddleName];
+    Last := Contact.Fields[cfLastName];
+    Suffix := Contact.Fields[cfTitleAfter];
     Split(EditFullName.Text);
-    UpdateEditNoOnChange(EditTitleBefore, Prefix);
-    UpdateEditNoOnChange(EditFirstName, First);
-    UpdateEditNoOnChange(EditMiddleName, Middle);
-    UpdateEditNoOnChange(EditLastName, Last);
-    UpdateEditNoOnChange(EditTitleAfter, Suffix);
+    Contact.Fields[cfTitleBefore] := Prefix;
+    Contact.Fields[cfFirstName] := First;
+    Contact.Fields[cfMiddleName] := Middle;
+    Contact.Fields[cfLastName] := Last;
+    Contact.Fields[cfTitleAfter] := Suffix;
     UpdateInterface;
-  finally
-    Free;
-  end;
-end;
-
-procedure TFormContact.NamePartChange(Sender: TObject);
-begin
-  with TNameDetails.Create do
-  try
-    Prefix := EditTitleBefore.Text;
-    First := EditFirstName.Text;
-    Middle := EditMiddleName.Text;
-    Last := EditLastName.Text;
-    Suffix := EditTitleAfter.Text;
-    UpdateEditNoOnChange(EditFullName, GetCombined);
   finally
     Free;
   end;
