@@ -303,8 +303,10 @@ begin
       Delete(Data, 1, Index);
     end else Break;
   until False;
-  SetLength(Result, Length(Result) + 1);
-  Result[High(Result)] := Data;
+  if Data <> '' then begin
+    SetLength(Result, Length(Result) + 1);
+    Result[High(Result)] := Data;
+  end;
 end;
 
 {$IFDEF Windows}
