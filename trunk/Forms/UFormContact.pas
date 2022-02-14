@@ -734,23 +734,39 @@ begin
 end;
 
 procedure TFormContact.EditFullNameChange(Sender: TObject);
-var
-
-  Before, First, Middle, Last, After: string;
 begin
-  Contact.FullNameToNameParts(EditFullName.Text, Before, First, Middle, Last, After);
-  UpdateEditNoOnChange(EditTitleBefore, Before);
-  UpdateEditNoOnChange(EditFirstName, First);
-  UpdateEditNoOnChange(EditMiddleName, Middle);
-  UpdateEditNoOnChange(EditLastName, Last);
-  UpdateEditNoOnChange(EditTitleAfter, After);
-  UpdateInterface;
+  with TNameDetails.Create do
+  try
+    Prefix := EditTitleBefore.Text;
+    First := EditFirstName.Text;
+    Middle := EditMiddleName.Text;
+    Last := EditLastName.Text;
+    Suffix := EditTitleAfter.Text;
+    Split(EditFullName.Text);
+    UpdateEditNoOnChange(EditTitleBefore, Prefix);
+    UpdateEditNoOnChange(EditFirstName, First);
+    UpdateEditNoOnChange(EditMiddleName, Middle);
+    UpdateEditNoOnChange(EditLastName, Last);
+    UpdateEditNoOnChange(EditTitleAfter, Suffix);
+    UpdateInterface;
+  finally
+    Free;
+  end;
 end;
 
 procedure TFormContact.NamePartChange(Sender: TObject);
 begin
-  UpdateEditNoOnChange(EditFullName, Contact.NamePartsToFullName(EditTitleBefore.Text,
-    EditFirstName.Text, EditMiddleName.Text, EditLastName.Text, EditTitleAfter.Text));
+  with TNameDetails.Create do
+  try
+    Prefix := EditTitleBefore.Text;
+    First := EditFirstName.Text;
+    Middle := EditMiddleName.Text;
+    Last := EditLastName.Text;
+    Suffix := EditTitleAfter.Text;
+    UpdateEditNoOnChange(EditFullName, GetCombined);
+  finally
+    Free;
+  end;
 end;
 
 procedure TFormContact.FormCreate(Sender: TObject);

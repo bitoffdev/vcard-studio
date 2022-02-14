@@ -123,6 +123,7 @@ begin
     Groups.Delimiter := ';';
     Groups.StrictDelimiter := True;
     Groups.DelimitedText := EditAttributes.Text;
+    GroupsArray := Default(TStringArray);
     SetLength(GroupsArray, Groups.Count);
     for I := 0 to Groups.Count - 1 do
       GroupsArray[I] := Groups[I];

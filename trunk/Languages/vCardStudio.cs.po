@@ -181,7 +181,7 @@ msgstr "Adresa"
 
 #: tformcontact.label1.caption
 msgid "First name:"
-msgstr "Křestní jméno:"
+msgstr "První jméno:"
 
 #: tformcontact.label10.caption
 msgctxt "tformcontact.label10.caption"
@@ -272,7 +272,7 @@ msgstr "Titul za:"
 #: tformcontact.label28.caption
 msgctxt "tformcontact.label28.caption"
 msgid "Street:"
-msgstr "Adresa:"
+msgstr "Ulice:"
 
 #: tformcontact.label29.caption
 msgctxt "tformcontact.label29.caption"
@@ -386,7 +386,7 @@ msgstr "Pohlaví:"
 
 #: tformcontact.label5.caption
 msgid "Last name"
-msgstr "Příjmení"
+msgstr "Poslední jméno"
 
 #: tformcontact.label50.caption
 msgid "Myspace:"
@@ -629,7 +629,7 @@ msgstr "Celé jméno"
 #: tformcontacts.listview1.columns[1].caption
 msgctxt "tformcontacts.listview1.columns[1].caption"
 msgid "First name"
-msgstr "Křestní jméno"
+msgstr "První jméno"
 
 #: tformcontacts.listview1.columns[2].caption
 msgctxt "tformcontacts.listview1.columns[2].caption"
@@ -639,7 +639,7 @@ msgstr "Prostřední jméno"
 #: tformcontacts.listview1.columns[3].caption
 msgctxt "tformcontacts.listview1.columns[3].caption"
 msgid "Last Name"
-msgstr "Příjmení"
+msgstr "Poslední jméno"
 
 #: tformcontacts.listview1.columns[4].caption
 msgctxt "tformcontacts.listview1.columns[4].caption"
@@ -1017,7 +1017,7 @@ msgstr "Index pole %d předefinován"
 
 #: ucontact.sfirstname
 msgid "First Name"
-msgstr "Křestní jméno"
+msgstr "První Jméno"
 
 #: ucontact.sfullname
 msgctxt "ucontact.sfullname"
@@ -1116,7 +1116,7 @@ msgstr "Jabber"
 #: ucontact.slastname
 msgctxt "ucontact.slastname"
 msgid "Last Name"
-msgstr "Příjmení"
+msgstr "Poslední Jméno"
 
 #: ucontact.slasttimecontacted
 msgid "Last Time Contacted"

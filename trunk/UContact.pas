@@ -8,6 +8,36 @@ uses
   Classes, SysUtils, fgl, Dialogs, UDataFile, LazUTF8, Base64, Graphics;
 
 type
+  TNamePartKind = (npNone, npPrefix, npFirst, npMiddle, npLast, npSuffix);
+
+  TNamePart = record
+    Index: Integer;
+    Text: string;
+    PartKind: TNamePartKind;
+    NamePart: ^TNamePart;
+    Previous: ^TNamePart;
+    Next: ^TNamePart;
+  end;
+
+  TNameParts = array of TNamePart;
+
+  { TNameDetails }
+
+  TNameDetails = class
+  private
+    function GetAsNameParts: TNameParts;
+    function GetDetail(NamePartKind: TNamePartKind): string;
+    function IsSuffix(Text: string): Boolean;
+  public
+    Prefix: string;
+    First: string;
+    Middle: string;
+    Last: string;
+    Suffix: string;
+    procedure Split(FullName: string);
+    function GetCombined: string;
+  end;
+
   TContactsFile = class;
 
   TErrorEvent = procedure (Text: string; Line: Integer) of object;
@@ -140,9 +170,6 @@ type
     function FullNameToFileName: string;
     function GetProperty(Field: TContactField): TContactProperty; overload;
     function GetProperty(FieldIndex: TContactFieldIndex): TContactProperty; overload;
-    procedure FullNameToNameParts(FullName: string; out Before, First, Middle,
-      Last, After: string);
-    function NamePartsToFullName(Before, First, Middle, Last, After: string): string;
     procedure Assign(Source: TContact);
     function UpdateFrom(Source: TContact): Boolean;
     constructor Create;
@@ -329,6 +356,11 @@ begin
     end;
 end;
 
+function StartsWith(Text, What: string): Boolean;
+begin
+  Result := Copy(Text, 1, Length(Text)) = What;
+end;
+
 function EndsWith(Text, What: string): Boolean;
 begin
   Result := Copy(Text, Length(Text) - Length(What) + 1, MaxInt) = What;
@@ -407,6 +439,321 @@ begin
     Inc(I);
   end;
   SetLength(Result, O - 1);
+end;
+
+{ TNameDetails }
+
+function IsNumber(Text: string): Boolean;
+var
+  Value: Integer;
+begin
+  Result := TryStrToInt(Text, Value);
+end;
+
+function IsRomanNumber(Text: string): Boolean;
+var
+  I: Integer;
+begin
+  Result := True;
+  for I := 1 to Length(Text) do
+    if not (Text[I] in ['I', 'V', 'X', 'L', 'C', 'D', 'M']) then begin
+      Result := False;
+      Break;
+    end;
+end;
+
+procedure SearchPart(var NameParts: TNameParts; var NamePart: TNamePart);
+var
+  I: Integer;
+begin
+  for I := 0 to Length(NameParts) - 1 do begin
+    if (NameParts[I].PartKind = npNone) and (NameParts[I].Text = NamePart.Text) then begin
+      NameParts[I].PartKind := NamePart.PartKind;
+      NameParts[I].NamePart := @NamePart;
+      NamePart.NamePart := @NameParts[I];
+      Break;
+    end;
+  end;
+end;
+
+procedure SearchPartBackward(var NameParts: TNameParts; var NamePart: TNamePart);
+var
+  I: Integer;
+begin
+  for I := Length(NameParts) - 1 downto 0 do begin
+    if (NameParts[I].PartKind = npNone) and (NameParts[I].Text = NamePart.Text) then begin
+      NameParts[I].PartKind := NamePart.PartKind;
+      NameParts[I].NamePart := @NamePart;
+      NamePart.NamePart := @NameParts[I];
+      Break;
+    end;
+  end;
+end;
+
+function UsedInNameParts(NamePart: TNamePartKind; NameParts: TNameParts): Boolean;
+var
+  I: Integer;
+begin
+  I := 0;
+  while (I < Length(NameParts)) and (NameParts[I].PartKind <> NamePart) do Inc(I);
+  Result := I < Length(NameParts);
+end;
+
+function TNameDetails.GetAsNameParts: TNameParts;
+var
+  I: Integer;
+  K: TNamePartKind;
+  Parts: TStringArray;
+begin
+  Result := Default(TNameParts);
+  for K := Low(TNamePartKind) to High(TNamePartKind) do begin
+    if GetDetail(K) <> '' then begin
+      Parts := Explode(' ', GetDetail(K));
+      for I := 0 to Length(Parts) - 1 do begin
+        SetLength(Result, Length(Result) + 1);
+        Result[Length(Result) - 1].Text := Parts[I];
+        Result[Length(Result) - 1].PartKind := K;
+        Result[Length(Result) - 1].Index := Length(Result) - 1;
+      end;
+    end;
+  end;
+
+  // Update previous and next links
+  for I := 0 to Length(Result) - 1 do begin
+    if I > 0 then
+      Result[I].Previous := @Result[I - 1];
+    if (I + 1) < Length(Result) then
+      Result[I].Next := @Result[I + 1];
+  end;
+end;
+
+function TNameDetails.GetDetail(NamePartKind: TNamePartKind): string;
+begin
+  case NamePartKind of
+    npPrefix: Result := Prefix;
+    npFirst: Result := First;
+    npMiddle: Result := Middle;
+    npLast: Result := Last;
+    npSuffix: Result := Suffix;
+  end;
+end;
+
+function TNameDetails.IsSuffix(Text: string): Boolean;
+begin
+  Result := (Pos('.', Text) > 0) or IsNumber(Text) or
+    IsRomanNumber(Text);
+end;
+
+procedure TNameDetails.Split(FullName: string);
+var
+  Parts: TStringArray;
+  NewNameParts: TNameParts;
+  OldNameParts: TNameParts;
+  I: Integer;
+  J: Integer;
+  Text: string;
+  NextKind: TNamePartKind;
+begin
+  OldNameParts := GetAsNameParts;
+
+  Text := FullName;
+  while Pos('  ', FullName) > 0 do
+    FullName := StringReplace(FullName, '  ', ' ', [rfReplaceAll]);
+  Text := Trim(Text);
+
+  Parts := Explode(' ', Text);
+  NewNameParts := Default(TNameParts);
+  SetLength(NewNameParts, Length(Parts));
+  for I := 0 to Length(NewNameParts) - 1 do begin
+    NewNameParts[I].Index := I;
+    NewNameParts[I].PartKind := npNone;
+    NewNameParts[I].Text := Parts[I];
+    if I > 0 then
+      NewNameParts[I].Previous := @NewNameParts[I - 1];
+    if (I + 1) < Length(NewNameParts) then
+      NewNameParts[I].Next := @NewNameParts[I + 1];
+  end;
+
+  // Match existing parts
+  for I := 0 to Length(OldNameParts) - 1 do begin
+    if OldNameParts[I].Text <> '' then
+      SearchPart(NewNameParts, OldNameParts[I]);
+  end;
+
+  // Check incorrect matches
+  for I := 0 to Length(OldNameParts) - 1 do begin
+    for J := I + 1 to Length(OldNameParts) - 1 do
+      if Assigned(OldNameParts[I].NamePart) and Assigned(OldNameParts[J].NamePart) and
+      (OldNameParts[I].NamePart^.Index >= OldNameParts[J].NamePart^.Index) then begin
+        if Abs(I - OldNameParts[I].NamePart^.Index) >
+        Abs(J - OldNameParts[J].NamePart^.Index) then begin
+          OldNameParts[I].NamePart^.PartKind := npNone;
+          OldNameParts[I].NamePart^.NamePart := nil;
+          OldNameParts[I].NamePart := nil;
+        end else begin
+          OldNameParts[J].NamePart^.PartKind := npNone;
+          OldNameParts[J].NamePart^.NamePart := nil;
+          OldNameParts[J].NamePart := nil;
+        end;
+      end;
+  end;
+  for I := Length(OldNameParts) - 1 downto 0 do begin
+    for J := I - 1 downto 0 do
+      if Assigned(OldNameParts[I].NamePart) and Assigned(OldNameParts[J].NamePart) and
+      (OldNameParts[I].NamePart^.Index <= OldNameParts[J].NamePart^.Index) then begin
+        if Abs(I - OldNameParts[I].NamePart^.Index) >
+        Abs(J - OldNameParts[J].NamePart^.Index) then begin
+          OldNameParts[I].NamePart^.PartKind := npNone;
+          OldNameParts[I].NamePart^.NamePart := nil;
+          OldNameParts[I].NamePart := nil;
+        end else begin
+          OldNameParts[J].NamePart^.PartKind := npNone;
+          OldNameParts[J].NamePart^.NamePart := nil;
+          OldNameParts[J].NamePart := nil;
+        end;
+      end;
+  end;
+
+  // Match existing parts backqards
+  for I := Length(OldNameParts) - 1 downto 0 do begin
+    if (OldNameParts[I].Text <> '') and not Assigned(OldNameParts[I].NamePart) then
+      SearchPartBackward(NewNameParts, OldNameParts[I]);
+  end;
+
+  // Match uncertain parts
+  for I := 0 to Length(OldNameParts) - 1 do
+    if not Assigned(OldNameParts[I].NamePart) then begin
+      if Assigned(OldNameParts[I].Next) and
+      Assigned(OldNameParts[I].Next^.NamePart) and
+      Assigned(OldNameParts[I].Next^.NamePart^.Previous) and
+      (OldNameParts[I].Next^.NamePart^.Previous^.PartKind = npNone) then begin
+        OldNameParts[I].NamePart := OldNameParts[I].Next^.NamePart^.Previous;
+        OldNameParts[I].Next^.NamePart^.Previous^.NamePart := @OldNameParts[I];
+        OldNameParts[I].Next^.NamePart^.Previous^.PartKind := OldNameParts[I].PartKind;
+      end else
+      if Assigned(OldNameParts[I].Previous) and
+      Assigned(OldNameParts[I].Previous^.NamePart) and
+      Assigned(OldNameParts[I].Previous^.NamePart^.Next) and
+      (OldNameParts[I].Previous^.NamePart^.Next^.PartKind = npNone) then begin
+        OldNameParts[I].NamePart := OldNameParts[I].Previous^.NamePart^.Next;
+        OldNameParts[I].Previous^.NamePart^.Next^.NamePart := @OldNameParts[I];
+        OldNameParts[I].Previous^.NamePart^.Next^.PartKind := OldNameParts[I].PartKind;
+      end;
+    end;
+
+  // Mark new unknown parts according existing parts
+  for I := Length(Parts) - 1 downto 0 do
+    if (NewNameParts[I].PartKind = npNone) and
+    Assigned(NewNameParts[I].Next) and
+    (NewNameParts[I].Next^.PartKind <> npNone) then begin
+      if (NewNameParts[I].Next^.PartKind = npFirst) and
+      EndsWith(NewNameParts[I].Text, '.') then begin
+        NewNameParts[I].PartKind := npPrefix;
+      end else NewNameParts[I].PartKind := NewNameParts[I].Next^.PartKind;
+    end;
+
+  // Mark unknown parts according to neighbouring parts
+  for I := 0 to Length(Parts) - 1 do
+    if (NewNameParts[I].PartKind = npNone) and
+    Assigned(NewNameParts[I].Previous) and
+    (NewNameParts[I].Previous^.PartKind <> npNone) then begin
+      if (NewNameParts[I].Previous^.PartKind in [npLast, npMiddle]) and
+      IsSuffix(NewNameParts[I].Text) then begin
+        NewNameParts[I].PartKind := npSuffix;
+      end else
+      if (NewNameParts[I].Previous^.PartKind = npFirst) and
+      (Last = '') then begin
+        NewNameParts[I].PartKind := npLast;
+      end else
+      if (NewNameParts[I].Previous^.PartKind = npLast) and
+      (Middle = '') then begin
+        NewNameParts[I].PartKind := npLast;
+        NewNameParts[I].Previous^.PartKind := npMiddle;
+      end else
+      if (NewNameParts[I].Previous^.PartKind = npPrefix) then begin
+        NewNameParts[I].PartKind := npFirst;
+      end else
+        NewNameParts[I].PartKind := NewNameParts[I].Previous^.PartKind;
+    end;
+
+  // Mark remaining unknown parts based on defined filling sequence
+  NextKind := npFirst;
+  for I := 0 to Length(Parts) - 1 do
+    if NewNameParts[I].PartKind = npNone then begin
+      if EndsWith(NewNameParts[I].Text, '.') and (NextKind = npFirst) then begin
+        NewNameParts[I].PartKind := npPrefix;
+      end else
+      if (NextKind = npMiddle) and IsSuffix(NewNameParts[I].Text) then begin
+        NewNameParts[I].PartKind := npSuffix;
+        NextKind := npSuffix;
+      end else
+      if NextKind = npMiddle then begin
+        NewNameParts[I].Previous^.PartKind := npMiddle;
+        NewNameParts[I].PartKind := npLast;
+      end else begin
+        NewNameParts[I].PartKind := NextKind;
+        if NextKind = npFirst then NextKind := npLast
+        else if NextKind = npLast then NextKind := npMiddle;
+      end;
+    end;
+
+  // Combine multiple parts to base parts
+  Prefix := '';
+  First := '';
+  Middle := '';
+  Last := '';
+  Suffix := '';
+  for I := 0 to Length(Parts) - 1 do
+    case NewNameParts[I].PartKind of
+      npPrefix: Prefix := Trim(Prefix + ' ' + Parts[I]);
+      npFirst: First := Trim(First + ' ' + Parts[I]);
+      npMiddle: Middle := Trim(Middle + ' ' + Parts[I]);
+      npLast: Last := Trim(Last + ' ' + Parts[I]);
+      npSuffix: Suffix := Trim(Suffix + ' ' + Parts[I]);
+    end;
+
+{
+  // Title Prefix
+  while (Length(Parts) > 0) and EndsWith(Parts[0], '.') do begin
+    Prefix := Trim(Prefix + ' ' + Parts[0]);
+    Delete(Parts, 0, 1);
+  end;
+
+  // Title Suffix
+  if ProcessAfter then
+  for I := 0 to High(Parts) do
+    if (Pos('.', Parts[I]) > 0) or IsNumber(Parts[I]) or IsRomanNumber(Parts[I]) then begin
+      for J := I to High(Parts) do
+        Suffix := Trim(Suffix + ' ' + Parts[J]);
+      SetLength(Parts, I);
+      Break;
+    end;
+
+  if Length(Parts) = 0 then begin
+  end else
+  if Length(Parts) = 1 then begin
+    First := Parts[0];
+  end else
+  if Length(Parts) = 2 then begin
+    First := Parts[0];
+    Last := Parts[1];
+  end else begin
+    First := Parts[0];
+    for I := 0 to Length(Parts) - 3 do
+      Middle := Trim(Middle + ' ' + Parts[I + 1]);
+    Last := Parts[High(Parts)];
+  end;}
+end;
+
+function TNameDetails.GetCombined: string;
+begin
+  Result := '';
+  if Prefix <> '' then Result := Result + ' ' + Prefix;
+  if First <> '' then Result := Result + ' ' + First;
+  if Middle <> '' then Result := Result + ' ' + Middle;
+  if Last <> '' then Result := Result + ' ' + Last;
+  if Suffix <> '' then Result := Result + ' ' + Suffix;
+  Result := Trim(Result);
 end;
 
 { TContactFilterItems }
@@ -1116,83 +1463,6 @@ begin
   if Assigned(Field) then begin
     Result := GetProperty(Field);
   end else Result := nil;
-end;
-
-function IsNumber(Text: string): Boolean;
-var
-  Value: Integer;
-begin
-  Result := TryStrToInt(Text, Value);
-end;
-
-function IsRomanNumber(Text: string): Boolean;
-var
-  I: Integer;
-begin
-  Result := True;
-  for I := 1 to Length(Text) do
-    if not (Text[I] in ['I', 'V', 'X', 'L', 'C', 'D', 'M']) then begin
-      Result := False;
-      Break;
-    end;
-end;
-
-procedure TContact.FullNameToNameParts(FullName: string; out Before, First,
-  Middle, Last, After: string);
-var
-  Parts: TStringArray;
-  I, J: Integer;
-begin
-  Before := '';
-  First := '';
-  Middle := '';
-  Last := '';
-  After := '';
-  while Pos('  ', FullName) > 0 do
-    FullName := StringReplace(FullName, '  ', ' ', [rfReplaceAll]);
-  Parts := Explode(' ', Trim(FullName));
-
-  // Title before
-  while (Length(Parts) > 0) and EndsWith(Parts[0], '.') do begin
-    Before := Trim(Before + ' ' + Parts[0]);
-    Delete(Parts, 0, 1);
-  end;
-
-  // Title after
-  for I := 0 to High(Parts) do
-    if (Pos('.', Parts[I]) > 0) or IsNumber(Parts[I]) or IsRomanNumber(Parts[I]) then begin
-      for J := I to High(Parts) do
-        After := Trim(After + ' ' + Parts[J]);
-      SetLength(Parts, I);
-      Break;
-    end;
-
-  if Length(Parts) = 0 then begin
-  end else
-  if Length(Parts) = 1 then begin
-    First := Parts[0];
-  end else
-  if Length(Parts) = 2 then begin
-    First := Parts[0];
-    Last := Parts[1];
-  end else begin
-    First := Parts[0];
-    for I := 0 to Length(Parts) - 3 do
-      Middle := Trim(Middle + ' ' + Parts[I + 1]);
-    Last := Parts[High(Parts)];
-  end;
-end;
-
-function TContact.NamePartsToFullName(Before, First, Middle, Last, After: string
-  ): string;
-begin
-  Result := '';
-  if Before <> '' then Result := Result + ' ' + Before;
-  if First <> '' then Result := Result + ' ' + First;
-  if Middle <> '' then Result := Result + ' ' + Middle;
-  if Last <> '' then Result := Result + ' ' + Last;
-  if After <> '' then Result := Result + ' ' + After;
-  Result := Trim(Result);
 end;
 
 procedure TContact.Assign(Source: TContact);
