@@ -122,6 +122,10 @@ msgctxt "tformcontact.buttonhomeaddressshow.caption"
 msgid "Show on map"
 msgstr ""
 
+#: tformcontact.buttonnamedetails.caption
+msgid "Details"
+msgstr ""
+
 #: tformcontact.buttonnext.caption
 msgid "Next"
 msgstr ""
@@ -169,10 +173,6 @@ msgctxt "tformcontact.groupbox2.caption"
 msgid "Address"
 msgstr ""
 
-#: tformcontact.label1.caption
-msgid "First name:"
-msgstr ""
-
 #: tformcontact.label10.caption
 msgctxt "tformcontact.label10.caption"
 msgid "Pager:"
@@ -214,6 +214,7 @@ msgid "Pager:"
 msgstr ""
 
 #: tformcontact.label18.caption
+msgctxt "tformcontact.label18.caption"
 msgid "Title:"
 msgstr ""
 
@@ -245,18 +246,6 @@ msgstr ""
 
 #: tformcontact.label24.caption
 msgid "Full name:"
-msgstr ""
-
-#: tformcontact.label25.caption
-msgid "Middle name:"
-msgstr ""
-
-#: tformcontact.label26.caption
-msgid "Title before:"
-msgstr ""
-
-#: tformcontact.label27.caption
-msgid "Title after:"
 msgstr ""
 
 #: tformcontact.label28.caption
@@ -372,10 +361,6 @@ msgstr ""
 
 #: tformcontact.label49.caption
 msgid "Gender:"
-msgstr ""
-
-#: tformcontact.label5.caption
-msgid "Last name"
 msgstr ""
 
 #: tformcontact.label50.caption
@@ -777,6 +762,41 @@ msgstr ""
 
 #: tformmain.menuitemview.caption
 msgid "View"
+msgstr ""
+
+#: tformnamedetails.buttoncancel.caption
+msgctxt "tformnamedetails.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformnamedetails.buttonok.caption
+msgctxt "tformnamedetails.buttonok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformnamedetails.caption
+msgid "Name details"
+msgstr ""
+
+#: tformnamedetails.label1.caption
+msgid "First:"
+msgstr ""
+
+#: tformnamedetails.label25.caption
+msgid "Middle:"
+msgstr ""
+
+#: tformnamedetails.label26.caption
+msgctxt "tformnamedetails.label26.caption"
+msgid "Title:"
+msgstr ""
+
+#: tformnamedetails.label27.caption
+msgid "Suffix:"
+msgstr ""
+
+#: tformnamedetails.label5.caption
+msgid "Last:"
 msgstr ""
 
 #: tformproperties.aadd.caption

@@ -12,16 +12,62 @@ object FormContact: TFormContact
   OnDestroy = FormDestroy
   OnShow = FormShow
   LCLVersion = '2.2.0.4'
+  object ButtonCancel: TButton
+    Left = 900
+    Height = 39
+    Top = 720
+    Width = 120
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 0
+  end
+  object ButtonOk: TButton
+    Left = 759
+    Height = 39
+    Top = 720
+    Width = 124
+    Anchors = [akRight, akBottom]
+    Caption = 'OK'
+    ModalResult = 1
+    ParentFont = False
+    TabOrder = 1
+  end
+  object ButtonPrevious: TButton
+    Left = 8
+    Height = 39
+    Top = 720
+    Width = 124
+    Anchors = [akLeft, akBottom]
+    Caption = 'Previous'
+    OnClick = ButtonPreviousClick
+    ParentFont = False
+    TabOrder = 2
+    Visible = False
+  end
+  object ButtonNext: TButton
+    Left = 150
+    Height = 39
+    Top = 720
+    Width = 120
+    Anchors = [akLeft, akBottom]
+    Caption = 'Next'
+    OnClick = ButtonNextClick
+    ParentFont = False
+    TabOrder = 3
+    Visible = False
+  end
   object PageControlContact: TPageControl
     Left = 8
     Height = 696
     Top = 8
     Width = 1009
-    ActivePage = TabSheetHome
+    ActivePage = TabSheetGeneral
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 1
-    TabOrder = 0
+    TabIndex = 0
+    TabOrder = 4
     object TabSheetGeneral: TTabSheet
       Caption = 'General'
       ClientHeight = 655
@@ -29,23 +75,6 @@ object FormContact: TFormContact
       OnHide = TabSheetGeneralHide
       OnShow = TabSheetGeneralShow
       ParentFont = False
-      object Label1: TLabel
-        Left = 250
-        Height = 27
-        Top = 83
-        Width = 101
-        Caption = 'First name:'
-        ParentFont = False
-      end
-      object EditFirstName: TEdit
-        Left = 375
-        Height = 43
-        Top = 75
-        Width = 161
-        OnChange = NamePartChange
-        ParentFont = False
-        TabOrder = 1
-      end
       object Label2: TLabel
         Left = 17
         Height = 27
@@ -60,7 +89,7 @@ object FormContact: TFormContact
         Top = 250
         Width = 265
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 2
       end
       object EditPhone: TEdit
         Left = 150
@@ -68,7 +97,7 @@ object FormContact: TFormContact
         Top = 298
         Width = 265
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 4
       end
       object Label3: TLabel
         Left = 17
@@ -84,7 +113,7 @@ object FormContact: TFormContact
         Top = 342
         Width = 216
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 6
       end
       object Label4: TLabel
         Left = 17
@@ -94,30 +123,13 @@ object FormContact: TFormContact
         Caption = 'E-mail:'
         ParentFont = False
       end
-      object EditLastName: TEdit
-        Left = 700
-        Height = 43
-        Top = 75
-        Width = 161
-        OnChange = NamePartChange
-        ParentFont = False
-        TabOrder = 2
-      end
-      object Label5: TLabel
-        Left = 558
-        Height = 27
-        Top = 83
-        Width = 94
-        Caption = 'Last name'
-        ParentFont = False
-      end
       object EditBirthday: TEdit
         Left = 150
         Height = 43
         Top = 442
         Width = 216
         ParentFont = False
-        TabOrder = 14
+        TabOrder = 9
       end
       object Label22: TLabel
         Left = 17
@@ -150,77 +162,26 @@ object FormContact: TFormContact
         Left = 375
         Height = 43
         Top = 25
-        Width = 486
+        Width = 354
         OnChange = EditFullNameChange
         ParentFont = False
         TabOrder = 0
       end
-      object Label25: TLabel
-        Left = 558
-        Height = 27
-        Top = 133
-        Width = 124
-        Caption = 'Middle name:'
-        ParentFont = False
-      end
-      object EditMiddleName: TEdit
-        Left = 699
-        Height = 43
-        Top = 125
-        Width = 161
-        OnChange = NamePartChange
-        ParentFont = False
-        TabOrder = 4
-      end
-      object Label26: TLabel
-        Left = 250
-        Height = 27
-        Top = 183
-        Width = 106
-        Caption = 'Title before:'
-        ParentFont = False
-      end
-      object EditTitleBefore: TEdit
-        Left = 376
-        Height = 43
-        Top = 175
-        Width = 161
-        OnChange = NamePartChange
-        ParentFont = False
-        TabOrder = 5
-      end
-      object Label27: TLabel
-        Left = 558
-        Height = 27
-        Top = 183
-        Width = 91
-        Caption = 'Title after:'
-        ParentFont = False
-      end
-      object EditTitleAfter: TEdit
-        Left = 699
-        Height = 43
-        Top = 175
-        Width = 161
-        OnChange = NamePartChange
-        ParentFont = False
-        TabOrder = 6
-      end
       object Label44: TLabel
         Left = 250
         Height = 27
-        Top = 133
+        Top = 88
         Width = 95
         Caption = 'Nickname:'
         ParentFont = False
       end
       object EditNickName: TEdit
-        Left = 375
+        Left = 376
         Height = 43
-        Top = 125
-        Width = 161
+        Top = 80
+        Width = 224
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 1
       end
       object Label45: TLabel
         Left = 450
@@ -236,7 +197,7 @@ object FormContact: TFormContact
         Top = 442
         Width = 217
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 10
       end
       object Label9: TLabel
         Left = 450
@@ -252,7 +213,7 @@ object FormContact: TFormContact
         Top = 250
         Width = 265
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 3
       end
       object EditPager: TEdit
         Left = 599
@@ -260,7 +221,7 @@ object FormContact: TFormContact
         Top = 298
         Width = 265
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 5
       end
       object Label10: TLabel
         Left = 450
@@ -284,7 +245,7 @@ object FormContact: TFormContact
         Top = 392
         Width = 666
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 8
       end
       object Label49: TLabel
         Left = 450
@@ -300,7 +261,7 @@ object FormContact: TFormContact
         Top = 342
         Width = 265
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 7
       end
       object Label56: TLabel
         Left = 17
@@ -316,7 +277,7 @@ object FormContact: TFormContact
         Top = 492
         Width = 265
         ParentFont = False
-        TabOrder = 16
+        TabOrder = 11
       end
       object SpeedButtonWeb: TSpeedButton
         Left = 821
@@ -365,6 +326,15 @@ object FormContact: TFormContact
         OnClick = SpeedButtonAniversaryClick
         ShowHint = True
         ParentShowHint = False
+      end
+      object ButtonNameDetails: TButton
+        Left = 735
+        Height = 43
+        Top = 25
+        Width = 125
+        Caption = 'Details'
+        OnClick = ButtonNameDetailsClick
+        TabOrder = 12
       end
     end
     object TabSheetHome: TTabSheet
@@ -703,7 +673,7 @@ object FormContact: TFormContact
         Top = 325
         Width = 920
         Caption = 'Address'
-        ClientHeight = 281
+        ClientHeight = 255
         ClientWidth = 918
         TabOrder = 9
         object Label31: TLabel
@@ -1346,52 +1316,6 @@ object FormContact: TFormContact
       OnShow = TabSheetAllShow
       ParentFont = False
     end
-  end
-  object ButtonCancel: TButton
-    Left = 900
-    Height = 39
-    Top = 720
-    Width = 120
-    Anchors = [akRight, akBottom]
-    Caption = 'Cancel'
-    ModalResult = 2
-    ParentFont = False
-    TabOrder = 1
-  end
-  object ButtonOk: TButton
-    Left = 759
-    Height = 39
-    Top = 720
-    Width = 124
-    Anchors = [akRight, akBottom]
-    Caption = 'OK'
-    ModalResult = 1
-    ParentFont = False
-    TabOrder = 2
-  end
-  object ButtonPrevious: TButton
-    Left = 8
-    Height = 39
-    Top = 720
-    Width = 124
-    Anchors = [akLeft, akBottom]
-    Caption = 'Previous'
-    OnClick = ButtonPreviousClick
-    ParentFont = False
-    TabOrder = 3
-    Visible = False
-  end
-  object ButtonNext: TButton
-    Left = 150
-    Height = 39
-    Top = 720
-    Width = 120
-    Anchors = [akLeft, akBottom]
-    Caption = 'Next'
-    OnClick = ButtonNextClick
-    ParentFont = False
-    TabOrder = 4
-    Visible = False
   end
   object ActionList1: TActionList
     Images = Core.ImageList1
