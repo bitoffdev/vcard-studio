@@ -1,0 +1,100 @@
+object FormFindDuplicity: TFormFindDuplicity
+  Left = 455
+  Height = 545
+  Top = 355
+  Width = 841
+  Caption = 'Find duplicities'
+  ClientHeight = 545
+  ClientWidth = 841
+  DesignTimePPI = 150
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '2.2.0.4'
+  object ListView1: TListView
+    Left = 5
+    Height = 475
+    Top = 65
+    Width = 831
+    Align = alClient
+    BorderSpacing.Around = 5
+    Columns = <    
+      item
+        Caption = 'Field'
+        Width = 188
+      end    
+      item
+        Caption = 'Contacts'
+        Width = 375
+      end    
+      item
+        Caption = 'Count'
+        Width = 253
+      end>
+    OwnerData = True
+    ParentFont = False
+    PopupMenu = PopupMenu1
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 0
+    ViewStyle = vsReport
+    OnData = ListView1Data
+    OnDblClick = AShowContactsExecute
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 60
+    Top = 0
+    Width = 841
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 60
+    ClientWidth = 841
+    ParentFont = False
+    TabOrder = 1
+    object ComboBoxField: TComboBox
+      Left = 167
+      Height = 42
+      Top = 17
+      Width = 340
+      ItemHeight = 0
+      OnChange = ComboBoxFieldChange
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 14
+      Height = 27
+      Top = 20
+      Width = 142
+      Caption = 'By contact field:'
+      ParentFont = False
+    end
+    object ButtonMerge: TButton
+      Left = 517
+      Height = 40
+      Top = 15
+      Width = 118
+      Caption = 'Merge'
+      OnClick = ButtonMergeClick
+      TabOrder = 1
+    end
+  end
+  object ActionList1: TActionList
+    Left = 273
+    Top = 160
+    object AShowContacts: TAction
+      Caption = 'Show contacts'
+      OnExecute = AShowContactsExecute
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 94
+    Top = 155
+    object MenuItem1: TMenuItem
+      Action = AShowContacts
+    end
+  end
+end

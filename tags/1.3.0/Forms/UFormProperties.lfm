@@ -1,0 +1,202 @@
+object FormProperties: TFormProperties
+  Left = 400
+  Height = 946
+  Top = 212
+  Width = 1260
+  Caption = 'Contacts'
+  ClientHeight = 946
+  ClientWidth = 1260
+  DesignTimePPI = 150
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.2.0.4'
+  object ListView1: TListView
+    Left = 0
+    Height = 844
+    Top = 0
+    Width = 1260
+    Align = alClient
+    Columns = <    
+      item
+        Caption = 'Name'
+        Width = 312
+      end    
+      item
+        Caption = 'Attributes'
+        Width = 156
+      end    
+      item
+        Caption = 'Values'
+        Width = 777
+      end>
+    MultiSelect = True
+    OwnerData = True
+    ParentFont = False
+    PopupMenu = PopupMenuField
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 0
+    ViewStyle = vsReport
+    OnData = ListView1Data
+    OnDblClick = ListView1DblClick
+    OnSelectItem = ListView1SelectItem
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 41
+    Top = 877
+    Width = 1260
+    Align = alBottom
+    Images = Core.ImageList1
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Action = AAdd
+    end
+    object ToolButton2: TToolButton
+      Left = 37
+      Top = 2
+      Action = AModify
+    end
+    object ToolButton3: TToolButton
+      Left = 109
+      Top = 2
+      Action = ARemove
+    end
+    object ToolButton4: TToolButton
+      Left = 73
+      Top = 2
+      Action = AClone
+    end
+    object ToolButton5: TToolButton
+      Left = 145
+      Height = 34
+      Top = 2
+      Style = tbsSeparator
+    end
+    object ToolButton6: TToolButton
+      Left = 153
+      Top = 2
+      Action = ALoadValueFromFile
+    end
+    object ToolButton7: TToolButton
+      Left = 189
+      Top = 2
+      Action = ASaveValueToFile
+    end
+  end
+  object ListViewFilter1: TListViewFilter
+    Left = 0
+    Height = 33
+    Top = 844
+    Width = 1260
+    OnChange = ListViewFilter1Change
+    Align = alBottom
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 28
+    Top = 918
+    Width = 1260
+    Panels = <    
+      item
+        Width = 52
+      end>
+    SimplePanel = False
+  end
+  object PopupMenuField: TPopupMenu
+    Images = Core.ImageList1
+    Left = 453
+    Top = 274
+    object MenuItem1: TMenuItem
+      Action = AAdd
+    end
+    object MenuItem2: TMenuItem
+      Action = AModify
+    end
+    object MenuItem5: TMenuItem
+      Action = AClone
+    end
+    object MenuItem3: TMenuItem
+      Action = ARemove
+    end
+    object MenuItem4: TMenuItem
+      Action = ASelectAll
+    end
+    object MenuItem6: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem7: TMenuItem
+      Action = ALoadValueFromFile
+    end
+    object MenuItem8: TMenuItem
+      Action = ASaveValueToFile
+    end
+  end
+  object ActionList1: TActionList
+    Images = Core.ImageList1
+    Left = 763
+    Top = 268
+    object AAdd: TAction
+      Caption = 'Add'
+      ImageIndex = 9
+      OnExecute = AAddExecute
+      ShortCut = 45
+    end
+    object AModify: TAction
+      Caption = 'Modify'
+      ImageIndex = 6
+      OnExecute = AModifyExecute
+      ShortCut = 13
+    end
+    object ARemove: TAction
+      Caption = 'Remove'
+      ImageIndex = 10
+      OnExecute = ARemoveExecute
+      ShortCut = 46
+    end
+    object ASelectAll: TAction
+      Caption = 'Select all'
+      OnExecute = ASelectAllExecute
+      ShortCut = 16449
+    end
+    object AClone: TAction
+      Caption = 'Clone'
+      ImageIndex = 11
+      OnExecute = ACloneExecute
+    end
+    object ASaveValueToFile: TAction
+      Caption = 'Save value to file...'
+      ImageIndex = 7
+      OnExecute = ASaveValueToFileExecute
+    end
+    object ALoadValueFromFile: TAction
+      Caption = 'Load value from file...'
+      ImageIndex = 5
+      OnExecute = ALoadValueFromFileExecute
+    end
+  end
+  object ListViewSort1: TListViewSort
+    ListView = ListView1
+    OnCompareItem = ListViewSort1CompareItem
+    OnFilter = ListViewSort1Filter
+    OnColumnWidthChanged = ListViewSort1ColumnWidthChanged
+    Column = 0
+    Order = soNone
+    Left = 550
+    Top = 446
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 792
+    Top = 467
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 792
+    Top = 542
+  end
+end

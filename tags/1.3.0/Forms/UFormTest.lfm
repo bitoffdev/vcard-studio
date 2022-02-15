@@ -1,0 +1,72 @@
+object FormTest: TFormTest
+  Left = 514
+  Height = 658
+  Top = 338
+  Width = 1117
+  Caption = 'Test'
+  ClientHeight = 658
+  ClientWidth = 1117
+  DesignTimePPI = 150
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '2.2.0.4'
+  object ListViewTestCases: TListView
+    Left = 20
+    Height = 586
+    Top = 11
+    Width = 1084
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Columns = <    
+      item
+        Caption = 'Name'
+        Width = 300
+      end    
+      item
+        Caption = 'Result'
+        Width = 769
+      end>
+    OwnerData = True
+    PopupMenu = PopupMenuTest
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 0
+    ViewStyle = vsReport
+    OnData = ListViewTestCasesData
+    OnDblClick = AShowExecute
+    OnSelectItem = ListViewTestCasesSelectItem
+  end
+  object ButtonRun: TButton
+    Left = 984
+    Height = 39
+    Top = 609
+    Width = 117
+    Anchors = [akRight, akBottom]
+    Caption = 'Run'
+    OnClick = ButtonRunClick
+    TabOrder = 1
+  end
+  object ActionList1: TActionList
+    Left = 537
+    Top = 115
+    object AShow: TAction
+      Caption = 'Show'
+      OnExecute = AShowExecute
+    end
+    object ARun: TAction
+      Caption = 'Run'
+      OnExecute = ARunExecute
+    end
+  end
+  object PopupMenuTest: TPopupMenu
+    Left = 539
+    Top = 244
+    object MenuItem1: TMenuItem
+      Action = AShow
+    end
+    object MenuItem2: TMenuItem
+      Action = ARun
+    end
+  end
+end

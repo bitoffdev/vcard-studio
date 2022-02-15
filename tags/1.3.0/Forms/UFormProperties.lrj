@@ -1,0 +1,13 @@
+{"version":1,"strings":[
+{"hash":106593811,"name":"tformproperties.caption","sourcebytes":[67,111,110,116,97,99,116,115],"value":"Contacts"},
+{"hash":346165,"name":"tformproperties.listview1.columns[0].caption","sourcebytes":[78,97,109,101],"value":"Name"},
+{"hash":150815091,"name":"tformproperties.listview1.columns[1].caption","sourcebytes":[65,116,116,114,105,98,117,116,101,115],"value":"Attributes"},
+{"hash":97008579,"name":"tformproperties.listview1.columns[2].caption","sourcebytes":[86,97,108,117,101,115],"value":"Values"},
+{"hash":18340,"name":"tformproperties.aadd.caption","sourcebytes":[65,100,100],"value":"Add"},
+{"hash":88453081,"name":"tformproperties.amodify.caption","sourcebytes":[77,111,100,105,102,121],"value":"Modify"},
+{"hash":93079237,"name":"tformproperties.aremove.caption","sourcebytes":[82,101,109,111,118,101],"value":"Remove"},
+{"hash":195296268,"name":"tformproperties.aselectall.caption","sourcebytes":[83,101,108,101,99,116,32,97,108,108],"value":"Select all"},
+{"hash":4863557,"name":"tformproperties.aclone.caption","sourcebytes":[67,108,111,110,101],"value":"Clone"},
+{"hash":201478110,"name":"tformproperties.asavevaluetofile.caption","sourcebytes":[83,97,118,101,32,118,97,108,117,101,32,116,111,32,102,105,108,101,46,46,46],"value":"Save value to file..."},
+{"hash":231494782,"name":"tformproperties.aloadvaluefromfile.caption","sourcebytes":[76,111,97,100,32,118,97,108,117,101,32,102,114,111,109,32,102,105,108,101,46,46,46],"value":"Load value from file..."}
+]}

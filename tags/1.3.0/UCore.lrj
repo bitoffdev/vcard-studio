@@ -1,0 +1,22 @@
+{"version":1,"strings":[
+{"hash":315140,"name":"tcore.aexit.caption","sourcebytes":[69,120,105,116],"value":"Exit"},
+{"hash":21703,"name":"tcore.afilenew.caption","sourcebytes":[78,101,119],"value":"New"},
+{"hash":107745630,"name":"tcore.afileopen.caption","sourcebytes":[79,112,101,110,46,46,46],"value":"Open..."},
+{"hash":131987540,"name":"tcore.afileopenrecent.caption","sourcebytes":[79,112,101,110,32,114,101,99,101,110,116],"value":"Open recent"},
+{"hash":366789,"name":"tcore.afilesave.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":124639694,"name":"tcore.afilesaveas.caption","sourcebytes":[83,97,118,101,32,97,115,46,46,46],"value":"Save as..."},
+{"hash":4863637,"name":"tcore.afileclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":158102910,"name":"tcore.aabout.caption","sourcebytes":[65,98,111,117,116,46,46,46],"value":"About..."},
+{"hash":58140853,"name":"tcore.ahomepage.caption","sourcebytes":[72,111,109,101,32,112,97,103,101],"value":"Home page"},
+{"hash":213582195,"name":"tcore.asettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
+{"hash":151054142,"name":"tcore.afilecombine.caption","sourcebytes":[67,111,109,98,105,110,101,46,46,46],"value":"Combine..."},
+{"hash":168802467,"name":"tcore.afindduplicate.caption","sourcebytes":[70,105,110,100,32,100,117,112,108,105,99,105,116,105,101,115],"value":"Find duplicities"},
+{"hash":245221587,"name":"tcore.agenerate.caption","sourcebytes":[71,101,110,101,114,97,116,101,32,99,111,110,116,97,99,116,115],"value":"Generate contacts"},
+{"hash":120616622,"name":"tcore.afilesplit.caption","sourcebytes":[83,112,108,105,116,46,46,46],"value":"Split..."},
+{"hash":218394958,"name":"tcore.afind.caption","sourcebytes":[70,105,110,100,46,46,46],"value":"Find..."},
+{"hash":371876,"name":"tcore.atest.caption","sourcebytes":[84,101,115,116],"value":"Test"},
+{"hash":218146437,"name":"tcore.opendialog1.title","sourcebytes":[79,112,101,110,32,101,120,105,115,116,105,110,103,32,102,105,108,101],"value":"Open existing file"},
+{"hash":159035875,"name":"tcore.savedialog1.title","sourcebytes":[83,97,118,101,32,102,105,108,101,32,97,115],"value":"Save file as"},
+{"hash":190444780,"name":"tcore.applicationinfo1.description","sourcebytes":[118,67,97,114,100,32,102,105,108,101,115,32,109,97,110,97,103,101,109,101,110,116,32,116,111,111,108],"value":"vCard files management tool"},
+{"hash":51995065,"name":"tcore.selectdirectorydialog1.title","sourcebytes":[83,101,108,101,99,116,32,100,105,114,101,99,116,111,114,121],"value":"Select directory"}
+]}

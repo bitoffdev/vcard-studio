@@ -1,0 +1,1452 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tcore.aabout.caption
+msgid "About..."
+msgstr ""
+
+#: tcore.aexit.caption
+msgid "Exit"
+msgstr ""
+
+#: tcore.afileclose.caption
+msgid "Close"
+msgstr ""
+
+#: tcore.afilecombine.caption
+msgid "Combine..."
+msgstr ""
+
+#: tcore.afilenew.caption
+msgid "New"
+msgstr ""
+
+#: tcore.afileopen.caption
+msgid "Open..."
+msgstr ""
+
+#: tcore.afileopenrecent.caption
+msgctxt "tcore.afileopenrecent.caption"
+msgid "Open recent"
+msgstr ""
+
+#: tcore.afilesave.caption
+msgid "Save"
+msgstr ""
+
+#: tcore.afilesaveas.caption
+msgid "Save as..."
+msgstr ""
+
+#: tcore.afilesplit.caption
+msgid "Split..."
+msgstr ""
+
+#: tcore.afind.caption
+msgid "Find..."
+msgstr ""
+
+#: tcore.afindduplicate.caption
+msgctxt "tcore.afindduplicate.caption"
+msgid "Find duplicities"
+msgstr ""
+
+#: tcore.agenerate.caption
+msgctxt "tcore.agenerate.caption"
+msgid "Generate contacts"
+msgstr ""
+
+#: tcore.ahomepage.caption
+msgid "Home page"
+msgstr ""
+
+#: tcore.applicationinfo1.description
+msgid "vCard files management tool"
+msgstr ""
+
+#: tcore.asettings.caption
+msgctxt "tcore.asettings.caption"
+msgid "Settings"
+msgstr ""
+
+#: tcore.atest.caption
+msgctxt "tcore.atest.caption"
+msgid "Test"
+msgstr ""
+
+#: tcore.opendialog1.title
+msgctxt "tcore.opendialog1.title"
+msgid "Open existing file"
+msgstr ""
+
+#: tcore.savedialog1.title
+msgctxt "tcore.savedialog1.title"
+msgid "Save file as"
+msgstr ""
+
+#: tcore.selectdirectorydialog1.title
+msgid "Select directory"
+msgstr ""
+
+#: tformcontact.aphotoclear.caption
+msgctxt "tformcontact.aphotoclear.caption"
+msgid "Clear"
+msgstr ""
+
+#: tformcontact.aphotoload.caption
+msgctxt "tformcontact.aphotoload.caption"
+msgid "Load from file"
+msgstr ""
+
+#: tformcontact.aphotosave.caption
+msgctxt "tformcontact.aphotosave.caption"
+msgid "Save to file"
+msgstr ""
+
+#: tformcontact.aphotoseturl.caption
+msgid "Set URL"
+msgstr ""
+
+#: tformcontact.aphotoshow.caption
+msgctxt "tformcontact.aphotoshow.caption"
+msgid "Show"
+msgstr ""
+
+#: tformcontact.buttoncancel.caption
+msgctxt "tformcontact.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformcontact.buttonhomeaddressshow.caption
+msgctxt "tformcontact.buttonhomeaddressshow.caption"
+msgid "Show on map"
+msgstr ""
+
+#: tformcontact.buttonnamedetails.caption
+msgid "Details"
+msgstr ""
+
+#: tformcontact.buttonnext.caption
+msgid "Next"
+msgstr ""
+
+#: tformcontact.buttonok.caption
+msgctxt "tformcontact.buttonok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformcontact.buttonprevious.caption
+msgid "Previous"
+msgstr ""
+
+#: tformcontact.buttonworkaddressshow.caption
+msgctxt "tformcontact.buttonworkaddressshow.caption"
+msgid "Show on map"
+msgstr ""
+
+#: tformcontact.calendardialog1.cancelcaption
+msgctxt "tformcontact.calendardialog1.cancelcaption"
+msgid "Cancel"
+msgstr ""
+
+#: tformcontact.calendardialog1.okcaption
+msgid "&OK"
+msgstr ""
+
+#: tformcontact.calendardialog1.title
+msgctxt "tformcontact.calendardialog1.title"
+msgid "Select date"
+msgstr ""
+
+#: tformcontact.caption
+msgctxt "tformcontact.caption"
+msgid "Contact"
+msgstr ""
+
+#: tformcontact.groupbox1.caption
+msgctxt "tformcontact.groupbox1.caption"
+msgid "Address"
+msgstr ""
+
+#: tformcontact.groupbox2.caption
+msgctxt "tformcontact.groupbox2.caption"
+msgid "Address"
+msgstr ""
+
+#: tformcontact.label10.caption
+msgctxt "tformcontact.label10.caption"
+msgid "Pager:"
+msgstr ""
+
+#: tformcontact.label11.caption
+msgctxt "tformcontact.label11.caption"
+msgid "Fax:"
+msgstr ""
+
+#: tformcontact.label12.caption
+msgctxt "tformcontact.label12.caption"
+msgid "Mobile:"
+msgstr ""
+
+#: tformcontact.label13.caption
+msgctxt "tformcontact.label13.caption"
+msgid "Phone:"
+msgstr ""
+
+#: tformcontact.label14.caption
+msgctxt "tformcontact.label14.caption"
+msgid "Pager:"
+msgstr ""
+
+#: tformcontact.label15.caption
+msgctxt "tformcontact.label15.caption"
+msgid "Phone:"
+msgstr ""
+
+#: tformcontact.label16.caption
+msgctxt "tformcontact.label16.caption"
+msgid "Fax:"
+msgstr ""
+
+#: tformcontact.label17.caption
+msgctxt "tformcontact.label17.caption"
+msgid "Pager:"
+msgstr ""
+
+#: tformcontact.label18.caption
+msgctxt "tformcontact.label18.caption"
+msgid "Title:"
+msgstr ""
+
+#: tformcontact.label19.caption
+msgctxt "tformcontact.label19.caption"
+msgid "Mobile:"
+msgstr ""
+
+#: tformcontact.label2.caption
+msgctxt "tformcontact.label2.caption"
+msgid "Mobile:"
+msgstr ""
+
+#: tformcontact.label20.caption
+msgid "Jabber:"
+msgstr ""
+
+#: tformcontact.label21.caption
+msgid "MSN:"
+msgstr ""
+
+#: tformcontact.label22.caption
+msgid "Birthday:"
+msgstr ""
+
+#: tformcontact.label23.caption
+msgid "IRC:"
+msgstr ""
+
+#: tformcontact.label24.caption
+msgid "Full name:"
+msgstr ""
+
+#: tformcontact.label28.caption
+msgctxt "tformcontact.label28.caption"
+msgid "Street:"
+msgstr ""
+
+#: tformcontact.label29.caption
+msgctxt "tformcontact.label29.caption"
+msgid "City:"
+msgstr ""
+
+#: tformcontact.label3.caption
+msgctxt "tformcontact.label3.caption"
+msgid "Phone:"
+msgstr ""
+
+#: tformcontact.label30.caption
+msgctxt "tformcontact.label30.caption"
+msgid "Region:"
+msgstr ""
+
+#: tformcontact.label31.caption
+msgctxt "tformcontact.label31.caption"
+msgid "Country:"
+msgstr ""
+
+#: tformcontact.label32.caption
+msgctxt "tformcontact.label32.caption"
+msgid "Web address:"
+msgstr ""
+
+#: tformcontact.label33.caption
+msgctxt "tformcontact.label33.caption"
+msgid "Postal code:"
+msgstr ""
+
+#: tformcontact.label34.caption
+msgctxt "tformcontact.label34.caption"
+msgid "Post office box:"
+msgstr ""
+
+#: tformcontact.label35.caption
+msgctxt "tformcontact.label35.caption"
+msgid "Extended street:"
+msgstr ""
+
+#: tformcontact.label36.caption
+msgctxt "tformcontact.label36.caption"
+msgid "Street:"
+msgstr ""
+
+#: tformcontact.label37.caption
+msgctxt "tformcontact.label37.caption"
+msgid "Extended street:"
+msgstr ""
+
+#: tformcontact.label38.caption
+msgctxt "tformcontact.label38.caption"
+msgid "Region:"
+msgstr ""
+
+#: tformcontact.label39.caption
+msgctxt "tformcontact.label39.caption"
+msgid "Country:"
+msgstr ""
+
+#: tformcontact.label4.caption
+msgctxt "tformcontact.label4.caption"
+msgid "E-mail:"
+msgstr ""
+
+#: tformcontact.label40.caption
+msgctxt "tformcontact.label40.caption"
+msgid "Web address:"
+msgstr ""
+
+#: tformcontact.label41.caption
+msgctxt "tformcontact.label41.caption"
+msgid "Postal code:"
+msgstr ""
+
+#: tformcontact.label42.caption
+msgctxt "tformcontact.label42.caption"
+msgid "City:"
+msgstr ""
+
+#: tformcontact.label43.caption
+msgctxt "tformcontact.label43.caption"
+msgid "Post office box:"
+msgstr ""
+
+#: tformcontact.label44.caption
+msgid "Nickname:"
+msgstr ""
+
+#: tformcontact.label45.caption
+msgid "Anniversary:"
+msgstr ""
+
+#: tformcontact.label46.caption
+msgctxt "tformcontact.label46.caption"
+msgid "Web address:"
+msgstr ""
+
+#: tformcontact.label47.caption
+msgid "Google Talk:"
+msgstr ""
+
+#: tformcontact.label48.caption
+msgid "Windows Live:"
+msgstr ""
+
+#: tformcontact.label49.caption
+msgid "Gender:"
+msgstr ""
+
+#: tformcontact.label50.caption
+msgid "Myspace:"
+msgstr ""
+
+#: tformcontact.label51.caption
+msgid "Twitter:"
+msgstr ""
+
+#: tformcontact.label52.caption
+msgid "Instagram:"
+msgstr ""
+
+#: tformcontact.label53.caption
+msgid "LinkedIn:"
+msgstr ""
+
+#: tformcontact.label54.caption
+msgid "Snapchat:"
+msgstr ""
+
+#: tformcontact.label55.caption
+msgid "Matrix:"
+msgstr ""
+
+#: tformcontact.label56.caption
+msgid "Categories:"
+msgstr ""
+
+#: tformcontact.label57.caption
+msgid "GroupWise:"
+msgstr ""
+
+#: tformcontact.label6.caption
+msgid "Notes:"
+msgstr ""
+
+#: tformcontact.label7.caption
+msgctxt "tformcontact.label7.caption"
+msgid "E-mail:"
+msgstr ""
+
+#: tformcontact.label8.caption
+msgctxt "tformcontact.label8.caption"
+msgid "E-mail:"
+msgstr ""
+
+#: tformcontact.label9.caption
+msgctxt "tformcontact.label9.caption"
+msgid "Fax:"
+msgstr ""
+
+#: tformcontact.labelorganization.caption
+msgid "Organization:"
+msgstr ""
+
+#: tformcontact.labelorganization1.caption
+msgid "Department:"
+msgstr ""
+
+#: tformcontact.labelorganization10.caption
+msgid "Reddit:"
+msgstr ""
+
+#: tformcontact.labelorganization11.caption
+msgid "Facebook:"
+msgstr ""
+
+#: tformcontact.labelorganization12.caption
+msgid "GaduGadu:"
+msgstr ""
+
+#: tformcontact.labelorganization2.caption
+msgid "Skype:"
+msgstr ""
+
+#: tformcontact.labelorganization3.caption
+msgid "ICQ:"
+msgstr ""
+
+#: tformcontact.labelorganization4.caption
+msgid "AIM:"
+msgstr ""
+
+#: tformcontact.labelorganization5.caption
+msgid "Yahoo!:"
+msgstr ""
+
+#: tformcontact.labelorganization6.caption
+msgid "QQ:"
+msgstr ""
+
+#: tformcontact.labelorganization7.caption
+msgid "PeerTube:"
+msgstr ""
+
+#: tformcontact.labelorganization8.caption
+msgid "YouTube:"
+msgstr ""
+
+#: tformcontact.labelorganization9.caption
+msgid "Mastodon:"
+msgstr ""
+
+#: tformcontact.openpicturedialog1.title
+msgctxt "tformcontact.openpicturedialog1.title"
+msgid "Open existing file"
+msgstr ""
+
+#: tformcontact.savepicturedialog1.title
+msgctxt "tformcontact.savepicturedialog1.title"
+msgid "Save file as"
+msgstr ""
+
+#: tformcontact.speedbuttonaniversary.hint
+msgctxt "tformcontact.speedbuttonaniversary.hint"
+msgid "Select date"
+msgstr ""
+
+#: tformcontact.speedbuttonbirthday.hint
+msgctxt "tformcontact.speedbuttonbirthday.hint"
+msgid "Select date"
+msgstr ""
+
+#: tformcontact.speedbuttonemail.hint
+msgctxt "tformcontact.speedbuttonemail.hint"
+msgid "Open in email client"
+msgstr ""
+
+#: tformcontact.speedbuttonhomeemail.hint
+msgctxt "tformcontact.speedbuttonhomeemail.hint"
+msgid "Open in email client"
+msgstr ""
+
+#: tformcontact.speedbuttonhomeweb.hint
+msgctxt "tformcontact.speedbuttonhomeweb.hint"
+msgid "Open in web browser"
+msgstr ""
+
+#: tformcontact.speedbuttonweb.hint
+msgctxt "tformcontact.speedbuttonweb.hint"
+msgid "Open in web browser"
+msgstr ""
+
+#: tformcontact.speedbuttonworkemail.hint
+msgctxt "tformcontact.speedbuttonworkemail.hint"
+msgid "Open in email client"
+msgstr ""
+
+#: tformcontact.speedbuttonworkweb.hint
+msgctxt "tformcontact.speedbuttonworkweb.hint"
+msgid "Open in web browser"
+msgstr ""
+
+#: tformcontact.tabsheetall.caption
+msgid "All fields"
+msgstr ""
+
+#: tformcontact.tabsheetchat.caption
+msgid "Chat"
+msgstr ""
+
+#: tformcontact.tabsheetgeneral.caption
+msgid "General"
+msgstr ""
+
+#: tformcontact.tabsheethome.caption
+msgid "Home"
+msgstr ""
+
+#: tformcontact.tabsheetothers.caption
+msgid "Others"
+msgstr ""
+
+#: tformcontact.tabsheetsocial.caption
+msgid "Social"
+msgstr ""
+
+#: tformcontact.tabsheetwork.caption
+msgid "Work"
+msgstr ""
+
+#: tformcontacts.aadd.caption
+msgctxt "tformcontacts.aadd.caption"
+msgid "Add"
+msgstr ""
+
+#: tformcontacts.aclone.caption
+msgctxt "tformcontacts.aclone.caption"
+msgid "Clone"
+msgstr ""
+
+#: tformcontacts.acopy.caption
+msgid "Copy"
+msgstr ""
+
+#: tformcontacts.acut.caption
+msgid "Cut"
+msgstr ""
+
+#: tformcontacts.aloadfromfile.caption
+msgid "Load from file..."
+msgstr ""
+
+#: tformcontacts.amodify.caption
+msgctxt "tformcontacts.amodify.caption"
+msgid "Modify"
+msgstr ""
+
+#: tformcontacts.apaste.caption
+msgid "Paste"
+msgstr ""
+
+#: tformcontacts.aremove.caption
+msgctxt "tformcontacts.aremove.caption"
+msgid "Remove"
+msgstr ""
+
+#: tformcontacts.asavetofile.caption
+msgid "Save to file..."
+msgstr ""
+
+#: tformcontacts.aselectall.caption
+msgctxt "tformcontacts.aselectall.caption"
+msgid "Select all"
+msgstr ""
+
+#: tformcontacts.caption
+msgctxt "tformcontacts.caption"
+msgid "Contacts"
+msgstr ""
+
+#: tformcontacts.listview1.columns[0].caption
+msgctxt "tformcontacts.listview1.columns[0].caption"
+msgid "Full Name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[1].caption
+msgid "First name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[2].caption
+msgid "Middle name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[3].caption
+msgctxt "tformcontacts.listview1.columns[3].caption"
+msgid "Last Name"
+msgstr ""
+
+#: tformcontacts.listview1.columns[4].caption
+msgid "Phone"
+msgstr ""
+
+#: tformcontacts.listview1.columns[5].caption
+msgid "Mobile"
+msgstr ""
+
+#: tformcontacts.listview1.columns[6].caption
+msgctxt "tformcontacts.listview1.columns[6].caption"
+msgid "Home phone"
+msgstr ""
+
+#: tformcontacts.listview1.columns[7].caption
+msgctxt "tformcontacts.listview1.columns[7].caption"
+msgid "Work phone"
+msgstr ""
+
+#: tformerror.caption
+msgid "Load errors"
+msgstr ""
+
+#: tformfind.buttonfind.caption
+msgctxt "tformfind.buttonfind.caption"
+msgid "Find"
+msgstr ""
+
+#: tformfind.caption
+msgctxt "tformfind.caption"
+msgid "Find"
+msgstr ""
+
+#: tformfind.label1.caption
+msgctxt "tformfind.label1.caption"
+msgid "By contact field:"
+msgstr ""
+
+#: tformfindduplicity.ashowcontacts.caption
+msgid "Show contacts"
+msgstr ""
+
+#: tformfindduplicity.buttonmerge.caption
+msgid "Merge"
+msgstr ""
+
+#: tformfindduplicity.caption
+msgctxt "tformfindduplicity.caption"
+msgid "Find duplicities"
+msgstr ""
+
+#: tformfindduplicity.label1.caption
+msgctxt "tformfindduplicity.label1.caption"
+msgid "By contact field:"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[0].caption
+msgctxt "tformfindduplicity.listview1.columns[0].caption"
+msgid "Field"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[1].caption
+msgctxt "tformfindduplicity.listview1.columns[1].caption"
+msgid "Contacts"
+msgstr ""
+
+#: tformfindduplicity.listview1.columns[2].caption
+msgid "Count"
+msgstr ""
+
+#: tformgenerate.buttongenerate.caption
+msgid "Generate"
+msgstr ""
+
+#: tformgenerate.caption
+msgctxt "tformgenerate.caption"
+msgid "Generate contacts"
+msgstr ""
+
+#: tformgenerate.label1.caption
+msgid "Count:"
+msgstr ""
+
+#: tformimage.buttoncancel.caption
+msgctxt "tformimage.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformimage.buttonclear.caption
+msgctxt "tformimage.buttonclear.caption"
+msgid "Clear"
+msgstr ""
+
+#: tformimage.buttonload.caption
+msgctxt "tformimage.buttonload.caption"
+msgid "Load from file"
+msgstr ""
+
+#: tformimage.buttonok.caption
+msgctxt "tformimage.buttonok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformimage.buttonsave.caption
+msgctxt "tformimage.buttonsave.caption"
+msgid "Save to file"
+msgstr ""
+
+#: tformimage.caption
+msgctxt "tformimage.caption"
+msgid "Photo"
+msgstr ""
+
+#: tformimage.label1.caption
+msgctxt "tformimage.label1.caption"
+msgid "URL:"
+msgstr ""
+
+#: tformmain.caption
+msgid "vCard Studio"
+msgstr ""
+
+#: tformmain.menuitem7.caption
+msgctxt "tformmain.menuitem7.caption"
+msgid "Find"
+msgstr ""
+
+#: tformmain.menuitemfile.caption
+msgctxt "tformmain.menuitemfile.caption"
+msgid "File"
+msgstr ""
+
+#: tformmain.menuitemfileopenrecent.caption
+msgctxt "tformmain.menuitemfileopenrecent.caption"
+msgid "Open recent"
+msgstr ""
+
+#: tformmain.menuitemhelp.caption
+msgid "Help"
+msgstr ""
+
+#: tformmain.menuitemtoolbar.caption
+msgid "Main toolbar"
+msgstr ""
+
+#: tformmain.menuitemtools.caption
+msgid "Tools"
+msgstr ""
+
+#: tformmain.menuitemview.caption
+msgid "View"
+msgstr ""
+
+#: tformnamedetails.buttoncancel.caption
+msgctxt "tformnamedetails.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformnamedetails.buttonok.caption
+msgctxt "tformnamedetails.buttonok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformnamedetails.caption
+msgid "Name details"
+msgstr ""
+
+#: tformnamedetails.label1.caption
+msgid "First:"
+msgstr ""
+
+#: tformnamedetails.label25.caption
+msgid "Middle:"
+msgstr ""
+
+#: tformnamedetails.label26.caption
+msgctxt "tformnamedetails.label26.caption"
+msgid "Title:"
+msgstr ""
+
+#: tformnamedetails.label27.caption
+msgid "Suffix:"
+msgstr ""
+
+#: tformnamedetails.label5.caption
+msgid "Last:"
+msgstr ""
+
+#: tformproperties.aadd.caption
+msgctxt "tformproperties.aadd.caption"
+msgid "Add"
+msgstr ""
+
+#: tformproperties.aclone.caption
+msgctxt "tformproperties.aclone.caption"
+msgid "Clone"
+msgstr ""
+
+#: tformproperties.aloadvaluefromfile.caption
+msgid "Load value from file..."
+msgstr ""
+
+#: tformproperties.amodify.caption
+msgctxt "tformproperties.amodify.caption"
+msgid "Modify"
+msgstr ""
+
+#: tformproperties.aremove.caption
+msgctxt "tformproperties.aremove.caption"
+msgid "Remove"
+msgstr ""
+
+#: tformproperties.asavevaluetofile.caption
+msgid "Save value to file..."
+msgstr ""
+
+#: tformproperties.aselectall.caption
+msgctxt "tformproperties.aselectall.caption"
+msgid "Select all"
+msgstr ""
+
+#: tformproperties.caption
+msgctxt "tformproperties.caption"
+msgid "Contacts"
+msgstr ""
+
+#: tformproperties.listview1.columns[0].caption
+msgctxt "tformproperties.listview1.columns[0].caption"
+msgid "Name"
+msgstr ""
+
+#: tformproperties.listview1.columns[1].caption
+msgid "Attributes"
+msgstr ""
+
+#: tformproperties.listview1.columns[2].caption
+msgid "Values"
+msgstr ""
+
+#: tformproperty.buttoncancel.caption
+msgctxt "tformproperty.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformproperty.buttonok.caption
+msgctxt "tformproperty.buttonok.caption"
+msgid "OK"
+msgstr ""
+
+#: tformproperty.caption
+msgctxt "tformproperty.caption"
+msgid "Field"
+msgstr ""
+
+#: tformproperty.label1.caption
+msgid "Name:"
+msgstr ""
+
+#: tformproperty.label2.caption
+msgid "Attributes:"
+msgstr ""
+
+#: tformproperty.label3.caption
+msgid "Values:"
+msgstr ""
+
+#: tformproperty.label4.caption
+msgid "Field:"
+msgstr ""
+
+#: tformsettings.buttoncancel.caption
+msgctxt "tformsettings.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformsettings.buttonok.caption
+msgid "Ok"
+msgstr ""
+
+#: tformsettings.caption
+msgctxt "tformsettings.caption"
+msgid "Settings"
+msgstr ""
+
+#: tformsettings.checkboxautomaticdpi.caption
+msgid "Automatic DPI"
+msgstr ""
+
+#: tformsettings.checkboxreopenlastfileonstart.caption
+msgid "Reopen last file on start"
+msgstr ""
+
+#: tformsettings.label1.caption
+msgid "Language:"
+msgstr ""
+
+#: tformsettings.label2.caption
+msgid "Theme:"
+msgstr ""
+
+#: tformsettings.label3.caption
+msgid "Default vCard version:"
+msgstr ""
+
+#: tformsettings.label4.caption
+msgid "Map query URL:"
+msgstr ""
+
+#: tformsettings.labeldpi.caption
+msgid "DPI:"
+msgstr ""
+
+#: tformtest.arun.caption
+msgctxt "tformtest.arun.caption"
+msgid "Run"
+msgstr ""
+
+#: tformtest.ashow.caption
+msgctxt "tformtest.ashow.caption"
+msgid "Show"
+msgstr ""
+
+#: tformtest.buttonrun.caption
+msgctxt "tformtest.buttonrun.caption"
+msgid "Run"
+msgstr ""
+
+#: tformtest.caption
+msgctxt "tformtest.caption"
+msgid "Test"
+msgstr ""
+
+#: tformtest.listviewtestcases.columns[0].caption
+msgctxt "tformtest.listviewtestcases.columns[0].caption"
+msgid "Name"
+msgstr ""
+
+#: tformtest.listviewtestcases.columns[1].caption
+msgid "Result"
+msgstr ""
+
+#: tformtestcase.caption
+msgid "Test case"
+msgstr ""
+
+#: ucontact.saim
+msgid "AIM"
+msgstr ""
+
+#: ucontact.sanniversary
+msgid "Anniversary"
+msgstr ""
+
+#: ucontact.scategories
+msgid "Categories"
+msgstr ""
+
+#: ucontact.scontacthasnoparent
+msgid "Contact has no parent"
+msgstr ""
+
+#: ucontact.sdayofbirth
+msgid "Day of birth"
+msgstr ""
+
+#: ucontact.sdepartement
+msgid "Departement"
+msgstr ""
+
+#: ucontact.semail
+msgid "E-mail"
+msgstr ""
+
+#: ucontact.sexpectedproperty
+msgid "Expected contact property"
+msgstr ""
+
+#: ucontact.sexpectedvcardbegin
+msgid "Expected vCard begin"
+msgstr ""
+
+#: ucontact.sfacebook
+msgid "Facebook"
+msgstr ""
+
+#: ucontact.sfax
+msgid "Fax"
+msgstr ""
+
+#: ucontact.sfieldindexnotdefined
+msgid "Field index not defined"
+msgstr ""
+
+#: ucontact.sfieldindexredefined
+#, object-pascal-format
+msgid "Field index %d redefined"
+msgstr ""
+
+#: ucontact.sfirstname
+msgid "First Name"
+msgstr ""
+
+#: ucontact.sfullname
+msgctxt "ucontact.sfullname"
+msgid "Full Name"
+msgstr ""
+
+#: ucontact.sgadugadu
+msgid "GaduGadu"
+msgstr ""
+
+#: ucontact.sgender
+msgid "Gender"
+msgstr ""
+
+#: ucontact.sgoogletalk
+msgid "Google Talk"
+msgstr ""
+
+#: ucontact.sgroupwise
+msgid "GroupWise"
+msgstr ""
+
+#: ucontact.shomeaddresscity
+msgid "Home address city"
+msgstr ""
+
+#: ucontact.shomeaddresscountry
+msgid "Home address country"
+msgstr ""
+
+#: ucontact.shomeaddresspostalcode
+msgid "Home address postal code"
+msgstr ""
+
+#: ucontact.shomeaddresspostofficebox
+msgid "Home address post office box"
+msgstr ""
+
+#: ucontact.shomeaddressregion
+msgid "Home address region"
+msgstr ""
+
+#: ucontact.shomeaddressstreet
+msgid "Home address street"
+msgstr ""
+
+#: ucontact.shomeaddressstreetextended
+msgid "Home address extended street"
+msgstr ""
+
+#: ucontact.shomeemail
+msgid "Home E-mail"
+msgstr ""
+
+#: ucontact.shomefax
+msgid "Home fax"
+msgstr ""
+
+#: ucontact.shomemobile
+msgid "Home mobile"
+msgstr ""
+
+#: ucontact.shomepager
+msgid "Home pager"
+msgstr ""
+
+#: ucontact.shomephone
+msgctxt "ucontact.shomephone"
+msgid "Home phone"
+msgstr ""
+
+#: ucontact.shomephone2
+msgid "Home phone 2"
+msgstr ""
+
+#: ucontact.sicq
+msgid "ICQ"
+msgstr ""
+
+#: ucontact.sinstagram
+msgid "Instagram"
+msgstr ""
+
+#: ucontact.sinternetemail
+msgid "Internet E-mail"
+msgstr ""
+
+#: ucontact.sirc
+msgid "IRC"
+msgstr ""
+
+#: ucontact.sjabber
+msgid "Jabber"
+msgstr ""
+
+#: ucontact.slastname
+msgctxt "ucontact.slastname"
+msgid "Last Name"
+msgstr ""
+
+#: ucontact.slasttimecontacted
+msgid "Last Time Contacted"
+msgstr ""
+
+#: ucontact.slinkedin
+msgid "LinkedIn"
+msgstr ""
+
+#: ucontact.slogo
+msgid "Logo"
+msgstr ""
+
+#: ucontact.smainphone
+msgid "Main phone"
+msgstr ""
+
+#: ucontact.smastodon
+msgid "Mastodon"
+msgstr ""
+
+#: ucontact.smatrix
+msgid "Matrix"
+msgstr ""
+
+#: ucontact.smiddlename
+msgid "Middle Name"
+msgstr ""
+
+#: ucontact.smobilephone
+msgid "Mobile phone"
+msgstr ""
+
+#: ucontact.smsn
+msgid "MSN"
+msgstr ""
+
+#: ucontact.smyspace
+msgid "MySpace"
+msgstr ""
+
+#: ucontact.snickname
+msgid "Nick name"
+msgstr ""
+
+#: ucontact.snote
+msgid "Note"
+msgstr ""
+
+#: ucontact.sorganization
+msgid "Organization"
+msgstr ""
+
+#: ucontact.spager
+msgid "Pager"
+msgstr ""
+
+#: ucontact.speertube
+msgid "PeerTube"
+msgstr ""
+
+#: ucontact.sphoto
+msgctxt "ucontact.sphoto"
+msgid "Photo"
+msgstr ""
+
+#: ucontact.sqq
+msgid "QQ"
+msgstr ""
+
+#: ucontact.sreddit
+msgid "Reddit"
+msgstr ""
+
+#: ucontact.srevision
+msgid "Revision"
+msgstr ""
+
+#: ucontact.srole
+msgid "Role"
+msgstr ""
+
+#: ucontact.sskype
+msgid "Skype"
+msgstr ""
+
+#: ucontact.ssnapchat
+msgid "Snapchat"
+msgstr ""
+
+#: ucontact.stelephone
+msgid "Telephone"
+msgstr ""
+
+#: ucontact.stimescontacted
+msgid "Times Contacted"
+msgstr ""
+
+#: ucontact.stitle
+msgid "Title"
+msgstr ""
+
+#: ucontact.stitleafter
+msgid "Title After"
+msgstr ""
+
+#: ucontact.stitlebefore
+msgid "Title Before"
+msgstr ""
+
+#: ucontact.stwitter
+msgid "Twitter"
+msgstr ""
+
+#: ucontact.suniqueidentifier
+msgid "Unique identifier"
+msgstr ""
+
+#: ucontact.svcardfile
+msgid "vCard file"
+msgstr ""
+
+#: ucontact.sversion
+msgid "Version"
+msgstr ""
+
+#: ucontact.svoipphone
+msgid "VoIP phone"
+msgstr ""
+
+#: ucontact.swebaddress
+msgid "Web address"
+msgstr ""
+
+#: ucontact.swebaddresshome
+msgid "Web address home"
+msgstr ""
+
+#: ucontact.swebaddresswork
+msgid "Web address work"
+msgstr ""
+
+#: ucontact.swindowslive
+msgid "Windows Live"
+msgstr ""
+
+#: ucontact.sworkaddresscity
+msgid "Work address city"
+msgstr ""
+
+#: ucontact.sworkaddresscountry
+msgid "Work address country"
+msgstr ""
+
+#: ucontact.sworkaddresspostalcode
+msgid "Work address postal code"
+msgstr ""
+
+#: ucontact.sworkaddresspostofficebox
+msgid "Work address post office box"
+msgstr ""
+
+#: ucontact.sworkaddressregion
+msgid "Work address region"
+msgstr ""
+
+#: ucontact.sworkaddressstreet
+msgid "Work address street"
+msgstr ""
+
+#: ucontact.sworkaddressstreetextended
+msgid "Work address extended street"
+msgstr ""
+
+#: ucontact.sworkemail
+msgid "Work E-mail"
+msgstr ""
+
+#: ucontact.sworkfax
+msgid "Work fax"
+msgstr ""
+
+#: ucontact.sworkmobile
+msgid "Work mobile"
+msgstr ""
+
+#: ucontact.sworkpager
+msgid "Work pager"
+msgstr ""
+
+#: ucontact.sworkphone
+msgctxt "ucontact.sworkphone"
+msgid "Work phone"
+msgstr ""
+
+#: ucontact.syahoo
+msgid "Yahoo!"
+msgstr ""
+
+#: ucontact.syoutube
+msgid "YouTube"
+msgstr ""
+
+#: ucore.sappexit
+msgid "Application exit"
+msgstr ""
+
+#: ucore.sappexitquery
+msgid "File was modified. Do you want to save it before exit?"
+msgstr ""
+
+#: ucore.scombinedcontacts
+#, object-pascal-format
+msgid "Combined %d contact files."
+msgstr ""
+
+#: ucore.sfilenotfound
+#, object-pascal-format
+msgid "File '%s' not found."
+msgstr ""
+
+#: ucore.sfilesplit
+msgid "Contacts split"
+msgstr ""
+
+#: ucore.sfilesplitfinishedopendirectory
+#, object-pascal-format
+msgid "Total %d contact files saved. Do you want to open the directory %s?"
+msgstr ""
+
+#: ucore.sline
+#, object-pascal-format
+msgid "Line %d: %s"
+msgstr ""
+
+#: udatafile.sallfiles
+msgctxt "udatafile.sallfiles"
+msgid "All files"
+msgstr ""
+
+#: udatafile.sdatafilename
+msgctxt "udatafile.sdatafilename"
+msgid "File"
+msgstr ""
+
+#: uformcontact.scontact
+msgctxt "uformcontact.scontact"
+msgid "Contact"
+msgstr ""
+
+#: uformcontact.sphotourl
+msgid "Photo URL"
+msgstr ""
+
+#: uformcontact.sphotourlquery
+msgid "Enter URL for profile photo"
+msgstr ""
+
+#: uformcontacts.sendupdatetoolow
+msgctxt "uformcontacts.sendupdatetoolow"
+msgid "Update counter error"
+msgstr ""
+
+#: uformcontacts.sfiltered
+msgctxt "uformcontacts.sfiltered"
+msgid "Filtered"
+msgstr ""
+
+#: uformcontacts.sremovecontacts
+msgid "Remove contacts"
+msgstr ""
+
+#: uformcontacts.sremovecontactsquery
+msgid "Do you want to remove selected contacts?"
+msgstr ""
+
+#: uformcontacts.sselected
+msgctxt "uformcontacts.sselected"
+msgid "Selected"
+msgstr ""
+
+#: uformcontacts.stotal
+msgctxt "uformcontacts.stotal"
+msgid "Total"
+msgstr ""
+
+#: uformfind.sany
+msgid "Any"
+msgstr ""
+
+#: uformmain.smodified
+msgid "Modified"
+msgstr ""
+
+#: uformproperties.sallfiles
+msgctxt "uformproperties.sallfiles"
+msgid "All files"
+msgstr ""
+
+#: uformproperties.sendupdatetoolow
+msgctxt "uformproperties.sendupdatetoolow"
+msgid "Update counter error"
+msgstr ""
+
+#: uformproperties.sfiltered
+msgctxt "uformproperties.sfiltered"
+msgid "Filtered"
+msgstr ""
+
+#: uformproperties.sremovepropertiesquery
+msgid "Do you want to remove selected fields?"
+msgstr ""
+
+#: uformproperties.sremovepropertites
+msgid "Remove fields"
+msgstr ""
+
+#: uformproperties.sselected
+msgctxt "uformproperties.sselected"
+msgid "Selected"
+msgstr ""
+
+#: uformproperties.stextfiles
+msgid "Text files"
+msgstr ""
+
+#: uformproperties.stotal
+msgctxt "uformproperties.stotal"
+msgid "Total"
+msgstr ""
+
+#: uformproperties.svalue
+msgid "Value"
+msgstr ""
+
+#: uquotedprintable.sdecodeerror
+msgid "Decode error"
+msgstr ""
+

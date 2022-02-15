@@ -1,0 +1,64 @@
+object FormFind: TFormFind
+  Left = 469
+  Height = 545
+  Top = 407
+  Width = 841
+  ActiveControl = EditValue
+  Caption = 'Find'
+  ClientHeight = 545
+  ClientWidth = 841
+  DesignTimePPI = 150
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '2.2.0.4'
+  object Panel1: TPanel
+    Left = 0
+    Height = 60
+    Top = 0
+    Width = 841
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 60
+    ClientWidth = 841
+    ParentFont = False
+    TabOrder = 0
+    object ComboBoxField: TComboBox
+      Left = 192
+      Height = 42
+      Top = 17
+      Width = 250
+      ItemHeight = 0
+      OnChange = ComboBoxFieldChange
+      ParentFont = False
+      Style = csDropDownList
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 14
+      Height = 27
+      Top = 20
+      Width = 142
+      Caption = 'By contact field:'
+      ParentFont = False
+    end
+    object EditValue: TEdit
+      Left = 458
+      Height = 43
+      Top = 17
+      Width = 217
+      OnKeyPress = EditValueKeyPress
+      TabOrder = 1
+    end
+    object ButtonFind: TButton
+      Left = 692
+      Height = 40
+      Top = 17
+      Width = 118
+      Caption = 'Find'
+      OnClick = ButtonFindClick
+      TabOrder = 2
+    end
+  end
+end

@@ -1,0 +1,153 @@
+object FormSettings: TFormSettings
+  Left = 798
+  Height = 421
+  Top = 321
+  Width = 548
+  Caption = 'Settings'
+  ClientHeight = 421
+  ClientWidth = 548
+  Constraints.MinHeight = 421
+  Constraints.MinWidth = 548
+  DesignTimePPI = 150
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.2.0.4'
+  object ComboBoxLanguage: TComboBox
+    Left = 250
+    Height = 42
+    Top = 17
+    Width = 275
+    ItemHeight = 0
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 25
+    Height = 27
+    Top = 25
+    Width = 96
+    Caption = 'Language:'
+    ParentFont = False
+  end
+  object ButtonOk: TButton
+    Left = 416
+    Height = 39
+    Top = 365
+    Width = 118
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    ModalResult = 1
+    OnClick = ButtonOkClick
+    ParentFont = False
+    TabOrder = 7
+  end
+  object ButtonCancel: TButton
+    Left = 266
+    Height = 39
+    Top = 365
+    Width = 118
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 6
+  end
+  object CheckBoxAutomaticDPI: TCheckBox
+    Left = 24
+    Height = 31
+    Top = 257
+    Width = 154
+    Caption = 'Automatic DPI'
+    OnChange = CheckBoxAutomaticDPIChange
+    ParentFont = False
+    TabOrder = 4
+    Visible = False
+  end
+  object SpinEditDPI: TSpinEdit
+    Left = 249
+    Height = 43
+    Top = 291
+    Width = 151
+    MaxValue = 300
+    MinValue = 96
+    ParentFont = False
+    TabOrder = 5
+    Value = 96
+    Visible = False
+  end
+  object LabelDPI: TLabel
+    Left = 57
+    Height = 27
+    Top = 299
+    Width = 36
+    Caption = 'DPI:'
+    ParentFont = False
+    Visible = False
+  end
+  object CheckBoxReopenLastFileOnStart: TCheckBox
+    Left = 24
+    Height = 31
+    Top = 216
+    Width = 239
+    Caption = 'Reopen last file on start'
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Bevel1: TBevel
+    Left = 12
+    Height = 2
+    Top = 346
+    Width = 517
+    Anchors = [akLeft, akRight, akBottom]
+  end
+  object Label2: TLabel
+    Left = 25
+    Height = 27
+    Top = 75
+    Width = 67
+    Caption = 'Theme:'
+    ParentFont = False
+  end
+  object ComboBoxTheme: TComboBox
+    Left = 250
+    Height = 42
+    Top = 67
+    Width = 275
+    ItemHeight = 0
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 1
+  end
+  object Label3: TLabel
+    Left = 25
+    Height = 27
+    Top = 125
+    Width = 199
+    Caption = 'Default vCard version:'
+  end
+  object EditDefaultVcardVersion: TEdit
+    Left = 250
+    Height = 43
+    Top = 117
+    Width = 150
+    TabOrder = 2
+  end
+  object Label4: TLabel
+    Left = 25
+    Height = 27
+    Top = 172
+    Width = 144
+    Caption = 'Map query URL:'
+  end
+  object EditMapUrl: TEdit
+    Left = 250
+    Height = 43
+    Top = 168
+    Width = 278
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 8
+  end
+end
