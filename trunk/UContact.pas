@@ -157,11 +157,13 @@ type
     FModified: Boolean;
     FOnModify: TNotifyEvent;
     class var FFields: TContactFields;
-    function GetField(Index: TContactFieldIndex): string;
-    procedure SetField(Index: TContactFieldIndex; AValue: string);
-    procedure SetModified(AValue: Boolean);
     procedure DoOnModify;
     procedure DetectMaxLineLength(Text: string);
+    function GetField(Index: TContactFieldIndex): string;
+    function GetString: string;
+    procedure SetField(Index: TContactFieldIndex; AValue: string);
+    procedure SetModified(AValue: Boolean);
+    procedure SetString(AValue: string);
   public
     Properties: TContactProperties;
     ContactsFile: TContactsFile;
@@ -181,6 +183,8 @@ type
     procedure LoadFromFile(FileName: string);
     property Fields[Index: TContactFieldIndex]: string read GetField write SetField;
     property Modified: Boolean read FModified write SetModified;
+    property AsString: string read GetString write SetString;
+  published
     property OnModify: TNotifyEvent read FOnModify write FOnModify;
   end;
 
@@ -208,7 +212,9 @@ type
     FMaxLineLength: Integer;
     FOnError: TErrorEvent;
     procedure Error(Text: string; Line: Integer);
+    function GetString: string;
     function NewItem(Key, Value: string): string;
+    procedure SetString(AValue: string);
   public
     Contacts: TContacts;
     function GetFileName: string; override;
@@ -220,6 +226,7 @@ type
     procedure LoadFromFile(FileName: string); override;
     constructor Create; override;
     destructor Destroy; override;
+    property AsString: string read GetString write SetString;
   published
     property OnError: TErrorEvent read FOnError write FOnError;
     property MaxLineLength: Integer read FMaxLineLength write FMaxLineLength;
@@ -1357,6 +1364,19 @@ begin
   end else raise Exception.Create(SFieldIndexNotDefined);
 end;
 
+function TContact.GetString: string;
+var
+  Lines: TStringList;
+begin
+  Lines := TStringList.Create;
+  try
+    SaveToStrings(Lines);
+    Result := Lines.Text;
+  finally
+    Lines.Free;
+  end;
+end;
+
 procedure TContact.SetField(Index: TContactFieldIndex; AValue: string);
 var
   Prop: TContactProperty;
@@ -1416,6 +1436,21 @@ begin
   end;
   if LineLength > ContactsFile.MaxLineLength then
     ContactsFile.MaxLineLength := LineLength;
+end;
+
+procedure TContact.SetString(AValue: string);
+var
+  Lines: TStringList;
+  StartLine: Integer;
+begin
+  Lines := TStringList.Create;
+  try
+    Lines.Text := AValue;
+    StartLine := 0;
+    LoadFromStrings(Lines, StartLine);
+  finally
+    Lines.Free;
+  end;
 end;
 
 function TContact.HasField(FieldIndex: TContactFieldIndex): Boolean;
@@ -1514,58 +1549,58 @@ var
   LinePrefix: string;
   CutLength: Integer;
 begin
-    with Output do begin
-      Add(VCardBegin);
-      for I := 0 to Properties.Count - 1 do
-      with Properties[I] do begin
-        NameText := Name;
-        if Attributes.Count > 0 then
-          NameText := NameText + ';' + Attributes.DelimitedText;
-        if Encoding <> '' then begin
-          Value2 := GetEncodedValue;
-          NameText := NameText + ';ENCODING=' + Encoding;
-        end else Value2 := Value;
-        if Pos(LineEnding, Value2) > 0 then begin
-          Add(NameText + ':' + GetNext(Value2, LineEnding));
-          while Pos(LineEnding, Value2) > 0 do begin
-            Add(' ' + GetNext(Value2, LineEnding));
-          end;
+  with Output do begin
+    Add(VCardBegin);
+    for I := 0 to Properties.Count - 1 do
+    with Properties[I] do begin
+      NameText := Name;
+      if Attributes.Count > 0 then
+        NameText := NameText + ';' + Attributes.DelimitedText;
+      if Encoding <> '' then begin
+        Value2 := GetEncodedValue;
+        NameText := NameText + ';ENCODING=' + Encoding;
+      end else Value2 := Value;
+      if Pos(LineEnding, Value2) > 0 then begin
+        Add(NameText + ':' + GetNext(Value2, LineEnding));
+        while Pos(LineEnding, Value2) > 0 do begin
           Add(' ' + GetNext(Value2, LineEnding));
-          Add('');
-        end else begin
-          OutText := NameText + ':' + Value2;
-          LineIndex := 0;
-          LinePrefix := '';
-          while True do begin
-            if UTF8Length(OutText) > ContactsFile.MaxLineLength then begin
-              CutLength := ContactsFile.MaxLineLength;
-              if Encoding = VCardQuotedPrintable then begin
-                Dec(CutLength); // There will be softline break at the end
-                // Do not cut encoded items at the end of line
-                if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = QuotedPrintableEscapeCharacter) then
-                  Dec(CutLength, 2)
-                else if OutText[CutLength] = QuotedPrintableEscapeCharacter then
-                  Dec(CutLength, 1);
-              end;
-
-              CutText := UTF8Copy(OutText, 1, CutLength);
-              System.Delete(OutText, 1, Length(CutText));
-              if Encoding = VCardQuotedPrintable then
-                CutText := CutText + QuotedPrintableEscapeCharacter; // Add soft line break
-              Add(LinePrefix + CutText);
-              if Encoding <> VCardQuotedPrintable then
-                LinePrefix := ' ';
-              Inc(LineIndex);
-              Continue;
-            end else begin
-              Add(LinePrefix + OutText);
-              Break;
+        end;
+        Add(' ' + GetNext(Value2, LineEnding));
+        Add('');
+      end else begin
+        OutText := NameText + ':' + Value2;
+        LineIndex := 0;
+        LinePrefix := '';
+        while True do begin
+          if UTF8Length(OutText) > ContactsFile.MaxLineLength then begin
+            CutLength := ContactsFile.MaxLineLength;
+            if Encoding = VCardQuotedPrintable then begin
+              Dec(CutLength); // There will be softline break at the end
+              // Do not cut encoded items at the end of line
+              if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = QuotedPrintableEscapeCharacter) then
+                Dec(CutLength, 2)
+              else if OutText[CutLength] = QuotedPrintableEscapeCharacter then
+                Dec(CutLength, 1);
             end;
+
+            CutText := UTF8Copy(OutText, 1, CutLength);
+            System.Delete(OutText, 1, Length(CutText));
+            if Encoding = VCardQuotedPrintable then
+              CutText := CutText + QuotedPrintableEscapeCharacter; // Add soft line break
+            Add(LinePrefix + CutText);
+            if Encoding <> VCardQuotedPrintable then
+              LinePrefix := ' ';
+            Inc(LineIndex);
+            Continue;
+          end else begin
+            Add(LinePrefix + OutText);
+            Break;
           end;
         end;
       end;
-      Add(VCardEnd);
     end;
+    Add(VCardEnd);
+  end;
 end;
 
 function TContact.LoadFromStrings(Lines: TStrings; var StartLine: Integer): Boolean;
@@ -1694,6 +1729,15 @@ begin
   if Assigned(FOnError) then FOnError(Text, Line);
 end;
 
+function TContactsFile.GetString: string;
+var
+  I: Integer;
+begin
+  Result := '';
+  for I := 0 to Contacts.Count - 1 do
+    Result := Result + Contacts[I].AsString;
+end;
+
 function TContactsFile.GetFileName: string;
 begin
   Result := SVCardFile;
@@ -1745,6 +1789,20 @@ begin
   if not IsAsciiString(Value) then Charset := ';CHARSET=UTF-8'
     else Charset := '';
   Result := Key + Charset + ':' + Value;
+end;
+
+procedure TContactsFile.SetString(AValue: string);
+var
+  Lines: TStringList;
+begin
+  Lines := TStringList.Create;
+  try
+    Lines.Text := AValue;
+    LoadFromStrings(Lines);
+    Modified := True;
+  finally
+    Lines.Free;
+  end;
 end;
 
 procedure TContactsFile.SaveToFile(FileName: string);

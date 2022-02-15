@@ -31,6 +31,7 @@ msgid "Open recent"
 msgstr ""
 
 #: tcore.afilesave.caption
+msgctxt "tcore.afilesave.caption"
 msgid "Save"
 msgstr ""
 
@@ -72,6 +73,10 @@ msgstr ""
 #: tcore.atest.caption
 msgctxt "tcore.atest.caption"
 msgid "Test"
+msgstr ""
+
+#: tcore.aviewsource.caption
+msgid "View source"
 msgstr ""
 
 #: tcore.opendialog1.title
@@ -555,10 +560,12 @@ msgid "Clone"
 msgstr ""
 
 #: tformcontacts.acopy.caption
+msgctxt "tformcontacts.acopy.caption"
 msgid "Copy"
 msgstr ""
 
 #: tformcontacts.acut.caption
+msgctxt "tformcontacts.acut.caption"
 msgid "Cut"
 msgstr ""
 
@@ -572,6 +579,7 @@ msgid "Modify"
 msgstr ""
 
 #: tformcontacts.apaste.caption
+msgctxt "tformcontacts.apaste.caption"
 msgid "Paste"
 msgstr ""
 
@@ -921,6 +929,40 @@ msgstr ""
 
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
+msgstr ""
+
+#: tformsource.acopy.caption
+msgctxt "tformsource.acopy.caption"
+msgid "Copy"
+msgstr ""
+
+#: tformsource.acut.caption
+msgctxt "tformsource.acut.caption"
+msgid "Cut"
+msgstr ""
+
+#: tformsource.apaste.caption
+msgctxt "tformsource.apaste.caption"
+msgid "Paste"
+msgstr ""
+
+#: tformsource.aselectall.caption
+msgctxt "tformsource.aselectall.caption"
+msgid "Select all"
+msgstr ""
+
+#: tformsource.buttoncancel.caption
+msgctxt "tformsource.buttoncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tformsource.buttonok.caption
+msgctxt "tformsource.buttonok.caption"
+msgid "Save"
+msgstr ""
+
+#: tformsource.caption
+msgid "Source"
 msgstr ""
 
 #: tformtest.arun.caption

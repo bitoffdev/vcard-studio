@@ -183,6 +183,9 @@ object FormMain: TFormMain
       object MenuItem4: TMenuItem
         Action = Core.ATest
       end
+      object MenuItem11: TMenuItem
+        Action = Core.AViewSource
+      end
     end
     object MenuItemHelp: TMenuItem
       Caption = 'Help'

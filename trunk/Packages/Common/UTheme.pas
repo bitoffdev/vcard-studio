@@ -41,6 +41,11 @@ type
     property Theme: TTheme read FTheme write SetTheme;
   end;
 
+const
+  ThemeNameSystem = 'System';
+  ThemeNameLight = 'Light';
+  ThemeNameDark = 'Dark';
+
 procedure Register;
 
 implementation
@@ -104,7 +109,7 @@ constructor TThemeManager.Create(AOwner: TComponent);
 begin
   inherited;
   Themes := TThemes.Create;
-  with Themes.AddNew('System') do begin
+  with Themes.AddNew(ThemeNameSystem) do begin
     ColorWindow := clWindow;
     ColorWindowText := clWindowText;
     ColorControl := clMenu;
@@ -112,14 +117,14 @@ begin
     ColorControlSelected := clWindow;
   end;
   Theme := TTheme(Themes.First);
-  with Themes.AddNew('Dark') do begin
+  with Themes.AddNew(ThemeNameDark) do begin
     ColorWindow := RGBToColor($20, $20, $20);
     ColorWindowText := clWhite;
     ColorControl := RGBToColor($40, $40, $40);
     ColorControlText := clWhite;
     ColorControlSelected := RGBToColor(96, 125, 155);
   end;
-  with Themes.AddNew('Light') do begin
+  with Themes.AddNew(ThemeNameLight) do begin
     ColorWindow := clWhite;
     ColorWindowText := clBlack;
     ColorControl := RGBToColor($e0, $e0, $e0);
@@ -174,7 +179,7 @@ end;
 
 procedure TThemeManager.UseTheme(Form: TForm);
 begin
-  if not Used and (FTheme.Name = 'System') then Exit;
+  if not Used and (FTheme.Name = ThemeNameSystem) then Exit;
   ApplyTheme(Form);
   Used := True;
 end;

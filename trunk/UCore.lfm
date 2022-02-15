@@ -2,14 +2,14 @@ object Core: TCore
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 529
-  HorizontalOffset = 669
-  VerticalOffset = 607
-  Width = 726
-  PPI = 144
+  Height = 551
+  HorizontalOffset = 697
+  VerticalOffset = 632
+  Width = 756
+  PPI = 150
   object ImageList1: TImageList
-    Left = 115
-    Top = 200
+    Left = 120
+    Top = 208
     Bitmap = {
       4C7A120000001000000010000000801200000000000078DADD9A095855D5DAC7
       0F9969DDAFC16B659A9939809246696A9A58396BC8E58AA29228A0A0A8209302
@@ -164,8 +164,8 @@ object Core: TCore
   end
   object ActionList1: TActionList
     Images = ImageList1
-    Left = 384
-    Top = 200
+    Left = 400
+    Top = 208
     object AExit: TAction
       Caption = 'Exit'
       ImageIndex = 2
@@ -223,6 +223,7 @@ object Core: TCore
       Caption = 'Settings'
       ImageIndex = 8
       OnExecute = ASettingsExecute
+      ShortCut = 121
     end
     object AFileCombine: TAction
       Category = 'File'
@@ -237,6 +238,7 @@ object Core: TCore
     object AGenerate: TAction
       Caption = 'Generate contacts'
       OnExecute = AGenerateExecute
+      ShortCut = 116
     end
     object AFileSplit: TAction
       Category = 'File'
@@ -252,23 +254,29 @@ object Core: TCore
     object ATest: TAction
       Caption = 'Test'
       OnExecute = ATestExecute
+      ShortCut = 115
+    end
+    object AViewSource: TAction
+      Caption = 'View source'
+      OnExecute = AViewSourceExecute
+      ShortCut = 114
     end
   end
   object LastOpenedList1: TLastOpenedList
     MaxCount = 10
     OnChange = LastOpenedList1Change
-    Left = 384
-    Top = 288
+    Left = 400
+    Top = 300
   end
   object OpenDialog1: TOpenDialog
     Title = 'Open existing file'
-    Left = 384
-    Top = 365
+    Left = 400
+    Top = 380
   end
   object SaveDialog1: TSaveDialog
     Title = 'Save file as'
-    Left = 115
-    Top = 365
+    Left = 120
+    Top = 380
   end
   object ApplicationInfo1: TApplicationInfo
     Identification = 1
@@ -8481,39 +8489,39 @@ object Core: TCore
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000
     }
-    Left = 115
-    Top = 288
+    Left = 120
+    Top = 300
   end
   object PersistentForm1: TPersistentForm
     MinVisiblePart = 50
     EntireVisible = False
-    Left = 384
-    Top = 125
+    Left = 400
+    Top = 130
   end
   object Translator: TTranslator
     POFilesFolder = 'Languages'
-    Left = 115
-    Top = 48
+    Left = 120
+    Top = 50
   end
   object ScaleDPI1: TScaleDPI
     AutoDetect = False
-    Left = 384
-    Top = 48
+    Left = 400
+    Top = 50
   end
   object ThemeManager1: TThemeManager
-    Left = 115
-    Top = 125
+    Left = 120
+    Top = 130
   end
   object AboutDialog1: TAboutDialog
     Translator = Translator
     ThemeManager = ThemeManager1
     ApplicationInfo = ApplicationInfo1
-    Left = 576
-    Top = 48
+    Left = 600
+    Top = 50
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog
     Title = 'Select directory'
-    Left = 578
-    Top = 376
+    Left = 602
+    Top = 392
   end
 end
