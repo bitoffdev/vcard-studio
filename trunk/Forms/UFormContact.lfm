@@ -89,7 +89,7 @@ object FormContact: TFormContact
         Top = 250
         Width = 265
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 3
       end
       object EditPhone: TEdit
         Left = 150
@@ -97,7 +97,7 @@ object FormContact: TFormContact
         Top = 298
         Width = 265
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 5
       end
       object Label3: TLabel
         Left = 17
@@ -113,7 +113,7 @@ object FormContact: TFormContact
         Top = 342
         Width = 216
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 7
       end
       object Label4: TLabel
         Left = 17
@@ -129,7 +129,7 @@ object FormContact: TFormContact
         Top = 442
         Width = 216
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 10
       end
       object Label22: TLabel
         Left = 17
@@ -181,7 +181,7 @@ object FormContact: TFormContact
         Top = 80
         Width = 224
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 2
       end
       object Label45: TLabel
         Left = 450
@@ -197,7 +197,7 @@ object FormContact: TFormContact
         Top = 442
         Width = 217
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 11
       end
       object Label9: TLabel
         Left = 450
@@ -213,7 +213,7 @@ object FormContact: TFormContact
         Top = 250
         Width = 265
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 4
       end
       object EditPager: TEdit
         Left = 599
@@ -221,7 +221,7 @@ object FormContact: TFormContact
         Top = 298
         Width = 265
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 6
       end
       object Label10: TLabel
         Left = 450
@@ -245,7 +245,7 @@ object FormContact: TFormContact
         Top = 392
         Width = 666
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 9
       end
       object Label49: TLabel
         Left = 450
@@ -261,7 +261,7 @@ object FormContact: TFormContact
         Top = 342
         Width = 265
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 8
       end
       object Label56: TLabel
         Left = 17
@@ -277,7 +277,7 @@ object FormContact: TFormContact
         Top = 492
         Width = 265
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 12
       end
       object SpeedButtonWeb: TSpeedButton
         Left = 821
@@ -334,7 +334,7 @@ object FormContact: TFormContact
         Width = 125
         Caption = 'Details'
         OnClick = ButtonNameDetailsClick
-        TabOrder = 12
+        TabOrder = 1
       end
     end
     object TabSheetHome: TTabSheet
@@ -431,7 +431,7 @@ object FormContact: TFormContact
         Width = 897
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Address'
-        ClientHeight = 259
+        ClientHeight = 285
         ClientWidth = 895
         TabOrder = 6
         object Label36: TLabel
@@ -673,7 +673,7 @@ object FormContact: TFormContact
         Top = 325
         Width = 920
         Caption = 'Address'
-        ClientHeight = 255
+        ClientHeight = 281
         ClientWidth = 918
         TabOrder = 9
         object Label31: TLabel
