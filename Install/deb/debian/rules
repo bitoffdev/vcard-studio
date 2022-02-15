@@ -16,14 +16,16 @@ override_dh_auto_install:
 	install -d -m 755 $(ROOT)/usr/bin
 	install -s -m 755 vCardStudio $(ROOT)/usr/bin
 	install -d -m 755 $(ROOT)/usr/share/vCardStudio/Languages
-	install -m 755 Languages/vCardStudio.po $(ROOT)/usr/share/vCardStudio/Languages
-	install -m 755 Languages/vCardStudio.cs.po $(ROOT)/usr/share/vCardStudio/Languages
+	install -m 644 Languages/vCardStudio.pot $(ROOT)/usr/share/vCardStudio/Languages
+	install -m 644 Languages/vCardStudio.cs.po $(ROOT)/usr/share/vCardStudio/Languages
+	install -m 644 Languages/UFormAbout.pot $(ROOT)/usr/share/vCardStudio/Languages
+	install -m 644 Languages/UFormAbout.cs.po $(ROOT)/usr/share/vCardStudio/Languages
 	install -d -m 755 $(ROOT)/usr/share/vCardStudio/Images
-	install -m 755 Images/Profile.png $(ROOT)/usr/share/vCardStudio/Images
+	install -m 644 Images/Profile.png $(ROOT)/usr/share/vCardStudio/Images
 	install -d -m 755 $(ROOT)/usr/share/applications
 	install -m 755 Install/deb/vCardStudio.desktop $(ROOT)/usr/share/applications
 	install -d -m 755 $(ROOT)/usr/share/pixmaps
-	install -m 755 Install/deb/vCardStudio.png $(ROOT)/usr/share/pixmaps
+	install -m 644 Install/deb/vCardStudio.png $(ROOT)/usr/share/pixmaps
 
 %:
 	dh $@

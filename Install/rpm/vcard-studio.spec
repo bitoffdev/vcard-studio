@@ -1,5 +1,5 @@
 Name:           vcard-studio
-Version:        1.3.0
+Version:        1.4.0
 Release:        1%{?dist}
 Summary:        A contact management application with support for vCard file format.
 
@@ -40,8 +40,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d -m 755 $RPM_BUILD_ROOT/usr/bin
 install -s -m 755 vCardStudio $RPM_BUILD_ROOT/usr/bin
 install -d -m 755 $RPM_BUILD_ROOT/usr/share/vCardStudio/Languages
-install -m 644 Languages/vCardStudio.po $RPM_BUILD_ROOT/usr/share/vCardStudio/Languages
+install -m 644 Languages/vCardStudio.pot $RPM_BUILD_ROOT/usr/share/vCardStudio/Languages
 install -m 644 Languages/vCardStudio.cs.po $RPM_BUILD_ROOT/usr/share/vCardStudio/Languages
+install -m 644 Languages/UFormAbout.pot $RPM_BUILD_ROOT/usr/share/vCardStudio/Languages
+install -m 644 Languages/UFormAbout.cs.po $RPM_BUILD_ROOT/usr/share/vCardStudio/Languages
 install -d -m 755 $RPM_BUILD_ROOT/usr/share/vCardStudio/Images
 install -m 755 Images/Profile.png $RPM_BUILD_ROOT/usr/share/vCardStudio/Images
 install -d -m 755 $RPM_BUILD_ROOT/usr/share/applications

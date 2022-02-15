@@ -1,6 +1,6 @@
 name: vcard-studio
 title: vCard Studio
-version: '1.3.0'
+version: '1.4.0'
 summary: A contact management application with support for vCard file format.
 description: |
   A contact management application with support for vCard file format (.vcf).

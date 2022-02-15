@@ -3,7 +3,7 @@
 
 #define MyAppName "vCard Studio"
 #define MyAppNameShort "vCardStudio"
-#define MyAppVersion "1.3.0"
+#define MyAppVersion "1.4.0"
 #define MyAppVersionSuffix "alfa"
 #define MyAppPublisher "Chronosoft"
 #define MyAppPublisherShort "Chronosoft"
