@@ -16,6 +16,7 @@ type
   TCore = class(TDataModule)
     AAbout: TAction;
     AboutDialog1: TAboutDialog;
+    AViewSource: TAction;
     ATest: TAction;
     AFind: TAction;
     AFileSplit: TAction;
@@ -58,6 +59,7 @@ type
     procedure AHomePageExecute(Sender: TObject);
     procedure ASettingsExecute(Sender: TObject);
     procedure ATestExecute(Sender: TObject);
+    procedure AViewSourceExecute(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure LastOpenedList1Change(Sender: TObject);
@@ -105,7 +107,7 @@ implementation
 
 uses
   UFormMain, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
-  UFormGenerate, UFormError, UFormFind, UFormTest;
+  UFormGenerate, UFormError, UFormFind, UFormTest, UFormSource;
 
 resourcestring
   SAppExit = 'Application exit';
@@ -273,6 +275,20 @@ begin
   with TFormTest.Create(nil) do
   try
     ShowModal;
+  finally
+    Free;
+  end;
+end;
+
+procedure TCore.AViewSourceExecute(Sender: TObject);
+begin
+  with TFormSource.Create(nil) do
+  try
+    Source := TContactsFile(DataFile).AsString;
+    if ShowModal = mrOk then begin
+      TContactsFile(DataFile).AsString := Source;
+      UpdateFile;
+    end;
   finally
     Free;
   end;

@@ -7,8 +7,7 @@ uses
   cthreads, clocale,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, UFormMain, UCore, Common, SysUtils, UFormImage, UContactImage,
-UFormNameDetails;
+  Forms, UFormMain, UCore, Common, SysUtils;
 
 {$R *.res}
 
