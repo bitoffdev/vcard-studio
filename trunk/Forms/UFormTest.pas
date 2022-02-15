@@ -17,6 +17,7 @@ type
     AShow: TAction;
     ActionList1: TActionList;
     ButtonRun: TButton;
+    LabelResult: TLabel;
     ListViewTestCases: TListView;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -50,6 +51,10 @@ implementation
 uses
   UCore, UFormTestCase, UContact;
 
+resourcestring
+  SPassed = 'Passed';
+  SFailed = 'Failed';
+
 { TFormTest }
 
 procedure TFormTest.ListViewTestCasesData(Sender: TObject; Item: TListItem);
@@ -77,10 +82,24 @@ end;
 procedure TFormTest.UpdateInterface;
 var
   Selected: Boolean;
+  Passed: Integer;
+  Failed: Integer;
+  I: Integer;
 begin
   Selected := Assigned(ListViewTestCases.Selected);
   ARun.Enabled := Selected;
   AShow.Enabled := Selected;
+
+  Passed := 0;
+  Failed := 0;
+  for I := 0 to TestCases.Count - 1 do begin
+    case TestCases[I].Result of
+      trPassed: Inc(Passed);
+      trFailed: Inc(Failed);
+    end;
+  end;
+  LabelResult.Caption := SPassed + ' ' + IntToStr(Passed) + ', ' +
+    SFailed + ' ' + IntToStr(Failed);
 end;
 
 procedure TFormTest.InitTestCases;
@@ -100,8 +119,8 @@ begin
     with TTestCaseLoadSave(AddNew('Long text', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
         VCardVersion + LineEnding +
-        'NOTE:This is some long test which is really multi-lined each line is on d' + LineEnding +
-        ' ifferent line so it is on multiple lines.' + LineEnding +
+        'NOTE:This is some long test which is really multi-lined each line is on dif' + LineEnding +
+        ' ferent line so it is on multiple lines.' + LineEnding +
         VCardEnd + LineEnding;
       Output := Input;
     end;
@@ -122,13 +141,40 @@ begin
     with TTestCaseLoadSave(AddNew('Quoted-printable load-save multi-line', TTestCaseLoadSave)) do begin
       Input := VCardBegin + LineEnding +
         VCardVersion + LineEnding +
-        'FN;ENCODING=QUOTED-PRINTABLE:Jm=C3=A9no=20P=C5=99=C3=ADjmen=C3=AD=' + LineEnding +
-        'Jm=C3=A9no=20P=C5=99=C3=ADjmen=C3=AD' + LineEnding +
+        'FN;ENCODING=QUOTED-PRINTABLE:Jm=C3=A9no=20P=C5=99=C3=ADjmen=C3=ADJm=C3=A9n=' + LineEnding +
+        'o=20P=C5=99=C3=ADjmen=C3=AD' + LineEnding +
         VCardEnd + LineEnding;
       Output := Input;
     end;
-    //AddNew('Encoding base64', TTestCaseLoadSave);
-    //AddNew('Encoding quoted-printable', TTestCaseLoadSave);
+    with TTestCaseLoadSave(AddNew('Base64 load-save (encoding=base64)', TTestCaseLoadSave)) do begin
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'FN;ENCODING=BASE64:VGVzdCBzdHJpbmc=' + LineEnding +
+        VCardEnd + LineEnding;
+      Output := Input;
+    end;
+    with TTestCaseLoadSave(AddNew('Base64 load-save (base64)', TTestCaseLoadSave)) do begin
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'FN;BASE64:VGVzdCBzdHJpbmc=' + LineEnding +
+        VCardEnd + LineEnding;
+      Output := Input;
+    end;
+    with TTestCaseLoadSave(AddNew('Base64 load-save (encoding=b)', TTestCaseLoadSave)) do begin
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'FN;ENCODING=B:VGVzdCBzdHJpbmc=' + LineEnding +
+        VCardEnd + LineEnding;
+      Output := Input;
+    end;
+    with TTestCaseLoadSave(AddNew('Base64 load-save multi-line', TTestCaseLoadSave)) do begin
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'FN;ENCODING=BASE64:U29tZSB2ZXJ5IGxvbmcgc3RyaW5nIFNvbWUgdmVyeSBsb25nIHN0cmlu' + LineEnding +
+        ' ZyBTb21lIHZlcnkgbG9uZyBzdHJpbmcgU29tZSB2ZXJ5IGxvbmcgc3RyaW5n' + LineEnding +
+        VCardEnd + LineEnding;
+      Output := Input;
+    end;
     //AddNew('Image format', TTestCaseLoadSave);
     with TTestCaseLoadSave(AddNew('Empty', TTestCaseLoadSave)) do begin
       Input := '';
@@ -152,7 +198,7 @@ begin
         VCardEnd + LineEnding;
       Output := '';
     end;
-    with TTestCaseCheckProperty(AddNew('Propery FN', TTestCaseCheckProperty)) do begin
+    with TTestCaseCheckProperty(AddNew('Property FN', TTestCaseCheckProperty)) do begin
       Index := cfFullName;
       Value := 'Name Surname';
       Input := VCardBegin + LineEnding +
@@ -184,6 +230,14 @@ begin
         'FN;ENCODING=QUOTED-PRINTABLE:Jm=C3=A9no=20P=C5=99=C3=ADjmen=C3=AD' + LineEnding +
         VCardEnd + LineEnding;
     end;
+    with TTestCaseCheckProperty(AddNew('Base64 special symbols', TTestCaseCheckProperty)) do begin
+      Index := cfFullName;
+      Value := 'Jméno Příjmení';
+      Input := VCardBegin + LineEnding +
+        VCardVersion + LineEnding +
+        'FN;ENCODING=BASE64:Sm3DqW5vIFDFmcOtam1lbsOt' + LineEnding +
+        VCardEnd + LineEnding;
+    end;
   end;
 end;
 
@@ -199,6 +253,7 @@ begin
   for I := 0 to TestCases.Count - 1 do
     TestCases[I].Run;
   ReloadList;
+  UpdateInterface;
 end;
 
 procedure TFormTest.AShowExecute(Sender: TObject);
@@ -218,6 +273,7 @@ begin
   if Assigned(ListViewTestCases.Selected) then begin
     TTestCase(ListViewTestCases.Selected.Data).Run;
     ReloadList;
+    UpdateInterface;
   end;
 end;
 

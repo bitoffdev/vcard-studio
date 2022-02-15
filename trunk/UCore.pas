@@ -195,8 +195,8 @@ begin
       end;
     end;
     ModalResult := MessageDlg(SFileSplit,
-     Format(SFileSplitFinishedOpenDirectory, [C,
-     SelectDirectoryDialog1.FileName]), mtConfirmation, [mbYes, mbNo], 0);
+      Format(SFileSplitFinishedOpenDirectory, [C,
+      SelectDirectoryDialog1.FileName]), mtConfirmation, [mbYes, mbNo], 0);
     if ModalResult = mrYes then begin
       {$IFDEF WINDOWS}
       ExecuteProgram('explorer.exe', ['"' + SelectDirectoryDialog1.FileName + '"']);

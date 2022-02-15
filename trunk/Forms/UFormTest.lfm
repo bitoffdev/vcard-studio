@@ -47,6 +47,14 @@ object FormTest: TFormTest
     OnClick = ButtonRunClick
     TabOrder = 1
   end
+  object LabelResult: TLabel
+    Left = 22
+    Height = 27
+    Top = 607
+    Width = 15
+    Anchors = [akLeft, akBottom]
+    Caption = '   '
+  end
   object ActionList1: TActionList
     Left = 537
     Top = 115

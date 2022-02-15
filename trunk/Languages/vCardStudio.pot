@@ -985,6 +985,10 @@ msgctxt "tformtest.caption"
 msgid "Test"
 msgstr ""
 
+#: tformtest.labelresult.caption
+msgid "   "
+msgstr ""
+
 #: tformtest.listviewtestcases.columns[0].caption
 msgctxt "tformtest.listviewtestcases.columns[0].caption"
 msgid "Name"
@@ -1486,6 +1490,14 @@ msgstr ""
 
 #: uformproperties.svalue
 msgid "Value"
+msgstr ""
+
+#: uformtest.sfailed
+msgid "Failed"
+msgstr ""
+
+#: uformtest.spassed
+msgid "Passed"
 msgstr ""
 
 #: uquotedprintable.sdecodeerror
