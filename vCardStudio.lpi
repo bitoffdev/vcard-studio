@@ -94,16 +94,19 @@
         </Mode0>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="Common"/>
-        <DefaultFilename Value="Packages\Common\Common.lpk" Prefer="True"/>
+        <PackageName Value="SynEdit"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="Common"/>
+        <DefaultFilename Value="Packages\Common\Common.lpk" Prefer="True"/>
       </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
-    <Units Count="21">
+    <Units Count="23">
       <Unit0>
         <Filename Value="vCardStudio.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -233,6 +236,17 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit20>
+      <Unit21>
+        <Filename Value="Forms\UFormSource.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormSource"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="UVCardHighlighter.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit22>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

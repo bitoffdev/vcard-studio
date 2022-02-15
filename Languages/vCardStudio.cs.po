@@ -41,6 +41,7 @@ msgid "Open recent"
 msgstr "Otevřít nedávné"
 
 #: tcore.afilesave.caption
+msgctxt "tcore.afilesave.caption"
 msgid "Save"
 msgstr "Uložit"
 
@@ -83,6 +84,10 @@ msgstr "Nastavení"
 msgctxt "tcore.atest.caption"
 msgid "Test"
 msgstr "Testování"
+
+#: tcore.aviewsource.caption
+msgid "View source"
+msgstr "Zobrazit zdroj"
 
 #: tcore.opendialog1.title
 msgctxt "tcore.opendialog1.title"
@@ -565,10 +570,12 @@ msgid "Clone"
 msgstr "Klonovat"
 
 #: tformcontacts.acopy.caption
+msgctxt "tformcontacts.acopy.caption"
 msgid "Copy"
 msgstr "Kopírovat"
 
 #: tformcontacts.acut.caption
+msgctxt "tformcontacts.acut.caption"
 msgid "Cut"
 msgstr "Vyříznout"
 
@@ -583,6 +590,7 @@ msgid "Modify"
 msgstr "Upravit"
 
 #: tformcontacts.apaste.caption
+msgctxt "tformcontacts.apaste.caption"
 msgid "Paste"
 msgstr "Vložit"
 
@@ -948,6 +956,40 @@ msgstr "URL dotazu mapy:"
 #: tformsettings.labeldpi.caption
 msgid "DPI:"
 msgstr "DPI:"
+
+#: tformsource.acopy.caption
+msgctxt "tformsource.acopy.caption"
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: tformsource.acut.caption
+msgctxt "tformsource.acut.caption"
+msgid "Cut"
+msgstr "Vyříznout"
+
+#: tformsource.apaste.caption
+msgctxt "tformsource.apaste.caption"
+msgid "Paste"
+msgstr "Vložit"
+
+#: tformsource.aselectall.caption
+msgctxt "tformsource.aselectall.caption"
+msgid "Select all"
+msgstr "Vybrat vše"
+
+#: tformsource.buttoncancel.caption
+msgctxt "tformsource.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: tformsource.buttonok.caption
+msgctxt "tformsource.buttonok.caption"
+msgid "Save"
+msgstr "Uložit"
+
+#: tformsource.caption
+msgid "Source"
+msgstr "Zdroj"
 
 #: tformtest.arun.caption
 msgctxt "tformtest.arun.caption"
@@ -1477,4 +1519,3 @@ msgstr "Hodnota"
 #: uquotedprintable.sdecodeerror
 msgid "Decode error"
 msgstr "Chyba dekódování"
-
