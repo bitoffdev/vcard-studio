@@ -1011,6 +1011,10 @@ msgctxt "tformtest.caption"
 msgid "Test"
 msgstr "Testování"
 
+#: tformtest.labelresult.caption
+msgid "   "
+msgstr "   "
+
 #: tformtest.listviewtestcases.columns[0].caption
 msgctxt "tformtest.listviewtestcases.columns[0].caption"
 msgid "Name"
@@ -1515,6 +1519,14 @@ msgstr "Celkem"
 #: uformproperties.svalue
 msgid "Value"
 msgstr "Hodnota"
+
+#: uformtest.sfailed
+msgid "Failed"
+msgstr "Selhalo"
+
+#: uformtest.spassed
+msgid "Passed"
+msgstr "Prošlo"
 
 #: uquotedprintable.sdecodeerror
 msgid "Decode error"
