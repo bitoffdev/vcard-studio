@@ -1622,7 +1622,7 @@ begin
   I := StartLine;
   while I < Lines.Count do begin
     Line := Lines[I];
-    DetectMaxLineLength(Line);
+    //DetectMaxLineLength(Line);
 
     if Line = '' then begin
       // Skip empty lines
@@ -1651,7 +1651,7 @@ begin
           Inc(I);
           if I >= Lines.Count then Break;
           Line2 := Lines[I];
-          DetectMaxLineLength(Line2);
+          //DetectMaxLineLength(Line2);
           if (Length(Line2) > 0) and (Line2[1] = ' ') then begin
             Value := Value + Copy(Line2, 2, MaxInt);
           end else
