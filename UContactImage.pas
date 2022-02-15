@@ -294,6 +294,7 @@ begin
       end;
       if Url <> '' then begin
         Contact.Fields[FieldIndex] := Url;
+        PhotoProperty.Encoding := '';
       end else begin
         PhotoProperty.Encoding := VCardBase64;
         Stream := TMemoryStream.Create;
@@ -321,6 +322,7 @@ procedure TContactImage.Clear;
 begin
   Url := '';
   Used := False;
+  Modified := True;
 end;
 
 procedure TContactImage.LoadFromFile(FileName: string);
@@ -331,6 +333,7 @@ begin
     Bitmap.Assign(Picture.Bitmap);
     Url := '';
     Used := True;
+    Modified := True;
   finally
     Free;
   end;
