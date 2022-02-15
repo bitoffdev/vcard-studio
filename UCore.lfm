@@ -2,14 +2,14 @@ object Core: TCore
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 551
-  HorizontalOffset = 697
-  VerticalOffset = 632
-  Width = 756
-  PPI = 150
+  Height = 529
+  HorizontalOffset = 669
+  VerticalOffset = 607
+  Width = 726
+  PPI = 144
   object ImageList1: TImageList
-    Left = 120
-    Top = 208
+    Left = 115
+    Top = 200
     Bitmap = {
       4C7A120000001000000010000000801200000000000078DADD9A095855D5DAC7
       0F9969DDAFC16B659A9939809246696A9A58396BC8E58AA29228A0A0A8209302
@@ -164,8 +164,8 @@ object Core: TCore
   end
   object ActionList1: TActionList
     Images = ImageList1
-    Left = 400
-    Top = 208
+    Left = 384
+    Top = 200
     object AExit: TAction
       Caption = 'Exit'
       ImageIndex = 2
@@ -257,31 +257,30 @@ object Core: TCore
   object LastOpenedList1: TLastOpenedList
     MaxCount = 10
     OnChange = LastOpenedList1Change
-    Left = 400
-    Top = 300
+    Left = 384
+    Top = 288
   end
   object OpenDialog1: TOpenDialog
     Title = 'Open existing file'
-    Left = 400
-    Top = 380
+    Left = 384
+    Top = 365
   end
   object SaveDialog1: TSaveDialog
     Title = 'Save file as'
-    Left = 120
-    Top = 380
+    Left = 115
+    Top = 365
   end
   object ApplicationInfo1: TApplicationInfo
     Identification = 1
     VersionMajor = 1
     VersionMinor = 3
     VersionBugFix = 0
-    VersionSuffix = 'alfa'
     HomePage = 'https://app.zdechov.net/vcard-studio'
     AuthorsName = 'Chronos'
     EmailContact = 'robie@centrum.cz'
     AppName = 'vCard Studio'
     Description = 'vCard files management tool'
-    ReleaseDate = 44606
+    ReleaseDate = 44607
     RegistryKey = '\Software\Chronosoft\vCard Studio'
     RegistryRoot = rrKeyCurrentUser
     License = 'CC0'
@@ -8481,39 +8480,39 @@ object Core: TCore
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000
     }
-    Left = 120
-    Top = 300
+    Left = 115
+    Top = 288
   end
   object PersistentForm1: TPersistentForm
     MinVisiblePart = 50
     EntireVisible = False
-    Left = 400
-    Top = 130
+    Left = 384
+    Top = 125
   end
   object Translator: TTranslator
     POFilesFolder = 'Languages'
-    Left = 120
-    Top = 50
+    Left = 115
+    Top = 48
   end
   object ScaleDPI1: TScaleDPI
     AutoDetect = False
-    Left = 400
-    Top = 50
+    Left = 384
+    Top = 48
   end
   object ThemeManager1: TThemeManager
-    Left = 120
-    Top = 130
+    Left = 115
+    Top = 125
   end
   object AboutDialog1: TAboutDialog
     Translator = Translator
     ThemeManager = ThemeManager1
     ApplicationInfo = ApplicationInfo1
-    Left = 600
-    Top = 50
+    Left = 576
+    Top = 48
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog
     Title = 'Select directory'
-    Left = 602
-    Top = 392
+    Left = 578
+    Top = 376
   end
 end

@@ -1477,3 +1477,4 @@ msgstr "Hodnota"
 #: uquotedprintable.sdecodeerror
 msgid "Decode error"
 msgstr "Chyba dekódování"
+

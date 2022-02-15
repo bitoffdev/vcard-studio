@@ -1723,7 +1723,7 @@ var
   I: Integer;
 begin
   Contacts.Clear;
-  MaxLineLength := 10;
+  //MaxLineLength := 10;
 
   I := 0;
   while I < Lines.Count do begin
