@@ -309,7 +309,7 @@ begin
   end;
 end;
 
-{$IFDEF Windows}
+{$IFDEF WINDOWS}
 function GetUserName: string;
 const
   MAX_USERNAME_LENGTH = 256;
@@ -317,6 +317,7 @@ var
   L: LongWord;
 begin
   L := MAX_USERNAME_LENGTH + 2;
+  Result := Default(string);
   SetLength(Result, L);
   if Windows.GetUserName(PChar(Result), L) and (L > 0) then begin
     SetLength(Result, StrLen(PChar(Result)));
@@ -330,10 +331,10 @@ begin
   if GetVersionEx(Result) then begin
   end;
 end;
-{$endif}
+{$ENDIF}
 
 function ComputerName: string;
-{$ifdef mswindows}
+{$IFDEF WINDOWS}
 const
  INFO_BUFFER_SIZE = 32767;
 var
@@ -348,8 +349,8 @@ begin
     Result := 'ERROR_NO_COMPUTERNAME_RETURNED';
   end;
 end;
-{$endif}
-{$ifdef unix}
+{$ENDIF}
+{$IFDEF UNIX}
 var
   Name: UtsName;
 begin
@@ -357,9 +358,9 @@ begin
   fpuname(Name);
   Result := Name.Nodename;
 end;
-{$endif}
+{$ENDIF}
 
-{$ifdef windows}
+{$IFDEF WINDOWS}
 function LoggedOnUserNameEx(Format: TUserNameFormat): string;
 const
   MaxLength = 1000;
@@ -437,7 +438,7 @@ end;
 
 procedure LoadLibraries;
 begin
-  {$IFDEF Windows}
+  {$IFDEF WINDOWS}
   DLLHandle1 := LoadLibrary('secur32.dll');
   if DLLHandle1 <> 0 then
   begin
@@ -448,7 +449,7 @@ end;
 
 procedure FreeLibraries;
 begin
-  {$IFDEF Windows}
+  {$IFDEF WINDOWS}
   if DLLHandle1 <> 0 then FreeLibrary(DLLHandle1);
   {$ENDIF}
 end;
