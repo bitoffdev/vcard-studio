@@ -156,14 +156,17 @@ end;
 function TSynVCardHighlighter.IsNumber(Text: string): Boolean;
 var
   I: Integer;
+  DecimalPointUsed: Boolean;
 begin
+  DecimalPointUsed := False;
   if Length(Text) > 0 then begin
     Result := True;
     for I := 1 to Length(Text) do begin
-      if not IsDigit(Text[I]) then begin
+      if not IsDigit(Text[I]) and not (not DecimalPointUsed and (Text[I] = '.')) then begin
         Result := False;
         Break;
       end;
+      if Text[I] = '.' then DecimalPointUsed := True;
     end;
   end else Result := False;
 end;
@@ -214,6 +217,7 @@ end;
 procedure TSynVCardHighlighter.Next;
 var
   L: Integer;
+  DecimalPointUsed: Boolean;
 begin
   // FTokenEnd should be at the start of the next Token (which is the Token we want)
   FTokenPos := FTokenEnd;
@@ -226,9 +230,10 @@ begin
   // - or past the end of line (which allows GetEOL to work)
 
   L := Length(FLineText);
-  If FTokenPos > L then
+  If FTokenPos > L then begin
     // At line end
-    Exit
+    Exit;
+  end
   else
   if FLineText[FTokenEnd] in [#9, ' '] then begin
     // At Space? Find end of spaces
@@ -239,8 +244,12 @@ begin
     Inc(FTokenEnd);
   end else
   if IsDigit(FLineText[FTokenEnd]) then begin
-    while (FTokenEnd <= L) and IsDigit(FLineText[FTokenEnd]) do
+    DecimalPointUsed := False;
+    while (FTokenEnd <= L) and (IsDigit(FLineText[FTokenEnd]) or
+    (not DecimalPointUsed and (FLineText[FTokenEnd] = '.'))) do begin
+      if FLineText[FTokenEnd] = '.' then DecimalPointUsed := True;
       Inc(FTokenEnd);
+    end;
   end else begin
     // At None-Space? Find end of None-spaces
     while (FTokenEnd <= L) and not (FLineText[FTokenEnd] in [#9, ' ', ':', ',', ';']) do
