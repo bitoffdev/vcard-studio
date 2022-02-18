@@ -82,7 +82,7 @@ object FormMain: TFormMain
       Left = 188
       Height = 34
       Top = 5
-      Width = 109
+      Width = 145
       Align = alNone
       AutoSize = True
       BorderSpacing.Left = 186
@@ -96,7 +96,7 @@ object FormMain: TFormMain
       TabOrder = 1
       Transparent = True
       object ToolButton5: TToolButton
-        Left = 73
+        Left = 109
         Top = 0
         Action = Core.ASettings
       end
@@ -109,6 +109,11 @@ object FormMain: TFormMain
         Left = 1
         Top = 0
         Action = Core.AFind
+      end
+      object ToolButton8: TToolButton
+        Left = 73
+        Top = 0
+        Action = Core.AFileCompare
       end
     end
   end
@@ -144,6 +149,9 @@ object FormMain: TFormMain
       end
       object MenuItem6: TMenuItem
         Action = Core.AFileSplit
+      end
+      object MenuItem12: TMenuItem
+        Action = Core.AFileCompare
       end
       object MenuItem2: TMenuItem
         Caption = '-'

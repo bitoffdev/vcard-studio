@@ -228,6 +228,8 @@ type
     procedure LoadFromStrings(Lines: TStrings);
     procedure SaveToFile(FileName: string); override;
     procedure LoadFromFile(FileName: string); override;
+    procedure Sort;
+    procedure Assign(Source: TContactsFile);
     constructor Create; override;
     destructor Destroy; override;
     property AsString: string read GetString write SetString;
@@ -1867,6 +1869,32 @@ begin
   finally
     Lines.Free;
   end;
+end;
+
+function CompareContactFullName(const Item1, Item2: TContact): Integer;
+begin
+  Result := CompareStr(Item1.Fields[cfFullName], Item2.Fields[cfFullName]);
+end;
+
+function ComparePropertyName(const Item1, Item2: TContactProperty): Integer;
+begin
+  Result := CompareStr(Item1.Name + ';' + Item1.Attributes.Text,
+    Item2.Name + ';' + Item2.Attributes.Text);
+end;
+
+procedure TContactsFile.Sort;
+var
+  I: Integer;
+begin
+  Contacts.Sort(CompareContactFullName);
+  for I := 0 to Contacts.Count - 1 do
+    Contacts[I].Properties.Sort(ComparePropertyName);
+end;
+
+procedure TContactsFile.Assign(Source: TContactsFile);
+begin
+  inherited Assign(Source);
+  Contacts.Assign(Source.Contacts);
 end;
 
 constructor TContactsFile.Create;
