@@ -114,17 +114,20 @@ type
     procedure LoadToStrings(AItems: TStrings);
   end;
 
+  TPropertyEncoding = (veNone, veQuotedPrintable, veBase64, ve8bit);
+
   { TContactProperty }
 
   TContactProperty = class
   private
+    function GetEncoding: TPropertyEncoding;
     function GetValueItem(Index: Integer): string;
+    procedure SetEncoding(AValue: TPropertyEncoding);
     procedure SetValueItem(Index: Integer; AValue: string);
   public
     Name: string;
     Attributes: TStringList;
     Value: string;
-    Encoding: string;
     Charset: string;
     procedure EvaluateAttributes;
     function GetDecodedValue: string;
@@ -135,6 +138,7 @@ type
     constructor Create;
     destructor Destroy; override;
     property ValueItem[Index: Integer]: string read GetValueItem write SetValueItem;
+    property Encoding: TPropertyEncoding read GetEncoding write SetEncoding;
   end;
 
   { TContactProperties }
@@ -237,7 +241,11 @@ const
   VCardBegin = 'BEGIN:VCARD';
   VCardEnd = 'END:VCARD';
   VCardBase64 = 'BASE64';
+  VCardBase64Short = 'B';
   VCardQuotedPrintable = 'QUOTED-PRINTABLE';
+  VCardQuotedPrintableShort = 'Q';
+  VCardEncoding = 'ENCODING';
+  VCardCharset = 'CHARSET';
 
 
 implementation
@@ -886,6 +894,20 @@ end;
 
 { TContactProperty }
 
+function TContactProperty.GetEncoding: TPropertyEncoding;
+var
+  EncodingText: string;
+begin
+  Result := veNone;
+  if Attributes.IndexOf(VCardBase64) <> -1 then Result := veBase64
+  else if Attributes.IndexOf(VCardQuotedPrintable) <> -1 then Result := veQuotedPrintable
+  else if Attributes.IndexOfName(VCardEncoding) <> -1 then begin
+    EncodingText := UpperCase(Attributes.Values[VCardEncoding]);
+    if (EncodingText = VCardBase64) or (EncodingText = VCardBase64Short) then Result := veBase64
+    else if (EncodingText = VCardQuotedPrintable) or (EncodingText = VCardQuotedPrintableShort) then Result := veQuotedPrintable
+  end;
+end;
+
 function TContactProperty.GetValueItem(Index: Integer): string;
 var
   List: TStringList;
@@ -901,6 +923,25 @@ begin
       else Result := '';
   finally
     List.Free;
+  end;
+end;
+
+procedure TContactProperty.SetEncoding(AValue: TPropertyEncoding);
+begin
+  if Attributes.IndexOf(VCardBase64) <> -1 then begin
+    Attributes.Delete(Attributes.IndexOf(VCardBase64));
+    if AValue = veBase64 then Attributes.Add(VCardBase64)
+    else if AValue = veQuotedPrintable then Attributes.Add(VCardQuotedPrintable);
+  end else
+  if Attributes.IndexOf(VCardQuotedPrintable) <> -1 then begin
+    Attributes.Delete(Attributes.IndexOf(VCardQuotedPrintable));
+    if AValue = veBase64 then Attributes.Add(VCardBase64)
+    else if AValue = veQuotedPrintable then Attributes.Add(VCardQuotedPrintable);
+  end else
+  if Attributes.IndexOfName(VCardEncoding) <> -1 then begin
+    if AValue = veBase64 then Attributes.Values[VCardEncoding] := VCardBase64
+    else if AValue = veQuotedPrintable then Attributes.Values[VCardEncoding] := VCardQuotedPrintable
+    else Attributes.Delete(Attributes.IndexOfName(VCardEncoding));
   end;
 end;
 
@@ -935,22 +976,11 @@ procedure TContactProperty.EvaluateAttributes;
 var
   I: Integer;
 begin
-  if Attributes.IndexOf(VCardBase64) <> -1 then begin
-    Encoding := VCardBase64;
+  if Encoding <> veNone then
     Value := GetDecodedValue;
-  end else
-  if Attributes.IndexOfName('ENCODING') <> -1 then begin
-    Encoding := Attributes.Values['ENCODING'];
-    if (Encoding = 'B') or (Encoding = 'b') then Encoding := VCardBase64;
-    if (Encoding = 'Q') or (Encoding = 'q') then Encoding := VCardQuotedPrintable;
-    if (Encoding = VCardQuotedPrintable) or (Encoding = VCardBase64) then begin
-      Value := GetDecodedValue;
-      Attributes.Delete(Attributes.IndexOfName('ENCODING'));
-    end else
-  end else Encoding := '';
 
-  if Attributes.IndexOfName('CHARSET') <> -1 then
-    Charset := Attributes.Values['CHARSET']
+  if Attributes.IndexOfName(VCardCharset) <> -1 then
+    Charset := Attributes.Values[VCardCharset]
     else Charset := '';
 
   // Simplify TYPE attribute from TYPE=VALUE into VALUE
@@ -964,10 +994,10 @@ end;
 
 function TContactProperty.GetDecodedValue: string;
 begin
-  if Encoding = VCardBase64 then begin
+  if Encoding = veBase64 then begin
     Result := DecodeStringBase64(Value);
   end else
-  if Encoding = VCardQuotedPrintable then begin
+  if Encoding = veQuotedPrintable then begin
     Result := DecodeQuotedPrintable(Value, True);
   end
   else Result := '';
@@ -975,10 +1005,10 @@ end;
 
 function TContactProperty.GetEncodedValue: string;
 begin
-  if Encoding = VCardBase64 then begin
+  if Encoding = veBase64 then begin
     Result := EncodeStringBase64(Value);
   end else
-  if Encoding = VCardQuotedPrintable then begin
+  if Encoding = veQuotedPrintable then begin
     Result := EncodeQuotedPrintable(Value, True);
   end
   else Result := '';
@@ -1013,7 +1043,6 @@ begin
   Name := Source.Name;
   Attributes.Assign(Source.Attributes);
   Value := Source.Value;
-  Encoding := Source.Encoding;
   Charset := Source.Charset;
 end;
 
@@ -1556,9 +1585,8 @@ begin
       NameText := Name;
       if Attributes.Count > 0 then
         NameText := NameText + ';' + Attributes.DelimitedText;
-      if Encoding <> '' then begin
+      if Encoding <> veNone then begin
         Value2 := GetEncodedValue;
-        NameText := NameText + ';ENCODING=' + Encoding;
       end else Value2 := Value;
       if Pos(LineEnding, Value2) > 0 then begin
         Add(NameText + ':' + GetNext(Value2, LineEnding));
@@ -1574,7 +1602,7 @@ begin
         while True do begin
           if UTF8Length(OutText) > ContactsFile.MaxLineLength then begin
             CutLength := ContactsFile.MaxLineLength;
-            if Encoding = VCardQuotedPrintable then begin
+            if Encoding = veQuotedPrintable then begin
               Dec(CutLength); // There will be softline break at the end
               // Do not cut encoded items at the end of line
               if ((CutLength - 1) >= 1) and (OutText[CutLength - 1] = QuotedPrintableEscapeCharacter) then
@@ -1585,10 +1613,10 @@ begin
 
             CutText := UTF8Copy(OutText, 1, CutLength);
             System.Delete(OutText, 1, Length(CutText));
-            if Encoding = VCardQuotedPrintable then
+            if Encoding = veQuotedPrintable then
               CutText := CutText + QuotedPrintableEscapeCharacter; // Add soft line break
             Add(LinePrefix + CutText);
-            if Encoding <> VCardQuotedPrintable then
+            if Encoding <> veQuotedPrintable then
               LinePrefix := ' ';
             Inc(LineIndex);
             Continue;
