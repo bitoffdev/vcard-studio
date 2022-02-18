@@ -27,6 +27,10 @@ msgstr "Zavřít"
 msgid "Combine..."
 msgstr "Sloučit..."
 
+#: tcore.afilecompare.caption
+msgid "Compare..."
+msgstr "Porovnat..."
+
 #: tcore.afilenew.caption
 msgid "New"
 msgstr "Nový"
@@ -102,6 +106,10 @@ msgstr "Uložit soubor jako"
 #: tcore.selectdirectorydialog1.title
 msgid "Select directory"
 msgstr "Vybrat adresář"
+
+#: tformcompare.caption
+msgid "Compare"
+msgstr "Porovnání"
 
 #: tformcontact.aphotoclear.caption
 msgctxt "tformcontact.aphotoclear.caption"
