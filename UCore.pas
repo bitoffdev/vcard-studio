@@ -70,12 +70,14 @@ type
     ProfileImage: TImage;
     LastSplitDir: string;
     ProfilePhotoFileName: string;
+    RecentFileRegistryContext: TRegistryContext;
     procedure FileModified(Sender: TObject);
     function FindFirstNonOption: string;
     procedure UpdateFile;
     procedure LoadConfig;
     procedure SaveConfig;
     procedure DoError(Text: string; Line: Integer);
+    procedure AddItemToLastOpenedList(FileName: string);
   public
     DefaultDataFileClass: TDataFileClass;
     DataFile: TDataFile;
@@ -201,7 +203,7 @@ begin
       {$IFDEF WINDOWS}
       ExecuteProgram('explorer.exe', ['"' + SelectDirectoryDialog1.FileName + '"']);
       {$ENDIF}
-      {$IFDEF LINUX}
+      {$IFDEF UNIX}
       ExecuteProgram('/usr/bin/xdg-open', [SelectDirectoryDialog1.FileName]);
       {$ENDIF}
     end;
@@ -336,7 +338,7 @@ begin
   SaveDialog1.FileName := ExtractFileName(DataFile.FileName);
   if SaveDialog1.Execute then begin
     DataFile.SaveToFile(SaveDialog1.FileName);
-    LastOpenedList1.AddItem(SaveDialog1.FileName);
+    AddItemToLastOpenedList(SaveDialog1.FileName);
     UpdateFile;
   end;
 end;
@@ -345,13 +347,13 @@ procedure TCore.AFileSaveExecute(Sender: TObject);
 begin
   if FileExists(DataFile.FileName) then begin
     DataFile.SaveToFile(DataFile.FileName);
-    LastOpenedList1.AddItem(DataFile.FileName);
+    AddItemToLastOpenedList(DataFile.FileName);
     UpdateFile;
   end else AFileSaveAs.Execute;
 end;
 
 procedure TCore.DataModuleCreate(Sender: TObject);
-{$IFDEF Linux}
+{$IFDEF UNIX}
 const
   LinuxDataFilesDir = '/usr/share/vCardStudio';
   LinuxLanguagesDir = LinuxDataFilesDir + '/Languages';
@@ -359,7 +361,7 @@ const
 {$ENDIF}
 begin
   ProfilePhotoFileName := 'Images/Profile.png';
-  {$IFDEF Linux}
+  {$IFDEF UNIX}
   // If installed in Linux system then use installation directory for po files
   if not DirectoryExists(Translator.POFilesFolder) and DirectoryExists(LinuxLanguagesDir) then begin
     Translator.POFilesFolder := LinuxLanguagesDir;
@@ -373,6 +375,8 @@ begin
   DataFile := nil;
   DefaultDataFileClass := TContactsFile;
   FileClosed := True;
+  RecentFileRegistryContext := TRegistryContext.Create(ApplicationInfo1.RegistryRoot,
+    ApplicationInfo1.RegistryKey + '\RecentFiles');
 end;
 
 procedure TCore.DataModuleDestroy(Sender: TObject);
@@ -402,7 +406,7 @@ begin
       FileNew;
       LoadErrors := '';
       DataFile.LoadFromFile(FileName);
-      LastOpenedList1.AddItem(FileName);
+      AddItemToLastOpenedList(FileName);
       if LoadErrors <> '' then begin
         FormError := TFormError.Create(nil);
         FormError.MemoErrors.Text := LoadErrors;
@@ -465,8 +469,7 @@ end;
 procedure TCore.LoadConfig;
 begin
   PersistentForm1.RegistryContext := ApplicationInfo1.GetRegistryContext;
-  LastOpenedList1.LoadFromRegistry(TRegistryContext.Create(ApplicationInfo1.RegistryRoot,
-    ApplicationInfo1.RegistryKey + '\RecentFiles'));
+  LastOpenedList1.LoadFromRegistry(RecentFileRegistryContext);
 
   with TRegistryEx.Create do
   try
@@ -494,9 +497,6 @@ end;
 
 procedure TCore.SaveConfig;
 begin
-  LastOpenedList1.SaveToRegistry(TRegistryContext.Create(ApplicationInfo1.RegistryRoot,
-    ApplicationInfo1.RegistryKey + '\RecentFiles'));
-
   with TRegistryEx.Create do
   try
     CurrentContext := ApplicationInfo1.GetRegistryContext;
@@ -524,6 +524,15 @@ end;
 procedure TCore.DoError(Text: string; Line: Integer);
 begin
   LoadErrors := LoadErrors + Format(SLine, [Line, Text]) + LineEnding;
+end;
+
+procedure TCore.AddItemToLastOpenedList(FileName: string);
+begin
+  with LastOpenedList1 do begin
+    LoadFromRegistry(RecentFileRegistryContext);
+    AddItem(FileName);
+    SaveToRegistry(RecentFileRegistryContext);
+  end;
 end;
 
 function TCore.GetProfileImage: TImage;
@@ -568,7 +577,7 @@ begin
       // Open file specified as command line parameter
       AFileNew.Execute;
       DataFile.LoadFromFile(FileNameOption);
-      LastOpenedList1.AddItem(FileNameOption);
+      AddItemToLastOpenedList(FileNameOption);
     end else
     if ReopenLastFileOnStart and (LastOpenedList1.Items.Count > 0) and FileExists(LastOpenedList1.Items[0]) then begin
       // Open last opened file
