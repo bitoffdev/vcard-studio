@@ -260,7 +260,7 @@ begin
       Loaded := True;
       Modified := True;
       Photo := Contact.Fields[FieldIndex];
-      if (Photo <> '') and (PhotoProperty.Encoding <> '') then begin
+      if (Photo <> '') and (PhotoProperty.Encoding <> veNone) then begin
         Stream := TMemoryStream.Create;
         try
           Stream.Write(Photo[1], Length(Photo));
@@ -294,9 +294,9 @@ begin
       end;
       if Url <> '' then begin
         Contact.Fields[FieldIndex] := Url;
-        PhotoProperty.Encoding := '';
+        PhotoProperty.Encoding := veNone;
       end else begin
-        PhotoProperty.Encoding := VCardBase64;
+        PhotoProperty.Encoding := veBase64;
         Stream := TMemoryStream.Create;
         try
           SaveImageToStream(GetImageFormat(PhotoProperty), Stream);
