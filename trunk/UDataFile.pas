@@ -22,6 +22,7 @@ type
     function GetFileExt: string; virtual;
     function GetFileName: string; virtual;
     function GetFileFilter: string; virtual;
+    procedure Assign(Source: TDataFile);
     procedure LoadFromFile(FileName: string); virtual;
     procedure SaveToFile(FileName: string); virtual;
     constructor Create; virtual;
@@ -69,6 +70,12 @@ end;
 function TDataFile.GetFileFilter: string;
 begin
   Result := SAllFiles + '|*.*';
+end;
+
+procedure TDataFile.Assign(Source: TDataFile);
+begin
+  FFileName := Source.FFileName;
+  FModified := Source.FModified;
 end;
 
 procedure TDataFile.LoadFromFile(FileName: string);

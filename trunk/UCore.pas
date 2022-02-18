@@ -16,6 +16,7 @@ type
   TCore = class(TDataModule)
     AAbout: TAction;
     AboutDialog1: TAboutDialog;
+    AFileCompare: TAction;
     AViewSource: TAction;
     ATest: TAction;
     AFind: TAction;
@@ -46,6 +47,7 @@ type
     procedure AAboutExecute(Sender: TObject);
     procedure AExitExecute(Sender: TObject);
     procedure AFileCombineExecute(Sender: TObject);
+    procedure AFileCompareExecute(Sender: TObject);
     procedure AFileNewExecute(Sender: TObject);
     procedure AFileOpenExecute(Sender: TObject);
     procedure AFileOpenRecentExecute(Sender: TObject);
@@ -109,7 +111,7 @@ implementation
 
 uses
   UFormMain, UFormSettings, UContact, UFormContacts, UFormFindDuplicity,
-  UFormGenerate, UFormError, UFormFind, UFormTest, UFormSource;
+  UFormGenerate, UFormError, UFormFind, UFormTest, UFormSource, UFormCompare;
 
 resourcestring
   SAppExit = 'Application exit';
@@ -162,6 +164,45 @@ begin
     if LoadedFiles > 0 then TContactsFile(DataFile).Modified := True;
     ShowMessage(Format(SCombinedContacts, [LoadedFiles]));
     UpdateFile;
+  end;
+end;
+
+procedure TCore.AFileCompareExecute(Sender: TObject);
+var
+  TempFile: TDataFile;
+  LeftContacts: TContactsFile;
+  RightContacts: TContactsFile;
+begin
+  TempFile := DefaultDataFileClass.Create;
+  try
+    OpenDialog1.Filter := TempFile.GetFileFilter;
+  finally
+    TempFile.Free;
+  end;
+  OpenDialog1.DefaultExt := '';
+  if Assigned(DataFile) then begin
+    OpenDialog1.InitialDir := ExtractFileDir(DataFile.FileName);
+    OpenDialog1.FileName := ExtractFileName(DataFile.FileName);
+  end;
+  OpenDialog1.Options := OpenDialog1.Options - [ofAllowMultiSelect];
+  if OpenDialog1.Execute then begin
+    with TFormCompare.Create(nil) do
+    try
+      LeftContacts := TContactsFile(DefaultDataFileClass.Create);
+      RightContacts := TContactsFile(DefaultDataFileClass.Create);
+      try
+        LeftContacts.Assign(TContactsFile(DataFile));
+        LeftSide := LeftContacts;
+        RightContacts.LoadFromFile(OpenDialog1.FileName);
+        RightSide := RightContacts;
+        ShowModal;
+      finally
+        LeftContacts.Free;
+        RightContacts.Free;
+      end;
+    finally
+      Free;
+    end;
   end;
 end;
 
@@ -552,6 +593,7 @@ begin
   AFileClose.Enabled := Assigned(DataFile);
   AFileSplit.Enabled := Assigned(DataFile);
   AFileCombine.Enabled := Assigned(DataFile);
+  AFileCompare.Enabled := Assigned(DataFile);
   AFind.Enabled := Assigned(DataFile);
   AFindDuplicate.Enabled := Assigned(DataFile);
   AGenerate.Enabled := Assigned(DataFile);

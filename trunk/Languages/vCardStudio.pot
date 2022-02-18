@@ -17,6 +17,10 @@ msgstr ""
 msgid "Combine..."
 msgstr ""
 
+#: tcore.afilecompare.caption
+msgid "Compare..."
+msgstr ""
+
 #: tcore.afilenew.caption
 msgid "New"
 msgstr ""
@@ -91,6 +95,10 @@ msgstr ""
 
 #: tcore.selectdirectorydialog1.title
 msgid "Select directory"
+msgstr ""
+
+#: tformcompare.caption
+msgid "Compare"
 msgstr ""
 
 #: tformcontact.aphotoclear.caption
