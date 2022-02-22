@@ -7,7 +7,7 @@ interface
 uses
   {$IFDEF WINDOWS}Windows,{$ENDIF}
   {$IFDEF UNIX}baseunix,{$ENDIF}
-  Classes, SysUtils, StrUtils, Dialogs, Process, LCLIntf,
+  Classes, SysUtils, StrUtils, Dialogs, Process, LCLIntf, Graphics,
   FileUtil; //, ShFolder, ShellAPI;
 
 type
@@ -32,6 +32,11 @@ type
 var
   ExceptionHandler: TExceptionEvent;
   DLLHandle1: HModule;
+
+const
+  clLightBlue = TColor($FF8080);
+  clLightGreen = TColor($80FF80);
+  clLightRed = TColor($8080FF);
 
 {$IFDEF WINDOWS}
   GetUserNameEx: procedure (NameFormat: DWORD;

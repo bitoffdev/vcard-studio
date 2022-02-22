@@ -1,3 +1,9 @@
 {"version":1,"strings":[
-{"hash":174352581,"name":"tformcompare.caption","sourcebytes":[67,111,109,112,97,114,101],"value":"Compare"}
+{"hash":174352581,"name":"tformcompare.caption","sourcebytes":[67,111,109,112,97,114,101],"value":"Compare"},
+{"hash":315429,"name":"tformcompare.menuitem1.caption","sourcebytes":[70,105,108,101],"value":"File"},
+{"hash":4863637,"name":"tformcompare.menuitemclose.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":195475957,"name":"tformcompare.afileopenleft.caption","sourcebytes":[79,112,101,110,32,108,101,102,116,32,102,105,108,101],"value":"Open left file"},
+{"hash":56694677,"name":"tformcompare.afileopenright.caption","sourcebytes":[79,112,101,110,32,114,105,103,104,116,32,102,105,108,101],"value":"Open right file"},
+{"hash":65066931,"name":"tformcompare.areloadfiles.caption","sourcebytes":[82,101,108,111,97,100,32,102,105,108,101,115],"value":"Reload files"},
+{"hash":265810003,"name":"tformcompare.aswitchsides.caption","sourcebytes":[83,119,105,116,99,104,32,115,105,100,101,115],"value":"Switch sides"}
 ]}
