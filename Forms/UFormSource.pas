@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus,
-  StdCtrls, SynEdit, SynHighlighterAny, UVCardHighlighter;
+  StdCtrls, SynEdit, SynHighlighterAny, UVCardHighlighter, UCommon;
 
 type
 
@@ -119,10 +119,6 @@ begin
 end;
 
 procedure TFormSource.UpdateTheme;
-const
-  clLightBlue = TColor($FF8080);
-  clLightGreen = TColor($80FF80);
-  clLightRed = TColor($8080FF);
 var
   C: TColor;
 begin
