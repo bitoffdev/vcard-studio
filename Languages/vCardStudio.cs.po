@@ -20,6 +20,7 @@ msgid "Exit"
 msgstr "Ukončit"
 
 #: tcore.afileclose.caption
+msgctxt "tcore.afileclose.caption"
 msgid "Close"
 msgstr "Zavřít"
 
@@ -107,9 +108,35 @@ msgstr "Uložit soubor jako"
 msgid "Select directory"
 msgstr "Vybrat adresář"
 
+#: tformcompare.afileopenleft.caption
+msgid "Open left file"
+msgstr "Otevřít levý soubor"
+
+#: tformcompare.afileopenright.caption
+msgid "Open right file"
+msgstr "Otevřít pravý soubor"
+
+#: tformcompare.areloadfiles.caption
+msgid "Reload files"
+msgstr "Znovu načíst soubory"
+
+#: tformcompare.aswitchsides.caption
+msgid "Switch sides"
+msgstr "Prohodit strany"
+
 #: tformcompare.caption
 msgid "Compare"
 msgstr "Porovnání"
+
+#: tformcompare.menuitem1.caption
+msgctxt "tformcompare.menuitem1.caption"
+msgid "File"
+msgstr "Soubor"
+
+#: tformcompare.menuitemclose.caption
+msgctxt "tformcompare.menuitemclose.caption"
+msgid "Close"
+msgstr "Zavřít"
 
 #: tformcontact.aphotoclear.caption
 msgctxt "tformcontact.aphotoclear.caption"

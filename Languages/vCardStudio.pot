@@ -10,6 +10,7 @@ msgid "Exit"
 msgstr ""
 
 #: tcore.afileclose.caption
+msgctxt "tcore.afileclose.caption"
 msgid "Close"
 msgstr ""
 
@@ -97,8 +98,34 @@ msgstr ""
 msgid "Select directory"
 msgstr ""
 
+#: tformcompare.afileopenleft.caption
+msgid "Open left file"
+msgstr ""
+
+#: tformcompare.afileopenright.caption
+msgid "Open right file"
+msgstr ""
+
+#: tformcompare.areloadfiles.caption
+msgid "Reload files"
+msgstr ""
+
+#: tformcompare.aswitchsides.caption
+msgid "Switch sides"
+msgstr ""
+
 #: tformcompare.caption
 msgid "Compare"
+msgstr ""
+
+#: tformcompare.menuitem1.caption
+msgctxt "tformcompare.menuitem1.caption"
+msgid "File"
+msgstr ""
+
+#: tformcompare.menuitemclose.caption
+msgctxt "tformcompare.menuitemclose.caption"
+msgid "Close"
 msgstr ""
 
 #: tformcontact.aphotoclear.caption

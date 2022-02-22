@@ -87,6 +87,7 @@ type
     ReopenLastFileOnStart: Boolean;
     LastContactTabIndex: Integer;
     LastContactFileName: string;
+    LastCompareFileName: string;
     LastPhotoFileName: string;
     LastPropertyValueFileName: string;
     MapUrl: string;
@@ -170,8 +171,7 @@ end;
 procedure TCore.AFileCompareExecute(Sender: TObject);
 var
   TempFile: TDataFile;
-  LeftContacts: TContactsFile;
-  RightContacts: TContactsFile;
+  TempFileName: string;
 begin
   TempFile := DefaultDataFileClass.Create;
   try
@@ -180,29 +180,23 @@ begin
     TempFile.Free;
   end;
   OpenDialog1.DefaultExt := '';
-  if Assigned(DataFile) then begin
-    OpenDialog1.InitialDir := ExtractFileDir(DataFile.FileName);
-    OpenDialog1.FileName := ExtractFileName(DataFile.FileName);
-  end;
+  OpenDialog1.InitialDir := ExtractFileDir(Core.LastCompareFileName);
+  OpenDialog1.FileName := ExtractFileName(Core.LastCompareFileName);
   OpenDialog1.Options := OpenDialog1.Options - [ofAllowMultiSelect];
   if OpenDialog1.Execute then begin
     with TFormCompare.Create(nil) do
     try
-      LeftContacts := TContactsFile(DefaultDataFileClass.Create);
-      RightContacts := TContactsFile(DefaultDataFileClass.Create);
-      try
-        LeftContacts.Assign(TContactsFile(DataFile));
-        LeftSide := LeftContacts;
-        RightContacts.LoadFromFile(OpenDialog1.FileName);
-        RightSide := RightContacts;
-        ShowModal;
-      finally
-        LeftContacts.Free;
-        RightContacts.Free;
-      end;
+      TempFileName := GetTempDir + DirectorySeparator + Application.Title +
+        DirectorySeparator + 'Compare' + VCardFileExt;
+      ForceDirectories(ExtractFileDir(TempFileName));
+      TContactsFile(DataFile).SaveToFile(TempFileName);
+      LoadFileLeft(TempFileName);
+      LoadFileRight(OpenDialog1.FileName);
+      ShowModal;
     finally
       Free;
     end;
+    Core.LastCompareFileName := OpenDialog1.FileName;
   end;
 end;
 
@@ -531,6 +525,7 @@ begin
     DefaultVcardVersion := ReadStringWithDefault('DefaultVcardVersion', '2.1');
     MapUrl := ReadStringWithDefault('MapUrl', 'https://www.openstreetmap.org/search?query=');
     LastPhotoFileName := ReadStringWithDefault('LastPhotoFileName', '');
+    LastCompareFileName := ReadStringWithDefault('LastCompareFileName', '');
   finally
     Free;
   end;
@@ -557,6 +552,7 @@ begin
     WriteString('DefaultVcardVersion', DefaultVcardVersion);
     WriteString('MapUrl', MapUrl);
     WriteString('LastPhotoFileName', LastPhotoFileName);
+    WriteString('LastCompareFileName', LastCompareFileName);
   finally
     Free;
   end;
