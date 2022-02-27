@@ -1,0 +1,1480 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Elias <Elias.Sundberg98@outlook.com>\n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: tcore.aabout.caption
+msgid "About..."
+msgstr "Om Oss ..."
+
+#: tcore.aexit.caption
+msgid "Exit"
+msgstr "Stäng av"
+
+#: tcore.afileclose.caption
+msgid "Close"
+msgstr "Stäng"
+
+#: tcore.afilecombine.caption
+msgid "Combine..."
+msgstr "Sammanfoga ..."
+
+#: tcore.afilenew.caption
+msgid "New"
+msgstr "Ny"
+
+#: tcore.afileopen.caption
+msgid "Open..."
+msgstr "Öppna..."
+
+#: tcore.afileopenrecent.caption
+msgctxt "tcore.afileopenrecent.caption"
+msgid "Open recent"
+msgstr "Öppna senaste"
+
+#: tcore.afilesave.caption
+msgid "Save"
+msgstr "Spara"
+
+#: tcore.afilesaveas.caption
+msgid "Save as..."
+msgstr "Spara som..."
+
+#: tcore.afilesplit.caption
+msgid "Split..."
+msgstr "Splittra..."
+
+#: tcore.afind.caption
+msgid "Find..."
+msgstr "Sök..."
+
+#: tcore.afindduplicate.caption
+msgctxt "tcore.afindduplicate.caption"
+msgid "Find duplicities"
+msgstr "Hitta dubbletter"
+
+#: tcore.agenerate.caption
+msgctxt "tcore.agenerate.caption"
+msgid "Generate contacts"
+msgstr "Generera kontakter"
+
+#: tcore.ahomepage.caption
+msgid "Home page"
+msgstr "Hemsida"
+
+#: tcore.applicationinfo1.description
+msgid "vCard files management tool"
+msgstr "vCard filhanteringsverktyg"
+
+#: tcore.asettings.caption
+msgctxt "tcore.asettings.caption"
+msgid "Settings"
+msgstr "Inställningar"
+
+#: tcore.atest.caption
+msgctxt "tcore.atest.caption"
+msgid "Test"
+msgstr "Testning"
+
+#: tcore.opendialog1.title
+msgctxt "tcore.opendialog1.title"
+msgid "Open existing file"
+msgstr "Öppna en befintlig fil"
+
+#: tcore.savedialog1.title
+msgctxt "tcore.savedialog1.title"
+msgid "Save file as"
+msgstr "Spara fil som"
+
+#: tcore.selectdirectorydialog1.title
+msgid "Select directory"
+msgstr "Välj en katalog"
+
+#: tformcontact.aphotoclear.caption
+msgctxt "tformcontact.aphotoclear.caption"
+msgid "Clear"
+msgstr "Rensa"
+
+#: tformcontact.aphotoload.caption
+msgctxt "tformcontact.aphotoload.caption"
+msgid "Load from file"
+msgstr "Ladda från filen"
+
+#: tformcontact.aphotosave.caption
+msgctxt "tformcontact.aphotosave.caption"
+msgid "Save to file"
+msgstr "Spara till filen"
+
+#: tformcontact.aphotoseturl.caption
+msgid "Set URL"
+msgstr "Sätt webbadress"
+
+#: tformcontact.aphotoshow.caption
+msgctxt "tformcontact.aphotoshow.caption"
+msgid "Show"
+msgstr "Visa"
+
+#: tformcontact.buttoncancel.caption
+msgctxt "tformcontact.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: tformcontact.buttonhomeaddressshow.caption
+msgctxt "tformcontact.buttonhomeaddressshow.caption"
+msgid "Show on map"
+msgstr "Visa på karta"
+
+#: tformcontact.buttonnamedetails.caption
+msgid "Details"
+msgstr "Detaljer"
+
+#: tformcontact.buttonnext.caption
+msgid "Next"
+msgstr "Nästa"
+
+#: tformcontact.buttonok.caption
+msgctxt "tformcontact.buttonok.caption"
+msgid "OK"
+msgstr "Ok"
+
+#: tformcontact.buttonprevious.caption
+msgid "Previous"
+msgstr "Föregående"
+
+#: tformcontact.buttonworkaddressshow.caption
+msgctxt "tformcontact.buttonworkaddressshow.caption"
+msgid "Show on map"
+msgstr "Visa på karta"
+
+#: tformcontact.calendardialog1.cancelcaption
+msgctxt "tformcontact.calendardialog1.cancelcaption"
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: tformcontact.calendardialog1.okcaption
+msgid "&OK"
+msgstr "&OK"
+
+#: tformcontact.calendardialog1.title
+msgctxt "tformcontact.calendardialog1.title"
+msgid "Select date"
+msgstr "Välj datum"
+
+#: tformcontact.caption
+msgctxt "tformcontact.caption"
+msgid "Contact"
+msgstr "Kontakt"
+
+#: tformcontact.groupbox1.caption
+msgctxt "tformcontact.groupbox1.caption"
+msgid "Address"
+msgstr "Adress"
+
+#: tformcontact.groupbox2.caption
+msgctxt "tformcontact.groupbox2.caption"
+msgid "Address"
+msgstr "Adress"
+
+#: tformcontact.label10.caption
+msgctxt "tformcontact.label10.caption"
+msgid "Pager:"
+msgstr "Pager:"
+
+#: tformcontact.label11.caption
+msgctxt "tformcontact.label11.caption"
+msgid "Fax:"
+msgstr "Fax:"
+
+#: tformcontact.label12.caption
+msgctxt "tformcontact.label12.caption"
+msgid "Mobile:"
+msgstr "Mobil:"
+
+#: tformcontact.label13.caption
+msgctxt "tformcontact.label13.caption"
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: tformcontact.label14.caption
+msgctxt "tformcontact.label14.caption"
+msgid "Pager:"
+msgstr "Pager:"
+
+#: tformcontact.label15.caption
+msgctxt "tformcontact.label15.caption"
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: tformcontact.label16.caption
+msgctxt "tformcontact.label16.caption"
+msgid "Fax:"
+msgstr "Fax:"
+
+#: tformcontact.label17.caption
+msgctxt "tformcontact.label17.caption"
+msgid "Pager:"
+msgstr "Pager:"
+
+#: tformcontact.label18.caption
+msgctxt "tformcontact.label18.caption"
+msgid "Title:"
+msgstr "Titel:"
+
+#: tformcontact.label19.caption
+msgctxt "tformcontact.label19.caption"
+msgid "Mobile:"
+msgstr "Mobil:"
+
+#: tformcontact.label2.caption
+msgctxt "tformcontact.label2.caption"
+msgid "Mobile:"
+msgstr "Mobil:"
+
+#: tformcontact.label20.caption
+msgid "Jabber:"
+msgstr "Jabber:"
+
+#: tformcontact.label21.caption
+msgid "MSN:"
+msgstr "MSN:"
+
+#: tformcontact.label22.caption
+msgid "Birthday:"
+msgstr "Födelsedag:"
+
+#: tformcontact.label23.caption
+msgid "IRC:"
+msgstr "IRC:"
+
+#: tformcontact.label24.caption
+msgid "Full name:"
+msgstr "Hela namnet:"
+
+#: tformcontact.label28.caption
+msgctxt "tformcontact.label28.caption"
+msgid "Street:"
+msgstr "Gata:"
+
+#: tformcontact.label29.caption
+msgctxt "tformcontact.label29.caption"
+msgid "City:"
+msgstr "Ort/Stad:"
+
+#: tformcontact.label3.caption
+msgctxt "tformcontact.label3.caption"
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: tformcontact.label30.caption
+msgctxt "tformcontact.label30.caption"
+msgid "Region:"
+msgstr "Region:"
+
+#: tformcontact.label31.caption
+msgctxt "tformcontact.label31.caption"
+msgid "Country:"
+msgstr "Land:"
+
+#: tformcontact.label32.caption
+msgctxt "tformcontact.label32.caption"
+msgid "Web address:"
+msgstr "Webbadress:"
+
+#: tformcontact.label33.caption
+msgctxt "tformcontact.label33.caption"
+msgid "Postal code:"
+msgstr "Postkod:"
+
+#: tformcontact.label34.caption
+msgctxt "tformcontact.label34.caption"
+msgid "Post office box:"
+msgstr "Postbox:"
+
+#: tformcontact.label35.caption
+msgctxt "tformcontact.label35.caption"
+msgid "Extended street:"
+msgstr "Utökad gata:"
+
+#: tformcontact.label36.caption
+msgctxt "tformcontact.label36.caption"
+msgid "Street:"
+msgstr "Gata:"
+
+#: tformcontact.label37.caption
+msgctxt "tformcontact.label37.caption"
+msgid "Extended street:"
+msgstr "Utökad gata:"
+
+#: tformcontact.label38.caption
+msgctxt "tformcontact.label38.caption"
+msgid "Region:"
+msgstr "Region:"
+
+#: tformcontact.label39.caption
+msgctxt "tformcontact.label39.caption"
+msgid "Country:"
+msgstr "Land:"
+
+#: tformcontact.label4.caption
+msgctxt "tformcontact.label4.caption"
+msgid "E-mail:"
+msgstr "E-mail:"
+
+#: tformcontact.label40.caption
+msgctxt "tformcontact.label40.caption"
+msgid "Web address:"
+msgstr "Webbadress:"
+
+#: tformcontact.label41.caption
+msgctxt "tformcontact.label41.caption"
+msgid "Postal code:"
+msgstr "Postkod:"
+
+#: tformcontact.label42.caption
+msgctxt "tformcontact.label42.caption"
+msgid "City:"
+msgstr "Ort/Stad:"
+
+#: tformcontact.label43.caption
+msgctxt "tformcontact.label43.caption"
+msgid "Post office box:"
+msgstr "Postkontor låda:"
+
+#: tformcontact.label44.caption
+msgid "Nickname:"
+msgstr "Smeknamn:"
+
+#: tformcontact.label45.caption
+msgid "Anniversary:"
+msgstr "Årsdag:"
+
+#: tformcontact.label46.caption
+msgctxt "tformcontact.label46.caption"
+msgid "Web address:"
+msgstr "Webbadress:"
+
+#: tformcontact.label47.caption
+msgid "Google Talk:"
+msgstr "Google Talk:"
+
+#: tformcontact.label48.caption
+msgid "Windows Live:"
+msgstr "Windows Live:"
+
+#: tformcontact.label49.caption
+msgid "Gender:"
+msgstr "Kön:"
+
+#: tformcontact.label50.caption
+msgid "Myspace:"
+msgstr "MySpace:"
+
+#: tformcontact.label51.caption
+msgid "Twitter:"
+msgstr "Twitter:"
+
+#: tformcontact.label52.caption
+msgid "Instagram:"
+msgstr "Instagram:"
+
+#: tformcontact.label53.caption
+msgid "LinkedIn:"
+msgstr "LinkedIn:"
+
+#: tformcontact.label54.caption
+msgid "Snapchat:"
+msgstr "Snapchat:"
+
+#: tformcontact.label55.caption
+msgid "Matrix:"
+msgstr "Matrix:"
+
+#: tformcontact.label56.caption
+msgid "Categories:"
+msgstr "Kategori:"
+
+#: tformcontact.label57.caption
+msgid "GroupWise:"
+msgstr "GroupWise:"
+
+#: tformcontact.label6.caption
+msgid "Notes:"
+msgstr "Noter:"
+
+#: tformcontact.label7.caption
+msgctxt "tformcontact.label7.caption"
+msgid "E-mail:"
+msgstr "E-mail:"
+
+#: tformcontact.label8.caption
+msgctxt "tformcontact.label8.caption"
+msgid "E-mail:"
+msgstr "E-mail:"
+
+#: tformcontact.label9.caption
+msgctxt "tformcontact.label9.caption"
+msgid "Fax:"
+msgstr "Fax:"
+
+#: tformcontact.labelorganization.caption
+msgid "Organization:"
+msgstr "Organisation:"
+
+#: tformcontact.labelorganization1.caption
+msgid "Department:"
+msgstr "Avdelning:"
+
+#: tformcontact.labelorganization10.caption
+msgid "Reddit:"
+msgstr "Reddit:"
+
+#: tformcontact.labelorganization11.caption
+msgid "Facebook:"
+msgstr "Facebook:"
+
+#: tformcontact.labelorganization12.caption
+msgid "GaduGadu:"
+msgstr "GaduGadu:"
+
+#: tformcontact.labelorganization2.caption
+msgid "Skype:"
+msgstr "Skype:"
+
+#: tformcontact.labelorganization3.caption
+msgid "ICQ:"
+msgstr "ICQ:"
+
+#: tformcontact.labelorganization4.caption
+msgid "AIM:"
+msgstr "AIM:"
+
+#: tformcontact.labelorganization5.caption
+msgid "Yahoo!:"
+msgstr "Yahoo!:"
+
+#: tformcontact.labelorganization6.caption
+msgid "QQ:"
+msgstr "QQ:"
+
+#: tformcontact.labelorganization7.caption
+msgid "PeerTube:"
+msgstr "PeerTube:"
+
+#: tformcontact.labelorganization8.caption
+msgid "YouTube:"
+msgstr "YouTube:"
+
+#: tformcontact.labelorganization9.caption
+msgid "Mastodon:"
+msgstr "Mastodon:"
+
+#: tformcontact.openpicturedialog1.title
+msgctxt "tformcontact.openpicturedialog1.title"
+msgid "Open existing file"
+msgstr "Öppna en befintlig fil"
+
+#: tformcontact.savepicturedialog1.title
+msgctxt "tformcontact.savepicturedialog1.title"
+msgid "Save file as"
+msgstr "Spara fil som"
+
+#: tformcontact.speedbuttonaniversary.hint
+msgctxt "tformcontact.speedbuttonaniversary.hint"
+msgid "Select date"
+msgstr "Välj datum"
+
+#: tformcontact.speedbuttonbirthday.hint
+msgctxt "tformcontact.speedbuttonbirthday.hint"
+msgid "Select date"
+msgstr "Välj datum"
+
+#: tformcontact.speedbuttonemail.hint
+msgctxt "tformcontact.speedbuttonemail.hint"
+msgid "Open in email client"
+msgstr "Öppna i email klienten"
+
+#: tformcontact.speedbuttonhomeemail.hint
+msgctxt "tformcontact.speedbuttonhomeemail.hint"
+msgid "Open in email client"
+msgstr "Öppna i email klienten"
+
+#: tformcontact.speedbuttonhomeweb.hint
+msgctxt "tformcontact.speedbuttonhomeweb.hint"
+msgid "Open in web browser"
+msgstr "Öppna i webbläsaren"
+
+#: tformcontact.speedbuttonweb.hint
+msgctxt "tformcontact.speedbuttonweb.hint"
+msgid "Open in web browser"
+msgstr "Öppna i webbläsaren"
+
+#: tformcontact.speedbuttonworkemail.hint
+msgctxt "tformcontact.speedbuttonworkemail.hint"
+msgid "Open in email client"
+msgstr "Öppna i email klienten"
+
+#: tformcontact.speedbuttonworkweb.hint
+msgctxt "tformcontact.speedbuttonworkweb.hint"
+msgid "Open in web browser"
+msgstr "Öppna i webbläsaren"
+
+#: tformcontact.tabsheetall.caption
+msgid "All fields"
+msgstr "Alla fält"
+
+#: tformcontact.tabsheetchat.caption
+msgid "Chat"
+msgstr "Chat"
+
+#: tformcontact.tabsheetgeneral.caption
+msgid "General"
+msgstr "Generellt"
+
+#: tformcontact.tabsheethome.caption
+msgid "Home"
+msgstr "Hem"
+
+#: tformcontact.tabsheetothers.caption
+msgid "Others"
+msgstr "Annat"
+
+#: tformcontact.tabsheetsocial.caption
+msgid "Social"
+msgstr "Sociala"
+
+#: tformcontact.tabsheetwork.caption
+msgid "Work"
+msgstr "Jobb"
+
+#: tformcontacts.aadd.caption
+msgctxt "tformcontacts.aadd.caption"
+msgid "Add"
+msgstr "Lägg till"
+
+#: tformcontacts.aclone.caption
+msgctxt "tformcontacts.aclone.caption"
+msgid "Clone"
+msgstr "Klona"
+
+#: tformcontacts.acopy.caption
+msgid "Copy"
+msgstr "Kopiera"
+
+#: tformcontacts.acut.caption
+msgid "Cut"
+msgstr "Klipp ut"
+
+#: tformcontacts.aloadfromfile.caption
+msgctxt "tformcontacts.aloadfromfile.caption"
+msgid "Load from file..."
+msgstr "Ladda från fil..."
+
+#: tformcontacts.amodify.caption
+msgctxt "tformcontacts.amodify.caption"
+msgid "Modify"
+msgstr "Redigera"
+
+#: tformcontacts.apaste.caption
+msgid "Paste"
+msgstr "Klistra in"
+
+#: tformcontacts.aremove.caption
+msgctxt "tformcontacts.aremove.caption"
+msgid "Remove"
+msgstr "Ta bort"
+
+#: tformcontacts.asavetofile.caption
+msgctxt "tformcontacts.asavetofile.caption"
+msgid "Save to file..."
+msgstr "Spara till fil..."
+
+#: tformcontacts.aselectall.caption
+msgctxt "tformcontacts.aselectall.caption"
+msgid "Select all"
+msgstr "Markera allt"
+
+#: tformcontacts.caption
+msgctxt "tformcontacts.caption"
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: tformcontacts.listview1.columns[0].caption
+msgctxt "tformcontacts.listview1.columns[0].caption"
+msgid "Full Name"
+msgstr "Hela namnet"
+
+#: tformcontacts.listview1.columns[1].caption
+msgctxt "tformcontacts.listview1.columns[1].caption"
+msgid "First name"
+msgstr "Förnamn"
+
+#: tformcontacts.listview1.columns[2].caption
+msgctxt "tformcontacts.listview1.columns[2].caption"
+msgid "Middle name"
+msgstr "Mellannamn"
+
+#: tformcontacts.listview1.columns[3].caption
+msgctxt "tformcontacts.listview1.columns[3].caption"
+msgid "Last Name"
+msgstr "Efternamn"
+
+#: tformcontacts.listview1.columns[4].caption
+msgctxt "tformcontacts.listview1.columns[4].caption"
+msgid "Phone"
+msgstr "Telefon"
+
+#: tformcontacts.listview1.columns[5].caption
+msgctxt "tformcontacts.listview1.columns[5].caption"
+msgid "Mobile"
+msgstr "Mobil"
+
+#: tformcontacts.listview1.columns[6].caption
+msgctxt "tformcontacts.listview1.columns[6].caption"
+msgid "Home phone"
+msgstr "Hem telefon"
+
+#: tformcontacts.listview1.columns[7].caption
+msgctxt "tformcontacts.listview1.columns[7].caption"
+msgid "Work phone"
+msgstr "Jobb telefon"
+
+#: tformerror.caption
+msgid "Load errors"
+msgstr "Laddnings fel"
+
+#: tformfind.buttonfind.caption
+msgctxt "tformfind.buttonfind.caption"
+msgid "Find"
+msgstr "Hitta"
+
+#: tformfind.caption
+msgctxt "tformfind.caption"
+msgid "Find"
+msgstr "Hitta"
+
+#: tformfind.label1.caption
+msgctxt "tformfind.label1.caption"
+msgid "By contact field:"
+msgstr "Med kontaktfält:"
+
+#: tformfindduplicity.ashowcontacts.caption
+msgctxt "tformfindduplicity.ashowcontacts.caption"
+msgid "Show contacts"
+msgstr "Visa kontakter"
+
+#: tformfindduplicity.buttonmerge.caption
+msgid "Merge"
+msgstr "Sammanfoga"
+
+#: tformfindduplicity.caption
+msgctxt "tformfindduplicity.caption"
+msgid "Find duplicities"
+msgstr "Hitta dubbletter"
+
+#: tformfindduplicity.label1.caption
+msgctxt "tformfindduplicity.label1.caption"
+msgid "By contact field:"
+msgstr "Med kontaktfält:"
+
+#: tformfindduplicity.listview1.columns[0].caption
+msgctxt "tformfindduplicity.listview1.columns[0].caption"
+msgid "Field"
+msgstr "Fält"
+
+#: tformfindduplicity.listview1.columns[1].caption
+msgctxt "tformfindduplicity.listview1.columns[1].caption"
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: tformfindduplicity.listview1.columns[2].caption
+msgctxt "tformfindduplicity.listview1.columns[2].caption"
+msgid "Count"
+msgstr "Antal"
+
+#: tformgenerate.buttongenerate.caption
+msgid "Generate"
+msgstr "Generera"
+
+#: tformgenerate.caption
+msgctxt "tformgenerate.caption"
+msgid "Generate contacts"
+msgstr "Generera kontakter"
+
+#: tformgenerate.label1.caption
+msgctxt "tformgenerate.label1.caption"
+msgid "Count:"
+msgstr "Antal:"
+
+#: tformimage.buttoncancel.caption
+msgctxt "tformimage.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: tformimage.buttonclear.caption
+msgctxt "tformimage.buttonclear.caption"
+msgid "Clear"
+msgstr "Rensa"
+
+#: tformimage.buttonload.caption
+msgctxt "tformimage.buttonload.caption"
+msgid "Load from file"
+msgstr "Ladda från fil"
+
+#: tformimage.buttonok.caption
+msgctxt "tformimage.buttonok.caption"
+msgid "OK"
+msgstr "Ok"
+
+#: tformimage.buttonsave.caption
+msgctxt "tformimage.buttonsave.caption"
+msgid "Save to file"
+msgstr "Spara till fil"
+
+#: tformimage.caption
+msgctxt "tformimage.caption"
+msgid "Photo"
+msgstr "Foto"
+
+#: tformimage.label1.caption
+msgctxt "tformimage.label1.caption"
+msgid "URL:"
+msgstr "URL:"
+
+#: tformmain.caption
+msgid "vCard Studio"
+msgstr "vCard Studio"
+
+#: tformmain.menuitem7.caption
+msgctxt "tformmain.menuitem7.caption"
+msgid "Find"
+msgstr "Hitta"
+
+#: tformmain.menuitemfile.caption
+msgctxt "tformmain.menuitemfile.caption"
+msgid "File"
+msgstr "Fil"
+
+#: tformmain.menuitemfileopenrecent.caption
+msgctxt "tformmain.menuitemfileopenrecent.caption"
+msgid "Open recent"
+msgstr "Öppna senast"
+
+#: tformmain.menuitemhelp.caption
+msgctxt "tformmain.menuitemhelp.caption"
+msgid "Help"
+msgstr "Hjälp"
+
+#: tformmain.menuitemtoolbar.caption
+msgctxt "tformmain.menuitemtoolbar.caption"
+msgid "Main toolbar"
+msgstr "Huvudverktygsfält"
+
+#: tformmain.menuitemtools.caption
+msgid "Tools"
+msgstr "Verktyg"
+
+#: tformmain.menuitemview.caption
+msgid "View"
+msgstr "Vy"
+
+#: tformnamedetails.buttoncancel.caption
+msgctxt "tformnamedetails.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: tformnamedetails.buttonok.caption
+msgctxt "tformnamedetails.buttonok.caption"
+msgid "OK"
+msgstr "Ok"
+
+#: tformnamedetails.caption
+msgid "Name details"
+msgstr "Namn detaljer"
+
+#: tformnamedetails.label1.caption
+msgid "First:"
+msgstr "Första:"
+
+#: tformnamedetails.label25.caption
+msgid "Middle:"
+msgstr "Mellan:"
+
+#: tformnamedetails.label26.caption
+msgctxt "tformnamedetails.label26.caption"
+msgid "Title:"
+msgstr "Titel:"
+
+#: tformnamedetails.label27.caption
+msgid "Suffix:"
+msgstr "Ändelse:"
+
+#: tformnamedetails.label5.caption
+msgid "Last:"
+msgstr "Efter:"
+
+#: tformproperties.aadd.caption
+msgctxt "tformproperties.aadd.caption"
+msgid "Add"
+msgstr "Lägg till"
+
+#: tformproperties.aclone.caption
+msgctxt "tformproperties.aclone.caption"
+msgid "Clone"
+msgstr "Klona"
+
+#: tformproperties.aloadvaluefromfile.caption
+msgid "Load value from file..."
+msgstr "Ladda värde från fil..."
+
+#: tformproperties.amodify.caption
+msgctxt "tformproperties.amodify.caption"
+msgid "Modify"
+msgstr "Redigera"
+
+#: tformproperties.aremove.caption
+msgctxt "tformproperties.aremove.caption"
+msgid "Remove"
+msgstr "Ta bort"
+
+#: tformproperties.asavevaluetofile.caption
+msgid "Save value to file..."
+msgstr "Spara värde till fil..."
+
+#: tformproperties.aselectall.caption
+msgctxt "tformproperties.aselectall.caption"
+msgid "Select all"
+msgstr "Markera alla"
+
+#: tformproperties.caption
+msgctxt "tformproperties.caption"
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: tformproperties.listview1.columns[0].caption
+msgctxt "tformproperties.listview1.columns[0].caption"
+msgid "Name"
+msgstr "Namn"
+
+#: tformproperties.listview1.columns[1].caption
+msgctxt "tformproperties.listview1.columns[1].caption"
+msgid "Attributes"
+msgstr "Egenskaper"
+
+#: tformproperties.listview1.columns[2].caption
+msgctxt "tformproperties.listview1.columns[2].caption"
+msgid "Values"
+msgstr "Värde"
+
+#: tformproperty.buttoncancel.caption
+msgctxt "tformproperty.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: tformproperty.buttonok.caption
+msgctxt "tformproperty.buttonok.caption"
+msgid "OK"
+msgstr "Ok"
+
+#: tformproperty.caption
+msgctxt "tformproperty.caption"
+msgid "Field"
+msgstr "Fält"
+
+#: tformproperty.label1.caption
+msgctxt "tformproperty.label1.caption"
+msgid "Name:"
+msgstr "Namn:"
+
+#: tformproperty.label2.caption
+msgctxt "tformproperty.label2.caption"
+msgid "Attributes:"
+msgstr "Egenskaper:"
+
+#: tformproperty.label3.caption
+msgctxt "tformproperty.label3.caption"
+msgid "Values:"
+msgstr "Värde:"
+
+#: tformproperty.label4.caption
+msgid "Field:"
+msgstr "Fält:"
+
+#: tformsettings.buttoncancel.caption
+msgctxt "tformsettings.buttoncancel.caption"
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: tformsettings.buttonok.caption
+msgid "Ok"
+msgstr "Ok"
+
+#: tformsettings.caption
+msgctxt "tformsettings.caption"
+msgid "Settings"
+msgstr "Inställningar"
+
+#: tformsettings.checkboxautomaticdpi.caption
+msgid "Automatic DPI"
+msgstr "Automatisk DPI"
+
+#: tformsettings.checkboxreopenlastfileonstart.caption
+msgid "Reopen last file on start"
+msgstr "Öppna den senaste filen vid start"
+
+#: tformsettings.label1.caption
+msgid "Language:"
+msgstr "Språk:"
+
+#: tformsettings.label2.caption
+msgid "Theme:"
+msgstr "Tema:"
+
+#: tformsettings.label3.caption
+msgid "Default vCard version:"
+msgstr "Standard vCard version:"
+
+#: tformsettings.label4.caption
+msgid "Map query URL:"
+msgstr "Kart söknings URL:"
+
+#: tformsettings.labeldpi.caption
+msgid "DPI:"
+msgstr "DPI:"
+
+#: tformtest.arun.caption
+msgctxt "tformtest.arun.caption"
+msgid "Run"
+msgstr "Kör"
+
+#: tformtest.ashow.caption
+msgctxt "tformtest.ashow.caption"
+msgid "Show"
+msgstr "Visa"
+
+#: tformtest.buttonrun.caption
+msgctxt "tformtest.buttonrun.caption"
+msgid "Run"
+msgstr "Kör"
+
+#: tformtest.caption
+msgctxt "tformtest.caption"
+msgid "Test"
+msgstr "Testa"
+
+#: tformtest.listviewtestcases.columns[0].caption
+msgctxt "tformtest.listviewtestcases.columns[0].caption"
+msgid "Name"
+msgstr "Namn"
+
+#: tformtest.listviewtestcases.columns[1].caption
+msgid "Result"
+msgstr "Resultat"
+
+#: tformtestcase.caption
+msgid "Test case"
+msgstr "Testfall"
+
+#: ucontact.saim
+msgid "AIM"
+msgstr "AIM"
+
+#: ucontact.sanniversary
+msgid "Anniversary"
+msgstr "Årsdag"
+
+#: ucontact.scategories
+msgid "Categories"
+msgstr "Kategori"
+
+#: ucontact.scontacthasnoparent
+msgid "Contact has no parent"
+msgstr "Kontakten har ingen förälder"
+
+#: ucontact.sdayofbirth
+msgid "Day of birth"
+msgstr "Födelsedag"
+
+#: ucontact.sdepartement
+msgid "Departement"
+msgstr "Avdelning"
+
+#: ucontact.semail
+msgid "E-mail"
+msgstr "E-mail"
+
+#: ucontact.sexpectedproperty
+msgid "Expected contact property"
+msgstr "Förväntade kontakters egenskaper"
+
+#: ucontact.sexpectedvcardbegin
+msgid "Expected vCard begin"
+msgstr "Förväntat början vCard"
+
+#: ucontact.sfacebook
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ucontact.sfax
+msgid "Fax"
+msgstr "Fax"
+
+#: ucontact.sfieldindexnotdefined
+msgid "Field index not defined"
+msgstr "Fältindex hittades inte"
+
+#: ucontact.sfieldindexredefined
+#, object-pascal-format
+msgid "Field index %d redefined"
+msgstr "Fältindex %d omdefinieras"
+
+#: ucontact.sfirstname
+msgid "First Name"
+msgstr "Förnamn"
+
+#: ucontact.sfullname
+msgctxt "ucontact.sfullname"
+msgid "Full Name"
+msgstr "Fullständigt namn"
+
+#: ucontact.sgadugadu
+msgid "GaduGadu"
+msgstr "GaduGadu"
+
+#: ucontact.sgender
+msgid "Gender"
+msgstr "Kön"
+
+#: ucontact.sgoogletalk
+msgid "Google Talk"
+msgstr "Google Talk"
+
+#: ucontact.sgroupwise
+msgid "GroupWise"
+msgstr "GroupWise"
+
+#: ucontact.shomeaddresscity
+msgid "Home address city"
+msgstr "Hemadress ort/stad"
+
+#: ucontact.shomeaddresscountry
+msgid "Home address country"
+msgstr "Hemadress land"
+
+#: ucontact.shomeaddresspostalcode
+msgid "Home address postal code"
+msgstr "Hemadress postkod"
+
+#: ucontact.shomeaddresspostofficebox
+msgid "Home address post office box"
+msgstr "Hemadress postbox"
+
+#: ucontact.shomeaddressregion
+msgid "Home address region"
+msgstr "Hemadress region"
+
+#: ucontact.shomeaddressstreet
+msgid "Home address street"
+msgstr "Hemadress gata"
+
+#: ucontact.shomeaddressstreetextended
+msgid "Home address extended street"
+msgstr "Hemadress utökad gata"
+
+#: ucontact.shomeemail
+msgid "Home E-mail"
+msgstr "Hem E-mail"
+
+#: ucontact.shomefax
+msgid "Home fax"
+msgstr "Hem fax"
+
+#: ucontact.shomemobile
+msgid "Home mobile"
+msgstr "Hem mobil"
+
+#: ucontact.shomepager
+msgid "Home pager"
+msgstr "Hem pager"
+
+#: ucontact.shomephone
+msgctxt "ucontact.shomephone"
+msgid "Home phone"
+msgstr "Hem telefon"
+
+#: ucontact.shomephone2
+msgid "Home phone 2"
+msgstr "Hem telefon 2"
+
+#: ucontact.sicq
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ucontact.sinstagram
+msgid "Instagram"
+msgstr "Instagram"
+
+#: ucontact.sinternetemail
+msgid "Internet E-mail"
+msgstr "Internet E-mail"
+
+#: ucontact.sirc
+msgid "IRC"
+msgstr "IRC"
+
+#: ucontact.sjabber
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ucontact.slastname
+msgctxt "ucontact.slastname"
+msgid "Last Name"
+msgstr "Efternamn"
+
+#: ucontact.slasttimecontacted
+msgid "Last Time Contacted"
+msgstr "Senaste kontaktad"
+
+#: ucontact.slinkedin
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: ucontact.slogo
+msgid "Logo"
+msgstr "Logo"
+
+#: ucontact.smainphone
+msgid "Main phone"
+msgstr "Huvud telefon"
+
+#: ucontact.smastodon
+msgid "Mastodon"
+msgstr "Mastodon"
+
+#: ucontact.smatrix
+msgid "Matrix"
+msgstr "Matrix"
+
+#: ucontact.smiddlename
+msgid "Middle Name"
+msgstr "Mellannamn"
+
+#: ucontact.smobilephone
+msgid "Mobile phone"
+msgstr "Mobil"
+
+#: ucontact.smsn
+msgid "MSN"
+msgstr "MSN"
+
+#: ucontact.smyspace
+msgid "MySpace"
+msgstr "MySpace"
+
+#: ucontact.snickname
+msgid "Nick name"
+msgstr "Smeknamn"
+
+#: ucontact.snote
+msgid "Note"
+msgstr "Noter"
+
+#: ucontact.sorganization
+msgid "Organization"
+msgstr "Organisation"
+
+#: ucontact.spager
+msgid "Pager"
+msgstr "Pager"
+
+#: ucontact.speertube
+msgid "PeerTube"
+msgstr "PeerTube"
+
+#: ucontact.sphoto
+msgctxt "ucontact.sphoto"
+msgid "Photo"
+msgstr "Foto"
+
+#: ucontact.sqq
+msgid "QQ"
+msgstr "QQ"
+
+#: ucontact.sreddit
+msgid "Reddit"
+msgstr "Reddit"
+
+#: ucontact.srevision
+msgid "Revision"
+msgstr "Revision"
+
+#: ucontact.srole
+msgid "Role"
+msgstr "Roll"
+
+#: ucontact.sskype
+msgid "Skype"
+msgstr "Skype"
+
+#: ucontact.ssnapchat
+msgid "Snapchat"
+msgstr "Snapchat"
+
+#: ucontact.stelephone
+msgid "Telephone"
+msgstr "Telefon"
+
+#: ucontact.stimescontacted
+msgid "Times Contacted"
+msgstr "Antal kontaktad"
+
+#: ucontact.stitle
+msgid "Title"
+msgstr "Titel"
+
+#: ucontact.stitleafter
+msgid "Title After"
+msgstr "Titel efter"
+
+#: ucontact.stitlebefore
+msgid "Title Before"
+msgstr "Titel före"
+
+#: ucontact.stwitter
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ucontact.suniqueidentifier
+msgid "Unique identifier"
+msgstr "Unik Identifierare"
+
+#: ucontact.svcardfile
+msgctxt "ucontact.svcardfile"
+msgid "vCard file"
+msgstr "vCard fil"
+
+#: ucontact.sversion
+msgid "Version"
+msgstr "Version"
+
+#: ucontact.svoipphone
+msgid "VoIP phone"
+msgstr "VoIP telefon"
+
+#: ucontact.swebaddress
+msgid "Web address"
+msgstr "Webbadress"
+
+#: ucontact.swebaddresshome
+msgid "Web address home"
+msgstr "Webbadress hem"
+
+#: ucontact.swebaddresswork
+msgid "Web address work"
+msgstr "Webbadress jobb"
+
+#: ucontact.swindowslive
+msgid "Windows Live"
+msgstr "Windows Live"
+
+#: ucontact.sworkaddresscity
+msgid "Work address city"
+msgstr "Jobbadress ort/stad"
+
+#: ucontact.sworkaddresscountry
+msgid "Work address country"
+msgstr "Jobbadress land"
+
+#: ucontact.sworkaddresspostalcode
+msgid "Work address postal code"
+msgstr "Jobbadress postkod"
+
+#: ucontact.sworkaddresspostofficebox
+msgid "Work address post office box"
+msgstr "Jobbadress postbox"
+
+#: ucontact.sworkaddressregion
+msgid "Work address region"
+msgstr "Jobbadress region"
+
+#: ucontact.sworkaddressstreet
+msgid "Work address street"
+msgstr "Jobbadress gata"
+
+#: ucontact.sworkaddressstreetextended
+msgid "Work address extended street"
+msgstr "Jobbadress utökad gata"
+
+#: ucontact.sworkemail
+msgid "Work E-mail"
+msgstr "Jobb E-mail"
+
+#: ucontact.sworkfax
+msgid "Work fax"
+msgstr "Jobb fax"
+
+#: ucontact.sworkmobile
+msgid "Work mobile"
+msgstr "Jobb mobil"
+
+#: ucontact.sworkpager
+msgid "Work pager"
+msgstr "Jobb pager"
+
+#: ucontact.sworkphone
+msgctxt "ucontact.sworkphone"
+msgid "Work phone"
+msgstr "Jobb telefon"
+
+#: ucontact.syahoo
+msgid "Yahoo!"
+msgstr "Yahoo!"
+
+#: ucontact.syoutube
+msgid "YouTube"
+msgstr "YouTube"
+
+#: ucore.sappexit
+msgid "Application exit"
+msgstr "Stäng av"
+
+#: ucore.sappexitquery
+msgid "File was modified. Do you want to save it before exit?"
+msgstr "Filen har redigerats. Vill du spara innan?"
+
+#: ucore.scombinedcontacts
+#, object-pascal-format
+msgctxt "ucore.scombinedcontacts"
+msgid "Combined %d contact files."
+msgstr "Sammanfogade %d kontakt filer."
+
+#: ucore.sfilenotfound
+#, object-pascal-format
+msgid "File '%s' not found."
+msgstr "Filen '%s' hittades inte."
+
+#: ucore.sfilesplit
+msgid "Contacts split"
+msgstr "Splittra kontakter"
+
+#: ucore.sfilesplitfinishedopendirectory
+#, object-pascal-format
+msgid "Total %d contact files saved. Do you want to open the directory %s?"
+msgstr "Totalt %d kontakt filer sparad. Vill du öppna mappen %s?"
+
+#: ucore.sline
+#, object-pascal-format
+msgid "Line %d: %s"
+msgstr "Linje %d: %s"
+
+#: udatafile.sallfiles
+msgctxt "udatafile.sallfiles"
+msgid "All files"
+msgstr "Alla filer"
+
+#: udatafile.sdatafilename
+msgctxt "udatafile.sdatafilename"
+msgid "File"
+msgstr "Fil"
+
+#: uformcontact.scontact
+msgctxt "uformcontact.scontact"
+msgid "Contact"
+msgstr "Kontakt"
+
+#: uformcontact.sphotourl
+msgid "Photo URL"
+msgstr "Foto URL"
+
+#: uformcontact.sphotourlquery
+msgid "Enter URL for profile photo"
+msgstr "Ange URL för profilbilden"
+
+#: uformcontacts.sendupdatetoolow
+msgctxt "uformcontacts.sendupdatetoolow"
+msgid "Update counter error"
+msgstr "Uppdaterings räkningsfel"
+
+#: uformcontacts.sfiltered
+msgctxt "uformcontacts.sfiltered"
+msgid "Filtered"
+msgstr "Filtrerade"
+
+#: uformcontacts.sremovecontacts
+msgid "Remove contacts"
+msgstr "Ta bort kontakter"
+
+#: uformcontacts.sremovecontactsquery
+msgid "Do you want to remove selected contacts?"
+msgstr "Vill du ta bort dom valda kontakterna?"
+
+#: uformcontacts.sselected
+msgctxt "uformcontacts.sselected"
+msgid "Selected"
+msgstr "Valda"
+
+#: uformcontacts.stotal
+msgctxt "uformcontacts.stotal"
+msgid "Total"
+msgstr "Totalt"
+
+#: uformfind.sany
+msgid "Any"
+msgstr "Något"
+
+#: uformmain.smodified
+msgid "Modified"
+msgstr "Redigerade"
+
+#: uformproperties.sallfiles
+msgctxt "uformproperties.sallfiles"
+msgid "All files"
+msgstr "Alla filer"
+
+#: uformproperties.sendupdatetoolow
+msgctxt "uformproperties.sendupdatetoolow"
+msgid "Update counter error"
+msgstr "Uppdaterings räkningsfel"
+
+#: uformproperties.sfiltered
+msgctxt "uformproperties.sfiltered"
+msgid "Filtered"
+msgstr "Filtrerad"
+
+#: uformproperties.sremovepropertiesquery
+msgid "Do you want to remove selected fields?"
+msgstr "Vill du ta bort dom valda fälten?"
+
+#: uformproperties.sremovepropertites
+msgid "Remove fields"
+msgstr "Ta bort fält"
+
+#: uformproperties.sselected
+msgctxt "uformproperties.sselected"
+msgid "Selected"
+msgstr "Valda"
+
+#: uformproperties.stextfiles
+msgid "Text files"
+msgstr "Text filer"
+
+#: uformproperties.stotal
+msgctxt "uformproperties.stotal"
+msgid "Total"
+msgstr "Totalt"
+
+#: uformproperties.svalue
+msgid "Value"
+msgstr "Värde"
+
+#: uquotedprintable.sdecodeerror
+msgid "Decode error"
+msgstr "Avkodningsfel"
