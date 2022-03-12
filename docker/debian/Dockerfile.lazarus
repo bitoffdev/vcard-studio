@@ -1,0 +1,7 @@
+FROM debian:bullseye
+
+COPY ./docker/debian/install-toolchain.sh /tmp/install-toolchain.sh
+RUN set -x && \
+    /tmp/install-toolchain.sh && \
+    rm /tmp/install-toolchain.sh
+

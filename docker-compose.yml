@@ -1,0 +1,12 @@
+version: '3'
+services:
+  debian-lazbuild:
+    image: vcard-studio
+    build:
+      context: .
+      dockerfile: docker/debian/Dockerfile.lazarus
+    command: /src/docker/debian/build.sh
+    volumes:
+      - "./:/src"
+      - "./dist:/output"
+
