@@ -985,13 +985,6 @@ begin
     Charset := Attributes.Values[VCardCharset]
     else Charset := '';
 
-  // Simplify TYPE attribute from TYPE=VALUE into VALUE
-  for I := 0 to Attributes.Count - 1 do begin
-    if Attributes.Names[I] = 'TYPE' then
-      Attributes.Strings[I] := Attributes.Values['TYPE'];
-    if Attributes.Names[I] = 'type' then
-      Attributes.Strings[I] := Attributes.Values['type'];
-  end;
 end;
 
 function TContactProperty.GetDecodedValue: string;
